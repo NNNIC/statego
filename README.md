@@ -32,5 +32,5 @@ Run BuildControl.bat
 
 # How to use StateGo?
 
-See https://statego.programanic.com/
+See https://statego.programanic.com/en/entry2.html
 
