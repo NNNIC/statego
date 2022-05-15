@@ -24,3 +24,14 @@ ex) ```set NUGET=C:\nuget\nuget.exe```
 
 Run BuildControl.bat
 
+# Unzip release file
+
+1. Download from the release.
+2. Unzipped.
+3. Unlock security for "StateGo.exe" , "psgg2mermaid.exe" and "psggConverterLib.dll".
+4. Run __setup.bat to let StateGo File(.psgg) to be associated with StrateGo app
+
+# How to use StateGo?
+
+See https://statego.programanic.com/
+
