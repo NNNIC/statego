@@ -318,7 +318,6 @@ goto :S_START
     ::
         cd /d %~dp0
         set SRC=%CD%
-        if "%CFG%"=="" set CFG=Debug
         if "%TGT%"=="" set TGT=%SRC%\m1\StateViewer\StateViewer\bin\%CFG%
         ::_ini
         robocopy %SRC%\m1\StateViewer\ini %TGT%\ini /MIR

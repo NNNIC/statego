@@ -552,7 +552,6 @@ n006=S_PAS000
 n007=@@@
 cd /d %~dp0
 set SRC=%CD%
-if "%CFG%"=="" set CFG=Debug
 if "%TGT%"=="" set TGT=%SRC%\m1\StateViewer\StateViewer\bin\%CFG%
 ::_ini
 robocopy %SRC%\m1\StateViewer\ini %TGT%\ini /MIR
@@ -572,7 +571,6 @@ robocopy %SRC%\Work\VisualStudioFileOpenTool\VisualStudioFileOpenTool\bin\%CFG% 
 robocopy %SRC%\Work\conv\psggConverter\psggConverterLib\bin\%CFG% %TGT% *.*
 ::_setup
 copy %SRC%\Others\archivebatch\__setup.bat %TGT%\*.*
-
 @@@
 
 n00c=@@@
@@ -591,7 +589,7 @@ n00e=100030
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2022/05/15 11:00:46
+; The setting was created automatically. 2022/05/15 12:23:28
 ; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
 psggfile=@@@
 BuildControl.psgg
