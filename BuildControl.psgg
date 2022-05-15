@@ -136,9 +136,8 @@ n00f=
 n006=S_0004
 n007=@@@
 if "%MSBUILD14%"=="" set MSBUILD14=C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe
-if "%MSBUILD15%"=="" set MSBUILD15=C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe
+if "%MSBUILD15%"=="" set MSBUILD15=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe
 if "%NUGET%"=="" set NUGET=%CD%\..\nuget.exe
-
 @@@
 
 n00c=@@@
@@ -589,7 +588,7 @@ n00e=100030
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2022/05/15 9:31:08
+; The setting was created automatically. 2022/05/15 10:35:05
 ; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
 psggfile=@@@
 BuildControl.psgg
