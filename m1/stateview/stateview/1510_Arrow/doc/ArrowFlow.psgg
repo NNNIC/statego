@@ -1,0 +1,436 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=ArrowFlow.xlsx
+guid=cbfb708f-18e7-44b5-9465-d5a7618756d8
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=yes
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,n006,n007,n008,n009,n00a,n00b,n00c,,,,,n00d,n00e,,n00f,n010,n011,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+stateid_list=,,,,s0001,s0002,s0003,s0004,,s0005,s0006,s0007,s0008,s0009,s000a,s000b
+max_name_id=17
+max_state_id=11
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=nextstate
+n005=outline
+n006=outline-cmt
+n007=check
+n008=check-cmt
+n009=point
+n00a=point-cmt
+n00b=setdiff
+n00c=setdiff-cmt
+n00d=branch
+n00e=branch-cmt
+n00f=!pos
+n010=!dir
+n011=!uuid
+
+
+[id_state_dic]
+s0001=S_NONE
+s0002=S_START
+s0003=S_STRAIGHT
+s0004=S_OUTLINE
+s0005=S_RS_BEGIN
+s0006=S_RS_CALC
+s0007=S_RS_CHK_QR
+s0008=S_RS_CHK_SQ
+s0009=S_RS_CK_RG
+s000a=S_RS_END
+s000b=S_END
+
+
+[s0001]
+n002=S_NONE
+n00f=90,582
+n011=100001
+
+[s0002]
+n002=S_START
+n003=開始
+n004=S_OUTLINE
+n007=check_straight();
+n008=直線確認
+n00d=br_straight(S_STRAIGHT);
+n00e=直線で引けるのであれば、S_STRAIGHTへ
+n00f=42,57
+n011=100002
+
+[s0003]
+n002=S_STRAIGHT
+n003=直線
+n004=S_END
+n009=point_straight();
+n00a=直線のポイント作成
+n00f=311,652
+n011=100003
+
+[s0004]
+n002=S_OUTLINE
+n003=アウトライン作成
+n004=S_RS_BEGIN
+n005=outline_create();
+n006=アウトライン作成作成
+n00f=271,54
+n011=100004
+
+[s0005]
+n001=#683xergYkl87B+HLZXms9A==
+n002=S_RS_BEGIN
+n003=ルート検索開始
+n004=S_RS_CALC
+n00b=@@@
+setdiff_SP();
+setdiff_clear_PQ();
+setdiff_TG();
+@@@
+
+n00c=各調整値にdを設定
+n00f=293,213
+n011=100005
+
+[s0006]
+n002=S_RS_CALC
+n003=ポイント計算
+n004=S_RS_CHK_QR
+n009=point_PQRT();
+n00a=PQRTの作成
+n00b=setdiff_allclear();
+n00c=全クリア
+n00f=487,207
+n011=100006
+
+[s0007]
+n002=S_RS_CHK_QR
+n003=QRの確認
+n004=S_RS_CHK_SQ
+n007=check_QR();
+n00b=setdiff_PQ_chkQR();
+n00c=check_QRの結果でPQのdiff値をセット
+n00d=br_checkQR(S_RS_CALC);
+n00e=check_QRの結果で遷移
+n00f=678,208
+n011=100007
+
+[s0008]
+n002=S_RS_CHK_SQ
+n003=SQの確認
+n004=S_RS_CK_RG
+n007=check_SQ();
+n00b=setdiff_SP_chkSQ();
+n00c=check_SQの結果でSPのdiff値をセット
+n00d=br_checkSQ(S_RS_CALC);
+n00e=check_SQの結果で遷移
+n00f=867,209
+n011=100008
+
+[s0009]
+n002=S_RS_CK_RG
+n003=RGの確認
+n004=S_RS_END
+n007=check_RG();
+n00b=setdiff_TG_chkRG();
+n00c=check_RGの結果でTGのdiff値をセット
+n00d=br_checkRG(S_RS_CALC);
+n00e=check_RGの結果で遷移
+n00f=1060,211
+n011=100009
+
+[s000a]
+n002=S_RS_END
+n003=ルート検索終了
+n004=S_END
+n009=point_createroute();
+n00a=ルートを作成
+n00f=1279,216
+n011=100010
+
+[s000b]
+n002=S_END
+n003=終了
+n00f=1379,668
+n011=100011
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2022/05/07 14:31:13
+; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
+psggfile=@@@
+ArrowFlow.psgg
+@@@
+xlsfile=@@@
+ArrowFlow.xlsx
+@@@
+guid=@@@
+cbfb708f-18e7-44b5-9465-d5a7618756d8
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=0
+force_display_outpin=0
+last_action=@@@
+init,Initilized
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[]
+@@@
+nodegroup_pos_list=@@@
+[]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_NONE","Value":{"x":90,"y":582}},{"Key":"S_START","Value":{"x":42,"y":57}},{"Key":"S_STRAIGHT","Value":{"x":311,"y":652}},{"Key":"S_OUTLINE","Value":{"x":271,"y":54}},{"Key":"S_RS_BEGIN","Value":{"x":293,"y":213}},{"Key":"S_RS_CALC","Value":{"x":487,"y":207}},{"Key":"S_RS_CHK_QR","Value":{"x":678,"y":208}},{"Key":"S_RS_CHK_SQ","Value":{"x":867,"y":209}},{"Key":"S_RS_CK_RG","Value":{"x":1060,"y":211}},{"Key":"S_RS_END","Value":{"x":1279,"y":216}},{"Key":"S_END","Value":{"x":1379,"y":668}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+
+@@@
+option_delete_thisstring=0
+option_delete_br_string=0
+option_delete_bracket_string=0
+option_delete_s_state_string=0
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=1
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=45
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=0
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=ArrowFlowStateControl2_created.cs
+::
+public enum ArrowFlowState2
+{
+    $contents1$
+}
+
+public partial class ArrowFlowStateControl2 {
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](int phase, bool bFirst)
+{
+    if (phase == 0)
+    {
+        if (bFirst)
+        {
+            SetNextState([[nextstate]]);
+            <<<?outline
+            /*
+                [[outline-cmt]]
+            */
+            [[outline]]
+            >>>
+            <<<?check
+            /*
+                [[check-cmt]]
+            */
+            [[check]]
+            >>>
+            <<<?point
+            /*
+                [[point-cmt]]
+            */
+            [[point]]
+            >>>
+            <<<?setdiff
+            /*
+                [[setdiff-cmt]]
+            */
+            [[setdiff]]
+            >>>
+        }
+        <<<?branch
+        /*
+            [[branch-cmt]]
+        */
+        [[branch]]
+        >>>
+        if (HasNextState())
+        {
+            GoNextState();
+        }
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+psgg=ArrowFlow.psgg
+xls=ArrowFlow.xlsx
+sub_src=
+gen_src=ArrowFlowStateControl2_created.cs
+template_func=template-statefunc.txt
+
+[setupinfo]
+lang=c#
+genrdir=..\created
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](int phase, bool bFirst)
+{
+    if (phase == 0)
+    {
+        if (bFirst)
+        {
+            SetNextState([[nextstate]]);
+            <<<?outline
+            /*
+                [[outline-cmt]]
+            */
+            [[outline]]
+            >>>
+            <<<?check
+            /*
+                [[check-cmt]]
+            */
+            [[check]]
+            >>>
+            <<<?point
+            /*
+                [[point-cmt]]
+            */
+            [[point]]
+            >>>
+            <<<?setdiff
+            /*
+                [[setdiff-cmt]]
+            */
+            [[setdiff]]
+            >>>
+        }
+        <<<?branch
+        /*
+            [[branch-cmt]]
+        */
+        [[branch]]
+        >>>
+        if (HasNextState())
+        {
+            GoNextState();
+        }
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+hash=#683xergYkl87B+HLZXms9A==
+
+###BITMAP-DATA-BEGIN###
+iVBORw0KGgoAAAANSUhEUgAAASAAAABgCAYAAAC9rK9YAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOxAAADsQBlSsOGwAABUZJREFUeF7t2IGO3CoMheF9/5feLupSUQTEJid2kvk/KeqdCRjGGOu2X98AkIQGBCANDQhAGhoQgDQ0IABpaEAA0tCAAKShAQFIQwMCkIYGBCCNvAF9fX39eyK060Wu+2lGea5PhOj1vNT7U8e7K+mv65N1JnnWuaNxbz+0bIr8emL0Y+92vur9eeJl5UK1rmz3sw2d2ahl7hXrYk2V2zecr3p/3nhZeVCtK9v9VQk6mn/VuphT5vbp56venzdeVh5U68p2f2UiVrHvdjCfQJ3bnfO9i539lTmzed54WflRrSvd/ZXJ8B5Y1sF8gity++Rz9O6xjF/NscSrMfpnxDKmqO9WY9t37bNrf+bE2Q2tjOJav4NO9vneUdmncq/WeEdjRu9nc6xrFtZxRzRRBo5+5Oix6Mf1Mfr30FvluD+L9rHox1nn3YV6v0fxdtabzfHEUv1OTZQJ1SarUTz1Gjh2Vc4t51s+1+eu1HtbxbOuVXNWnxFrrMIzdkUTZUG2UUHSoHFFzr3ne/dzV+/vTB76MWdiVZ6xK5ooPxQ/amYVQ5UI2KlzvnO+dzl39f688Y7WGb3fjdXyjF3RRPmh+FEjR/NViYCdMue753uXc1fvzxvvaJ3R+91YLc/YFU2UX/2mzm7SMl+VCNjJis8Ypx9XPt/p3Ef7WznavyeeZa1W+TybcxSr5Rm7oonSqD/w7Aat81WJgJ0i594YZXx96uc76fe3Yhm3E282tn8/Gzv6bqXG8c5r7c8EgJNoQADS0IAApKEBAUjzqgZ05h/DYEeeoUIDgkvNMbn+X8lHfRTU8Twi13xVFWUc1ifp80u+/1LnJTvPkevF/rKLRR8UMKu53VpUx9sRutbvn68QmTigUDcMdbwdoWv9/vkKkYkDip2aK3Nm8+5Qw5F7eNWNvcPh4bPs1FyZM5vnjVdjrea1Y1bjKssYlbiVAkQmDijUNeeJ148dzbV+1/Ls4ay4lQJEJg4o1DVnjTcbZ5l/NEb9m1biVgoQmTig6GuufK7PDmu8WfzV9+2zcvReKW6lAJGJA4pZze3WojWeZ13r3OrovVLcSgEiEwcUs5rbrUVrvDPjZnOro/dKcSsFiEwcUMxqbrcWrfHOjJvNrY7eK8WtFCAycUA1uvSrWrS8b83Gj8b1rLFaR++V4lYKEJk4oFUvdq3BVS2242bqmDpuNr4fN9KPsYyPErdSgMjEATiPBgQgDQ0IQBpuLIA0NCC48X+aUKGS4EYDggqVBDcaEFSoJLjRgKBCJcGNBgQVKgluNCCoPL6SZpeBS3IdcgsVGhDcyC1UXlFJ/YXgglyL/EKFBgQ38guV11RSvRRcjuuRY6jQgOBGjqFCA4IbOYbKqyqJixGDPEOFBgQ38gwVKgluNCCoUElwowFBhUqCGw0IKlQSgDQ0IABpXtOAyl8L2gdafX7JMRReUUWjy8AFsbHmiRzjCo+voNUl4ILYWPI0G0OOccbjq4cGpHGUKxoQrvD46qEB6ezkkhzjjMdXDw1Iy9toyDHOeHz10ID0Rnmzfgd4PL6CrA2o/PfsaY3e16c1el+f1uh9fVqj9/Vpjd7XpzV6Xx+Lflwfo38P7Hh8Fa0uApdkzyhv/XfkFgqPryIakNYsZzQgXOHxVbS6GFwSn1W+Ru/IL856fAWtLgYXxO4oV6s8A7teUUFcjnMsuZqNIc844zXVUy5C+9TvsGbN0WwcOcYZVA+ANDQgAGloQADS0IAApKEBAUhDAwKQhgYEIA0NCEAaGhCANDQgAGloQADS0IAApKEBAUhDAwKQhgYEIMn39x/sLHnAytsjWAAAAABJRU5ErkJggg==
+###BITMAP-DATA-END###
+
+

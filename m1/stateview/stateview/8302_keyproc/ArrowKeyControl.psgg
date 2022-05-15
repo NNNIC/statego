@@ -1,0 +1,1216 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=ArrowKeyControl.xlsx
+guid=915e49a1-6823-445b-9daa-9aabe0072e00
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n01c,n003,n004,n005,n006,,n007,,n008,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,,,n022,n01e,n01f,n020,,n015,n016,n017,n018,,n019,n01a,n01b,,,,,,
+stateid_list=,,,,s0001,s0002,s000e,s000f,s0029,s0011,s002d,,s0014,,s0016,s0019,s001a,s0017,s001b,s0018,,s001d,s001e,,s0020,s0021,,s0023,s002b,,s0026,s0027,s0028,,s002c
+max_name_id=34
+max_state_id=45
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=gosubstate
+n014=return
+n015=branch
+n016=branch-cmt
+n017=brcond
+n018=nowait
+n019=!dir
+n01a=!pos
+n01b=!uuid
+n01c=state-typ
+n01e=loop_init
+n01f=loop_cond
+n020=loop_next
+n022=loop
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s000e=S_CheckKey
+s000f=S_0002
+s0011=S_0004
+s0014=S_POINTER_ON_PIN
+s0016=S_0006
+s0017=S_PAS002
+s0018=S_SITUATION
+s0019=S_GO_NEXTSTATE1
+s001a=S_OPEN_INOUT_MENU
+s001b=S_SITUATION5
+s001d=S_GO_PAST_STATE
+s001e=S_0008
+s0020=S_OPEN_INOUT_MENU1
+s0021=S_SITUATION6
+s0023=S_POINTER_ON_PIN2
+s0026=S_POINTER_ON_PIN3
+s0027=E_INPUT
+s0028=S_SITUATION4
+s0029=S_INIT
+s002b=S_PAS001
+s002c=S_PAS003
+s002d=S_MOVE_POINTER
+
+
+[s0001]
+n002=S_START
+n01c=start
+n006=S_INIT
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=38,35
+n01b=100001
+
+[s0002]
+n002=S_END
+n01c=end
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=1949,969
+n01b=100002
+
+[s000e]
+n001=(bitmap)
+n002=S_CheckKey
+n003=方向キー確認
+n015=@@@
+brifc(S_SITUATION);
+brelseifc(S_SITUATION4);
+brelseifc(S_SITUATION5);
+brelseifc(S_SITUATION6);
+brelse(S_END);
+@@@
+
+n016=@@@
+右キー
+左キー
+下キー
+上キー
+上記以外
+@@@
+
+n017=@@@
+m_key == Keys.Right
+m_key == Keys.Left
+m_key == Keys.Down
+m_key == Keys.Up
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=136,900
+n01b=100004
+
+[s000f]
+n001=(bitmap)
+n002=S_0002
+n015=@@@
+brifc(S_0004);
+brelse(S_POINTER_ON_PIN);
+@@@
+
+n016=@@@
+フォーカスされいない
+フォーカス済み
+@@@
+
+n017=@@@
+!focused_state()
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=809,264
+n01b=100005
+
+[s0011]
+n002=S_0004
+n003=@@@
+フォーカスさせる
+ポインタ中央へ
+
+@@@
+
+n006=S_END
+n00a=req_focus();
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=1336,450
+n01b=100007
+
+[s0014]
+n001=(bitmap)
+n002=S_POINTER_ON_PIN
+n003=可能な流出先PINにポインタを移動
+n006=S_END
+n00a=set_inoutflow_first();
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=1328,310
+n01b=100010
+
+[s0016]
+n001=(bitmap)
+n002=S_0006
+n003=@@@
+流出先の数
+Group時の複数対応
+@@@
+
+n009=@@@
+var c=get_outflow_num();
+if (c>0 && !is_group())
+{
+    c = 1;
+}
+
+@@@
+
+n015=@@@
+brifc(S_OPEN_INOUT_MENU);
+brelseifc(S_GO_NEXTSTATE1);
+brelse(S_OPEN_INOUT_MENU);
+@@@
+
+n016=@@@
+0
+1
+2以上
+@@@
+
+n017=@@@
+c==0
+c==1
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=926,443
+n01b=100012
+
+[s0017]
+n001=(bitmap)
+n002=S_PAS002
+n01c=pass
+n003=
+n006=S_0004
+n018=nowait
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=847,365
+n01b=100035
+
+[s0018]
+n002=S_SITUATION
+n003=状況
+n015=@@@
+brifc(S_0002);
+brelseifc(S_PAS002);
+brelseifc(S_0006);
+brelseifc(S_PAS001);
+brelseifc(S_PAS001);
+brelse(S_MOVE_POINTER);
+@@@
+
+n016=@@@
+ポインタがステートの上
+ポインタがinflow-pinの上
+ポインタがnextstateの上
+ポインタがgosub-punの上
+ポインタがbranch-pinの上
+上記以外
+@@@
+
+n017=@@@
+notempty(m_state_under_pointer)
+m_in_or_outflow_pin
+m_outflow_attr == InOutBaseData.ATTRIB.nextstate
+m_outflow_attr == InOutBaseData.ATTRIB.gosub
+m_outflow_attr == InOutBaseData.ATTRIB.branch
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=421,484
+n01b=100003
+
+[s0019]
+n002=S_GO_NEXTSTATE1
+n003=次のステートのフォーカスへ
+n006=S_END
+n00a=go_nextstate();
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=1337,594
+n01b=100013
+
+[s001a]
+n002=S_OPEN_INOUT_MENU
+n003=INOUTメニューを開く
+n006=S_END
+n00a=open_outflow_contextmenu();
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=1336,745
+n01b=100014
+
+[s001b]
+n002=S_SITUATION5
+n003=状況
+n015=@@@
+brifc(S_0002);
+brelseifc(S_END);
+brelseifc(S_POINTER_ON_PIN2);
+brelseifc(S_POINTER_ON_PIN2);
+brelseifc(S_POINTER_ON_PIN2);
+brelse(S_MOVE_POINTER);
+@@@
+
+n016=@@@
+ポインタがステートの上
+ポインタがinflow-pinの上
+ポインタがnextstateの上
+ポインタがgosub-punの上
+ポインタがbranch-pinの上
+上記以外
+@@@
+
+n017=@@@
+notempty(m_state_under_pointer)
+m_in_or_outflow_pin
+m_outflow_attr == InOutBaseData.ATTRIB.nextstate
+m_outflow_attr == InOutBaseData.ATTRIB.gosub
+m_outflow_attr == InOutBaseData.ATTRIB.branch
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=436,1017
+n01b=100031
+
+[s001d]
+n002=S_GO_PAST_STATE
+n003=@@@
+前ステートのフォーカス依頼
+フォーカス後は、ポインタも移動
+@@@
+
+n006=S_END
+n00a=go_inflow_state();
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=1336,848
+n01b=100018
+
+[s001e]
+n002=S_0008
+n003=inflowの流入先数
+n009=var c=get_inflow_num();
+n015=@@@
+brifc(S_END);
+brelseifc(S_GO_PAST_STATE);
+brelse(S_OPEN_INOUT_MENU1);
+@@@
+
+n016=@@@
+0
+1
+2以上
+@@@
+
+n017=@@@
+c==0
+c==1
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=822,819
+n01b=100021
+
+[s0020]
+n002=S_OPEN_INOUT_MENU1
+n003=INOUTメニューを開く
+n006=S_END
+n00a=open_inflow_contextmenu();
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=1333,1017
+n01b=100022
+
+[s0021]
+n002=S_SITUATION6
+n003=状況
+n015=@@@
+brifc(S_0002);
+brelseifc(S_END);
+brelseifc(S_POINTER_ON_PIN3);
+brelseifc(S_POINTER_ON_PIN3);
+brelseifc(S_POINTER_ON_PIN3);
+brelse(S_MOVE_POINTER);
+@@@
+
+n016=@@@
+ポインタがステートの上
+ポインタがinflow-pinの上
+ポインタがnextstateの上
+ポインタがgosub-punの上
+ポインタがbranch-pinの上
+上記以外
+@@@
+
+n017=@@@
+notempty(m_state_under_pointer)
+m_in_or_outflow_pin
+m_outflow_attr == InOutBaseData.ATTRIB.nextstate
+m_outflow_attr == InOutBaseData.ATTRIB.gosub
+m_outflow_attr == InOutBaseData.ATTRIB.branch
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=443,1275
+n01b=100032
+
+[s0023]
+n002=S_POINTER_ON_PIN2
+n003=可能な流出先PINにポインタを移動
+n006=S_END
+n00a=set_outflow_next();
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=1332,1150
+n01b=100025
+
+[s0026]
+n002=S_POINTER_ON_PIN3
+n003=可能な流出先PINにポインタを移動
+n006=S_END
+n00a=set_outflow_prev();
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=1332,1297
+n01b=100028
+
+[s0027]
+n002=E_INPUT
+n003=@@@
+入力値
+stateはポインタ直下とpin所属ステート
+@@@
+
+n007=@@@
+public Keys   m_key;
+public Point  m_pointer;
+public string m_state_under_pointer;
+public string m_state_with_pin;
+public bool   m_in_or_outflow_pin;
+public InOutBaseData.ATTRIB m_outflow_attr;
+public int    m_branch_index;
+public string m_nextstate;
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=158,12
+n01b=100029
+
+[s0028]
+n002=S_SITUATION4
+n003=状況
+n015=@@@
+brifc(S_0002);
+brelseifc(S_0008);
+brelseifc(S_PAS003);
+brelseifc(S_PAS003);
+brelseifc(S_PAS003);
+brelse(S_MOVE_POINTER);
+@@@
+
+n016=@@@
+ポインタがステートの上
+ポインタがinflow-pinの上
+ポインタがnextstateの上
+ポインタがgosub-punの上
+ポインタがbranch-pinの上
+上記以外
+@@@
+
+n017=@@@
+notempty(m_state_under_pointer)
+m_in_or_outflow_pin
+m_outflow_attr == InOutBaseData.ATTRIB.nextstate
+m_outflow_attr == InOutBaseData.ATTRIB.gosub
+m_outflow_attr == InOutBaseData.ATTRIB.branch
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=425,746
+n01b=100030
+
+[s0029]
+n001=(bitmap)
+n002=S_INIT
+n006=S_CheckKey
+n00a=init();
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=69,386
+n01b=100033
+
+[s002b]
+n002=S_PAS001
+n01c=pass
+n006=S_GO_NEXTSTATE1
+n018=nowait
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=858,641
+n01b=100034
+
+[s002c]
+n002=S_PAS003
+n01c=pass
+n006=S_0004
+n018=nowait
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=860,731
+n01b=100036
+
+[s002d]
+n002=S_MOVE_POINTER
+n003=ポインタ移動
+n006=S_END
+n00a=move_pointer();
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=816,1550
+n01b=100037
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/01/18 23:38:27
+; * pssgEditor version : 0.62.89235.9ebc4b88ae35016783d50e66da7e4dea7dcde3da
+psggfile=@@@
+ArrowKeyControl.psgg
+@@@
+xlsfile=@@@
+ArrowKeyControl.xlsx
+@@@
+guid=@@@
+915e49a1-6823-445b-9daa-9aabe0072e00
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Saved
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"This is the root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":38,"y":35}},{"Key":"S_END","Value":{"x":1949,"y":969}},{"Key":"S_0002","Value":{"x":809,"y":264}},{"Key":"S_CheckKey","Value":{"x":136,"y":900}},{"Key":"S_SITUATION","Value":{"x":421,"y":484}},{"Key":"S_0004","Value":{"x":1336,"y":450}},{"Key":"S_GO_NEXTSTATE1","Value":{"x":1337,"y":594}},{"Key":"S_POINTER_ON_PIN","Value":{"x":1328,"y":310}},{"Key":"S_0006","Value":{"x":926,"y":443}},{"Key":"S_OPEN_INOUT_MENU","Value":{"x":1336,"y":745}},{"Key":"S_OPEN_INOUT_MENU1","Value":{"x":1333,"y":1017}},{"Key":"S_GO_PAST_STATE","Value":{"x":1336,"y":848}},{"Key":"S_POINTER_ON_PIN2","Value":{"x":1332,"y":1150}},{"Key":"S_0008","Value":{"x":822,"y":819}},{"Key":"S_POINTER_ON_PIN3","Value":{"x":1332,"y":1297}},{"Key":"E_INPUT","Value":{"x":158,"y":12}},{"Key":"S_SITUATION4","Value":{"x":425,"y":746}},{"Key":"S_SITUATION5","Value":{"x":436,"y":1017}},{"Key":"S_SITUATION6","Value":{"x":443,"y":1275}},{"Key":"S_INIT","Value":{"x":69,"y":386}},{"Key":"S_PAS001","Value":{"x":858,"y":641}},{"Key":"S_PAS002","Value":{"x":847,"y":365}},{"Key":"S_PAS003","Value":{"x":860,"y":731}},{"Key":"S_0001","Value":{"x":816,"y":1550}},{"Key":"S_MOVE_POINTER","Value":{"x":816,"y":1550}}]},{"Key":"\/hoge2\/","Value":[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":926,"y":87}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"},{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"END"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor=@@@
+"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe" /Edit %1
+@@@
+source_editor_vs2015_support=1
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=13
+contents_font_size=10
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"state-typ","Value":{"height":398,"width":330}},{"Key":"nowait","Value":{"height":398,"width":330}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+void [[state]](bool bFirst)
+{
+    Goto([[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^end$/
+void [[state]](bool bFirst)
+{
+}
+eof>>>
+
+<<<?state-typ/^gosub$/
+void [[state]](bool bFirst)
+{
+    GoSubState([[gosubstate]],[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^substart$/
+void [[state]](bool bFirst)
+{
+    Goto([[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^subreturn$/
+void [[state]](bool bFirst)
+{
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^loop$/
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[loop_init]]
+    Goto([[state]]_LoopCheckAndGosub____);
+    NoWait();
+}
+void [[state]]_LoopCheckAndGosub____(bool bFirst)
+{
+    if ([[loop_cond]]) GoSubState([[gosubstate]],[[state]]_LoopNext____);
+    else               Goto([[nextstate]]);
+    NoWait();
+}
+void [[state]]_LoopNext____(bool bFirst)
+{
+    [[loop_next]]
+    Goto([[state]]_LoopCheckAndGosub____);
+    NoWait();
+}
+eof>>>
+
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[vars]]
+
+    <<<?init
+    //
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto([[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+
+
+
+
+psgg=ArrowKeyControl.psgg
+xls=ArrowKeyControl.xlsx
+sub_src=
+gen_src=ArrowKeyControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit2\c-sharp\helpweb.html
+
+src_enc=utf-8
+
+
+
+
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+
+
+
+
+lang=c#
+framework=Unity
+
+statemachine=ArrowKeyControl
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8302_keyproc
+@@@
+
+
+
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8302_keyproc
+@@@
+
+
+
+
+genrdir=.
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+
+
+
+
+[jpn]
+
+title=C# スタートキット  2019/10/31
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# ファイル
+
+      ArrowKeyControl.pssg --- StateGoデータファイル。
+      ArrowKeyControl.cs   --- 変換コードを本ファイルに埋め込む。
+
+@@@
+
+
+
+[en]
+
+title=C# STARTER KIT 2019/10/31
+
+detail=@@@
+To create c# Stata machine.
+
+# File:
+
+      ArrowKeyControl.pssg  --- StateGo Data File.
+      ArrowKeyControl.cs   -- The editor will insert converted source code to this file.
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[gosubstate]
+
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+
+jpn=サブルーチン処理を終了するときに指定する。"return"等を記述。
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[loop_next]
+
+en=loop  iterator advence.
+jpn=ループのイテレーターを更新
+[loop_cond]
+
+en=loop condition
+jpn=ループ条件
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[members]
+
+jpn=メンバ変数及び関数等を指定する。
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[vars]
+
+jpn=変数宣言を指定する。
+en=Specify variable definitions.
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[embed]
+
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[basestate]
+
+jpn=継承元を指定する。
+en=Specify inheritance source.
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[loop_init]
+
+en=loop initialization
+jpn=ループ用初期化
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[loop_break]
+
+en=Condition if break
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+loop-next=
+loop-cond=
+embed=
+loop_cond=
+branch=
+!dir=
+basestate=
+return=
+post_wait-cmt=
+state-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+members=
+thumbnail=
+update-cmt=
+gosubstate=
+loop_break=
+loop_ver=
+state-typ=@@@
+*select
+start
+end
+gosub
+substart
+subreturn
+loop
+@@@
+
+!pos=
+!uuid=
+S_=
+nextstate=
+state=
+loop_var=
+wait-cmt=
+loop-init=
+update=
+init-cmt=
+loop-ver=
+loop_next=
+vars=
+loop=
+C_=
+brcond=
+E_=
+init-ref=
+loop_init=
+post_wait=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+basestate=read_only,share,S.+
+state-typ=read_only,exclusion,(S0)
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

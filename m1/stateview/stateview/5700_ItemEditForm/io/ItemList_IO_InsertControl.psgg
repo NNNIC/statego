@@ -1,0 +1,789 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=ItemList_IO_InsertControl.xlsx
+guid=a5348547-8a39-4f6b-beff-6438e77d79c1
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,n006,,n007,,n008,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,,n015,n016,n017,n018,,n019,n01a,n01b
+stateid_list=,,,,s0001,s0002,s0004,s0003,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000d,s000c
+max_name_id=27
+max_state_id=13
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=gosubstate
+n014=return
+n015=branch
+n016=branch-cmt
+n017=brcond
+n018=nowait
+n019=!dir
+n01a=!pos
+n01b=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=E_REFERENCE
+s0004=E_ADDLIST
+s0005=S_PREPARE
+s0006=S_TWONAMES_SRC
+s0007=S_LOOP_INIT
+s0008=S_COLLECT_NAMES_SRC_BTW
+s0009=S_INSERT_BTW
+s000a=S_LOOP_INC_AND_CHECK
+s000b=S_INSERT_ITEMS_REST
+s000c=E_FORM
+s000d=E_IMPORTFUNC
+
+
+[s0001]
+n002=S_START
+n006=S_PREPARE
+n01a=63,181
+n01b=100001
+
+[s0002]
+n002=S_END
+n01a=1694,383
+n01b=100002
+
+[s0003]
+n002=E_REFERENCE
+n003=@@@
+出力先のオリジナルリスト
+コピー元リスト
+@@@
+
+n007=@@@
+public List<string> m_dst_org_list;
+public List<string> m_src_list;
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=257,12
+n01b=100003
+
+[s0004]
+n002=E_ADDLIST
+n007=List<string> m_add_list;
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=428,12
+n01b=100004
+
+[s0005]
+n002=S_PREPARE
+n003=準備
+n006=S_LOOP_INIT
+n00a=@@@
+m_dst_org_list = new List<string>(G.name_list);
+m_add_list = new List<string>(m_src_list);
+foreach(var n in m_dst_org_list)
+{
+    if (m_add_list.Contains(n))
+    {
+        m_add_list.Remove(n);
+    }
+}
+
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=43,302
+n01b=100005
+
+[s0006]
+n002=S_TWONAMES_SRC
+n003=dstリストから２つの隣り合う名前を取得
+n006=S_COLLECT_NAMES_SRC_BTW
+n008=@@@
+string m_dst_name1 = null;
+string m_dst_name2 = null;
+@@@
+
+n00a=@@@
+m_dst_name1 = ListUtil.GetVal(m_dst_org_list,m_i);
+m_dst_name2 = ListUtil.GetVal(m_dst_org_list,m_i + 1);
+
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=460,295
+n01b=100007
+
+[s0007]
+n002=S_LOOP_INIT
+n006=S_TWONAMES_SRC
+n008=int m_i = 0;
+n00a=m_i = 0;
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=263,309
+n01b=100006
+
+[s0008]
+n002=S_COLLECT_NAMES_SRC_BTW
+n003=ソースリスト上のnam1とname2の間の追加分を取得
+n006=S_INSERT_BTW
+n008=List<string> m_instertimtes_btw;
+n00a=@@@
+m_instertimtes_btw = new List<string>();
+var index_n1 = m_src_list.IndexOf(m_dst_name1);
+var index_n2 = m_src_list.IndexOf(m_dst_name2);
+
+Action<int,int> make_insert_btw = (s,g) =>
+{
+    if (g - s > 1)
+    {
+        for(var i = s; i<=g; i++)
+        {
+            var tmp = m_src_list[i];
+            if (m_add_list.Contains(tmp))
+            {
+                m_instertimtes_btw.Add(tmp);
+                m_add_list.Remove(tmp);
+            }
+        }
+    }
+};
+
+if (index_n1 >= 0 && index_n2 >= 0)
+{
+    var start_index = Math.Min(index_n1,index_n2);
+    var goal_index = Math.Max(index_n1, index_n2);
+    make_insert_btw(start_index,goal_index);
+}
+else if (index_n1 < 0 && index_n2 >= 0)
+{
+    var start_index = 0;
+    var goal_index = index_n2;
+    make_insert_btw(start_index,goal_index);
+}
+
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=650,288
+n01b=100008
+
+[s0009]
+n002=S_INSERT_BTW
+n003=送り先へ挿入
+n006=S_LOOP_INC_AND_CHECK
+n00a=insert_items();
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=867,301
+n01b=100009
+
+[s000a]
+n002=S_LOOP_INC_AND_CHECK
+n00a=m_i++;
+n00d=var bOK = m_i < m_dst_org_list.Count;
+n015=@@@
+brifc(S_TWONAMES_SRC);
+brelse(S_INSERT_ITEMS_REST);
+@@@
+
+n016=@@@
+GO LOOP
+?
+@@@
+
+n017=@@@
+bOK
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=1066,301
+n01b=100010
+
+[s000b]
+n002=S_INSERT_ITEMS_REST
+n003=残りを挿入
+n006=S_END
+n00a=insert_rest_items();
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=1288,378
+n01b=100011
+
+[s000c]
+n002=E_FORM
+n007=@@@
+public stateview.ItemEditForm m_form;
+public ItemEditControl           m_iec;
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=604,14
+n01b=100012
+
+[s000d]
+n002=E_IMPORTFUNC
+n007=@@@
+public Func<string,string> get_method;
+public Func<string,string> get_helpen;
+public Func<string,string> get_helpjpn;
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=260,161
+n01b=100013
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2019/10/06 9:04:53
+; * pssgEditor version : 0.60.21455.f86ca655ed68e34f797db8eb810bc71dd3131947
+psggfile=@@@
+ItemList_IO_InsertControl.psgg
+@@@
+xlsfile=@@@
+ItemList_IO_InsertControl.xlsx
+@@@
+guid=@@@
+a5348547-8a39-4f6b-beff-6438e77d79c1
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+Edited a state.
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"This is the root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":63,"y":181}},{"Key":"S_END","Value":{"x":1694,"y":383}},{"Key":"E_END1","Value":{"x":151,"y":35}},{"Key":"E_REFERENCE","Value":{"x":257,"y":12}},{"Key":"S_REFERENCE1","Value":{"x":438,"y":25}},{"Key":"E_REFERENCE1","Value":{"x":438,"y":25}},{"Key":"E_ADDLIST","Value":{"x":428,"y":12}},{"Key":"S_ADDLIST1","Value":{"x":158,"y":302}},{"Key":"S_PREPARE","Value":{"x":43,"y":302}},{"Key":"S_PREPARE1","Value":{"x":270,"y":303}},{"Key":"S_LOOPSTART","Value":{"x":258,"y":311}},{"Key":"S_LOOPSTART1","Value":{"x":272,"y":304}},{"Key":"S_LOOP_INIT","Value":{"x":263,"y":309}},{"Key":"S_LOOP_INIT1","Value":{"x":471,"y":302}},{"Key":"S_TWONAMES_SRC","Value":{"x":460,"y":295}},{"Key":"S_TWONAMES_SRC1","Value":{"x":694,"y":299}},{"Key":"S_COLLECT_NAMES_SRC_BTW","Value":{"x":650,"y":288}},{"Key":"S_COLLECT_NAMES_SRC_BTW1","Value":{"x":867,"y":301}},{"Key":"S_INSERT_BTW","Value":{"x":867,"y":301}},{"Key":"S_INSERT_BTW1","Value":{"x":1066,"y":301}},{"Key":"S_LOOP_INC_AND_CHECK","Value":{"x":1066,"y":301}},{"Key":"S_LOOP_INC_AND_CHECK1","Value":{"x":1293,"y":312}},{"Key":"S_INSERT_ITEMS_REST","Value":{"x":1288,"y":378}},{"Key":"C_INSERT_ITEMS_REST1","Value":{"x":1176,"y":98}},{"Key":"E_FORM","Value":{"x":604,"y":14}},{"Key":"E_LOOP_INC_AND_CHECK1","Value":{"x":605.1579,"y":117}},{"Key":"E_FUNCTA","Value":{"x":260,"y":161}},{"Key":"E_IMPORTFUNC","Value":{"x":260,"y":161}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor=@@@
+"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe" /Edit %1
+@@@
+source_editor_vs2015_support=1
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"init","Value":{"height":409,"width":730}}]
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+
+[[embed]]
+
+eof>>>
+
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[vars]]
+
+    <<<?init
+    //
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+<<<?gosubstate
+    GoSubState([[gosubstate]],[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?return
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto([[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+
+
+psgg=ItemList_IO_InsertControl.psgg
+xls=ItemList_IO_InsertControl.xlsx
+sub_src=
+gen_src=ItemList_IO_InsertControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit\c-sharp\helpweb.html
+
+src_enc=utf-8
+
+[setupinfo]
+
+starterkit=https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+
+
+lang=c#
+framework=Unity
+
+statemachine=ItemList_IO_InsertControl
+prefix=__PREFIX__
+xlsdir=C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm\io
+gendir=C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm\io
+genrdir=.
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+[jpn]
+title=C# スタートキット  2018/12/12a
+
+detail=@@@
+
+C# 用のステートマシンを作成します。
+
+# 新機能
+- macro埋め込み
+-サブルーチン機能
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm\io
+
+  以下のファイルを作成します。
+
+      ItemList_IO_InsertControl.pssg   --- エディタで次のエクセルファイルを開く。
+      ItemList_IO_InsertControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm\io
+
+  以下のファイルが作成されます。
+
+      ItemList_IO_InsertControl.cs  --- Excelファイルからの変換コードを本ファイルに埋め込む。
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+[en]
+title=C# STARTER KIT 2018/12/12a
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# New Feature
+- Embed macro in the target source.
+- Calling subroutine feature.
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm\io
+
+  File:
+
+      ItemList_IO_InsertControl.pssg  --- The editor opens the below excel file.
+      ItemList_IO_InsertControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm\io
+
+　File:
+      ItemList_IO_InsertControl.cs   -- The editor will insert converted source code to this file.
+
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[embed]
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[members]
+jpn=@@@
+メンバ変数及び関数等を指定する。
+@@@
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[basestate]
+jpn=@@@
+継承元を指定する。
+@@@
+en=@@@
+Specify inheritance source.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[vars]
+jpn=@@@
+変数宣言を指定する。
+@@@
+en=@@@
+Specify variable definitions.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[gosubstate]
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+jpn=@@@
+サブルーチン処理を終了するときに指定する。"return"等を記述。
+@@@
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

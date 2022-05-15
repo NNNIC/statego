@@ -1,0 +1,366 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=DAnDGNStateControl.xlsx
+guid=f8d96801-b2d5-43c6-8d0e-1883a72e99d5
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,,,n005,n006,n007,,,,,,,,,,,,,,,,,,,,,,n008,n009,n00a,n00b,n00c,n00d
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,
+max_name_id=13
+max_state_id=8
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=nextstate
+n005=proc
+n006=proc2
+n007=wait
+n008=branch
+n009=branch-cmt
+n00a=nowait
+n00b=!pos
+n00c=!dir
+n00d=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_Init
+s0004=S_DragMove
+s0005=S_Drop
+s0006=S_DefSuccess
+s0007=S_DefCancel
+s0008=S_Destroy
+
+
+[s0001]
+n002=S_START
+n003=開始
+n004=S_Init
+n00a=NoWait();
+n00b=57,64
+n00d=100001
+
+[s0002]
+n002=S_END
+n003=終了
+n00b=1541,136
+n00d=100002
+
+[s0003]
+n002=S_Init
+n003=グループフォーカスのステート移動開始
+n004=S_DragMove
+n005=@@@
+ovlbmp_create();
+ovldraw_do();
+ovlpb_setbmp();
+ovlpb_show();
+
+@@@
+
+n00a=NoWait();
+n00b=317,57
+n00d=100003
+
+[s0004]
+n002=S_DragMove
+n003=ドラッグ移動
+n006=move_update();
+n007=wait_mouseany()
+n008=@@@
+br_IsDrop(S_Drop);
+br_NotAbove(S_DefCancel);
+@@@
+
+n00a=NoWait();
+n00b=561,53
+n00d=100004
+
+[s0005]
+n002=S_Drop
+n003=ドロップ
+n004=S_DefSuccess
+n005=@@@
+ovlpb_hide();
+statebox_redraw();
+@@@
+
+n00a=NoWait();
+n00b=814,54
+n00d=100005
+
+[s0006]
+n002=S_DefSuccess
+n003=正常
+n004=S_Destroy
+n005=def_Success();
+n00b=1029,82
+n00d=100006
+
+[s0007]
+n002=S_DefCancel
+n003=キャンセル決定
+n004=S_Destroy
+n005=def_Cancel();
+n00b=835,386
+n00d=100007
+
+[s0008]
+n002=S_Destroy
+n003=終了処理
+n004=S_END
+n005=destroy_all();
+n00b=1268,87
+n00d=100008
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2022/05/07 11:31:51
+; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
+psggfile=@@@
+DAnDGNStateControl.psgg
+@@@
+xlsfile=@@@
+DAnDGNStateControl.xlsx
+@@@
+guid=@@@
+f8d96801-b2d5-43c6-8d0e-1883a72e99d5
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Initilized
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[]
+@@@
+nodegroup_pos_list=@@@
+[]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":57,"y":64}},{"Key":"S_END","Value":{"x":1541,"y":136}},{"Key":"S_Init","Value":{"x":317,"y":57}},{"Key":"S_DragMove","Value":{"x":561,"y":53}},{"Key":"S_Drop","Value":{"x":814,"y":54}},{"Key":"S_DefSuccess","Value":{"x":1029,"y":82}},{"Key":"S_DefCancel","Value":{"x":835,"y":386}},{"Key":"S_Destroy","Value":{"x":1268,"y":87}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+_convert.bat
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=1
+label_text=@@@
+Td MAIN
+@@@
+option_delete_thisstring=0
+option_delete_br_string=0
+option_delete_bracket_string=0
+option_delete_s_state_string=0
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=0
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=DAnDGNStateControl_created.cs
+:enc=utf-8
+::
+public partial class DAnDGNStateControl {
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](int phase, bool bFirst)
+{
+    if (phase==0)
+    {
+        if (bFirst)
+        {
+            [[proc]]
+        }
+        //else
+        {
+            [[proc2]]
+
+            <<<?wait
+            if (![[wait]]) return;
+            >>>
+
+
+            <<<?branch-cmt
+            /*
+                [[branch-cmt]]
+            */
+            >>>
+
+            [[branch]]
+
+            if (HasNextState())
+            {
+                [[nowait]]
+                GoNextState();
+                return;
+            }
+
+            <<<?nextstate
+            [[nowait]]
+            SetNextState([[nextstate]]);
+            GoNextState();
+            return;
+            >>>
+        }
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=DAnDGNStateControl.psgg
+xls=DAnDGNStateControl.xlsx
+gen_src=@@@
+DAnDGNStateControl_created.cs
+@@@
+
+
+
+src_enc=utf-8
+
+[setupinfo]
+
+lang=c#
+genrdir=..\created
+
+
+
+
+
+framework=vs2015
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+psgg=DAnDGFStateControl.psgg
+xls=DAnDGFStateControl.xlsx
+sub_src=
+gen_src=DAnDGFStateControlStateControl_created.cs
+template_src=
+template_func=
+
+help=
+helpweb=
+
+src_enc=utf-8
+
+[setupinfo]
+lang=c#
+genrdir=..\created
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

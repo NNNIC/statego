@@ -1,0 +1,89 @@
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+[[members]]
+void [[state]](int phase, bool bFirst)
+{
+    [[vars]]
+
+    if (phase==0)
+    {
+        if (bFirst)
+        {
+            [[init]]
+            [[timelen]]
+            [[subsc_init]]
+            [[statemenu]]
+        }
+        //else
+        {
+            [[update]]
+            [[subsc_update]]
+            [[move]]
+            <<<?wait
+            if (![[wait]]) return;
+            >>>
+            [[postwait]]
+            [[pointer]]
+            
+            <<<?focus-cmt
+            /*
+                [[focus-cmt]]
+            */
+            >>>
+            [[focus]]
+
+            [[tab]]
+            
+            <<<?ovl-cmt
+            /*
+                [[ovl-cmt]]
+            */
+            >>>
+            [[ovlbmp]]
+            [[ovldraw]]
+            [[ovlpb]]
+            
+            <<<?statebox-cmt
+            /*
+                [[statebox-cmt]]
+            */
+            >>>
+            [[statebox]]
+            
+            [[editbox]]
+
+            [[branchdlg]]
+
+            [[freearrow]]
+
+            <<<?branch-cmt
+            /*
+                [[branch-cmt]]
+            */
+            >>>
+
+            [[branch]]
+            
+
+            <<<?nextstate
+            if (!HasNextState())
+            {
+                SetNextState([[nextstate]]);
+            }
+            >>>
+
+            if (HasNextState())
+            {
+                [[nowaitbranch]]
+                GoNextState();
+                return;
+            }
+        }
+    }
+}

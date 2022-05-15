@@ -1,0 +1,514 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=WebAdCheckControl.xlsx
+guid=5afbbe7a-e967-45d1-8277-6efbbec38887
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,,n005,n006,n007,n008,n009,n00a,n00b,n00c,n00d,n00e,,n00f,n010,n011
+stateid_list=,,,,s0001,s0002,s0003,s0004
+max_name_id=17
+max_state_id=4
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=nextstate
+n005=init
+n006=init-cmt
+n007=update
+n008=update-cmt
+n009=wait
+n00a=wait-cmt
+n00b=post_wait
+n00c=post_wait-cmt
+n00d=branch
+n00e=nowait
+n00f=!dir
+n010=!pos
+n011=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_WAIT_REQ
+s0004=S_WATCH_URL
+
+
+[s0001]
+n002=S_START
+n003=開始
+n004=S_WAIT_REQ
+n010=50,100
+n011=100001
+
+[s0002]
+n002=S_END
+n003=終了
+n010=759,87
+n011=100002
+
+[s0003]
+n001=(bitmap)
+n002=S_WAIT_REQ
+n003=リクエスト待ち
+n004=S_WATCH_URL
+n009=wait_req()
+n00f=@@@
+/
+(100,100)
+
+@@@
+
+n010=292,85
+n011=100003
+
+[s0004]
+n001=(bitmap)
+n002=S_WATCH_URL
+n003=URL監視
+n004=S_END
+n007=watch_url();
+n008=URL監視
+n009=wait_done()
+n00f=@@@
+/
+(100,100)
+
+@@@
+
+n010=502,74
+n011=100004
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2022/05/07 11:35:56
+; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
+psggfile=@@@
+WebAdCheckControl.psgg
+@@@
+xlsfile=@@@
+WebAdCheckControl.xlsx
+@@@
+guid=@@@
+5afbbe7a-e967-45d1-8277-6efbbec38887
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Initilized
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":759,"y":87}},{"Key":"S_WAIT_REQ","Value":{"x":292,"y":85}},{"Key":"S_WATCH_URL","Value":{"x":502,"y":74}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=0
+option_delete_br_string=0
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=45
+content_max_height=200
+comment_block_fixed=0
+line_space=-4
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=0
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=WebAdCheckControl_created.cs
+::tempfunc=template-func.txt
+:enc=utf-8
+::
+using System.Collections;
+using System.Collections.Generic;
+
+public partial class WebAdCheckControl : StateManager {
+
+    public void Start()
+    {
+        Goto(S_START);
+    }
+
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](bool bFirst)
+{
+    if (bFirst)
+    {
+        [[init]]
+    }
+
+    [[update]]
+
+    <<<?wait
+    if (![[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    [[branch]]
+
+    <<<?nextstate
+    if (!HasNextState())
+    {
+        SetNextState([[nextstate]]);
+    }
+    >>>
+
+    if (HasNextState())
+    {
+        <<<?nowait
+            NoWait();
+        >>>
+
+        GoNextState();
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+converter=psggConverterLib.dll
+
+psgg=WebAdCheckControl.psgg
+xls=WebAdCheckControl.xlsx
+sub_src=WebAdCheckControl.cs
+gen_src=WebAdCheckControl_created.cs
+
+manager_src=StateManager.cs
+manager_dir=base
+
+template_src=template-source.txt
+template_func=template-statefunc.txt
+
+help=help.ini
+
+[setupinfo]
+
+lang=c#
+framework=
+
+prefix=WebAdCheck
+xlsdir=C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\doc
+gendir=C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\src
+genrdir=..\src
+
+[jpn]
+title=C# サンプル 1
+
+detail=@@@
+
+C# 用のステートマシンを作成します。
+
+# ドキュメント用フォルダ
+   ステート図ファイルとEditor起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\doc
+
+  以下のファイルを作成します。
+
+      WebAdCheckControl.pssg   --- PSSG Editorで次のエクセルファイルを開く。
+      WebAdCheckControl.xlsx   --- ステート図格納用Excelファイル。PSSG Editorが編集。
+
+# ソース用フォルダ
+　PSSG Editorが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\src
+
+  以下のファイルが作成されます。
+
+      WebAdCheckControl_created.cs  --- Excelファイルからの変換ソースコード。変換プロセスの度に上書きされる。
+                                        ※生成直後は関数なしのクラス定義のみ
+
+     WebAdCheckControl.cs          --- ユーザ実装用　（ここにプログラムを書く！）
+                                        ※生成直後は関数なしのクラス定義のみ
+
+# 共通管理クラスファイル
+
+　以下に作成されます。
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\src/base/StateManager.cs
+
+注意 : 既に同じ名前でファイルがある場合、生成されません。
+　　　 削除してから生成してください。
+
+記 2018.7.7
+@@@
+
+
+[en]
+title=C# Sample 1
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\doc
+
+  File:
+
+      WebAdCheckControl.pssg  --- PSSG Editor opens the below excel file.
+      WebAdCheckControl.xlsx  --- Excel File that has a state chart. PSSG Editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by PSSG Editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\src
+
+　File:
+      WebAdCheckControl_created.cs   -- PSSG Editor will convert from the excel file to this file. This file will overwriten whenever using the converting process of PSSG Editor.
+                                        * The file has only a class define without methods immediately after this creation.
+
+      WebAdCheckControl.cs　　　　　 -- For implementation. (You have to write program in this file!!)
+                                        * The file has only class define without methods immediately after this creation.
+
+# Common State Manager Class File
+
+  File:
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\src/base/StateManager.cs
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+
+
+Wrote 2018.7.7
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'yes'を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'yes' if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

@@ -1,0 +1,44 @@
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](int phase, bool bFirst)
+{
+    if (phase==0)
+    {
+        if (bFirst)
+        {
+            [[proc]]
+        }
+        //else
+        {
+            <<<?wait
+            if (![[wait]]) return;
+            >>>
+
+            [[proc2]]
+
+            <<<?branch-cmt
+            /*
+                [[branch-cmt]]
+            */
+            >>>
+
+            [[branch]]
+            
+            if (HasNextState())
+            {
+                [[nowait]]
+                GoNextState();
+                return;
+            }
+
+            <<<?nextstate
+            [[nowait]]
+            SetNextState([[nextstate]]);
+            GoNextState();
+            return;
+            >>>
+        }
+    }
+}

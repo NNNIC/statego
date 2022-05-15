@@ -1,0 +1,1469 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=NewWorkControl.xlsx
+guid=8f848a44-9f2d-4b94-9f5a-13ec7b73763a
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n019,n005,,n006,,n007,,n008,n009,n00a,n00b,,n00c,n00d,,n00e,n00f,,n010,n011,,n012,n013,n014,n015,,n016,n017,n018,
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s0023,s0024,s000e,s000f,s0010,s0011,s0029,s0025,s0026,s0027,s0028,s0017,s002a,s0019,s001a,s001b,s001c,s001d,s001e,s001f,s0020,s002b,s0022,s002d,s002c,s002f,s002e,s0030
+max_name_id=25
+max_state_id=48
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=embed
+n007=members
+n008=vars
+n009=init
+n00a=init-cmt
+n00b=init-ref
+n00c=update
+n00d=update-cmt
+n00e=wait
+n00f=wait-cmt
+n010=post_wait
+n011=post_wait-cmt
+n012=branch
+n013=branch-cmt
+n014=brcond
+n015=nowait
+n016=!dir
+n017=!pos
+n018=!uuid
+n019=state-typ
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=C_CONFIRM_NEW_EXCEL
+s0004=C_ERRORDIALOG
+s0005=C_ERROR_EXIST
+s0006=E_VAR
+s0007=S_CREATE_PSGG_HT
+s0008=E_DEC_NEWFILES
+s0009=E_DEC_ORGFILES
+s000a=S_INIT_DSTFILENAME
+s000b=C_BOOL_EXIST
+s000e=S_CONFRM_DIALOG
+s000f=S_COPY
+s0010=E_DEC_ENC
+s0011=E_DEC_NAME
+s0017=S_CHGWORD_OTHERS
+s0019=C_CREATE_NEW_GUID
+s001a=C_CREATE_PSGG
+s001b=C_CONV_SHEETS1
+s001c=C_CONV_FILES1
+s001d=C_REPLACE_WORDS
+s001e=S_CLEAR_ERR
+s001f=S_ERRMSG
+s0020=S_DONEDIALOG1
+s0022=C_SET_PATH_SETTINGINI
+s0023=E_PSGGDATA
+s0024=S_PREPARE_NEW_PSGG
+s0025=S_SET_NEWGUID
+s0026=S_REPLACE_WORDS1
+s0027=S_SET_PATH_SETTINGINI1
+s0028=S_CREATE_PSGG1
+s0029=S_SET_PATH_SETTINGINI2
+s002a=E_KIT_PATH
+s002b=E_OK
+s002c=S_OK
+s002d=S_NG
+s002e=S_CLEAR_ERR1
+s002f=S_CLEAR_ERR2
+s0030=S_CLEAR_ERR3
+
+
+[s0001]
+n002=S_START
+n005=S_CLEAR_ERR
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=16,198
+n018=100001
+
+[s0002]
+n002=S_END
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=3355,1267
+n018=100002
+
+[s0003]
+n001=(bitmap)
+n002=C_CONFIRM_NEW_EXCEL
+n003=@@@
+新規エクセルと同名ファイルが存在しない
+※helpwebは除く
+@@@
+
+n009=@@@
+m_b_excel = cfe(m_new_excel);
+m_b_psgg  = cfe(m_new_psgg);
+m_b_helpweb = cfe(m_new_helpweb);
+m_b_genfile = cfe(m_new_genfile);
+m_b_impfile = cfe(m_new_impfile);
+m_b_macro = cfe(m_new_macro);
+m_bYesNo = check_exist_result();
+@@@
+
+n012=@@@
+br_YES(S_CONFRM_DIALOG);
+br_NO(C_ERROR_EXIST);
+@@@
+
+n014=@@@
+?
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=50,1261
+n018=100003
+
+[s0004]
+n001=(bitmap)
+n002=C_ERRORDIALOG
+n005=S_END
+n009=show_error_dlg(m_err);
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=569,1435
+n018=100004
+
+[s0005]
+n001=(bitmap)
+n002=C_ERROR_EXIST
+n005=C_ERRORDIALOG
+n009=@@@
+m_err = "Cloning files exist or state machine name is not valid. The clone process was terminated.";
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=265,1421
+n018=100005
+
+[s0006]
+n001=(bitmap)
+n002=E_VAR
+n006=public string m_err = null;
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=266,1569
+n018=100006
+
+[s0007]
+n001=(bitmap)
+n002=S_CREATE_PSGG_HT
+n003=HeaderとSetting.iniのヘッダーを作成する。
+n005=
+n009=np_create_ht();
+n012=@@@
+brifc(S_SET_NEWGUID);
+brelse(S_CLEAR_ERR1);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err == null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1235,423
+n018=100044
+
+[s0008]
+n001=(bitmap)
+n002=E_DEC_NEWFILES
+n006=@@@
+//新 フルパス格納
+public string m_new_excel;
+public string m_new_psgg;
+public string m_new_helpweb;
+public string m_new_genfile;
+public string m_new_impfile;
+public string m_new_macro;
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=637,13
+n018=100008
+
+[s0009]
+n001=(bitmap)
+n002=E_DEC_ORGFILES
+n006=@@@
+//元 フルパス格納
+public string m_org_excel;
+public string m_org_psgg;
+public string m_org_helpweb;
+public string m_org_genfile;
+public string m_org_impfile;
+public string m_org_macro;
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=433,14
+n018=100009
+
+[s000a]
+n001=(bitmap)
+n002=S_INIT_DSTFILENAME
+n005=
+n009=@@@
+m_new_excel = mcnd(m_org_excel);
+m_new_psgg = mcnd(m_org_psgg);
+m_new_helpweb = mcnd(m_org_helpweb);
+m_new_genfile = mcng(m_org_genfile);
+m_new_impfile = mcng(m_org_impfile);
+m_new_macro = mcnd(m_org_macro);
+m_genc = getgenc(m_pd.m_src_enc);
+@@@
+
+n012=@@@
+brifc(S_CONFRM_DIALOG);
+brelse(S_CLEAR_ERR1);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err == null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=250,347
+n018=100010
+
+[s000b]
+n001=(bitmap)
+n002=C_BOOL_EXIST
+n006=@@@
+bool? m_b_excel;
+bool? m_b_psgg;
+bool? m_b_helpweb;
+bool? m_b_genfile;
+bool? m_b_impfile;
+bool? m_b_macro;
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1012,12
+n018=100016
+
+[s000e]
+n001=(bitmap)
+n002=S_CONFRM_DIALOG
+n008=@@@
+var msg = make_clone_confirm_msg();
+var bOk = show_confirm_dlg(msg);
+@@@
+
+n009=
+n012=@@@
+brifc(S_COPY);
+brelse(S_CLEAR_ERR2);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+bOk
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=228,737
+n018=100014
+
+[s000f]
+n001=(bitmap)
+n002=S_COPY
+n003=コピー
+n005=
+n009=copyfiles();
+n012=@@@
+brifc(S_PREPARE_NEW_PSGG);
+brelse(S_CLEAR_ERR1);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err == null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=617,423
+n018=100015
+
+[s0010]
+n001=(bitmap)
+n002=E_DEC_ENC
+n003=生成時用エンコード
+n006=public Encoding m_genc = Encoding.UTF8;
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=822,16
+n018=100017
+
+[s0011]
+n001=(bitmap)
+n002=E_DEC_NAME
+n006=@@@
+public string m_orgname;
+public string m_newname;
+public string m_newdocdir;
+public string m_newsrcdir;
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=246,21
+n018=100018
+
+[s0017]
+n001=(bitmap)
+n002=S_CHGWORD_OTHERS
+n003=他のファイルの該当部分置き換え
+n005=
+n009=np_repw_files();
+n012=@@@
+brifc(S_DONEDIALOG1);
+brelse(S_CLEAR_ERR3);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=2326,423
+n018=100043
+
+[s0019]
+n001=(bitmap)
+n002=C_CREATE_NEW_GUID
+n003=新規GUIDを生成して、コピー先のPSGG内の現GUIDと入れ替える。
+n009=np_new_psgg();
+n012=@@@
+brifc(C_REPLACE_WORDS);
+brelse();
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1104,219
+n018=100026
+
+[s001a]
+n001=(bitmap)
+n002=C_CREATE_PSGG
+n003=生成したファイルから新規のＰＳＧＧを作成
+n009=np_create_psgg();
+n012=@@@
+brifc(S_DONEDIALOG1);
+brelse();
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=2064,208
+n018=100027
+
+[s001b]
+n001=(bitmap)
+n002=C_CONV_SHEETS1
+n003=各シート内のステートマシン名を変更
+n009=np_cvtsheets();
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1289,25
+n018=100028
+
+[s001c]
+n001=(bitmap)
+n002=C_CONV_FILES1
+n003=他ファイル内のステートマシン名を変換
+n009=@@@
+chgs(m_new_genfile,m_genc);
+chgs(m_new_impfile,m_genc);
+chgs(m_new_macro);
+@@@
+
+n012=@@@
+brifc(C_SET_PATH_SETTINGINI);
+brelse();
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1621,197
+n018=100029
+
+[s001d]
+n001=(bitmap)
+n002=C_REPLACE_WORDS
+n003=PSGG内の全ステートマシン名を入れ替える
+n009=np_replace_psgg();
+n012=@@@
+brifc(C_CONV_FILES1);
+brelse();
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1338,220
+n018=100030
+
+[s001e]
+n001=(bitmap)
+n002=S_CLEAR_ERR
+n005=S_INIT_DSTFILENAME
+n009=m_err=null;
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=218,195
+n018=100031
+
+[s001f]
+n001=(bitmap)
+n002=S_ERRMSG
+n005=S_NG
+n009=show_err_dlg();
+n00e=
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=2778,1176
+n018=100032
+
+[s0020]
+n001=(bitmap)
+n002=S_DONEDIALOG1
+n005=S_OK
+n009=show_done_dlg();
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=2833,431
+n018=100033
+
+[s0022]
+n001=(bitmap)
+n002=C_SET_PATH_SETTINGINI
+n003=シートsetting.ini内のパスを調整する。
+n005=C_CREATE_PSGG
+n009=set_path_setting();
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1837,227
+n018=100035
+
+[s0023]
+n002=E_PSGGDATA
+n006=public psgg_data m_pd;
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=51,22
+n018=100036
+
+[s0024]
+n002=S_PREPARE_NEW_PSGG
+n003=新規PSGGを作成する準備
+n009=ng_prepare_newpsgg();
+n012=@@@
+brifc(S_REPLACE_WORDS1);
+brelse(S_CLEAR_ERR1);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=840,423
+n018=100037
+
+[s0025]
+n002=S_SET_NEWGUID
+n003=新規GUIDをPSGGへ
+n009=np_newguid();
+n012=@@@
+brifc(S_SET_PATH_SETTINGINI2);
+brelse(S_CLEAR_ERR3);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1448,423
+n018=100040
+
+[s0026]
+n002=S_REPLACE_WORDS1
+n003=PSGG内の全ステートマシン名を入れ替える
+n009=np_replace_psgg();
+n012=@@@
+brifc(S_CREATE_PSGG_HT);
+brelse(S_CLEAR_ERR1);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1030,423
+n018=100039
+
+[s0027]
+n002=S_SET_PATH_SETTINGINI1
+n003=シートsetting.ini内のパスを調整する。
+n009=np_path_setting();
+n012=@@@
+brifc(S_CREATE_PSGG1);
+brelse(S_CLEAR_ERR3);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1895,423
+n018=100041
+
+[s0028]
+n002=S_CREATE_PSGG1
+n003=生成したファイルから新規のＰＳＧＧを作成
+n009=np_create_psgg();
+n012=@@@
+brifc(S_CHGWORD_OTHERS);
+brelse(S_CLEAR_ERR3);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=2125,423
+n018=100042
+
+[s0029]
+n002=S_SET_PATH_SETTINGINI2
+n003=@@@
+ヘルプWEB設定
+kitpath設定
+@@@
+
+n005=
+n009=@@@
+np_set_helpweb();
+np_set_kitpath();
+@@@
+
+n012=@@@
+brifc(S_SET_PATH_SETTINGINI1);
+brelse(S_CLEAR_ERR3);
+@@@
+
+n013=@@@
+?
+?
+@@@
+
+n014=@@@
+m_err==null
+?
+@@@
+
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1674,423
+n018=100045
+
+[s002a]
+n002=E_KIT_PATH
+n003=スタートキットパス格納
+n006=public string m_starter_kit_path;
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=438,166
+n018=100046
+
+[s002b]
+n002=E_OK
+n006=public bool m_ok = false;
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=640,198
+n018=100047
+
+[s002c]
+n002=S_OK
+n005=S_END
+n009=m_ok = true;
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=3040,431
+n018=100048
+
+[s002d]
+n002=S_NG
+n005=S_END
+n009=m_ok = false;
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=3072,1248
+n018=100049
+
+[s002e]
+n002=S_CLEAR_ERR1
+n019=pass
+n005=S_CLEAR_ERR3
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=1564,1160
+n018=100050
+
+[s002f]
+n002=S_CLEAR_ERR2
+n019=pass
+n005=S_NG
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=632,1303
+n018=100051
+
+[s0030]
+n002=S_CLEAR_ERR3
+n019=pass
+n005=S_ERRMSG
+n016=@@@
+/
+(100,100)
+The root
+@@@
+
+n017=2500,1191
+n018=100052
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/09/26 10:50:58
+; * pssgEditor version : 0.66.51249.eb0da3450145a82e8134dcbafdae88a330253a4d
+psggfile=@@@
+NewWorkControl.psgg
+@@@
+xlsfile=@@@
+NewWorkControl.xlsx
+@@@
+guid=@@@
+8f848a44-9f2d-4b94-9f5a-13ec7b73763a
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+mov,S_CONFRM_DIALOG
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"The root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":16,"y":198}},{"Key":"S_END","Value":{"x":3355,"y":1267}},{"Key":"E_VAR","Value":{"x":266,"y":1569}},{"Key":"E_DEC_NEWFILES","Value":{"x":637,"y":13}},{"Key":"E_DEC_ORGFILES","Value":{"x":433,"y":14}},{"Key":"S_INIT_DSTFILENAME","Value":{"x":250,"y":347}},{"Key":"S_CONFRM_DIALOG","Value":{"x":228,"y":737}},{"Key":"S_COPY","Value":{"x":617,"y":423}},{"Key":"E_DEC_ENC","Value":{"x":822,"y":16}},{"Key":"E_DEC_NAME","Value":{"x":246,"y":21}},{"Key":"S_CLEAR_ERR","Value":{"x":218,"y":195}},{"Key":"C_CONV_SHEETS1","Value":{"x":1289,"y":25}},{"Key":"S_ERRMSG","Value":{"x":2778,"y":1176}},{"Key":"S_DONEDIALOG1","Value":{"x":2833,"y":431}},{"Key":"C_CONFIRM_NEW_EXCEL","Value":{"x":50,"y":1261}},{"Key":"C_ERROR_EXIST","Value":{"x":265,"y":1421}},{"Key":"C_ERRORDIALOG","Value":{"x":569,"y":1435}},{"Key":"C_BOOL_EXIST","Value":{"x":1012,"y":12}},{"Key":"E_PSGGDATA","Value":{"x":51,"y":22}},{"Key":"C_CREATE_NEW_GUID","Value":{"x":1104,"y":219}},{"Key":"S_PREPARE_NEW_PSGG","Value":{"x":840,"y":423}},{"Key":"S_REPLACE_WORDS1","Value":{"x":1030,"y":423}},{"Key":"S_SET_NEWGUID","Value":{"x":1448,"y":423}},{"Key":"S_SET_PATH_SETTINGINI1","Value":{"x":1895,"y":423}},{"Key":"S_CREATE_PSGG1","Value":{"x":2125,"y":423}},{"Key":"C_REPLACE_WORDS","Value":{"x":1338,"y":220}},{"Key":"C_CONV_FILES1","Value":{"x":1621,"y":197}},{"Key":"C_SET_PATH_SETTINGINI","Value":{"x":1837,"y":227}},{"Key":"C_CREATE_PSGG","Value":{"x":2064,"y":208}},{"Key":"S_CHGWORD_OTHERS","Value":{"x":2326,"y":423}},{"Key":"S_CREATE_PSGG_HT","Value":{"x":1235,"y":423}},{"Key":"S_SET_PATH_SETTINGINI2","Value":{"x":1674,"y":423}},{"Key":"E_KIT_PATH","Value":{"x":438,"y":166}},{"Key":"E_OK","Value":{"x":640,"y":198}},{"Key":"S_OK","Value":{"x":3040,"y":431}},{"Key":"S_NG","Value":{"x":3072,"y":1248}},{"Key":"S_CLEAR_ERR1","Value":{"x":1564,"y":1160}},{"Key":"S_CLEAR_ERR2","Value":{"x":632,"y":1303}},{"Key":"S_CLEAR_ERR3","Value":{"x":2500,"y":1191}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=4
+content_max_height=100
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"embed","Value":{"height":500,"width":760}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+
+[[embed]]
+
+eof>>>
+[[members]]
+void [[state]](bool bFirst)
+{
+
+    [[vars]]
+
+    <<<?init
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        SetNextState([[nextstate]]);
+    }
+    >>>
+
+    //
+    if (HasNextState())
+    {
+        <<<?nowait
+        NoWait();
+        >>>
+
+        GoNextState();
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 7c24ab43f96d5d603277fbdf45d6431faac9b09e
+@@@
+
+
+
+
+psgg=NewWorkControl.psgg
+xls=NewWorkControl.xlsx
+sub_src=
+gen_src=NewWorkControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=helpweb.html
+
+src_enc=utf-8
+
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 7c24ab43f96d5d603277fbdf45d6431faac9b09e
+@@@
+
+
+
+
+lang=c#
+framework=vs2015
+
+statemachie=NewWorkControl
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\StateViewer\StateViewer_starter2\NEW2019\work
+@@@
+
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\StateViewer\StateViewer_starter2\NEW2019\work
+@@@
+
+
+genrdir=.
+incrdir=.
+
+code_output_start=[SYN-G-GEN OUTPUT START]
+code_output_end=[SYN-G-GEN OUTPUT END]
+
+; This section has macro defines for converting.
+
+; commentline format  {%0} will be replaced to a comment.
+
+[macro]
+
+commentline=// {%0}
+
+@branch=@@@
+<<<?"{%0}"/^brifc{0,1}$/
+if ([[brcond:{%N}]]) { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^brelseifc{0,1}$/
+else if ([[brcond:{%N}]]) { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^brelse$/
+else { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^br_/
+{%0}({%1});
+>>>
+@@@
+
+
+
+
+[jpn]
+
+title=C# スタートキット  2018/9/25
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# 新機能
+- IF ブランチ機能
+- マネージャファイルなし
+- 変換ソース埋め込み
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_createclone\doc
+
+  以下のファイルを作成します。
+
+      NewWorkControl.pssg   --- エディタで次のエクセルファイルを開く。
+      NewWorkControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_createclone
+
+  以下のファイルが作成されます。
+
+      NewWorkControl.cs  --- Excelファイルからの変換コードを本ファイルに埋め込む。
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+
+
+
+[en]
+
+title=C# STARTER KIT 2018/9/24
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# New Feature
+- Enabled If branches
+- No Manager file
+- Insert converted code
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_createclone\doc
+
+  File:
+
+      NewWorkControl.pssg  --- The editor opens the below excel file.
+      NewWorkControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_createclone
+
+　File:
+      NewWorkControl.cs   -- The editor will insert converted source code to this file.
+
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[embed]
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[members]
+jpn=@@@
+メンバ変数及び関数等を指定する。
+@@@
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[vars]
+jpn=@@@
+変数宣言を指定する。
+@@@
+en=@@@
+Specify variable definitions.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+wait-cmt=
+embed=
+branch=
+!dir=
+post_wait-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+members=
+thumbnail=
+update-cmt=
+post_wait=
+state-cmt=
+state-typ=
+!pos=
+!uuid=
+nextstate=
+state=
+S_=
+brcond=
+update=
+init-cmt=
+vars=
+C_=
+E_=
+init-ref=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+state-typ=read_only,exclusion,(S0)
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+branch-cmt=read_only,exclusion,(S0)
+return=read_only,exclusion,S0
+basestate=read_only,share,S.+
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+thumbnail=read_only,share,S.+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

@@ -1,0 +1,115 @@
+■ 概要
+
+libxlに削除がない。
+トリックが必要となる。
+
+■ 対処方法
+
+ １．サムネルの削除の対応
+　　   セル欄に -del と書く
+
+ ２．削除がないため、エクセルの同一セルに複数のビットマップがある。
+　   　その中から選択する方法として、ハッシュ値をセル欄に残す
+
+ ３.　psgg-libxl-win にて簡潔させる
+
+■ 実装
+１．SetBmp(row,col,bmp)
+
+◇ bmp!= nullの時
+
+   hash値算出
+   SetStr(row,col,"#"+hash値)
+   指定bmp貼る
+
+◇ bmp==nullの時
+
+   Propaties.Resources.deleteよりbmp取得し貼る
+   SetStr(row,col,"-del-");
+ 
+2. GetBmp(row,col)
+
+var v =GetStr(row,col);
+
+◇ v=="-del-"
+
+   nullを返す
+
+◇ v[0]=='#'
+
+   ハッシュ値の一致するbmpを返す。
+   
+◇ v==nullまたは空白および上記以外
+
+　 row,colの一致する最新を返す
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+■ メモ
+
+ExcelPicture.cs Init line89
+   ed.GetBmp(row,col) ...ここからビットマップをエクセルより取得している。
+
+|
+V
+ExcelDll  -- PSGGExcelWinLibへ接続　※ Project name psgg-libxl-win
+GetBmp at ExcelDll.cs #290
+SetBmp at ExcelDll.cs #307
+
+PSGGExcelWin
+Work.GetBmp
+Work.SetBmp
+
+# BMP->bytes
+using (var ms = new MemoryStream())
+{
+    bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+    var data = ms.ToArray();
+}
+
+■ 作戦
+
+psgg-libxl-win PSGGExcelWin Work.GetBmpにて 指定hash値のbmpを抽出する。　(１つの場合は無条件に。複数の時に合致する物。合致しないときは、最新のもの)
+
+
+■ セルについて
+
+※過去バージョンとの整合性をとる
+
+１．なし
+　　GetBmp(row,col)にて取得
+２．(bitmap)
+　　GetBmp(row,col)にて取得
+３．hash=ハッシュ値
+`   GetBmp(row,col,hash)にて取得
+４．-deleted
+    表示しない
+
+
+■ 削除できない対策
+
+１．先の記述通りハッシュ値で
+２．削除時は、削除用のbitmapを配置する。かつ セルには -deletedとする。
+
+
+■ Cleanup機能
+コピーの要領で、新規にファイルを作成して、必要最小限のビットマップのみとする。
+
+
+
+
+
+
+

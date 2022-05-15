@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F598B7FE-E429-462A-AFEE-8A1800407AFF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StateViewer_starter2</RootNamespace>
+    <AssemblyName>PSGGEditorStarter</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>CS0168,CS0219,CS0649</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>statego.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ExtendedLinguisticServices, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Sensors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.Sensors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="create2\base\StateManager.cs" />
+    <Compile Include="create2\CreateControl\CreateControl.cs" />
+    <Compile Include="create2\CreateControl\CreateControl_created.cs" />
+    <Compile Include="create2\groupanim\GroupAnimControl.cs" />
+    <Compile Include="create2\groupanim\GroupAnimControl_created.cs" />
+    <Compile Include="CreateNewDetailTextFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewDetailTextFrom.Designer.cs">
+      <DependentUpon>CreateNewDetailTextFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewForm.Designer.cs">
+      <DependentUpon>CreateNewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewForm_ShortcutFotm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewForm_ShortcutFotm.Designer.cs">
+      <DependentUpon>CreateNewForm_ShortcutFotm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewForm_ShortcutFotm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewForm_ShortcutFotm2.Designer.cs">
+      <DependentUpon>CreateNewForm_ShortcutFotm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="findfile\CollectControl.cs" />
+    <Compile Include="findfile\FileCandidateControl.cs" />
+    <Compile Include="NEW2019\NewControl.cs" />
+    <Compile Include="NEW2019\NewControl_psgg.cs" />
+    <Compile Include="NEW2019\NewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NEW2019\NewForm.Designer.cs">
+      <DependentUpon>NewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NEW2019\NewFormEvent.cs" />
+    <Compile Include="NEW2019\work\NewWorkControl.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="shortcut\ShortcutControl.cs" />
+    <Compile Include="util\EnumUtil.cs" />
+    <Compile Include="util\ExecUtil.cs" />
+    <Compile Include="util\MathX.cs" />
+    <Compile Include="util\ParseUtil.cs" />
+    <Compile Include="util\PathUtil.cs" />
+    <Compile Include="util\PathUtil2.cs" />
+    <Compile Include="util\PointUtil.cs" />
+    <Compile Include="util\RegexUtil.cs" />
+    <Compile Include="util\RegistryUtil.cs" />
+    <Compile Include="util\StringUtil.cs" />
+    <Compile Include="util\TextUtil.cs" />
+    <Compile Include="util\utilini\IniUtil.cs" />
+    <Compile Include="util\utilini\IniUtilControl.cs" />
+    <Compile Include="util_app\ExcelDll.cs" />
+    <Compile Include="util_app\ExcelDll2.cs" />
+    <Compile Include="util_app\ExcelUtil.cs" />
+    <Compile Include="util_app\HelpJumpUtil.cs" />
+    <Compile Include="util_app\HistoryUtil.cs" />
+    <Compile Include="Start2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Start2Form.Designer.cs">
+      <DependentUpon>Start2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Starter2.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="util_app\psggFileRead.cs" />
+    <Compile Include="util_app\PSGGFileUtil.cs" />
+    <Compile Include="util_app\RegistryWork.cs" />
+    <Compile Include="work\create.cs" />
+    <Compile Include="work\work.cs" />
+    <Compile Include="work\work2.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CreateNewDetailTextFrom.resx">
+      <DependentUpon>CreateNewDetailTextFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewForm.resx">
+      <DependentUpon>CreateNewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewForm_ShortcutFotm.resx">
+      <DependentUpon>CreateNewForm_ShortcutFotm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewForm_ShortcutFotm2.resx">
+      <DependentUpon>CreateNewForm_ShortcutFotm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NEW2019\NewForm.resx">
+      <DependentUpon>NewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Start2Form.resx">
+      <DependentUpon>Start2Form.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WordStorage\WordStorage.csproj">
+      <Project>{205de666-76fc-426b-992a-849bbf2b6357}</Project>
+      <Name>WordStorage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon2.ico" />
+    <Content Include="NEW2019\独立性を高めておくこと.txt" />
+    <Content Include="_メモ.txt" />
+    <None Include="Resources\all_on_a_folder.png" />
+    <None Include="Resources\doc_on_src_folder.png" />
+    <Content Include="statego.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

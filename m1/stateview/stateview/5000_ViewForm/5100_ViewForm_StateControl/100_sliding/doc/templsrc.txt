@@ -1,0 +1,7 @@
+:output=SlidingStateControl_created.cs
+:tempfunc=templatefunc.txt
+:enc=utf-8
+::
+public partial class SlidingStateControl {
+    $contents2$
+}

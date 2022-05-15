@@ -1,0 +1,60 @@
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](int phase, bool bFirst)
+{
+    if (phase==0)
+    {
+        if (bFirst)
+        {
+            <<<?nextstate
+            SetNextState([[nextstate]]);
+            >>>
+            <<<?input
+            [[input]]
+            >>>
+            <<<?bmpdlg
+            [[bmpdlg]]
+            >>>
+            <<<?stdlg
+            [[stdlg]]
+            >>>
+            <<<?nstdlg
+            [[nstdlg]]
+            >>>
+            <<<?brdlg
+            [[brdlg]]
+            >>>
+            <<<?txtdlg
+            [[txtdlg]]
+            >>>
+            <<<?ofdlg
+            [[ofdlg]]
+            >>>
+            <<<?lvldlg
+            [[lvldlg]]
+            >>>
+           
+        }
+        else {
+            <<<?wait
+            if (![[wait]]) return;
+            >>>
+
+            <<<?branch-cmt
+            /*
+                [[branch-cmt]]
+            */
+            >>>
+            <<<?branch
+            [[branch]]
+            >>>
+            if (HasNextState())
+            {
+                GoNextState();
+                return;
+            }
+        }
+    }
+}

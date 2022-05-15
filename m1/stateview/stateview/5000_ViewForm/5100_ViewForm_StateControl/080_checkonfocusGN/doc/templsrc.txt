@@ -1,0 +1,7 @@
+:output=ChkOnFcsGNStateControl_created.cs
+:tempfunc=templatefunc.txt
+:enc=utf-8
+::
+public partial class ChkOnFcsGNStateControl {
+    $contents2$
+}

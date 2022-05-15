@@ -1,0 +1,951 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=EditBranchControl.xlsx
+guid=37e2df4a-6377-4d6d-901e-75b236bc2b18
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,,n006,n007,n008,,n009,n00a,,n00b,n00c,,n00d,n00e,,n00f,n010,n011,,n012,n013,n014
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0017,s0016
+max_name_id=20
+max_state_id=23
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=init
+n007=init-cmt
+n008=init-ref
+n009=update
+n00a=update-cmt
+n00b=wait
+n00c=wait-cmt
+n00d=post_wait
+n00e=post_wait-cmt
+n00f=branch
+n010=branch-cmt
+n011=nowait
+n012=!dir
+n013=!pos
+n014=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_WAIT_CLICK
+s0004=S_ITEM_MENU
+s0005=S_BLANK_MENU
+s0006=S_Edit
+s0007=S_UP
+s0008=S_SELECT_OW
+s0009=S_DOWN
+s000a=S_NEW_API
+s000b=S_SELECT_NEW
+s000c=S_REDRAW
+s000d=S_DELETE
+s000e=S_REDRAW_NEW
+s000f=S_EDIT_NEW
+s0010=S_MODE_ITEM_MENU
+s0011=S_NEW_IF
+s0012=S_NEW_ELSE
+s0013=S_NEW_ELSEIF
+s0014=S_CMT_MENU
+s0015=S_Edit_CMT
+s0016=S_Edit1
+s0017=C_Edit2
+
+
+[s0001]
+n002=S_START
+n005=S_WAIT_CLICK
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=16,19
+n014=100001
+
+[s0002]
+n002=S_END
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=1024,38
+n014=100002
+
+[s0003]
+n001=(bitmap)
+n002=S_WAIT_CLICK
+n003=クリック待ち
+n009=check_point();
+n00f=@@@
+br_OnItem(S_ITEM_MENU);
+br_OnCmt(S_CMT_MENU);
+br_OnModeItem(S_MODE_ITEM_MENU);
+br_Blank(S_BLANK_MENU);
+br_NotAbove(S_WAIT_CLICK);
+@@@
+
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=26,598
+n014=100003
+
+[s0004]
+n001=(bitmap)
+n002=S_ITEM_MENU
+n003=アイテムメニュー表示
+n006=show_item_menu();
+n009=check_item_menu();
+n00f=@@@
+br_Edit(S_Edit1);
+br_Select(S_SELECT_OW);
+br_Up(S_UP);
+br_Down(S_DOWN);
+br_Delete(S_DELETE);
+br_Cancel(S_WAIT_CLICK);
+@@@
+
+n010=@@@
+?
+?
+?
+?
+?
+?
+@@@
+
+n011=nowait
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=344,362
+n014=100004
+
+[s0005]
+n001=(bitmap)
+n002=S_BLANK_MENU
+n003=ブランク用メニュー表示
+n006=show_blank_menu();
+n009=check_blank_menu();
+n00f=@@@
+br_NewAPI(S_NEW_API);
+br_NewIF(S_NEW_IF);
+br_NewELSEIF(S_NEW_ELSEIF);
+br_NewELSE(S_NEW_ELSE);
+br_Select(S_SELECT_NEW);
+br_Cancel(S_WAIT_CLICK);
+@@@
+
+n011=nowait
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=358,1202
+n014=100005
+
+[s0006]
+n001=(bitmap)
+n002=S_Edit
+n003=編集
+n005=S_REDRAW
+n006=editbox_start();
+n00b=editbox_done()
+n00d=editbox_post();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=814,35
+n014=100006
+
+[s0007]
+n001=(bitmap)
+n002=S_UP
+n003=上に移動
+n005=S_REDRAW
+n006=up_start();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=710,456
+n014=100008
+
+[s0008]
+n001=(bitmap)
+n002=S_SELECT_OW
+n003=@@@
+ヒストリから選択
+上書き
+@@@
+
+n005=S_REDRAW
+n006=select_ow_start();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=710,365
+n014=100007
+
+[s0009]
+n001=(bitmap)
+n002=S_DOWN
+n003=下へ移動
+n005=S_REDRAW
+n006=down_start();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=710,532
+n014=100009
+
+[s000a]
+n001=(bitmap)
+n002=S_NEW_API
+n003=新規追加
+n005=S_REDRAW_NEW
+n006=new_api_start();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=657,1035
+n014=100010
+
+[s000b]
+n001=(bitmap)
+n002=S_SELECT_NEW
+n003=新規追加
+n005=S_REDRAW
+n006=select_new_start();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=657,1415
+n014=100011
+
+[s000c]
+n001=(bitmap)
+n002=S_REDRAW
+n003=再描画
+n005=S_WAIT_CLICK
+n006=@@@
+redraw();
+reselect();
+@@@
+
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=1040,421
+n014=100012
+
+[s000d]
+n001=(bitmap)
+n002=S_DELETE
+n003=削除
+n005=S_REDRAW
+n006=delete_start();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=710,610
+n014=100013
+
+[s000e]
+n001=(bitmap)
+n002=S_REDRAW_NEW
+n003=ＮＥＷ用再描画
+n005=S_EDIT_NEW
+n006=redraw();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=1004,1055
+n014=100014
+
+[s000f]
+n001=(bitmap)
+n002=S_EDIT_NEW
+n003=編集へ
+n005=S_Edit1
+n006=edit_new();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=1250,1051
+n014=100015
+
+[s0010]
+n001=(bitmap)
+n002=S_MODE_ITEM_MENU
+n003=モードアイテムメニュー表示
+n005=S_REDRAW
+n006=show_mode_menu();
+n00b=show_mode_menu_done()
+n00d=show_mode_menu_post();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=360,926
+n014=100016
+
+[s0011]
+n001=(bitmap)
+n002=S_NEW_IF
+n003=新規追加
+n005=S_REDRAW_NEW
+n006=new_if_start();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=657,1126
+n014=100017
+
+[s0012]
+n001=(bitmap)
+n002=S_NEW_ELSE
+n003=新規追加
+n005=S_REDRAW
+n006=new_else_start();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=657,1303
+n014=100019
+
+[s0013]
+n001=(bitmap)
+n002=S_NEW_ELSEIF
+n003=新規追加
+n005=S_REDRAW_NEW
+n006=new_elseif_start();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=657,1210
+n014=100018
+
+[s0014]
+n001=(bitmap)
+n002=S_CMT_MENU
+n003=コメント欄用メニュー表示
+n006=show_cmt_menu();
+n009=check_cmt_menu();
+n00f=@@@
+br_Edit(S_Edit_CMT);
+br_Up(S_UP);
+br_Down(S_DOWN);
+br_Delete(S_DELETE);
+br_Cancel(S_WAIT_CLICK);
+@@@
+
+n011=nowait
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=342,605
+n014=100020
+
+[s0015]
+n001=(bitmap)
+n002=S_Edit_CMT
+n003=コメント編集
+n005=S_REDRAW
+n006=editcmt_start();
+n00b=editcmt_done()
+n00d=editcmt_post();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=710,731
+n014=100021
+
+[s0016]
+n001=(bitmap)
+n002=S_Edit1
+n005=S_Edit
+n00f=
+n010=
+n011=nowait
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=601,35
+n014=100022
+
+[s0017]
+n002=C_Edit2
+n003=編集
+n005=S_REDRAW
+n006=edit_start();
+n00b=edit_done()
+n00d=edit_post();
+n012=@@@
+/
+(100,100)
+The root
+@@@
+
+n013=814,181
+n014=100023
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2021/06/05 12:11:09
+; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
+psggfile=@@@
+EditBranchControl.psgg
+@@@
+xlsfile=@@@
+EditBranchControl.xlsx
+@@@
+guid=@@@
+37e2df4a-6377-4d6d-901e-75b236bc2b18
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+varied,Edited a state.
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"The root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":16,"y":19}},{"Key":"S_END","Value":{"x":1024,"y":38}},{"Key":"S_WAIT_CLICK","Value":{"x":26,"y":598}},{"Key":"S_ITEM_MENU","Value":{"x":344,"y":362}},{"Key":"S_BLANK_MENU","Value":{"x":358,"y":1202}},{"Key":"S_Edit","Value":{"x":814,"y":35}},{"Key":"S_SELECT_OW","Value":{"x":710,"y":365}},{"Key":"S_UP","Value":{"x":710,"y":456}},{"Key":"S_DOWN","Value":{"x":710,"y":532}},{"Key":"S_SELECT_NEW","Value":{"x":657,"y":1415}},{"Key":"S_REDRAW","Value":{"x":1040,"y":421}},{"Key":"S_DELETE","Value":{"x":710,"y":610}},{"Key":"S_REDRAW_NEW","Value":{"x":1004,"y":1055}},{"Key":"S_EDIT_NEW","Value":{"x":1250,"y":1051}},{"Key":"S_MODE_ITEM_MENU","Value":{"x":360,"y":926}},{"Key":"S_NEW_API","Value":{"x":657,"y":1035}},{"Key":"S_NEW_IF","Value":{"x":657,"y":1126}},{"Key":"S_NEW_ELSEIF","Value":{"x":657,"y":1210}},{"Key":"S_NEW_ELSE","Value":{"x":657,"y":1303}},{"Key":"S_CMT_MENU","Value":{"x":342,"y":605}},{"Key":"S_Edit_CMT","Value":{"x":710,"y":731}},{"Key":"S_Edit1","Value":{"x":601,"y":35}},{"Key":"S_Edit2","Value":{"x":814,"y":181}},{"Key":"C_Edit2","Value":{"x":814,"y":181}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4281413937},"pattern":"S_WAIT_CLICK"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=0
+option_delete_br_string=0
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=9
+comment_font_size=0
+contents_font_size=0
+state_width=110
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"nowait","Value":{"height":401,"width":330}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=0
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=EditBranchControl_created.cs
+::tempfunc=template-func.txt
+:enc=utf-8
+::
+public partial class EditBranchControl : StateManager {
+
+    public void Start()
+    {
+        Goto(S_START);
+    }
+    public bool IsEnd()
+    {
+        return CheckState(S_END);
+    }
+
+
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](bool bFirst)
+{
+    if (bFirst)
+    {
+        [[init]]
+    }
+
+    [[update]]
+
+    <<<?wait
+    if (![[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    [[branch]]
+
+    <<<?nextstate
+    if (!HasNextState())
+    {
+        SetNextState([[nextstate]]);
+    }
+    >>>
+
+    if (HasNextState())
+    {
+        <<<?nowait
+        NoWait();
+        >>>
+
+        GoNextState();
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+
+[setting]
+
+psgg=EditBranchControl.psgg
+xls=EditBranchControl.xlsx
+sub_src=EditBranchControl.cs
+gen_src=EditBranchControl_created.cs
+
+manager_src=StateManager.cs
+manager_dir=base
+
+template_src=template-source.txt
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=helpweb.html
+
+
+; converter=user.dll
+
+[setupinfo]
+
+lang=c#
+framework=vs2015
+
+prefix=EditBranch
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_editbranch\doc
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_editbranch\src
+@@@
+
+genrdir=..\src
+incrdir=.
+
+[jpn]
+
+title=C# サンプル 1
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# ドキュメント用フォルダ
+   ステート図ファイルとEditor起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_editbranch\doc
+
+  以下のファイルを作成します。
+
+      EditBranchControl.pssg   --- PSSG Editorで次のエクセルファイルを開く。
+      EditBranchControl.xlsx   --- ステート図格納用Excelファイル。PSSG Editorが編集。
+
+# ソース用フォルダ
+　PSSG Editorが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_editbranch\src
+
+  以下のファイルが作成されます。
+
+      EditBranchControl_created.cs  --- Excelファイルからの変換ソースコード。変換プロセスの度に上書きされる。
+                                        ※生成直後は関数なしのクラス定義のみ
+
+     EditBranchControl.cs          --- ユーザ実装用　（ここにプログラムを書く！）
+                                        ※生成直後は関数なしのクラス定義のみ
+
+# 共通管理クラスファイル
+
+　以下に作成されます。
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_editbranch\src/base/StateManager.cs
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+記 2018.7.7
+@@@
+
+
+
+[en]
+
+title=C# Sample 1
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_editbranch\doc
+
+  File:
+
+      EditBranchControl.pssg  --- PSSG Editor opens the below excel file.
+      EditBranchControl.xlsx  --- Excel File that has a state chart. PSSG Editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by PSSG Editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_editbranch\src
+
+　File:
+      EditBranchControl_created.cs   -- PSSG Editor will convert from the excel file to this file. This file will overwriten whenever using the converting process of PSSG Editor.
+                                        * The file has only a class define without methods immediately after this creation.
+
+      EditBranchControl.cs　　　　　 -- For implementation. (You have to write program in this file!!)
+                                        * The file has only class define without methods immediately after this creation.
+
+# Common State Manager Class File
+
+  File:
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\dialog_editbranch\src/base/StateManager.cs
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+
+
+Wrote 2018.7.7
+@@@
+
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'yes'を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'yes' if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+nextstate=
+wait-cmt=
+!pos=
+update=
+state=
+S_=
+init-ref=
+E_=
+init-cmt=
+post_wait-cmt=
+branch=
+branch-cmt=
+update-cmt=
+post_wait=
+C_=
+state-ref=
+!uuid=
+init=
+!dir=
+wait=
+nowait=@@@
+*select
+nowait
+@@@
+
+thumbnail=
+state-cmt=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+branch-cmt=read_only,exclusion,(S0)
+return=read_only,exclusion,S0
+basestate=read_only,share,S.+
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

@@ -1,0 +1,401 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=SlidingStateControl.xlsx
+guid=4d88f960-a25b-4adb-87c9-1a737a50a3cd
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,,,n005,,n006,n007,,,,,,,,,,,,,,,,,,,,,n008,n009,n00a,n00b,n00c,n00d
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005
+max_name_id=13
+max_state_id=5
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=nextstate
+n005=proc
+n006=proc2
+n007=wait
+n008=!pos
+n009=!dir
+n00a=!uuid
+n00b=branch
+n00c=branch-cmt
+n00d=nowait
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_INIT
+s0004=S_UPDATE
+s0005=S_DESTROY
+
+
+[s0001]
+n002=S_START
+n003=開始
+n004=S_INIT
+n008=60,83
+n009=@@@
+/
+(0,0)
+This is the root
+@@@
+
+n00a=100001
+n00d=NoWait();
+
+[s0002]
+n002=S_END
+n003=終了
+n008=1048,106
+n009=@@@
+/
+(0,0)
+This is the root
+@@@
+
+n00a=100002
+
+[s0003]
+n002=S_INIT
+n003=開始
+n004=S_UPDATE
+n005=show_pb();
+n008=322,83
+n009=@@@
+/
+(0,0)
+This is the root
+@@@
+
+n00a=100003
+n00d=NoWait();
+
+[s0004]
+n002=S_UPDATE
+n003=更新
+n004=S_DESTROY
+n006=update_pb();
+n007=check_mouse()
+n008=586,81
+n009=@@@
+/
+(0,0)
+This is the root
+@@@
+
+n00a=100004
+n00d=NoWait();
+
+[s0005]
+n002=S_DESTROY
+n003=開始
+n004=S_END
+n005=hide_pb();
+n008=786,97
+n009=@@@
+/
+(0,0)
+This is the root
+@@@
+
+n00a=100005
+n00d=NoWait();
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2022/05/07 11:32:37
+; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
+psggfile=@@@
+SlidingStateControl.psgg
+@@@
+xlsfile=@@@
+SlidingStateControl.xlsx
+@@@
+guid=@@@
+4d88f960-a25b-4adb-87c9-1a737a50a3cd
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Initilized
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+[{"Key":"S_START","Value":{"x":40,"y":119}},{"Key":"S_END","Value":{"x":1450.33325,"y":240.952377}},{"Key":"S_Init","Value":{"x":308,"y":115}},{"Key":"S_DragMove","Value":{"x":556,"y":121}},{"Key":"S_Drop","Value":{"x":803,"y":126}},{"Key":"S_DefSuccess","Value":{"x":1004,"y":128}},{"Key":"S_DefCancel","Value":{"x":1012,"y":398}},{"Key":"S_Destroy","Value":{"x":1244.04773,"y":246.095215}}]
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"This is the root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":0,"y":0}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":60,"y":83}},{"Key":"S_END","Value":{"x":1048,"y":106}},{"Key":"S_INIT","Value":{"x":322,"y":83}},{"Key":"S_UPDATE","Value":{"x":586,"y":81}},{"Key":"S_DESTROY","Value":{"x":786,"y":97}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+
+@@@
+option_delete_thisstring=0
+option_delete_br_string=0
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=0
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=SlidingStateControl_created.cs
+:enc=utf-8
+::
+public partial class SlidingStateControl {
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](int phase, bool bFirst)
+{
+    if (phase==0)
+    {
+        if (bFirst)
+        {
+            [[proc]]
+        }
+        //else
+        {
+            [[proc2]]
+
+            <<<?wait
+            if (![[wait]]) return;
+            >>>
+
+
+            <<<?branch-cmt
+            /*
+                [[branch-cmt]]
+            */
+            >>>
+
+            [[branch]]
+
+            if (HasNextState())
+            {
+                [[nowait]]
+                GoNextState();
+                return;
+            }
+
+            <<<?nextstate
+            [[nowait]]
+            SetNextState([[nextstate]]);
+            GoNextState();
+            return;
+            >>>
+        }
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=SlidingStateControl.psgg
+xls=SlidingStateControl.xlsx
+sub_src=SlidingStateControl.cs
+gen_src=SlidingStateControl_created.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=
+
+help=
+helpweb=
+
+macro_ini=
+
+[setupinfo]
+
+; converter=user.dll
+
+lang=c#
+framework=
+
+prefix=SlidingState
+xlsdir=
+gendir=
+genrdir=..\created
+incrdir=.
+
+ref_ancestor_dir=Assets
+
+[jpn]
+title=C# Sample
+detail=
+
+[en]
+title=C# Sample
+
+detail=
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](int phase, bool bFirst)
+{
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+nextstate=
+!pos=
+state=
+proc2=
+C_=
+E_=
+branch=
+branch-cmt=
+proc=
+!uuid=
+S_=
+!dir=
+wait=
+nowait=@@@
+*select
+nowait
+@@@
+
+thumbnail=
+state-cmt=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+basestate=read_only,share,S.+
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

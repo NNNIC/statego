@@ -1,0 +1,7 @@
+:output=DAnDGNStateControl_created.cs
+:tempfunc=templatefunc.txt
+:enc=utf-8
+::
+public partial class DAnDGNStateControl {
+    $contents2$
+}

@@ -1,0 +1,852 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=FindLineControl.xlsx
+guid=0e13a877-057a-4168-a5fa-c13a32055fb3
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,,n006,,n007,,n008,n009,n00a,n00b,,n00c,n00d,,n00e,n00f,,n010,n011,,n012,n013,n014,,n015,n016,n017
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,s000f,s0010,s0011,,s0012
+max_name_id=23
+max_state_id=18
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=embed
+n007=members
+n008=vars
+n009=init
+n00a=init-cmt
+n00b=init-ref
+n00c=update
+n00d=update-cmt
+n00e=wait
+n00f=wait-cmt
+n010=post_wait
+n011=post_wait-cmt
+n012=branch
+n013=brcond
+n014=nowait
+n015=!dir
+n016=!pos
+n017=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=E_IMPORT
+s0004=E_0003
+s0005=E_OUTPUT
+s0006=S_LOOP_INIT
+s0007=S_CONVERT_TO_LINES
+s0008=E_0004
+s0009=S_LOOP_CHECK
+s000a=S_CHECK_FI
+s000b=S_INC_FI
+s000c=S_INIT_FI
+s000d=S_CHECK04
+s000e=E_0005
+s000f=S_MATCHED
+s0010=S_REC_MAX
+s0011=S_INC_TI
+s0012=C_CONVERT_TO_LINES1
+
+
+[s0001]
+n002=S_START
+n005=S_CONVERT_TO_LINES
+n016=29,251
+n017=100001
+
+[s0002]
+n002=S_END
+n016=1190,913
+n017=100002
+
+[s0003]
+n001=(bitmap)
+n002=E_IMPORT
+n006=@@@
+public string m_target_text;
+public string m_find_text;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=42,27
+n017=100003
+
+[s0004]
+n001=(bitmap)
+n002=E_0003
+n006=@@@
+List<string> m_tlines;
+List<string> m_flines;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=245,13
+n017=100005
+
+[s0005]
+n001=(bitmap)
+n002=E_OUTPUT
+n006=public int m_linenum;
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=44,153
+n017=100004
+
+[s0006]
+n001=(bitmap)
+n002=S_LOOP_INIT
+n005=S_LOOP_CHECK
+n009=@@@
+m_linenum = -1;
+m_ti = 0;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=227,389
+n017=100007
+
+[s0007]
+n001=(bitmap)
+n002=S_CONVERT_TO_LINES
+n005=S_LOOP_INIT
+n009=@@@
+m_tlines = split_wo_donotedit_mark(m_target_text);
+m_flines = split(m_find_text);
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=38,380
+n017=100006
+
+[s0008]
+n001=(bitmap)
+n002=E_0004
+n006=@@@
+int m_ti; //target index;
+int m_fi; //find index
+int m_fimax; //マッチしたfiの最大値
+string m_ts; //ターゲットの１行
+string m_fs; //Findの１行
+
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=424,19
+n017=100008
+
+[s0009]
+n001=(bitmap)
+n002=S_LOOP_CHECK
+n012=@@@
+brifc(S_INIT_FI);
+brelse(S_END);
+@@@
+
+n013=@@@
+m_ti < m_tlines.Count
+?
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=442,386
+n017=100009
+
+[s000a]
+n001=(bitmap)
+n002=S_CHECK_FI
+n012=@@@
+brifc(S_CHECK04);
+brelse(S_MATCHED);
+@@@
+
+n013=@@@
+m_fi < m_flines.Count
+?
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=272,618
+n017=100010
+
+[s000b]
+n001=(bitmap)
+n002=S_INC_FI
+n005=S_CHECK_FI
+n009=m_fi++;
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=862,531
+n017=100015
+
+[s000c]
+n001=(bitmap)
+n002=S_INIT_FI
+n005=S_CHECK_FI
+n009=m_fi = 0;
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=48,633
+n017=100012
+
+[s000d]
+n001=(bitmap)
+n002=S_CHECK04
+n009=@@@
+m_ts = getts(m_ti + m_fi);
+m_fs = m_flines[m_fi];
+
+@@@
+
+n012=@@@
+brifc(S_REC_MAX);
+brelse(S_INC_TI);
+@@@
+
+n013=@@@
+m_fs == m_ts
+?
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=719,638
+n017=100013
+
+[s000e]
+n001=(bitmap)
+n002=E_0005
+n003=
+n006=@@@
+string getts(int n) {
+    return n < m_tlines.Count ? m_tlines[n] : null;
+}
+
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=603,16
+n017=100014
+
+[s000f]
+n001=(bitmap)
+n002=S_MATCHED
+n005=S_END
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=865,913
+n017=100016
+
+[s0010]
+n001=(bitmap)
+n002=S_REC_MAX
+n005=S_INC_FI
+n009=@@@
+if (m_fi > m_fimax)
+{
+    m_fimax = m_fi;
+    m_linenum = m_ti;
+}
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=1327,645
+n017=100017
+
+[s0011]
+n001=(bitmap)
+n002=S_INC_TI
+n005=S_LOOP_CHECK
+n009=m_ti++;
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=1294,206
+n017=100018
+
+[s0012]
+n002=C_CONVERT_TO_LINES1
+n009=@@@
+m_tlines = split(m_target_text);
+m_flines = split(m_find_text);
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=236,162
+n017=100019
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2021/04/29 13:37:10
+; * pssgEditor version : 0.68.171948.b0d313dde882138853516050d1e04d61ce89f54b
+psggfile=@@@
+FindLineControl.psgg
+@@@
+xlsfile=@@@
+FindLineControl.xlsx
+@@@
+guid=@@@
+0e13a877-057a-4168-a5fa-c13a32055fb3
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+varied,Edited a state.
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":29,"y":251}},{"Key":"S_END","Value":{"x":1190,"y":913}},{"Key":"E_0003","Value":{"x":245,"y":13}},{"Key":"E_IMPORT","Value":{"x":42,"y":27}},{"Key":"E_OUTPUT","Value":{"x":44,"y":153}},{"Key":"E_0004","Value":{"x":424,"y":19}},{"Key":"S_CONVERT_TO_LINES","Value":{"x":38,"y":380}},{"Key":"S_LOOP_INIT","Value":{"x":227,"y":389}},{"Key":"S_LOOP_CHECK","Value":{"x":442,"y":386}},{"Key":"E_0005","Value":{"x":603,"y":16}},{"Key":"S_CHECK04","Value":{"x":719,"y":638}},{"Key":"S_CHECK_FI","Value":{"x":272,"y":618}},{"Key":"S_INIT_FI","Value":{"x":48,"y":633}},{"Key":"S_INC_FI","Value":{"x":862,"y":531}},{"Key":"S_MATCHED","Value":{"x":865,"y":913}},{"Key":"S_REC_MAX","Value":{"x":1327,"y":645}},{"Key":"S_INC_TI","Value":{"x":1294,"y":206}},{"Key":"S_CONVERT_TO_LINES1","Value":{"x":243,"y":116}},{"Key":"C_CONVERT_TO_LINES1","Value":{"x":236,"y":162}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=45
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+
+[[embed]]
+
+eof>>>
+[[members]]
+void [[state]](bool bFirst)
+{
+
+    [[vars]]
+
+    <<<?init
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        SetNextState([[nextstate]]);
+    }
+    >>>
+
+    //
+    if (HasNextState())
+    {
+        <<<?nowait
+        NoWait();
+        >>>
+
+        GoNextState();
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+
+[setting]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 7c24ab43f96d5d603277fbdf45d6431faac9b09e
+@@@
+
+
+
+psgg=FindLineControl.psgg
+xls=FindLineControl.xlsx
+sub_src=
+gen_src=FindLineControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=helpweb.html
+
+src_enc=utf-8
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 7c24ab43f96d5d603277fbdf45d6431faac9b09e
+@@@
+
+
+
+lang=c#
+framework=vs2015
+
+statemachie=FindLineControl
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8200_Special\FindLine\doc
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8200_Special\FindLine
+@@@
+
+genrdir=..
+incrdir=.
+
+code_output_start=[SYN-G-GEN OUTPUT START]
+code_output_end=[SYN-G-GEN OUTPUT END]
+
+; This section has macro defines for converting.
+
+; commentline format  {%0} will be replaced to a comment.
+[macro]
+
+commentline=// {%0}
+
+@branch=@@@
+<<<?"{%0}"/^brifc{0,1}$/
+if ([[brcond:{%N}]]) { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^brelseifc{0,1}$/
+else if ([[brcond:{%N}]]) { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^brelse$/
+else { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^br_/
+{%0}({%1});
+>>>
+@@@
+
+
+[jpn]
+
+title=C# スタートキット  2018/9/25
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# 新機能
+- IF ブランチ機能
+- マネージャファイルなし
+- 変換ソース埋め込み
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8200_Special\FindLine\doc
+
+  以下のファイルを作成します。
+
+      FindLineControl.pssg   --- エディタで次のエクセルファイルを開く。
+      FindLineControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8200_Special\FindLine
+
+  以下のファイルが作成されます。
+
+      FindLineControl.cs  --- Excelファイルからの変換コードを本ファイルに埋め込む。
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+
+[en]
+
+title=C# STARTER KIT 2018/9/24
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# New Feature
+- Enabled If branches
+- No Manager file
+- Insert converted code
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8200_Special\FindLine\doc
+
+  File:
+
+      FindLineControl.pssg  --- The editor opens the below excel file.
+      FindLineControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8200_Special\FindLine
+
+　File:
+      FindLineControl.cs   -- The editor will insert converted source code to this file.
+
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+@@@
+
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[embed]
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[members]
+jpn=@@@
+メンバ変数及び関数等を指定する。
+@@@
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[vars]
+jpn=@@@
+変数宣言を指定する。
+@@@
+en=@@@
+Specify variable definitions.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

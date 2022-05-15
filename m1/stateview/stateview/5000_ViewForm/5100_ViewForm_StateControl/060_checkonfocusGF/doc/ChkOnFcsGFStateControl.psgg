@@ -1,0 +1,381 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=ChkOnFcsGFStateControl.xlsx
+guid=e236b5e8-7b6c-47f3-a3c8-44b0e9036f4d
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,,,n006,,n007,,n008,,,,,,,,,,,,,,,,,,,,n009,n00a,n00b,n00c,n00d,n00e
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009
+max_name_id=14
+max_state_id=9
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=proc
+n007=wait
+n008=proc2
+n009=branch
+n00a=branch-cmt
+n00b=nowait
+n00c=!dir
+n00d=!uuid
+n00e=!pos
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_IsMBDown
+s0004=S_SavePos
+s0005=S_Def_Cancel
+s0006=S_CheckMove
+s0007=S_Def_Drag
+s0008=S_Def_Click
+s0009=C_0003
+
+
+[s0001]
+n001=(bitmap)
+n002=S_START
+n003=開始
+n004=ViewFormStateControl.psgg
+n005=S_IsMBDown
+n00b=NoWait();
+n00d=100001
+n00e=50,100
+
+[s0002]
+n002=S_END
+n003=終了
+n00d=100002
+n00e=1067,260
+
+[s0003]
+n002=S_IsMBDown
+n003=マウスボタンダウン待ち
+n007=wait_mbdown()
+n009=@@@
+br_IsMBD(S_SavePos);
+br_NotAbove(S_Def_Cancel);
+@@@
+
+n00b=NoWait();
+n00d=100003
+n00e=231,99
+
+[s0004]
+n002=S_SavePos
+n003=現ポジションセーブ
+n005=S_CheckMove
+n006=save_pos();
+n00b=NoWait();
+n00d=100004
+n00e=415,105
+
+[s0005]
+n002=S_Def_Cancel
+n003=キャンセル決定
+n005=S_END
+n006=def_Cancel();
+n00d=100005
+n00e=813,382
+
+[s0006]
+n002=S_CheckMove
+n003=マウス移動チェック
+n007=wait_move()
+n009=@@@
+br_IsDrag(S_Def_Drag);
+br_IsClick(S_Def_Click);
+br_NotAbove(S_Def_Cancel);
+@@@
+
+n00d=100006
+n00e=595,107
+
+[s0007]
+n002=S_Def_Drag
+n003=ドラッグ決定
+n005=S_END
+n006=def_Drag();
+n00d=100007
+n00e=813,108
+
+[s0008]
+n002=S_Def_Click
+n003=クリック決定
+n005=S_END
+n006=def_Click();
+n00d=100008
+n00e=814,235
+
+[s0009]
+n001=(bitmap)
+n002=C_0003
+n003=@@@
+※フォーカスされたグループ上か？
+このあたりが修正のカギになりそうだ。
+@@@
+
+n00c=@@@
+/
+(100,100)
+
+@@@
+
+n00d=100009
+n00e=594,3
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2019/07/20 7:50:12
+; * pssgEditor version : 0.54.6742.30f7d20180bcf232aa3febbc099390b6bdd8d927
+psggfile=@@@
+ChkOnFcsGFStateControl.psgg
+@@@
+xlsfile=@@@
+ChkOnFcsGFStateControl.xlsx
+@@@
+guid=@@@
+e236b5e8-7b6c-47f3-a3c8-44b0e9036f4d
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=0
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+Moved a state
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":1372,"y":246.25}},{"Key":"S_WAIT_MBDOWN","Value":{"x":295.25,"y":101.25}},{"Key":"S_INIT_VARS","Value":{"x":516,"y":105}},{"Key":"S_CHECKEVENT","Value":{"x":740.5,"y":102.5}},{"Key":"S_SETEVT_CLICK","Value":{"x":1008.75,"y":55}},{"Key":"S_SETEVT_DCLICK","Value":{"x":1010.75,"y":210}},{"Key":"S_SETEVT_DRAG","Value":{"x":1011.5,"y":368.75}},{"Key":"S_SETEVT_CANCEL","Value":{"x":1011,"y":537.5}}]
+@@@
+nodegroup_comment_list=@@@
+[]
+@@@
+nodegroup_pos_list=@@@
+[]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":1067,"y":260}},{"Key":"S_IsMBDown","Value":{"x":231,"y":99}},{"Key":"S_SavePos","Value":{"x":415,"y":105}},{"Key":"S_Def_Cancel","Value":{"x":813,"y":382}},{"Key":"S_CheckMove","Value":{"x":595,"y":107}},{"Key":"S_Def_Drag","Value":{"x":813,"y":108}},{"Key":"S_Def_Click","Value":{"x":814,"y":235}},{"Key":"S_CheckMove1","Value":{"x":373,"y":452}},{"Key":"C_0003","Value":{"x":594,"y":3}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor=@@@
+"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe" /Edit %1
+@@@
+source_editor_vs2015_support=1
+label_show=0
+label_text=@@@
+
+@@@
+option_delete_thisstring=0
+option_delete_br_string=0
+option_delete_bracket_string=0
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_editbranch_automode=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+comment_block_height=45
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=ChkOnFcsGFStateControl_created.cs
+:tempfunc=templatefunc.txt
+:enc=utf-8
+::
+public partial class ChkOnFcsGFStateControl {
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](int phase, bool bFirst)
+{
+    if (phase==0)
+    {
+        if (bFirst)
+        {
+            [[proc]]
+        }
+        //else
+        {
+            <<<?wait
+            if (![[wait]]) return;
+            >>>
+
+            [[proc2]]
+
+            <<<?branch-cmt
+            /*
+                [[branch-cmt]]
+            */
+            >>>
+
+            [[branch]]
+
+            if (HasNextState())
+            {
+                [[nowait]]
+                GoNextState();
+                return;
+            }
+
+            <<<?nextstate
+            [[nowait]]
+            SetNextState([[nextstate]]);
+            GoNextState();
+            return;
+            >>>
+        }
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=ChkOnFcsGFStateControl.psgg
+xls=ChkOnFcsGFStateControl.xlsx
+sub_src=ChkOnFcsGFStateControl.cs
+gen_src=ChkOnFcsGFStateControl_created.cs
+
+[setupinfo]
+genrdir=..\created
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=ChkOnFcsGFStateControl.psgg
+xls=ChkOnFcsGFStateControl.xlsx
+sub_src=ChkOnFcsGFStateControl.cs
+gen_src=ChkOnFcsGFStateControl_created.cs
+
+[setupinfo]
+genrdir=..\created
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+nextstate=
+!pos=
+state=
+proc2=
+C_=
+E_=
+branch=
+branch-cmt=
+state-ref=
+proc=
+!uuid=
+S_=
+!dir=
+wait=
+nowait=
+thumbnail=
+state-cmt=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+!uuid=none,share,(S0)
+return=read_only,exclusion,S0
+brcond=read_only,exclusion,S0
+!pos=none,share,(S0)
+state-ref=read_only,exclusion,(S0)
+basestate=read_only,share,S.+
+embed=read_only,exclusion,S1
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

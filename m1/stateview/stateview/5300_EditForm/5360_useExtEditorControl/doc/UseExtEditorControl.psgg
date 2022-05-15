@@ -1,0 +1,781 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=UseExtEditorControl.xlsx
+guid=9c83328f-cc19-48cb-aa55-bb9f2068ce4e
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,n006,,n007,,n008,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,,n015,n016,n017,n018,,n019,n01a,n01b
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,,s0009,s000a,s000b,s000c
+max_name_id=27
+max_state_id=13
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=gosubstate
+n014=return
+n015=branch
+n016=branch-cmt
+n017=brcond
+n018=nowait
+n019=!dir
+n01a=!pos
+n01b=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_BACKUP_SRC
+s0004=S_CVT_W_MARK
+s0005=S_OPEN_EXT_EDITOR
+s0006=S_WAIT_AND_ASK
+s0007=S_PICKOUT
+s0008=S_RESTORE_BACKUP
+s0009=C_CONFIRM_PICKUP
+s000a=E_IMPORT
+s000b=S_INIT
+s000c=S_DESC
+
+
+[s0001]
+n002=S_START
+n006=S_INIT
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=74,206
+n01b=100001
+
+[s0002]
+n002=S_END
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1730,892
+n01b=100002
+
+[s0003]
+n001=(bitmap)
+n002=S_BACKUP_SRC
+n003=@@@
+対象ファイルのバックアップ作成
+ドキュメントフォルダにリネームして格納
+~[filename].psgg-edititem-backup
+@@@
+
+n006=S_CVT_W_MARK
+n00a=backup_src();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=684,519
+n01b=100003
+
+[s0004]
+n001=(bitmap)
+n002=S_CVT_W_MARK
+n003=対象部分にマークを入れて、コンバート出力
+n006=S_OPEN_EXT_EDITOR
+n00a=convert_with_mark();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=910,519
+n01b=100004
+
+[s0005]
+n001=(bitmap)
+n002=S_OPEN_EXT_EDITOR
+n003=外部エディタを開く。
+n006=S_WAIT_AND_ASK
+n00a=open_external_editor();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1302,519
+n01b=100005
+
+[s0006]
+n001=(bitmap)
+n002=S_WAIT_AND_ASK
+n003=終了待ち兼取出し確認
+n009=var bYesPickOut = false;
+n00a=@@@
+if (MessageBox.Show(G.Localize("ueec_aftermodifed") ,"Confirmation",MessageBoxButtons.YesNo) == DialogResult.Yes)
+{
+    bYesPickOut = true;
+}
+
+@@@
+
+n015=@@@
+brifc(S_PICKOUT);
+brelse(S_RESTORE_BACKUP);
+@@@
+
+n016=@@@
+?
+?
+@@@
+
+n017=@@@
+bYesPickOut
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=507,801
+n01b=100006
+
+[s0007]
+n001=(bitmap)
+n002=S_PICKOUT
+n003=内容取得
+n006=S_RESTORE_BACKUP
+n009=@@@
+pickout();
+m_output = m_pickup;
+m_bOk = true;
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=765,695
+n01b=100007
+
+[s0008]
+n001=(bitmap)
+n002=S_RESTORE_BACKUP
+n003=バックアップ復活
+n006=S_END
+n00a=restore_src();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1209,882
+n01b=100008
+
+[s0009]
+n001=(bitmap)
+n002=C_CONFIRM_PICKUP
+n003=取得部分の確認
+n006=S_RESTORE_BACKUP
+n00a=open_confirm_result_dlg(m_parent);
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1092,687
+n01b=100010
+
+[s000a]
+n001=(bitmap)
+n002=E_IMPORT
+n003=対象のステートとアイテム指定
+n007=@@@
+public string m_state;
+public string m_item;
+public string m_val;
+public int?   m_item_line_index;
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=78,58
+n01b=100011
+
+[s000b]
+n001=(bitmap)
+n002=S_INIT
+n003=初期化
+n006=S_DESC
+n00a=init();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=289,192
+n01b=100012
+
+[s000c]
+n001=(bitmap)
+n002=S_DESC
+n003=編集の説明
+n006=S_BACKUP_SRC
+n00a=@@@
+MessageBox.Show(G.Localize("ueec_desc"));
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=487,195
+n01b=100013
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2021/06/06 9:45:10
+; * pssgEditor version : 0.69.29710.b017fb21fef20fb3b92562ff3378e9f998aaaa06
+psggfile=@@@
+UseExtEditorControl.psgg
+@@@
+xlsfile=@@@
+UseExtEditorControl.xlsx
+@@@
+guid=@@@
+9c83328f-cc19-48cb-aa55-bb9f2068ce4e
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Saved
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"The root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":74,"y":206}},{"Key":"S_END","Value":{"x":1730,"y":892}},{"Key":"S_BACKUP_SRC","Value":{"x":684,"y":519}},{"Key":"S_CVT_W_MARK","Value":{"x":910,"y":519}},{"Key":"S_OPEN_EXT_EDITOR","Value":{"x":1302,"y":519}},{"Key":"S_WAIT_AND_ASK","Value":{"x":507,"y":801}},{"Key":"S_RESTORE_BACKUP","Value":{"x":1209,"y":882}},{"Key":"S_PICKOUT","Value":{"x":765,"y":695}},{"Key":"E_IMPORT","Value":{"x":78,"y":58}},{"Key":"S_CONFIRM_PICKUP","Value":{"x":964,"y":688}},{"Key":"S_INIT","Value":{"x":289,"y":192}},{"Key":"S_DESC","Value":{"x":487,"y":195}},{"Key":"C_CONFIRM_PICKUP","Value":{"x":1092,"y":687}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=10
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=1
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+
+[[embed]]
+
+eof>>>
+
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[vars]]
+
+    <<<?init
+    //
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+<<<?gosubstate
+    GoSubState([[gosubstate]],[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?return
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto([[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 81bb3f3e78392ecc550c3a446ffb6cc445162182
+@@@
+
+
+
+psgg=UseExtEditorControl.psgg
+xls=UseExtEditorControl.xlsx
+sub_src=
+gen_src=UseExtEditorControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=helpweb.html
+
+src_enc=utf-8
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 81bb3f3e78392ecc550c3a446ffb6cc445162182
+@@@
+
+
+
+lang=c#
+framework=vs2015
+
+statemachie=UseExtEditorControl
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5300_EditForm\5360_useExtEditorControl\doc
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5300_EditForm\5360_useExtEditorControl
+@@@
+
+genrdir=../
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+[jpn]
+
+title=C# スタートキット  2018/12/12
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# 新機能
+- macro埋め込み
+-サブルーチン機能
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5300_EditForm\5360_useExtEditorControl
+
+  以下のファイルを作成します。
+
+      UseExtEditorControl.pssg   --- エディタで次のエクセルファイルを開く。
+      UseExtEditorControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5300_EditForm\5360_useExtEditorControl\doc
+
+  以下のファイルが作成されます。
+
+      UseExtEditorControl.cs  --- Excelファイルからの変換コードを本ファイルに埋め込む。
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+
+[en]
+
+title=C# STARTER KIT 2018/12/12
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# New Feature
+- Embed macro in the target source.
+- Calling subroutine feature.
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5300_EditForm\5360_useExtEditorControl
+
+  File:
+
+      UseExtEditorControl.pssg  --- The editor opens the below excel file.
+      UseExtEditorControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5300_EditForm\5360_useExtEditorControl\doc
+
+　File:
+      UseExtEditorControl.cs   -- The editor will insert converted source code to this file.
+
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[embed]
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[members]
+jpn=@@@
+メンバ変数及び関数等を指定する。
+@@@
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[basestate]
+jpn=@@@
+継承元を指定する。
+@@@
+en=@@@
+Specify inheritance source.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[vars]
+jpn=@@@
+変数宣言を指定する。
+@@@
+en=@@@
+Specify variable definitions.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[gosubstate]
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+jpn=@@@
+サブルーチン処理を終了するときに指定する。"return"等を記述。
+@@@
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

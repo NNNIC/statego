@@ -1,0 +1,2244 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=CCFormControl.xlsx
+guid=bd1bb4b6-3d79-4d8c-baed-1897c1820137
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n01c,n003,n004,n005,n006,,n007,,n008,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,,,n022,n01e,n01f,n020,,n015,n016,n017,n018,,n019,n01a,n01b,,,,,,
+stateid_list=,,,,,,,,,,,,,,,,,,,s000e,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s001a,s001b,s0020,s0021,s001e,s001f,s0023,s0022,s0024,s0025,s0026,s0027,s0028,s002a,s0029,s002c,s002b,s002d,s002e,s002f,s0030,s0031,s0032,s0033,s0036,,s0035,s0037,s0038,s0039,s003b,s003a,s003c,s003d,s003e,s003f,s0040,s0041,s0043,s0045,s0044,s0046,s0047,s0048,s004a,s0049,s004b,s004c,s004d,s004e,s004f,s0051,s0050,s005a,s005b,s005c,s005d,s0060,s005f,s0061,s0059,s0066,s0067,s0064,s0065,s0069,s0068,s006b,s006a,s006c,s006d
+max_name_id=34
+max_state_id=109
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=gosubstate
+n014=return
+n015=branch
+n016=branch-cmt
+n017=brcond
+n018=nowait
+n019=!dir
+n01a=!pos
+n01b=!uuid
+n01c=state-typ
+n01e=loop_init
+n01f=loop_cond
+n020=loop_next
+n022=loop
+
+
+[id_state_dic]
+s000e=S_START
+s000f=S_END
+s0010=E_0000
+s0011=E_0001
+s0012=S_INIT
+s0013=S_WAITEVENT
+s0014=S_WRITE_TITLE
+s0015=S_LOAD_WORKDATA
+s0016=S_CHECK_MODE
+s0017=E_0002
+s0018=S_DRAW_DG
+s0019=S_DRAW_IMAGEARRAY
+s001a=S_BUSY_FALSE1
+s001b=S_CHECK_WORKDATA
+s001e=S_BACKTO_WAIT
+s001f=S_DEL_PAGES1
+s0020=S_DGV_SELECT
+s0021=E_0003
+s0022=S_START_TITLE_EDIT
+s0023=S_PAS000
+s0024=S_BUSY_FALSE2
+s0025=S_WAIT_LEAVE
+s0026=S_CHECKMOD
+s0027=S_CONFIRM
+s0028=S_RESET_TITLE
+s0029=E_0004
+s002a=S_START_CMT_EDIT
+s002b=S_BUSY_FALSE3
+s002c=S_CHECKMOD1
+s002d=S_WRITE_COMMENT
+s002e=S_WAIT_LEAVE1
+s002f=S_CONFIRM1
+s0030=S_RESET_COMMENT
+s0031=S_OPEN_ICON_DLG
+s0032=S_UPDATE_ICON
+s0033=S_PAS001
+s0035=S_OPEN_TAB_DLG
+s0036=S_SBS000
+s0037=S_GSB001
+s0038=S_RET000
+s0039=S_GSB000
+s003a=E_0006
+s003b=S_RESET_COMMENT1
+s003c=S_WRITE_COMMENT1
+s003d=S_CONFIRM2
+s003e=S_BUSY_FALSE4
+s003f=S_START_TB_EDIT
+s0040=S_CHECKMOD2
+s0041=S_WAIT_LEAVE2
+s0043=S_PAS002
+s0044=S_TAB_CHANGE
+s0045=S_SHOWMENU
+s0046=S_PAS003
+s0047=S_PAS004
+s0048=E_0005
+s0049=S_MENUCOPY
+s004a=S_MENUPASTE
+s004b=S_MENUDELETE
+s004c=S_PAS005
+s004d=S_PAS006
+s004e=S_PAS007
+s004f=S_MENUDELETE_ASK
+s0050=S_DODRAG
+s0051=S_PAS008
+s0059=S_MENUCUT
+s005a=S_PAS009
+s005b=S_CV_SMALL
+s005c=S_CV_MEDIUM
+s005d=S_PAS010
+s005f=S_GSB002
+s0060=S_PAGE_DEL
+s0061=S_PAGE_ADD
+s0064=S_PAGE_DIROPEN
+s0065=S_PAS013
+s0066=S_PAGE_TRASH
+s0067=S_PAS011
+s0068=S_GSB003
+s0069=S_GSB004
+s006a=S_UPDATE_TEMP
+s006b=S_PAS012
+s006c=S_FOCUS_BACK
+s006d=S_CV_LARGE
+
+
+[s000e]
+n002=S_START
+n01c=start
+n006=S_INIT
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=38,696
+n01b=1
+
+[s000f]
+n002=S_END
+n01c=end
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1005,15
+n01b=2
+
+[s0010]
+n001=(bitmap)
+n002=E_0000
+n007=@@@
+public enum EVENTID {
+    none,
+    init,
+    onload,
+    onfocused,
+    ondgselect,
+    titledclick,
+    titleleave,
+    commentdclick,
+    commentleave,
+    icondclick,
+    tabmanipulate,
+    textboxdclick,
+    textboxleave,
+    tabchange,
+    showmenu,
+    menucopy,
+    menupaste,
+    menucut,
+    menudelete,
+    dodrag,
+    dragdrop,
+    dragenter,
+    dragleave,
+    dragover,
+    draggive,
+    querydrag,
+    cv_small,
+    cv_medium,
+    cv_large,
+    page_add,
+    page_del,
+    page_opendir,
+    page_trash,
+    update_tempdg,
+
+}
+EVENTID m_event_id;
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=2,15
+n01b=3
+
+[s0011]
+n002=E_0001
+n007=@@@
+public void Call(EVENTID event_id)
+{
+    if (isBusy()) return;
+    m_event_id = event_id;
+    for(var loop = 0; loop<=1E+10; loop++)
+    {
+        if (loop == 1E+10) throw new SystemException("{64804D64-3CB8-4EC0-91DC-6D4282B30EE1}");
+        Update();
+        if (!isBusy()) break;
+    }
+}
+public void Init()
+{
+    Goto(S_START);
+    Update();
+}
+
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=332,18
+n01b=4
+
+[s0012]
+n002=S_INIT
+n006=S_WAITEVENT
+n00a=@@@
+m_event_id = EVENTID.none;
+m_target_tb = null;
+@@@
+
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=163,697
+n01b=5
+
+[s0013]
+n002=S_WAITEVENT
+n00a=
+n00f=m_event_id==EVENTID.none
+n011=
+n015=@@@
+brifc(S_GSB000);
+brelseifc(S_CHECK_WORKDATA);
+brelseifc(S_DGV_SELECT);
+brelseifc(S_START_TITLE_EDIT);
+brelseifc(S_START_CMT_EDIT);
+brelseifc(S_OPEN_ICON_DLG);
+brelseifc(S_OPEN_TAB_DLG);
+brelseifc(S_START_TB_EDIT);
+brelseifc(S_TAB_CHANGE);
+brelseifc(S_SHOWMENU);
+brelseifc(S_MENUCOPY);
+brelseifc(S_MENUPASTE);
+brelseifc(S_MENUDELETE_ASK);
+brelseifc(S_MENUCUT);
+brelseifc(S_DODRAG);
+brelseifc(S_CV_SMALL);
+brelseifc(S_CV_MEDIUM);
+brelseifc(S_CV_LARGE);
+brelseifc(S_PAGE_ADD);
+brelseifc(S_PAGE_DEL);
+brelseifc(S_PAGE_DIROPEN);
+brelseifc(S_PAGE_TRASH);
+brelseifc(S_UPDATE_TEMP);
+brelse(S_PAS000);
+@@@
+
+n016=@@@
+ON LOAD
+ON FOCUSED
+ON DGV SELECT
+TITLE DCLICK
+COMMENT DCLICK
+ICON DCLICK
+TAB MANIPULATE
+汎用TB DCLICK
+タブ切替
+メニュー表示
+メニューコピー
+メニューペースト
+メニュー削除
+メニューカット
+ドラッグ開始
+スモール切替
+ミディアム切替
+ラージ切替
+ページ追加
+ページ削除
+ページDirオープン
+ゴミ箱ONOFF
+一時ファイル追加
+?
+@@@
+
+n017=@@@
+m_event_id == EVENTID.onload
+m_event_id == EVENTID.onfocused
+m_event_id == EVENTID.ondgselect
+m_event_id == EVENTID.titledclick
+m_event_id == EVENTID.commentdclick
+m_event_id == EVENTID.icondclick
+m_event_id == EVENTID.tabmanipulate
+m_event_id == EVENTID.textboxdclick
+m_event_id == EVENTID.tabchange
+m_event_id == EVENTID.showmenu
+m_event_id == EVENTID.menucopy
+m_event_id == EVENTID.menupaste
+m_event_id == EVENTID.menudelete
+m_event_id == EVENTID.menucut
+m_event_id == EVENTID.dodrag
+m_event_id == EVENTID.cv_small
+m_event_id == EVENTID.cv_medium
+m_event_id == EVENTID.cv_large
+m_event_id == EVENTID.page_add
+m_event_id == EVENTID.page_del
+m_event_id == EVENTID.page_opendir
+m_event_id == EVENTID.page_trash
+m_event_id == EVENTID.update_tempdg
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=119,1561
+n01b=6
+
+[s0014]
+n001=(bitmap)
+n002=S_WRITE_TITLE
+n003=タイトル変更反映
+n006=S_BUSY_FALSE1
+n00a=@@@
+update_title();
+update_workdata_hash();
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1514,766
+n01b=29
+
+[s0015]
+n002=S_LOAD_WORKDATA
+n003=作業データ読込
+n006=S_DEL_PAGES1
+n00a=load_workdata();
+n019=@@@
+/DRAW/
+(2631,2582)
+
+@@@
+
+n01a=1119,289
+n01b=8
+
+[s0016]
+n002=S_CHECK_MODE
+n015=@@@
+brifc(S_DRAW_DG);
+brelse(S_DRAW_IMAGEARRAY);
+@@@
+
+n016=@@@
+データグリッド表示
+イメージ表示
+@@@
+
+n017=@@@
+m_mode == MODE.datagridview
+?
+@@@
+
+n019=@@@
+/DRAW/
+(2631,2582)
+
+@@@
+
+n01a=1565,289
+n01b=9
+
+[s0017]
+n002=E_0002
+n007=@@@
+public enum MODE
+{
+    none,
+    datagridview,
+    imagearray
+}
+MODE m_mode = MODE.datagridview;
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=524,18
+n01b=10
+
+[s0018]
+n002=S_DRAW_DG
+n006=S_RET000
+n00a=draw_dg();
+n019=@@@
+/DRAW/
+(2631,2582)
+
+@@@
+
+n01a=1785,289
+n01b=11
+
+[s0019]
+n002=S_DRAW_IMAGEARRAY
+n006=S_RET000
+n00a=draw_imagearray();
+n019=@@@
+/DRAW/
+(2631,2582)
+
+@@@
+
+n01a=1802,573
+n01b=12
+
+[s001a]
+n002=S_BUSY_FALSE1
+n006=S_BACKTO_WAIT
+n00a=@@@
+m_event_id = EVENTID.none;
+m_target_tb = null;
+@@@
+
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=2232,805
+n01b=13
+
+[s001b]
+n002=S_CHECK_WORKDATA
+n003=作業データに変化あり？
+n009=@@@
+var b = ckeck_workdata();
+update_workdata_hash();
+@@@
+
+n015=@@@
+brifc(S_GSB000);
+brelse(S_BUSY_FALSE1);
+@@@
+
+n016=@@@
+変化あり
+なし
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,443
+n01b=14
+
+[s001e]
+n002=S_BACKTO_WAIT
+n006=S_WAITEVENT
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=34,520
+n01b=17
+
+[s001f]
+n002=S_DEL_PAGES1
+n003=再度描画のため、ページを削除
+n006=S_CHECK_MODE
+n00a=reset_pages();
+n019=@@@
+/DRAW/
+(2631,2582)
+
+@@@
+
+n01a=1352,289
+n01b=18
+
+[s0020]
+n002=S_DGV_SELECT
+n003=データグリッドのセルセレクト
+n006=S_BUSY_FALSE1
+n00a=@@@
+set_select();
+set_select_comment();
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,630
+n01b=19
+
+[s0021]
+n002=E_0003
+n007=@@@
+public int m_select;
+CopyCollection.WorkItem   m_select_item;
+CopyCollection.WorkItem   m_select_pageitem;
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=710,18
+n01b=20
+
+[s0022]
+n002=S_START_TITLE_EDIT
+n006=S_BUSY_FALSE2
+n00a=start_titledit();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,765
+n01b=21
+
+[s0023]
+n002=S_PAS000
+n01c=pass
+n006=S_PAS003
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=491,3268
+n01b=22
+
+[s0024]
+n002=S_BUSY_FALSE2
+n006=S_WAIT_LEAVE
+n00a=m_event_id = EVENTID.none;
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=667,767
+n01b=23
+
+[s0025]
+n002=S_WAIT_LEAVE
+n00f=m_event_id==EVENTID.none
+n015=@@@
+brifc(S_CHECKMOD);
+brelseifc(S_CHECKMOD);
+brelse(S_BUSY_FALSE2);
+@@@
+
+n016=@@@
+フォーカス外れ
+ダブルクリック
+?
+@@@
+
+n017=@@@
+m_event_id == EVENTID.titleleave
+m_event_id == EVENTID.titledclick
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=866,767
+n01b=24
+
+[s0026]
+n002=S_CHECKMOD
+n00a=end_titleedit();
+n00d=var b = check_titleedit();
+n015=@@@
+brifc(S_CONFIRM);
+brelse(S_RESET_TITLE);
+@@@
+
+n016=@@@
+変更あり
+なし
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1073,767
+n01b=25
+
+[s0027]
+n002=S_CONFIRM
+n00d=var b = confirm_titleedit();
+n015=@@@
+brifc(S_WRITE_TITLE);
+brelse(S_RESET_TITLE);
+@@@
+
+n016=@@@
+OK
+NG
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1296,766
+n01b=26
+
+[s0028]
+n002=S_RESET_TITLE
+n003=タイトル戻す
+n006=S_BUSY_FALSE1
+n00a=reset_title();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1514,943
+n01b=27
+
+[s0029]
+n002=E_0004
+n007=@@@
+public bool isBusy() {
+    return m_event_id != EVENTID.none;
+}
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=170,12
+n01b=28
+
+[s002a]
+n002=S_START_CMT_EDIT
+n006=S_BUSY_FALSE3
+n00a=start_commentedit();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,1027
+n01b=30
+
+[s002b]
+n002=S_BUSY_FALSE3
+n006=S_WAIT_LEAVE1
+n00a=m_event_id = EVENTID.none;
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=667,1029
+n01b=31
+
+[s002c]
+n002=S_CHECKMOD1
+n00a=end_commentedit();
+n00d=var b = check_commentedit();
+n015=@@@
+brifc(S_CONFIRM1);
+brelse(S_RESET_COMMENT);
+@@@
+
+n016=@@@
+変更あり
+なし
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1078,1026
+n01b=32
+
+[s002d]
+n002=S_WRITE_COMMENT
+n003=タイトル変更反映
+n006=S_BUSY_FALSE1
+n00a=@@@
+update_comment();
+update_workdata_hash();
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1514,1046
+n01b=33
+
+[s002e]
+n002=S_WAIT_LEAVE1
+n00f=m_event_id==EVENTID.none
+n015=@@@
+brifc(S_CHECKMOD1);
+brelseifc(S_CHECKMOD1);
+brelse(S_BUSY_FALSE3);
+@@@
+
+n016=@@@
+フォーカス外れ
+ダブルクリック
+?
+@@@
+
+n017=@@@
+m_event_id == EVENTID.commentleave
+m_event_id == EVENTID.commentdclick
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=871,1026
+n01b=34
+
+[s002f]
+n002=S_CONFIRM1
+n00d=var b = confirm_commentedit();
+n015=@@@
+brifc(S_WRITE_COMMENT);
+brelse(S_RESET_COMMENT);
+@@@
+
+n016=@@@
+OK
+NG
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1301,1025
+n01b=35
+
+[s0030]
+n002=S_RESET_COMMENT
+n003=
+n006=S_BUSY_FALSE1
+n00a=reset_comment();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1514,1207
+n01b=36
+
+[s0031]
+n002=S_OPEN_ICON_DLG
+n009=var b = open_iconedit();
+n015=@@@
+brifc(S_UPDATE_ICON);
+brelse(S_PAS001);
+@@@
+
+n016=@@@
+更新
+?
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,1180
+n01b=37
+
+[s0032]
+n002=S_UPDATE_ICON
+n006=S_PAS001
+n00d=@@@
+update_icon();
+update_workdata_hash();
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=669,1180
+n01b=38
+
+[s0033]
+n002=S_PAS001
+n01c=pass
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1599,1422
+n01b=39
+
+[s0035]
+n002=S_OPEN_TAB_DLG
+n009=var b = open_tabedit();
+n015=@@@
+brifc(S_GSB001);
+brelse(S_PAS001);
+@@@
+
+n016=@@@
+更新
+?
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,1345
+n01b=40
+
+[s0036]
+n002=S_SBS000
+n01c=substart
+n006=S_LOAD_WORKDATA
+n019=@@@
+/DRAW/
+(2631,2582)
+
+@@@
+
+n01a=1005,369
+n01b=41
+
+[s0037]
+n002=S_GSB001
+n01c=gosub
+n006=S_PAS001
+n013=S_SBS000
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=717,1356
+n01b=47
+
+[s0038]
+n002=S_RET000
+n01c=subreturn
+n019=@@@
+/DRAW/
+(2631,2582)
+
+@@@
+
+n01a=2122,375
+n01b=44
+
+[s0039]
+n002=S_GSB000
+n01c=gosub
+n006=S_BUSY_FALSE1
+n013=S_SBS000
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=792,370
+n01b=45
+
+[s003a]
+n002=E_0006
+n007=@@@
+public  TextBox m_tb;
+private TextBox m_target_tb;
+public  string  m_member;
+private string  m_target_member;
+public  CopyCollection.WorkItem m_page_item;
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=532,172
+n01b=49
+
+[s003b]
+n002=S_RESET_COMMENT1
+n006=S_BUSY_FALSE1
+n00a=reset_textedit();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1515,1672
+n01b=51
+
+[s003c]
+n002=S_WRITE_COMMENT1
+n003=TEXTBOXに変更反映
+n006=S_BUSY_FALSE1
+n00a=@@@
+update_textedit();
+update_workdata_hash();
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1515,1511
+n01b=52
+
+[s003d]
+n002=S_CONFIRM2
+n00d=var b = confirm_textedit();
+n015=@@@
+brifc(S_WRITE_COMMENT1);
+brelse(S_RESET_COMMENT1);
+@@@
+
+n016=@@@
+OK
+NG
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1302,1490
+n01b=53
+
+[s003e]
+n002=S_BUSY_FALSE4
+n006=S_WAIT_LEAVE2
+n00a=m_event_id = EVENTID.none;
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=668,1494
+n01b=54
+
+[s003f]
+n002=S_START_TB_EDIT
+n003=PAGE内汎用TEXTBOX編集
+n006=S_BUSY_FALSE4
+n00a=@@@
+m_target_tb = m_tb;
+m_target_member = m_member;
+start_textedit();
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,1492
+n01b=55
+
+[s0040]
+n002=S_CHECKMOD2
+n00a=end_textedit();
+n00d=var b = check_textedit();
+n015=@@@
+brifc(S_CONFIRM2);
+brelse(S_RESET_COMMENT1);
+@@@
+
+n016=@@@
+変更あり
+なし
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1079,1491
+n01b=56
+
+[s0041]
+n002=S_WAIT_LEAVE2
+n00f=m_event_id==EVENTID.none
+n015=@@@
+brifc(S_CHECKMOD2);
+brelseifc(S_CHECKMOD2);
+brelse(S_BUSY_FALSE4);
+@@@
+
+n016=@@@
+フォーカス外れ
+ダブルクリック
+?
+@@@
+
+n017=@@@
+m_event_id == EVENTID.textboxleave
+m_event_id == EVENTID.textboxdclick
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=872,1491
+n01b=57
+
+[s0043]
+n002=S_PAS002
+n01c=pass
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,1763
+n01b=61
+
+[s0044]
+n002=S_TAB_CHANGE
+n006=S_PAS002
+n00a=tab_change();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,1763
+n01b=59
+
+[s0045]
+n001=(bitmap)
+n002=S_SHOWMENU
+n006=S_PAS004
+n00a=show_menu();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,1835
+n01b=63
+
+[s0046]
+n002=S_PAS003
+n01c=pass
+n003=new state
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1624,3268
+n01b=65
+
+[s0047]
+n002=S_PAS004
+n01c=pass
+n003=new state
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,1835
+n01b=67
+
+[s0048]
+n002=E_0005
+n007=public bool m_b_out_of_rows;
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=716,114
+n01b=69
+
+[s0049]
+n002=S_MENUCOPY
+n006=S_PAS005
+n00a=@@@
+menu_copy();
+counter_update();
+update_workdata_hash();
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,1941
+n01b=71
+
+[s004a]
+n002=S_MENUPASTE
+n006=S_PAS006
+n00a=menu_paste();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2027
+n01b=73
+
+[s004b]
+n002=S_MENUDELETE
+n006=S_PAS007
+n00a=menu_delete();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1027,2126
+n01b=75
+
+[s004c]
+n002=S_PAS005
+n01c=pass
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,1941
+n01b=77
+
+[s004d]
+n002=S_PAS006
+n01c=pass
+n003=new state
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,2027
+n01b=78
+
+[s004e]
+n002=S_PAS007
+n01c=pass
+n003=new state
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,2180
+n01b=80
+
+[s004f]
+n002=S_MENUDELETE_ASK
+n009=bool b = true;
+n015=@@@
+brifc(S_MENUDELETE);
+brelse(S_PAS007);
+@@@
+
+n016=@@@
+OK
+?
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2126
+n01b=82
+
+[s0050]
+n002=S_DODRAG
+n006=S_PAS008
+n00a=@@@
+dodrag();
+counter_update();
+update_workdata_hash();
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2340
+n01b=84
+
+[s0051]
+n002=S_PAS008
+n01c=pass
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,2340
+n01b=86
+
+[s0059]
+n002=S_MENUCUT
+n006=S_PAS009
+n00a=menu_cut();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2252
+n01b=88
+
+[s005a]
+n002=S_PAS009
+n01c=pass
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,2252
+n01b=90
+
+[s005b]
+n002=S_CV_SMALL
+n006=S_GSB002
+n00a=cv_small();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2419
+n01b=92
+
+[s005c]
+n002=S_CV_MEDIUM
+n006=S_GSB002
+n00a=cv_medium();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2467
+n01b=94
+
+[s005d]
+n002=S_PAS010
+n01c=pass
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,2419
+n01b=96
+
+[s005f]
+n002=S_GSB002
+n01c=gosub
+n006=S_PAS010
+n013=S_SBS000
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=763,2431
+n01b=100
+
+[s0060]
+n002=S_PAGE_DEL
+n006=S_GSB002
+n00a=page_del();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2666
+n01b=102
+
+[s0061]
+n002=S_PAGE_ADD
+n006=S_GSB002
+n00a=page_add();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2582
+n01b=103
+
+[s0064]
+n002=S_PAGE_DIROPEN
+n006=S_PAS013
+n00a=page_diropen();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2754
+n01b=108
+
+[s0065]
+n002=S_PAS013
+n01c=pass
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,2754
+n01b=110
+
+[s0066]
+n002=S_PAGE_TRASH
+n006=S_GSB003
+n00a=page_trash();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2855
+n01b=112
+
+[s0067]
+n002=S_PAS011
+n01c=pass
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,2855
+n01b=114
+
+[s0068]
+n002=S_GSB003
+n01c=gosub
+n006=S_PAS011
+n013=S_SBS000
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=763,2855
+n01b=116
+
+[s0069]
+n002=S_GSB004
+n01c=gosub
+n006=S_FOCUS_BACK
+n013=S_SBS000
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=759,2970
+n01b=118
+
+[s006a]
+n002=S_UPDATE_TEMP
+n006=S_GSB004
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2970
+n01b=120
+
+[s006b]
+n002=S_PAS012
+n01c=pass
+n006=S_BUSY_FALSE1
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1603,2970
+n01b=122
+
+[s006c]
+n002=S_FOCUS_BACK
+n006=S_PAS012
+n00a=focus_back();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1099,2970
+n01b=124
+
+[s006d]
+n002=S_CV_LARGE
+n006=S_GSB002
+n00a=cv_large();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=470,2529
+n01b=126
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/05/10 22:41:47
+; * pssgEditor version : 0.64.35209.a4644b2485b9506c2b9285215a4463b1a1a30a66
+psggfile=@@@
+CCFormControl.psgg
+@@@
+xlsfile=@@@
+CCFormControl.xlsx
+@@@
+guid=@@@
+bd1bb4b6-3d79-4d8c-baed-1897c1820137
+@@@
+bitmap_width=5000
+bitmap_height=4000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Saved
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"The root"},{"Key":"\/DRAW\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}},{"Key":"\/DRAW\/","Value":{"x":2631,"y":2582}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":38,"y":696}},{"Key":"S_END","Value":{"x":1005,"y":15}},{"Key":"E_0000","Value":{"x":2,"y":15}},{"Key":"E_0001","Value":{"x":332,"y":18}},{"Key":"S_INIT","Value":{"x":163,"y":697}},{"Key":"S_WAITEVENT","Value":{"x":119,"y":1561}},{"Key":"S_LOAD_WORKDATA","Value":{"x":1119,"y":289}},{"Key":"E_0002","Value":{"x":524,"y":18}},{"Key":"S_CHECK_MODE","Value":{"x":1565,"y":289}},{"Key":"S_DRAW_DG","Value":{"x":1785,"y":289}},{"Key":"S_DRAW_IMAGEARRAY","Value":{"x":1802,"y":573}},{"Key":"S_BUSY_FALSE1","Value":{"x":2232,"y":805}},{"Key":"S_CHECK_WORKDATA","Value":{"x":470,"y":443}},{"Key":"S_BACKTO_WAIT","Value":{"x":34,"y":520}},{"Key":"S_DEL_PAGES1","Value":{"x":1352,"y":289}},{"Key":"S_DGV_SELECT","Value":{"x":470,"y":630}},{"Key":"E_0003","Value":{"x":710,"y":18}},{"Key":"S_START_TITLE_EDIT","Value":{"x":470,"y":765}},{"Key":"S_PAS000","Value":{"x":491,"y":3268}},{"Key":"S_BUSY_FALSE2","Value":{"x":667,"y":767}},{"Key":"S_WAIT_LEAVE","Value":{"x":866,"y":767}},{"Key":"S_CHECKMOD","Value":{"x":1073,"y":767}},{"Key":"S_CONFIRM","Value":{"x":1296,"y":766}},{"Key":"S_RESET_TITLE","Value":{"x":1514,"y":943}},{"Key":"E_0004","Value":{"x":170,"y":12}},{"Key":"S_WRITE_TITLE","Value":{"x":1514,"y":766}},{"Key":"S_BUSY_FALSE3","Value":{"x":667,"y":1029}},{"Key":"S_CHECKMOD1","Value":{"x":1078,"y":1026}},{"Key":"S_WAIT_LEAVE1","Value":{"x":871,"y":1026}},{"Key":"S_CONFIRM1","Value":{"x":1301,"y":1025}},{"Key":"S_START_CMT_EDIT","Value":{"x":470,"y":1027}},{"Key":"S_OPEN_ICON_DLG","Value":{"x":470,"y":1180}},{"Key":"S_UPDATE_ICON","Value":{"x":669,"y":1180}},{"Key":"S_PAS001","Value":{"x":1599,"y":1422}},{"Key":"S_WRITE_COMMENT","Value":{"x":1514,"y":1046}},{"Key":"S_RESET_COMMENT","Value":{"x":1514,"y":1207}},{"Key":"S_OPEN_TAB_DLG","Value":{"x":470,"y":1345}},{"Key":"S_SBS000","Value":{"x":1005,"y":369}},{"Key":"S_RET000","Value":{"x":2122,"y":375}},{"Key":"S_GSB000","Value":{"x":792,"y":370}},{"Key":"S_GSB001","Value":{"x":717,"y":1356}},{"Key":"S_RESET_COMMENT1","Value":{"x":1515,"y":1672}},{"Key":"S_WRITE_COMMENT1","Value":{"x":1515,"y":1511}},{"Key":"S_CONFIRM2","Value":{"x":1302,"y":1490}},{"Key":"S_BUSY_FALSE4","Value":{"x":668,"y":1494}},{"Key":"S_CHECKMOD2","Value":{"x":1079,"y":1491}},{"Key":"S_WAIT_LEAVE2","Value":{"x":872,"y":1491}},{"Key":"S_START_TB_EDIT","Value":{"x":470,"y":1492}},{"Key":"E_0006","Value":{"x":532,"y":172}},{"Key":"E_0005","Value":{"x":716,"y":114}},{"Key":"S_TAB_CHANGE","Value":{"x":470,"y":1763}},{"Key":"S_PAS002","Value":{"x":1603,"y":1763}},{"Key":"S_PAS003","Value":{"x":1624,"y":3268}},{"Key":"S_SHOWMENU","Value":{"x":470,"y":1835}},{"Key":"S_PAS004","Value":{"x":1603,"y":1835}},{"Key":"S_MENUCOPY","Value":{"x":470,"y":1941}},{"Key":"S_MENUPASTE","Value":{"x":470,"y":2027}},{"Key":"S_MENUDELETE","Value":{"x":1027,"y":2126}},{"Key":"S_PAS005","Value":{"x":1603,"y":1941}},{"Key":"S_PAS006","Value":{"x":1603,"y":2027}},{"Key":"S_PAS007","Value":{"x":1603,"y":2180}},{"Key":"S_MENUDELETE_ASK","Value":{"x":470,"y":2126}},{"Key":"S_DODRAG","Value":{"x":470,"y":2340}},{"Key":"S_PAS008","Value":{"x":1603,"y":2340}},{"Key":"S_PAS009","Value":{"x":1603,"y":2252}},{"Key":"S_MENUCUT","Value":{"x":470,"y":2252}},{"Key":"S_CV_SMALL","Value":{"x":470,"y":2419}},{"Key":"S_CV_MEDIUM","Value":{"x":470,"y":2467}},{"Key":"S_PAS010","Value":{"x":1603,"y":2419}},{"Key":"S_GSB002","Value":{"x":763,"y":2431}},{"Key":"S_PAGE_ADD","Value":{"x":470,"y":2582}},{"Key":"S_PAGE_DEL","Value":{"x":470,"y":2666}},{"Key":"S_PAS013","Value":{"x":1603,"y":2754}},{"Key":"S_PAGE_DIROPEN","Value":{"x":470,"y":2754}},{"Key":"S_PAGE_TRASH","Value":{"x":470,"y":2855}},{"Key":"S_PAS011","Value":{"x":1603,"y":2855}},{"Key":"S_GSB003","Value":{"x":763,"y":2855}},{"Key":"____altnative_state____DRAW","Value":{"x":2631,"y":2582}},{"Key":"S_GSB004","Value":{"x":759,"y":2970}},{"Key":"S_GSB005","Value":{"x":469,"y":2970}},{"Key":"S_UPDATE_TEMP","Value":{"x":470,"y":2970}},{"Key":"S_PAS012","Value":{"x":1603,"y":2970}},{"Key":"S_PAS014","Value":{"x":1099.33337,"y":2979.6665}},{"Key":"S_FOCUS_BACK","Value":{"x":1099,"y":2970}},{"Key":"S_CV_MEDIUM1","Value":{"x":470,"y":2529.14282}},{"Key":"S_CV_LARGE","Value":{"x":470,"y":2529}}]},{"Key":"\/hoge2\/","Value":[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":926,"y":87}}]},{"Key":"\/DRAW\/","Value":[{"Key":"S_LOAD_WORKDATA","Value":{"x":1119,"y":289}},{"Key":"S_CHECK_MODE","Value":{"x":1565,"y":289}},{"Key":"S_DRAW_DG","Value":{"x":1785,"y":289}},{"Key":"S_DRAW_IMAGEARRAY","Value":{"x":1802,"y":573}},{"Key":"S_DEL_PAGES1","Value":{"x":1352,"y":289}},{"Key":"S_SBS000","Value":{"x":1005,"y":369}},{"Key":"S_RET000","Value":{"x":2122,"y":375}},{"Key":"S_GSB000","Value":{"x":2294,"y":375}},{"Key":"S_GSB001","Value":{"x":2466,"y":375}},{"Key":"S_GSB002","Value":{"x":2638,"y":375}},{"Key":"S_GSB003","Value":{"x":2810,"y":375}},{"Key":"S_GSB004","Value":{"x":2982,"y":375}}]},{"Key":"\/DragDrop\/","Value":[{"Key":"S_WAITEVENT","Value":{"x":50,"y":100}},{"Key":"S_BUSY_FALSE1","Value":{"x":1191,"y":340}},{"Key":"S_DODRAG","Value":{"x":377.529419,"y":691.705933}},{"Key":"S_PAS008","Value":{"x":984,"y":340}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=13
+contents_font_size=9
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=400
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"state-typ","Value":{"height":398,"width":330}},{"Key":"embed","Value":{"height":903,"width":760}},{"Key":"nowait","Value":{"height":401,"width":330}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+void [[state]](bool bFirst)
+{
+    Goto([[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^end$/
+void [[state]](bool bFirst)
+{
+}
+eof>>>
+
+<<<?state-typ/^gosub$/
+void [[state]](bool bFirst)
+{
+    GoSubState([[gosubstate]],[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^substart$/
+void [[state]](bool bFirst)
+{
+    Goto([[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^subreturn$/
+void [[state]](bool bFirst)
+{
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^loop$/
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[loop_init]]
+    Goto([[state]]_LoopCheckAndGosub____);
+    NoWait();
+}
+void [[state]]_LoopCheckAndGosub____(bool bFirst)
+{
+    if ([[loop_cond]]) GoSubState([[gosubstate]],[[state]]_LoopNext____);
+    else               Goto([[nextstate]]);
+    NoWait();
+}
+void [[state]]_LoopNext____(bool bFirst)
+{
+    [[loop_next]]
+    Goto([[state]]_LoopCheckAndGosub____);
+    NoWait();
+}
+eof>>>
+
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[vars]]
+
+    <<<?init
+    //
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto([[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+
+
+
+
+
+psgg=CCFormControl.psgg
+xls=CCFormControl.xlsx
+sub_src=
+gen_src=CCFormControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit2\c-sharp\helpweb.html
+
+src_enc=utf-8
+
+
+
+
+
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+
+
+
+
+
+lang=c#
+framework=vs2015
+
+statemachine=CCFormControl
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5800_CopyCollection
+@@@
+
+
+
+
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5800_CopyCollection
+@@@
+
+
+
+
+
+genrdir=.
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+
+
+
+
+
+[jpn]
+
+title=C# スタートキット  2019/10/31
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# ファイル
+
+      CCFormControl.pssg --- StateGoデータファイル。
+      CCFormControl.cs   --- 変換コードを本ファイルに埋め込む。
+
+@@@
+
+
+
+
+
+[en]
+
+title=C# STARTER KIT 2019/10/31
+
+detail=@@@
+To create c# Stata machine.
+
+# File:
+
+      CCFormControl.pssg  --- StateGo Data File.
+      CCFormControl.cs   -- The editor will insert converted source code to this file.
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[gosubstate]
+
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+
+jpn=サブルーチン処理を終了するときに指定する。"return"等を記述。
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[loop_next]
+
+en=loop  iterator advence.
+jpn=ループのイテレーターを更新
+[loop_cond]
+
+en=loop condition
+jpn=ループ条件
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[members]
+
+jpn=メンバ変数及び関数等を指定する。
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[vars]
+
+jpn=変数宣言を指定する。
+en=Specify variable definitions.
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[embed]
+
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[basestate]
+
+jpn=継承元を指定する。
+en=Specify inheritance source.
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[loop_init]
+
+en=loop initialization
+jpn=ループ用初期化
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[loop_break]
+
+en=Condition if break
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+loop-next=
+loop-cond=
+embed=
+loop_cond=
+branch=
+!dir=
+basestate=
+return=
+post_wait-cmt=
+state-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+members=
+thumbnail=
+update-cmt=
+gosubstate=
+loop_break=
+loop_ver=
+state-typ=@@@
+*select
+start
+end
+gosub
+substart
+subreturn
+loop
+@@@
+
+!pos=
+!uuid=
+S_=
+nextstate=
+state=
+loop_var=
+wait-cmt=
+loop-init=
+update=
+init-cmt=
+loop-ver=
+loop_next=
+vars=
+loop=
+C_=
+brcond=
+E_=
+init-ref=
+loop_init=
+post_wait=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+basestate=read_only,share,S.+
+state-typ=read_only,exclusion,(S0)
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

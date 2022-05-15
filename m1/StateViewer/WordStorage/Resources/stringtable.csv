@@ -1,0 +1,620 @@
+﻿id,en,jpn
+S00,History,履歴よりファイルを開く
+S01,File dialog ,ファイルオープンダイアログ
+S02,Create,新規作成
+S03,Prefix for state-machine files,各ファイルで使用するプリフックス
+S04,Destination for saving the excel file,エクセルファイルの保存先
+S05,Destination for generating source files,生成ソースの保存先
+S06,Skip to copy the state-manager file,ステートマネージャファイル保存をスキップ
+S07,※ Skip it\x2c if you have an another manager,※ 別マネージャを使用する場合はスキップして下さい
+S08,※ If the files exist\x2c they will not be generated ,※ ファイルが既に存在する場合は生成されません
+S09,<Undefined>,<未定>
+S10,<Undefined> will be resolved when you fill out the blanks,ブランクを埋めて<未定>部分を解消して下さい。
+S11,Create a new state-machine,新規ステートマシン作成
+S12,Open File Dialog,ファイルダイアログを開く
+S13,Open,開く
+S14,Drop A File Here!,ファイルをここに\nドロップして下さい!
+S15,Drop File And Open StateGo,ドロップしたファイルから開く
+S16,Analyze the dropped file and open the related StateGo file.,ドロップしたファイルを解析して関連するStateGoファイルを開く
+S20,Search file,ファイル検索
+S21,File name,ファイル名
+S22,Input file name,検索したいファイル名を入力
+S23,Search,検索
+S24,Candidates,候補
+S25,▲ Fold,▲ 畳む
+S26,▼ Unfold,▼ 広げる
+,,
+,,
+V01,Save and Convert(Ctrl+S),保存と変換(Ctrl+S)
+V02,Doc folder,ドキュメントフォルダ
+V03,Source folder,ソースフォルダ
+V04,Open source,ソースへ
+V05,Implement souce,実装ソースへ
+V06,Macro file,マクロファイル
+V07,User Button,ユーザボタン
+C01,Select a language starter kit.,スタートキットを選択してください。
+C02,Display the description by double-clicking on the starter kit.,ダブルクリックでスタートキットの詳細が確認できます。
+C03,Specify the state machine name.,ステートマシン名を設定してください。
+C04,Specify the folder in which documents can be save.,ドキュメント用フォルダを指定してください。
+C05,Specify the folder in which source code can be save.,ソースコード用フォルダを指定してください。
+C06,Do you need to copy the manager file?,マネージャファイルをコピーしますか？
+C07,In a case that the manger file exists in another folder because the manger file is A common file of all state machines.,マネージャファイルは共通で利用するので、別フォルダに既にある場合があります。
+C08,This tool will create the files below.,以下のファイルを作成します。
+C09,If the files exist\x2c they will not be generated ,ファイルが既に存在する場合は生成されません。
+C10,Description,詳細
+C11,...will be skipped becase of its existance.,・・・既に存在するためスキップされます。
+C12,TO SIMPLE PATH INPUT,簡易パス入力へ
+C21,Go to specify name,ステート名設定へ
+C22,Go to specify doc path,ドキュメントパス設定へ
+C23,Go to specify src path,ソースパス設定へ
+C24,Go to check maneger copy ,マネージャーコピー確認へ
+C25,Go to copy process,コピー作業へ
+newformatwarn,Due to the new format migration from Beta6\x2c the Excel file will be deleted.,Beta6からの新フォーマット移行のため、Excelファイルは削除されます。
+,,
+,,
+,,
+click_example_input,Click below example for input.,以下のサンプルをクリックすると入力
+option_for_vs2015,For VS2015～2019\x2c call Jump tool.,VS2015と2017用に行番号ジャンプツールを使用する
+bacause_vs2015,Because Visual Studio 'jump to line number' command option\ndoes not work currently versions,VS2015\x2c 2017にてコマンドラインからの行ジャンプが利用できないための措置です。
+how_to_record_sourceeditor,Source editor will be adopted for generating sources. The editor path will be recorded to the regstory using the starter kit's programming language name and framework name as ID.,"生成ソースオープン時に指定エディタが使用されます。言語名とフレームワーク名から生成したキーで、エディタをレジストリに登録記録します。
+"
+set_source_editor_path,Set source editor path,ソースエディタ設定
+,,
+menu_file,File,ファイル
+menu_convert_setting,Convert Settings,コンバート設定
+menu_tools,Tools,ツール
+menu_system,System,システム
+menu_windows,Windows,ウインドウ
+menu_file_new_or_load,Create or Open,新規作成 / 開く
+menu_file_save,Save(Ctrl+Shift+S),保存(Ctrl+Shift+S)
+menu_file_save_convert,Save and Convert(Ctrl+S),保存と変換(Ctrl+S)
+menu_file_reload,Reload,リロード
+menu_file_config,Change Work Space,作業スペース変更
+menu_file_refresh,Refresh,リフレッシュ
+menu_file_copy_image,Copy Image,イメージコピー
+menu_file_exit,Exit,終了
+menu_file_upgrade,Upgrade psgg files,データ(psgg)ファイルをアップグレード
+menu_file_importexcel,Import excel ,エクセルインポート
+menu_edit_template_src,Edit template-source,ソーステンプレート編集
+menu_edit_template_func,Edit template-function,関数テンプレート編集
+menu_edit_items,Edit item list,アイテムリスト編集
+menu_edit_setting,Edit Settings,設定編集
+menu_tools_find,Find(Ctrl+F),検索(Ctrl+F)
+menu_tools_set_src_editor,Set Source Editor,ソースエディタ設定
+menu_tools_set_user_cstm,Set User Button,ユーザボタン設定
+menu_tools_setlabel,Set Label,ラベル設定
+menu_tools_createclone,Create Clone,クローン生成
+menu_tools_search_gofile,Search StateGo File,StateGo ファイル検索
+menu_tools_opencc ,Open Copy Collection,コピーコレクション開く
+menu_tools_createcc,Create Copy Collection Folder,コピーコレクション作業フォルダ作成
+menu_help,Help,ヘルプ
+mhp_basicop,Basic Operation,基本操作
+mhp_ref,Reference,リファレンス
+mhp_contact,Contact,コンタクト
+mhp_hp,Homepage,ホームページ
+mhp_about,About,情報
+,,
+,,
+,,
+,,
+contents_draw_cmt,comment,コメント
+contents_draw_thumb,thumbnail,サムネイル
+contents_draw_contents,contents,コンテンツ
+hide_s_in_state,Hide 'S_' in 'state'.,stateのS_を非表示
+hide_brackets_contents,Hide '[ ]' in 'contents'.,contentsの[…]を非表示
+hide_this_contents,Hide 'this.' in contents.,contentsのthisを非表示
+hide_if_branch,Hide 'if'\x2c'elif' and 'br_' in 'branch'.,branchのif\x2c elifとbr_を非表示
+hide_basename_state,Hide 'basestate' name in 'state' ,stateのbasestateを非表示
+hide_basestate_contents,Hide 'basestate' contents.,contentsのbasestate内容を非表示
+hide_branch_comment,hide_branch_comment,branchのコメント非表示
+,,
+,,
+,,
+,,
+,,
+,,
+notice,Notice,通知
+tabpagemain,Main,メイン
+tabpagecontents,Contents,コンテンツ
+tabpagecustom,Custom,カスタム
+tabpagehelp,Help,ヘルプ
+tabpagesrc,Src,ソース
+vf_excelnotexist,The excel file does not exist.,エクセルファイルが存在しません。
+vf_excelreadonly,The excel file is a READ ONLY file.\nContinue?,エクセルファイルがリードオンリー属性です。\n続けますか？
+vf_psggnotexist,The psgg file does not exist.,psggファイルが存在しません。
+vf_psggreadonly,The psgg file is a READ ONLY file.\nContinue?,psggファイルがリードオンリー属性です。\n続けますか？
+vf_askconvert,This tool will save data and convert.\nContinue?,データ保存後、コンバートを行います。\n続けますか？
+vf_subroutinepairerror,Subroutine 'start' and 'return' pair is inconsistent.,サブルーチンのスタートとリターンが１対１ではありません。
+,,
+,,
+,,
+sm_edit,Edit items(Enter),アイテム編集(Enter)
+sm_branch,Edit Branch,分岐編集
+sm_copy,Copy,コピー
+sm_delete,Delete,削除
+sm_moveto,Change group,グループ変更
+sm_copyto,Copy to clipboard(Ctrl+C),コピー(Ctrl+C)
+sm_link,Jump to link,リンクへジャンプ
+sm_open_src,Open source(Ctrl+J),ソースへ(ctrl+J)
+sm_view_exstate,View this state's group,このステートのグループへ
+sm_change,Change category,種別変更
+sm_cstate,To State,ステート
+sm_cembed,To Embed,組込み
+sm_ccomment,To Comment,コメント
+smcs_setstop,Set Stop,停止設定
+smcs_resetstop,Reset Stop,停止解除
+smcs_setbase,Set Base,ベース設定
+smcs_resetbase,Reset Base,ベース解除
+smcs_setpass,Set Pass,パス設定
+smcs_resetpass,Reset Pass,パス設定解除
+sm_focus,Focus,フォーカス
+sm_copystatename,Copy state's name,ステート名コピー
+sm_fbranch,Branch,分岐
+sm_finflow,Inflow,流入先
+sm_fbase,Base,参照元ベース
+sm_fbase_referred,Referred Base,参照先ベース
+sm_fnextstate,Next State,次ステート
+sm_fgosub,Go Sub,Go Sub
+sm_remcmt,Remove comment,コメント消去
+gf_makegroup,Make group,グループ作成
+gf_delete,Delete,削除
+gf_copyto,Copy to clipboard(Ctrl+C),コピー(ctrl+C)
+gf_align_h,Align horizontally,水平に揃える
+gf_align_v,Align vertically,垂直に揃える
+gf_co,Comment out,コメントアウト
+gn_enter,Enter(Ctrl+E),グループ内へ入る(Ctrl+E)
+gn_edit,Edit,編集
+gn_moveto,Change Group,グループ変更
+gn_ungroup,Ungroup,グループ分解
+gn_copy,Copy,コピー
+gn_delete,Delete,削除
+gn_copyto,Copy to clipboard(Ctrl+C),コピー(Ctrl+C)
+bm_leave,Leave(Ctrl+L),グループを出る(Ctrl+L)
+bm_newstate,New,新規生成
+bm_paste,Paste(Ctrl+V),ペースト
+bm_paste_wo_out,Paste without outflow,ペースト（流出先除外）
+bm_pastebasemode,Paste as base,ペースト（ベースとして）
+bm_history,History,変更履歴
+bm_historyshow,Panel ON/OFF(Ctrl+H),パネル ON/OFF(Ctrl+H)
+bm_historyback,Back(Ctrl+Z),戻す(Ctrl+Z)
+bm_historyforward,Forward(Ctrl+Y),進める(Ctrl+Y)
+bm_nstate,State,ステート
+bm_nembed,Embed,組込み
+bm_ncomment,Comment,コメント
+bm_normal,Default,汎用(デフォルト)
+bm_loop,Loop,ループ
+bm_gosub,Call Subroutine,サブルーチン呼出し
+bm_substart,Subroutine Start,サブルーチン開始
+bm_subreturn,Subroutine End(Return),サブルーチン終了(リターン)
+bm_start,Start,開始
+bm_end,End,終了
+bm_pass,Pass,パス(通過)
+bm_stop,Stop,停止
+bm_track,Focus history,フォーカス履歴
+bm_trackshow,Panel ON/OFF(Ctrl+T),パネル ON/OFF(Ctrl+T)
+bm_trackback,Back,戻す
+bm_trackforward,Forward,進める
+bm_focus,Focus,フォーカス
+bm_focushead,Head,先頭
+bm_focustail,Tail,末尾
+,,
+,,
+sm_sys_lanj,Japanese,日本語
+sm_sys_lane,English,English
+,,
+iom_godialog,Open Outflow Dialog,流出先指定ダイアログ
+iom_insert,Insert New State,新規ステート挿入
+iom_clear,Clear Outflow,流出先削除
+,,
+wdg_alredyopend,Specified file has been opened already. This tool will be closed.,指定ファイルは既に開かれています。ツールを終了します。
+,,
+options_wo_confirm,without confirmation,変換の前に確認しない
+options_w_confirm,with confirmation,変換の前に確認する
+options_enable_clipboard,enable to output to clipboard,クリップボードへ出力する
+options_disable_clipboard,disable to output to clipboard,クリップボードへ出力しない
+options_ignore_case,ignore case of state,大文字小文字を同一視
+options_not_ignore_case,not ignore case of state,大文字小文字を区別
+headerinfo_save_with_excel,save and load with excel,エクセルファイルを入出力で使用
+headerinfo_save_psgg_only,save and load psgg only,psggファイルを入出力で使用
+options_custom_prefix_yes,Custom prefix of state name,ステート名のプリフィックスをカスタマイズ
+options_custom_prefix_no,Use specific prefix of stata neme,ステート名に規定のプリフィックスを使用
+options_mrb_enable_yes,Multiple mouse button mode,マルチマウスボタンモード
+options_mrb_enable_no,Single mouse button mode,シングルマウスボタンモード
+options_historypanelonstart_yes,Show history panels on start.,起動時に履歴関連パネルを表示
+options_historypanelonstart_no,Hide Histroy panels on start.,起動時に履歴関連パネルを非表示
+options_forceclose_ifviewchangeonly_yes,No confirmation if viewing group changes on exit.,終了時、閲覧グループの変更で確認を求めない
+options_forceclose_ifviewchangeonly_no,Need to confirm if viewing group changes on exit.,終了時、閲覧グループの変更で確認を求める
+options_setdefault_comment_yes,Add a specific comment when creating a state. ,ステート生成時にコメントを追加する
+options_setdefault_comment_no,Do not add a comment when creating a state.,ステート生成時にコメントを追加しない
+,,
+cmrb_sym,Symbol,記号
+cmrb_gothic,Gothic,ゴシック
+cmrb_script,Script,スクリプト
+cmrb_j_gothic,Japanese-Gothic,日本語ゴシック
+cmrb_j_gyosyo,Japanese-Script,日本語行書
+cmrb_none,None,無し
+,,
+sysm_sytem,Others,その他
+sysm_language,Language,言語
+sysm_focustrack,Focus Record Panel ON/OFF,フォーカス履歴パネル ON/OFF
+sysm_historyrecord,History Record Panel ON/OFF,変更履歴パネル ON/OFF
+sysm_optionform,Option,オプション
+sysm_home,H,頭
+sysm_end,T,尾
+sysm_copyfilename,Copy Filename,ファイル名コピー
+sysm_winlist,Window Select,ウインドウ選択
+sysm_setstkp,Set Starter Kit Path,スタートキットパス設定
+,,
+,,
+inout_ctrl_copy,*Ctrl+Click to copy its name.,※Ctrl+クリックでステート名コピー
+dirty_pos,Some positions are changed.,位置が変更されています。
+dirty_view,Viewing group is changed.,閲覧グループが変更されています。
+dirty_changed,Item values are changed.,アイテムが変更されています。
+StateGoWindowList,StateGo Window List,StateGoウインドウリスト
+open_winlist_bydlg,Open\nby\ndialog,ダイアログ\nで\n開く
+,,
+CreateCloneForm,Create Clone,Create Clone(クローン生成)
+ccf_statemashinename,This statemachine name,本ステートマシン名
+ccf_newstatename,New statemachine name,新ステートマシン名
+ccf_docfolder,StateGo data file's folder,StateGo データファイル用フォルダ
+ccf_genfolder,Generated source folder,ソース用フォルダ
+ccf_desc,1. Manager file will not be copied.\n2. If statemachine name is used at unexpected places in documents and  sources\x2c the result will not be able to be used as its clone. ,1.マネージャファイルはコピー対象外。\n2.ステートマシン名がドキュメントやソースの予期しない場所で使用されている場合、クローンが正しく動作しません。
+cfc_filecreated,The below files will be created.,以下のファイルを生成します。
+ccf_done,Created clone files.,クローン生成が成功しました。
+ccf_errore,Cloning files exist or state machine name is not valid. The clone process was terminated.,クローンファイルが既に存在します。または、ステートマシン名が正しくありません。処理を停止しました。
+,,
+w_nodatawasfoundsaveini,No data was found at save ini.,save iniにデータが見つかりませんでした。
+w_configsavedatacannotbreadfromtp,Config Save Data cannot be read from tempfile.,設定保存データを一時ファイルから読み取ることができません。
+w_configsavefromexcel,Config Save Data cannot be read from excel.,設定保存データをExcelから読み込むことができません。
+w_inicouldnotread,in ini could not be read.,iniが読めませんでした。
+w_internalcoverterdoesnotexit,the internal converter does not exist,内部コンバータが存在しません
+w_preparedosenotexist,the prepare does not exist,準備APIが存在しません。
+w_currentisroot,The current path is the root.,カレントパスはルートです。
+w_exceededmaxfilter,Exceeded max number of states in the fillter :,フィルタの最大状態数を超えました。
+w_excludefilter,Excluded by the filleter : ,フィルタによって除外されます。
+w_selectedsatecannotgroup,Selected the STATEs cannot be made to group.,選択したステートをグループ化することはできません。
+w_targetcannotbemoved,Target can not be moved.,ターゲットは移動できません。
+w_filenotfoundcache,File not found : ,ファイルが見つかりません ：
+w_undefinednameincache,Undefined Name in Excel Cache :,Excel キャッシュに名前が定義されていません。
+w_undefinedstateincache,Undefined State in Excel Cache :,Excelキャッシュのステートが定義されていません。
+w_thestatewasnotexistbug,The state was not exist !!! Maybe\x2c it is a bug!!,ステートは存在しません。 おそらくバグ。
+w_itemnamedup,Item Name Duplicated :,項目名が重複しています：
+w_statenamedup,State Name Duplicated :,状態名が重複しています。
+w_faildtodrawthumb,Faild to draw thumbnai. ,サムネイルを描画するのに失敗しました。
+w_clipboardtextisnull,Clipboard text is null.,クリップボードのテキストがnullです。
+w_clipboardbuffernotvalid,Clipboard buffer is not valid.,クリップボードバッファが無効です。
+w_faildtoimportclipboard,Faild to import from clipboard.,クリップボードからインポートできませんでした。
+w_cannotfindappropiatedestgroup,Can not find an appropriate desitiona in the group.,グループに適切な行先が見つかりません。
+w_errorcreateclonechangetext,Error at Create Clone Change text in file :,ファイル内のクローン変更テキストの作成時のエラー：
+w_nothingchanged,Nothing changed!,何も変わっていません！
+w_theinputtextisinvalid,+,入力テキストが無効です。
+w_errorgroupname,Error groupname : ,エラーグループ名：
+w_specifiedgroupissame,The specified group is same.,指定されたグループは同じです。
+w_theinputnameisnothing,The input name is nothing.,入力名は何もありません。
+w_theinputnameisinvalid,he input name is invalid.,入力名が無効です。
+w_theinputnameexisted,The input name has already existed.,入力名は既に存在しています。
+w_numbers_not_digits,Numbers were not digits.,入力は数字ではありませんでした。
+w_theminimumnumberis10,The minimum number is 10,最小数は10です
+w_generatedfileismissing,Generated file is missing.,生成されたファイルがありません。
+w_implementationsourcefileinotdefine,Implemetation source file is not defined.,実装元ファイルが定義されていません。
+w_macrofilenotdefined,Macro file is not defined.,マクロファイルが定義されていません。
+w_sourcefoldercannotfound,Source folder cannot be found.,ソースフォルダが見つかりません。
+w_faildtoupdatetemplatesource,Failed to update template-source.,template-sourceの更新に失敗しました。
+w_faildtoupdatetempfunc,Failed to update template-func.,template-funcの更新に失敗しました。
+w_failedtoupdatesettingini,Failed to update setting.ini.,setting.iniの更新に失敗しました。
+w_faildtoupdatehelpini,Failed to update help.ini.,help.iniの更新に失敗しました。
+w_nocommandusercustombutton,No command in the user custom button.,ユーザーのカスタムボタンにコマンドはありません。
+w_cmdinuserctmbtnnotexist,The command in the user custom button does not exist.,ユーザーのカスタムボタン内のコマンドが存在しません。
+w_executeuserctmcmd,Execute user custom command : ,ユーザーカスタムコマンドを実行します。
+w_cmdinuserctmbutnexception,The command in the user custom button has a exception. ,ユーザーのカスタムボタンのコマンドには例外があります。
+w_clipboardisnull,Clipboard is null.,クリップボードはnullです。
+w_bufferisnotvalidd,Buffer is not valid.,バッファが無効です。
+w_clipboardbuffernotmatch,Clipboard buffer does not match,Clipboardバッファが一致しません
+w_statenamenotvalidmakedapproname,State name is not valid.  An aproproate name was created.,ステート名が無効です。 適当な名前が作成されました。
+w_statenameexistsmakedaname,The state name exists.   An aproproate name was created.,ステート名が存在します。 適当な名前が作成されました。
+w_faildtodrawtumbnail,Failed to draw thumbnail.,サムネイルを描画できませんでした。
+w_failedtoloadimage,Failed to load image. ,画像を読み込めませんでした。
+w_faildtopateimage,Failed to paste image.,画像を貼り付けることができませんでした。
+w_save_prior_toedit,You must save prior to editing item list.\nDo you want to force to edit items? ,アイテムリストを編集する前にセーブしてください。\nそれともこのまま編集へ行きますか？
+w_check_close,There are unsaved changes.\nDo you quit?,保存されていない変更があります。\nこのまま終了しますか？
+w_checkupdate,Update ?,更新しますか？
+w_valuehanged,Values have been updated.,値が更新されています
+w_poschanged,Positions has been updated.,位置情報が更新されています
+w_viewingchanged,Viewing group has been updated.,閲覧グループが更新されています
+,,
+w_cannot_set_stop,Stop cannot be adopted because either nextstate nor branch exists.,nextstateまたはブランチに値があるためStopが適応できません
+w_cannot_set_pass,Pass cannot be adopted because irrelevant values exists.,関係ない値があるためPassが適応できません
+w_bitmapcopied,The bitmap image has been copied to the clipboard.,ビットマップがクリップボードにコピーされました。
+w_selectewin_this,The selected window is this one.,選択ウインドウはこのウインドウです。
+,,
+ignf_ifyouselect,※If you specify an existing group name\x2c\nthey will be combined.,※ 既にあるグループ名を指定した場合、\n結合します。
+ignf_title,Make Group,Make Group(グループ作成)
+ignf_groupname,Group Name,グループ名
+ignf_cmt,Comment,コメント
+,,
+egf_title,Edit Group Info,Edit Group Info(グループ情報編集)
+egf_groupname,Group Name,グループ名
+egf_comment,Comment,コメント
+,,
+,,
+,,
+eftf_use_ext_editor,Use External Editor,外部エディタへ
+eftf_row,Row,行
+eftf_desc,Description,説明
+eftf_name,Name,アイテム名
+eftf_value,VALUE,値
+eftf_opt,Minimum,最小表示
+eftf_optmid,Intermediate,中間表示
+eftf_full,Overall,全体表示
+eftf_expon,Show/Hide desc,説明ON/OFF
+eftf_expoff,Show/Hide desc,説明ON/OFF
+eftf_clrcmt,Clear\nState\nComment,ステート\nコメント\n削除
+edtf_value,Value,値
+edtf_clear,clear,消去
+edtf_comment,Comment,コメント
+edtf_help,Help,ヘルプ
+edtf_ref,Ref.,参照
+edtf_open,Open,開く
+edtf_stateexpand,expand/revert [[state]],[[state]を展開/戻す
+,,
+eftfcpo_apply,Apply,採用
+eftfcpo_reject,Reject,拒否
+eftfcpo_convert,Revert to\n[[state]],[[state]]\nに戻す
+,,
+ueec_desc,"You may edit the item's text using external editor. \n 1. Modify between item edit start and end mark.\n　(psgg-itemedit-start and psgg-itemedit-end)  \n2. Save.\n3. Back to this tool to proceed.\nNote: Depending on the editor, the edited part may not be displayed. In this case, please try again.",外部ソースエディタを使ってアイテムのテキストを編集します。\n１．アイテム編集用の開始マークと終了マークの間を編集します。\n　(psgg-itemedit-start と psgg-itemedit-end)\n２．セーブする。\n３．ツールに戻り進める。\n※エディタにより編集箇所が表示されない場合があります。その場合は、再度行うことで正しく表示される場合があります。
+ueec_aftermodifed,【Please answer the question after you finished its modification】\nDo you pick up this modification?,【編集後に本ダイアログの次の質問に答えてください】\n変更部分を取り出しますか？
+ueec_donotdelete_begin, MODIFY BELOW  ↓↓↓↓    DO*NOT*DELETE*THIS*LINE,この下を変更してください　↓↓↓↓　　  本*行*削*除*禁*止
+ueec_donotdelete_end, MODIFY ABOVE  ↑↑↑↑　 DO*NOT*DELETE*THIS*LINE,この上を変更してください　↑↑↑↑　　  本*行*削*除*禁*止
+ueec_writehere,>>> Write [{0}] code here. <<<  Please delete this line!!!,>>>  【{0}】のコードをココへ。 <<< 本行は削除下さい!!
+,,
+sns_centerfocus,Focus\nand\nClose,フォーカス後\n閉じる
+sns_selnextstate,Specify Outflow State,Specify Outflow State(流出先ステート指定)
+sns_diststate,Outflow State,流出先ステート
+sns_clear,CLEAR,消去
+,,
+,,
+,,
+efsf_clipcopy,Click the left of state name\nto copy to clipboard,左のステート名クリックすると\nクリップボードにコピー
+,,
+,,
+,,
+,,
+sc_titlehowto,[Simple setting]Specify how to place files,【簡易入力】ファイル配置方法の指定
+sc_ask,Specify how to place output source and StateGo data files.,出力ソース及びStateGoデータファイルの配置方法を指定してください。
+sc_exp_allinone,Place StateGo data files and the generated source file to A folder.,ソースと同じフォルダにStateGoデータファイルを配置します。
+sc_exp_src_w_doc,Place StateGo data files in the doc folder in the source folder.,ソースフォルダ内のdocフォルダにStateGoデータファイルを配置します。
+sc_godetailset,Specify each folder,個別指定へ
+sc_titleselectfolder,[Simple setting]Specify a folder,【簡易入力】フォルダ指定
+sc_select_folder,Specify the output source folder.,ソース用フォルダを指定して下さい。
+,,
+,,
+pfud_dlgtitle,PSGG File upgrade,PSGGファイルアップグレード
+pfud_title,Upgrade StateGo related files from 1.0 to 1.1.,StateGo関連のファイルを1.0から1.1へアップグレードします。
+pfud_desc,The changes due to this upgrade are: \n\n1. Data is saved in the PSGG file and treated as standard input / output. \n\n2. I / O to Excel file is optional. \n\nThe advantages of the change are as follows. \n\n1. The storage time\x2c which was a burden when dealing with huge amounts of data\x2c can be greatly reduced. \n\n2. Since the PSGG file is in text format\x2c it is possible to check differences by version control.,このアップグレードによる変更は以下の通りです。\n\n１．PSGGファイルにデータが保存され、標準の入出力として扱われます。\n\n２．Excelファイルへの入出力はオプションとなります。\n\n変更によるメリットは以下の通りです。\n\n１．膨大なデータを扱う際に負荷となっていた保存時間を大幅に短縮することが可能となります。\n\n２．PSGGファイルがテキスト形式なので、バージョン管理による差分確認が可能となります。
+pfud_desc2,　,　
+pfud_excelbackup,Create a backup of the Excel file during the upgrade. \n➡ Sheets added in the manual cannot be transferred to the new Excel.,アップグレード時にExcelファイルのバックアップを作成する。\n➡マニュアルで追加したシートは新しいExcelに引き継ぐことが出来ません。
+pfud_save_withexcel,When saving data\x2c record the data to an Excel file as before. \n * This option can be changed after upgrade.,データ保存時、これまでと同様にExcelファイルへデータを記録する。\n※本オプションはアップグレード後も変更可能です。
+pfud_checkexcelwr,Check ReadOnly attribute of Excel file before saving. \nSet this when you want to continue using the functions protected by file lock with SVN. \n * This option can be changed after upgrade.,保存前にExcelファイルのReadOnly属性を確認する。\n➡SVN等でファイルロックで保護されていた機能を引き続き利用する場合に設定します。\n※本オプションはアップグレード後も変更可能です。
+pfud_catuion,* This dialog is displayed when the data version is 1.0.,※本ダイアログはデータバージョンが1.0の場合に表示されます。
+pfud_upgrade,UPGRADE,アップグレード
+pfud_cancel,CANCEL,キャンセル
+pfud_exceldel,Delete the using Excel file,Excelファイル削除
+pfud_exceluse,Keep using Excel File(Compatibility mode),Excelファイルを今後も使う（互換モード）
+pfud_askbakup,The backup files wll be created.\nDo you want to proceed as it is?,バックアップを作成します。\nこのまま進めますか？
+,,
+pvdc_warn,Converting will be started,変換を開始します。
+pvdc_already,The psgg file has been updated.,既にアップグレード済みです。
+pvdc_done,psgg file was upgrated.,psggファイルはアップグレードされました。
+pvdc_restart,Please restart this tool.,再起動してください。
+pvdc_ask,The data format version is old.\nDo you want to convert?,古いデータ形式です。\n新しいデータ形式に変換しますか？
+pvdc_readonly,Both PSGG file and Excel file shold be writable.,PSGGファイルとExcelファイルを書き込み可能にして下さい。
+,,
+,,
+ief_title,Edit item list,アイテムリスト編集
+ief_export,Export to clipboard,クリップボードへ\nエキスポート
+ief_import,Import to clipboard,クリップボードから\nインポート
+ief_imported,All items were imported.,全てのアイテムはインポートされました。
+ief_exported,All items were exported.,全てのアイテムはエキスポートされました。
+ief_export_notice,If you edit the item list in this dialog\x2c it will not be reflected in the export. The item list before the change will be the target.\nContiunue?,本ダイアログでのアイテムリストの編集をした場合エキスポートに反映されません。変更前のアイテムリストがタ対象となります。\nこのまま続行しますか？
+ief_index,Index,インデックス
+ief_name,Item name,アイテム名
+ief_helpen,Explanation in English,説明(英語)
+ief_helpjp,Explanation in Japanese,説明(日本語)
+ief_method,Input Method,入力メソッド
+iefm_edit,Edit,編集
+iefm_cancel,Cancel,キャンセル
+iefi_insert,Insert,インサート
+iefi_remove,Remove,取消し
+iefi_up,Up,上へ
+iefi_down,Down,下へ
+iefi_cancel,Cancel,キャンセル
+ienf_title,New Item,New  Item(新規アイテム)
+ieif_title,Edit Item Define,Edit Item Defien(アイテム定義編集)
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+iof_overwrite,If there is the same item\x2c overwrite\nit with the contents of import,同一アイテムがある場合、\nインポートの内容で上書き
+,,
+cns_select,Select a starter kit,スタートキット選択
+cns_statemachine,State-machine name,ステートマシン名
+cns_use_control,Use 'Control' for its tail.,語尾をControlにする
+cns_src_path,Source folder path:,ソース用フォルダパス:
+cns_doc_under_src,Use 'doc' folder under the src path,ソース直下の’doc’フォルダを使用
+cns_free_xls,Specify another doc folder,ドキュメントフォルダを別指定
+cns_toold,Go to prevous starterkit,旧スタートキット用\n新規作成へ
+cns_create,Create,作成
+cns_xlsdir_eq_srcdir,Same as source save path,ソース用フォルダパスと同じ
+cns_xls_path,Document folder path:,ドキュメント用フォルダパス：
+cns_nothing,"If nothing is shown here and you are not familiar with StateGo\x2c please click ""Reset"" button above this panel.",何も表示されておらず対処方法が不明な時は、本パネル上の [Reset]ボタンをクリックしてください。
+,,
+del_Confirmation,Delete Confirmation,削除確認
+del_Is_it_ok_to_delete,Is it ok to delete?,次のステートを削除します。
+del_focusing_nodes,Is it ok to delete selecting states?,選択中のステートを削除します。
+del_delete_group,Is it ok to delete ?,次のグループを削除します。
+,,
+ftgb_title,Focus Record,フォーカス履歴
+hrgb_title,History Record,変更履歴
+hrgb_help,Ctrl+H -- On/Off\nCtrl+Z -- Back\nCtrl+Y -- Forward,Ctrl+H -- On/Off\nCtrl+Z -- 戻る\nCtrl+Y -- 進む
+ftgb_help,Ctrl+T -- On/Off\n[ -- Back\n] -- Forward,Ctrl+T -- On/Off\n [ -- 戻る\n ] -- 進む
+,,
+optionform,Option Setting,Option(オプション設定)
+optionform_desc,Current status  note:change to click.,現在の状況 ※クリックで変更
+,,
+oec_ask,The following solution file wiil be used.  When canceling\x2c open without the solution file.,以下のソリューションファイルを使用します。よろしいでしょうか？キャンセル時はソリューションファイルを指定せずに開きます。
+oec_cfm,Confirmation,確認
+,,
+setlf_disc,Chang and save the language name and the framework name.\nSource editor command is recorded using the language name and framework name as a key.,言語名とフレームワーク名を変更し保存します。\n\nソースエディタのコマンドは言語とフレームワーク名をキーにしてPC毎に記録されます。
+setlf_lang,Language,言語
+setlf_fw,Framework,フレームワーク
+setlf_hist,History,履歴
+setlf_warn,Edit is disabled because some values are changed. ,保存されてない変更があるため編集ができません。変更がない状態にしてからお使い下さい。
+,,
+ssed_title,Set Source Editor,Set Source Editor(ソースエディタ設定)
+ssed_lang,Lang(Framework),言語(フレームワーク)
+ssed_command,Command,コマンド
+ssed_vscheck,For VS2015-2019\x2c use jump tool.,vs2015～2019にて行ジャンプツールを使用する
+ssed_vsdesc,Because Visual Studio 'jump to line number'\x2c \ncommand option does not work currently versions,表示中のVSに対して行番号へ移動が出来ないための措置。
+ssed_cand,Editor candidates,エディタ候補
+ssed_input,Input,入力
+ssed_hist,History,履歴
+ssed_readonly,Saving has been canceled because StateGo Data File is readonly.,セーブ先のStateGoデータファイルがリードオンリーです。
+,,
+anaonoff_syssm,Analytics ON/OFF,アナリティクス ON/OFF
+anaonoff_desc,For future improvements\x2c Google Analytics are used for collecting usage time using. \n\nPlease set to OFF if you do not wish.,今後の改善のため、Google Analyticsによる利用時間の収集を行っています。\n\nご希望でない方はOFFに設定してください。
+anaonoff_restart,The changes will affect after restarting.,再起動後に反映されます。
+,,
+deletall_filemenu,Reset,リセット
+deleteall_ask,All states will be deleted then create START and END. Are you ok?,全てを削除して、STARTとENDのみにします。宜しいでしょうか？
+deleteall_confirm,Confirmation,確認
+,,
+findd_title,Find states that contain a text,Find (テキストを含むステート検索)
+findd_searchtext,Search text,検索文字列
+findd_state,state\nname,ステート名
+findd_contents,contents,コンテンツ
+findd_others,others,その他
+findd_all,all,全部
+findd_caseignore,case ignore,大小文字無視
+findd_word,word,単語
+findd_regex,regex,正規表現
+findd_result,Result,結果
+findd_find,Find,検索
+,,
+ucus_dlgtitle,Set User Button,Set User Button(ユーザボタン設定)
+ucus_title,Button's\ntitle,ボタン名
+ucus_command,Command,コマンド
+ucus_openfile,Open File,ファイル
+ucus_pathexp,※ This tool will save the relative path of the command from the document path.,※ ドキュメントパスからの相対パスが保存されます。
+ucus_callafter,Call after converting,変換後に呼ぶ
+ucus_callafterexp,※ This command will be called right after converting a state machine to source.,※ソース変換後にコマンドを実行します。
+,,
+setlbl_title,Set Label,Set Label(ラベル設定)
+setlbl_show,Show,表示
+,,
+srchf_title,Search StateGo File,Search StateGo File(StatGoファイル検索)
+srchf_exp,Input a StateGo file name without both path and extention.,StateGoファイル名（パス・拡張子なし）を入力
+srchf_search,Search,検索
+,,
+edsf_title,Edit State's name\x2c Comment and Reference,Edit State(ステート名/コメント/参照の編集)
+edsf_state,State's name,ステート名
+edsf_comment,Comment,コメント
+edsf_clear,clear,消去
+edsf_prfxstate,S_・・State,S_・・ステート
+edsf_prfxembed,E_・・Embed code,E_・・組込みコード
+edsf_prfxcmt,C_・・Comment out,C_・・コメントアウト
+edsf_prfxnum,numberd,番号化
+edsf_ref,Ref.,参照
+edsf_open,Open,開く
+,,
+efbmp_title,Edit Thumbnail,Edit Thumbnail(サムネイル編集)
+efbmp_load,LOAD,ロード
+efbmp_paste,PASTE,ペースト
+efbmp_delete,DELETE,削除
+,,
+cnff_title,Change Work Space,Change Work Space(作業スペース変更)
+cnff_bmsize,Work Space Size,作業スペースサイズ
+cnff_width,Width,幅
+cnff_height,Height,高さ
+cnff_affect_after_restart,Please restart StateGo to affect the setteings.,値の反映のため再スタートします。
+cnff_must_not_dirty,Some values has been changed. Please save them or discard then enter again.,何かの値が変更されています。保存するか破棄して再度選択下さい。
+,,
+pmain_zoom,Zoom,ズーム
+pmain_fillter,Fillter,フィルタ
+,,
+pctm_font,Font,フォント
+pctm_size,Size,サイズ
+pctm_statewh,State width / hight,ステート 幅/高さ
+pctm_fontsize,Font\nsize,フォント\nサイズ
+pctm_fixed,Fixed,固定
+pctm_contentmaxh,Content\nmax height,コンテンツ最大高さ
+pctm_linespace,Line space,ライン間隔
+pctm_asminus,※ as minus,※正負逆
+pctm_stateshortwh,Short State\nwidth / Height,短いステート  幅 / 高さ
+pctm_adoptshort, na,na
+pctm_linecolchg,Flow Line Color Change,フローライン色変更
+pctm_init,INIT,初期化
+pctm_reset,RESET,リセット
+pctm_update,UPDATE,更新
+pctm_cmtwh,Comment height,コメント 高さ
+pctm_patn,Pattern,パターン
+pctm_color,Color,色
+psrc_line,Line:,行:
+psrc_template,template,テンプレート
+psrc_src,src,ソース
+ebf_mode,Mode,モード
+ebf_cond,Condition,条件
+ebf_cmt,Comment,コメント 
+ebf_auto,Auto Select,選択自動化
+ebf_title,Edit Branch,Edit Branch(分岐編集)
+,,
+mvf_title,Change Group,Change Group(グループ変更)
+mvf_path,Group Path,グループパス
+mvf_comment,Comment,コメント
+mvf_groupname,Path of the group the state (or the group) belongs to,ステート(またはグループ)が所属するパス
+,,
+cc_noworkdir,Copy Collection stopped because of nonexistent the work folder. But Paste will work.,作業フォルダがないためコピーコレクションが停止しました。ペーストには影響ありません。
+cc_alreadyhas,The same target exists in the cache was updated.,既に同じものがキャッシュにあったので更新しました。
+cc_madefiles,Copy Collection data files has been created.,コピーコレクション用のデータファイルが作成されました。
+cc_notdelspec,Cannot delete this page for the specification,仕様によりこのページを削除できません。
+cc_notdeldata,Cannot delete this page because some copy data exists.,このページにはデータが存在するため削除できません。
+ccbtitle,CC Bitmap Update,CC Bitmap Update(ビットマップ更新)
+ccbcap,Paste,貼り付け
+ccctitle,Create Copy Collection Work Folder,CC Create Work Folder(作業フォルダ作成)
+ccchead,Create [Copy Collection] Work Folder,コピーコレクション用作業フォルダの作成
+cccdesc,Please create a working folder to use Copy Collection.\nThe working folder can only be placed in the same location as the StateGo file or in a location above it.\nPlease select from the box below.,コピーコレクションを利用するための作業フォルダを作成するフォルダパスを指定して下さい。作業フォルダは、StateGoファイルと同じ場所か、その上を辿った場所にのみ配置できます。\n以下のボックスより選択してください。
+ccselectedpath,Selected Path,パス全体
+ccwtitle,Copy Collection,CC (コピーコレクション)
+ccwcol,Collection,コレクション
+ccwca,Cache,キャッシュ
+ccwtr,Trash,ゴミ箱
+ccwed,Edit,編集
+ccwda,del all,全削除
+cceptitle,Edit Collection Pages,Edit Collection Pages(コレクションページ編集)
+ccepetitle,Edit Title,Title編集
+ccepecom,Edit Comment,Comment編集
+ccepanew,Add New,新規追加
+ccepdel,Delete,削除
+ccepup,UP,上へ
+ccepdown,Down,下へ
+ccepcancel,Cancel,取り消し
+cccopy,Copy,コピー
+cccut,Cut,カット
+ccpaste,Paste,ペースト
+ccdelete,Delete,削除
+ccedit,Edit,編集
+ccebmp,Bitmap,ビットマップ
+ccetitle,Title,タイトル
+ccup,UP,上へ
+ccdow,Down,下へ
+cccnl,Cancel,取り消し
+ccexplorer,Open store folder,格納フォルダを開く
+cc_confirm,Confirm,確認
+cc_deleteall,All items will be deleted.,全てのアイテムを削除します。
+cc_allmove,All items will move to the trash page.,全てのアイテムをゴミ箱に移動します。
+ccwps,Preset,プリセット
+,,
+setstartkitpath,"Specify the starter kit path.\n\n""Help panel"" and ""Copy Collection"" will be affected after reboot.",スタートキットのルートパスを設定します。\n\n再起動後に、ヘルプパネルとコピーコレクションに影響します。

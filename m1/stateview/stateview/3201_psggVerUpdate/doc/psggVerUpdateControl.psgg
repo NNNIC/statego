@@ -1,0 +1,913 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=psggVerUpdateControl.xlsx
+guid=b70f3c73-a9c8-4c1d-8209-626aa2f84437
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,n006,,n007,,n008,n009,,n00a,n00b,n00c,n00d,,n00e,n00f,,n010,n011,,n012,n013,,n014,n015,,n016,n017,n018,n019,,n01a,n01b,n01c
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,s000f,s0010,s0011,s0013,s0012
+max_name_id=28
+max_state_id=19
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=data
+n009=members
+n00a=vars
+n00b=init
+n00c=init-cmt
+n00d=init-ref
+n00e=update
+n00f=update-cmt
+n010=wait
+n011=wait-cmt
+n012=post_wait
+n013=post_wait-cmt
+n014=gosubstate
+n015=return
+n016=branch
+n017=branch-cmt
+n018=brcond
+n019=nowait
+n01a=!dir
+n01b=!pos
+n01c=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=C_0003
+s0004=S_CREATE_BACKUP
+s0005=S_WARNING
+s0006=S_CHECK
+s0007=S_MSG
+s0008=S_READ_EXCEL
+s0009=S_CREATE_NEW_PSGG
+s000a=S_MSG1
+s000b=S_READ_PSGG_HEADER
+s000c=S_SUCCESS
+s000d=S_CREATE_NEW_EXCEL
+s000e=E_RESULT
+s000f=S_INIT
+s0010=S_HIDE_BUSY
+s0011=S_SHOW_BUSY
+s0012=S_CHECK_WRITABLE
+s0013=S_MSG2
+
+
+[s0001]
+n002=S_START
+n006=S_INIT
+n01b=46,117
+n01c=100001
+
+[s0002]
+n002=S_END
+n01b=1153,843
+n01c=100002
+
+[s0003]
+n001=(bitmap)
+n002=C_0003
+n003=psggファイルを 1.0から 1.1へ更新する。
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=44,32
+n01c=100003
+
+[s0004]
+n001=(bitmap)
+n002=S_CREATE_BACKUP
+n006=S_READ_EXCEL
+n009=public bool m_needbackup = false;
+n00b=@@@
+if (m_needbackup) {
+    create_psgg_backup();
+}
+@@@
+
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=1277,45
+n01c=100005
+
+[s0005]
+n001=(bitmap)
+n002=S_WARNING
+n00a=@@@
+var bOK = (MessageBox.Show(WordStorage.Res.Get("pvdc_warn",G.system_lang),"Confirm",MessageBoxButtons.OKCancel) == DialogResult.OK);
+
+@@@
+
+n00b=
+n016=@@@
+brifc(S_SHOW_BUSY);
+brelse(S_END);
+@@@
+
+n017=@@@
+?
+?
+@@@
+
+n018=@@@
+bOK
+?
+@@@
+
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=780,75
+n01c=100004
+
+[s0006]
+n001=(bitmap)
+n002=S_CHECK
+n003=対象ファイルは古いバージョンか？
+n00a=var b = is_old_psgg();
+n016=@@@
+brifc(S_WARNING);
+brelse(S_MSG);
+@@@
+
+n017=@@@
+古いバージョン
+更新済み
+@@@
+
+n018=@@@
+b
+?
+@@@
+
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=526,311
+n01c=100006
+
+[s0007]
+n001=(bitmap)
+n002=S_MSG
+n006=S_END
+n008=pvdc_already
+n00b=@@@
+MessageBox.Show(WordStorage.Res.Get("[[data]]",G.system_lang));
+
+@@@
+
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=797,498
+n01c=100007
+
+[s0008]
+n001=(bitmap)
+n002=S_READ_EXCEL
+n006=S_CREATE_NEW_PSGG
+n00b=@@@
+read_excel();
+G.psgg_file_w_data = true;
+@@@
+
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=1487,46
+n01c=100008
+
+[s0009]
+n001=(bitmap)
+n002=S_CREATE_NEW_PSGG
+n006=S_CREATE_NEW_EXCEL
+n00b=create_new_psgg();
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=1695,48
+n01c=100009
+
+[s000a]
+n001=(bitmap)
+n002=S_MSG1
+n005=S_MSG
+n006=S_SUCCESS
+n008=pvdc_done
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=2397,84
+n01c=100010
+
+[s000b]
+n001=(bitmap)
+n002=S_READ_PSGG_HEADER
+n003=PSGGのヘッダ情報を読む
+n006=S_CHECK
+n00b=read_psgg();
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=301,368
+n01c=100011
+
+[s000c]
+n001=(bitmap)
+n002=S_SUCCESS
+n006=S_END
+n00b=m_success = true;
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=2640,84
+n01c=100013
+
+[s000d]
+n001=(bitmap)
+n002=S_CREATE_NEW_EXCEL
+n006=S_HIDE_BUSY
+n00b=create_new_excel();
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=1919,58
+n01c=100012
+
+[s000e]
+n001=(bitmap)
+n002=E_RESULT
+n007=public bool m_success;
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=259,40
+n01c=100014
+
+[s000f]
+n001=(bitmap)
+n002=S_INIT
+n006=S_CHECK_WRITABLE
+n00b=m_success = false;
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=43,234
+n01c=100015
+
+[s0010]
+n001=(bitmap)
+n002=S_HIDE_BUSY
+n006=S_MSG1
+n00b=hide_busy();
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=2162,68
+n01c=100016
+
+[s0011]
+n001=(bitmap)
+n002=S_SHOW_BUSY
+n006=S_CREATE_BACKUP
+n00b=show_busy();
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=1029,68
+n01c=100017
+
+[s0012]
+n002=S_CHECK_WRITABLE
+n00a=var b = check_writable();
+n016=@@@
+brifc(S_READ_PSGG_HEADER);
+brelse(S_MSG2);
+@@@
+
+n017=@@@
+書込みＯＫ
+不可
+@@@
+
+n018=@@@
+b
+?
+@@@
+
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=40,436
+n01c=100018
+
+[s0013]
+n002=S_MSG2
+n006=S_END
+n008=pvdc_readonly
+n00b=@@@
+MessageBox.Show(WordStorage.Res.Get("[[data]]",G.system_lang));
+
+@@@
+
+n01a=@@@
+/
+(100,100)
+
+@@@
+
+n01b=526,654
+n01c=100019
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2019/09/28 7:40:08
+; * pssgEditor version : 0.60.14247.0937ab120287bf8663015c352c84965823cf81b1
+psggfile=@@@
+psggVerUpdateControl.psgg
+@@@
+xlsfile=@@@
+psggVerUpdateControl.xlsx
+@@@
+guid=@@@
+b70f3c73-a9c8-4c1d-8209-626aa2f84437
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+Edited a state.
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":46,"y":117}},{"Key":"S_END","Value":{"x":1153,"y":843}},{"Key":"C_0003","Value":{"x":44,"y":32}},{"Key":"S_WARNING","Value":{"x":780,"y":75}},{"Key":"S_CHECK","Value":{"x":526,"y":311}},{"Key":"S_MSG","Value":{"x":797,"y":498}},{"Key":"S_CREATE_BACKUP","Value":{"x":1277,"y":45}},{"Key":"S_READ_EXCEL","Value":{"x":1487,"y":46}},{"Key":"S_CREATE_NEW_PSGG","Value":{"x":1695,"y":48}},{"Key":"S_MSG1","Value":{"x":2397,"y":84}},{"Key":"S_READ_PSGG_HEADER","Value":{"x":301,"y":368}},{"Key":"S_CREATE_NEW_EXCEL","Value":{"x":1919,"y":58}},{"Key":"E_RESULT","Value":{"x":259,"y":40}},{"Key":"S_INIT","Value":{"x":43,"y":234}},{"Key":"S_SUCCESS","Value":{"x":2640,"y":84}},{"Key":"S_SHOW_BUSY","Value":{"x":1029,"y":68}},{"Key":"S_HIDE_BUSY","Value":{"x":2162,"y":68}},{"Key":"S_READ_PSGG_HEADER1","Value":{"x":40,"y":436}},{"Key":"S_CHECK_WRITABLE","Value":{"x":40,"y":436}},{"Key":"S_MSG2","Value":{"x":526,"y":654}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor=@@@
+"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe" /Edit %1
+@@@
+source_editor_vs2015_support=1
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+
+[[embed]]
+
+eof>>>
+
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[vars]]
+
+    <<<?init
+    //
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+<<<?gosubstate
+    GoSubState([[gosubstate]],[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?return
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto([[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=https://github.com/NNNIC/psgg-starter-kit.git cab474eeeb68bd4e7b8d6cce510bacfe8c2017e7
+
+
+psgg=psggVerUpdateControl.psgg
+xls=psggVerUpdateControl.xlsx
+sub_src=
+gen_src=psggVerUpdateControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit\c-sharp\helpweb.html
+
+src_enc=utf-8
+
+[setupinfo]
+
+starterkit=https://github.com/NNNIC/psgg-starter-kit.git cab474eeeb68bd4e7b8d6cce510bacfe8c2017e7
+
+
+lang=c#
+framework=Unity
+
+statemachine=psggVerUpdateControl
+prefix=__PREFIX__
+xlsdir=C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\3201_psggVerUpdate\doc
+gendir=C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\3201_psggVerUpdate
+genrdir=..
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+[jpn]
+title=C# スタートキット  2018/12/12a
+
+detail=@@@
+
+C# 用のステートマシンを作成します。
+
+# 新機能
+- macro埋め込み
+-サブルーチン機能
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\3201_psggVerUpdate\doc
+
+  以下のファイルを作成します。
+
+      psggVerUpdateControl.pssg   --- エディタで次のエクセルファイルを開く。
+      psggVerUpdateControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\3201_psggVerUpdate
+
+  以下のファイルが作成されます。
+
+      psggVerUpdateControl.cs  --- Excelファイルからの変換コードを本ファイルに埋め込む。
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+[en]
+title=C# STARTER KIT 2018/12/12a
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# New Feature
+- Embed macro in the target source.
+- Calling subroutine feature.
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\3201_psggVerUpdate\doc
+
+  File:
+
+      psggVerUpdateControl.pssg  --- The editor opens the below excel file.
+      psggVerUpdateControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\3201_psggVerUpdate
+
+　File:
+      psggVerUpdateControl.cs   -- The editor will insert converted source code to this file.
+
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[embed]
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[members]
+jpn=@@@
+メンバ変数及び関数等を指定する。
+@@@
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[basestate]
+jpn=@@@
+継承元を指定する。
+@@@
+en=@@@
+Specify inheritance source.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[vars]
+jpn=@@@
+変数宣言を指定する。
+@@@
+en=@@@
+Specify variable definitions.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[gosubstate]
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+jpn=@@@
+サブルーチン処理を終了するときに指定する。"return"等を記述。
+@@@
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+embed=
+data=
+branch=
+!dir=
+return=
+post_wait-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+members=
+thumbnail=
+update-cmt=
+gosubstate=
+state-cmt=
+!pos=
+!uuid=
+nextstate=
+state=
+S_=
+wait-cmt=
+update=
+init-cmt=
+basestate=
+vars=
+C_=
+brcond=
+E_=
+init-ref=
+post_wait=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+basestate=read_only,share,S.+
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

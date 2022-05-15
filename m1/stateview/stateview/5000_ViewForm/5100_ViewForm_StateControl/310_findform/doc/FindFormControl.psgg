@@ -1,0 +1,1062 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=FindFormControl.xlsx
+guid=b43bc19c-3fc1-4362-83f7-1e8791ab1112
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,,n006,,n007,,n008,n009,n00a,n00b,,n00c,n00d,,n00e,n00f,,n010,n011,,n012,n013,n014,,n015,n016,n017
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s001a,s001b,
+max_name_id=23
+max_state_id=27
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=embed
+n007=members
+n008=vars
+n009=init
+n00a=init-cmt
+n00b=init-ref
+n00c=update
+n00d=update-cmt
+n00e=wait
+n00f=wait-cmt
+n010=post_wait
+n011=post_wait-cmt
+n012=branch
+n013=brcond
+n014=nowait
+n015=!dir
+n016=!pos
+n017=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=E_EVENTLIST
+s0004=E_CONST
+s0005=E_VARS
+s0006=S_CHK_EVT
+s0007=S_CE_ITEMGROUP
+s0008=E_CB_ITEMS
+s0009=S_CBALL
+s000a=E_ISCB
+s000b=E_FORM
+s000c=E_CTLCBALL
+s000d=S_CBALL1
+s000e=E_CBENABLED
+s000f=S_CS_OPTS
+s0010=S_CS_OPTS1
+s0011=S_BACKTO_WAIT_EVT
+s0012=S_INIT1
+s0013=S_BTNFIND1
+s0014=E_VAR_CB_XX
+s0015=E_SAVE_CB
+s0016=S_INIT
+s0017=E_CHGCB
+s0018=E_CHKCHG
+s0019=E_CHKCHG_ALL
+s001a=S_CHKCHG
+s001b=S_TICK
+
+
+[s0001]
+n001=(bitmap)
+n002=S_START
+n005=S_INIT
+n016=27,16
+n017=100001
+
+[s0002]
+n002=S_END
+n016=1891,14
+n017=100002
+
+[s0003]
+n001=(bitmap)
+n002=E_EVENTLIST
+n006=@@@
+Queue<string> m_eventlist = new Queue<string>();
+public void event_add(string evt)
+{
+    m_eventlist.Enqueue(evt);
+}
+public string event_get()
+{
+    if (m_eventlist.Count > 0) return m_eventlist.Dequeue();
+    return null;
+}
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=27,133
+n017=100003
+
+[s0004]
+n001=(bitmap)
+n002=E_CONST
+n006=@@@
+public readonly string E_BTNFIND="E_BTNFIND";
+
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=25,512
+n017=100004
+
+[s0005]
+n001=(bitmap)
+n002=E_VARS
+n006=string m_curevt;
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=24,447
+n017=100005
+
+[s0006]
+n001=(bitmap)
+n002=S_CHK_EVT
+n00c=m_curevt = event_get();
+n012=@@@
+brifc(S_BTNFIND1);
+brelse(S_CHKCHG);
+@@@
+
+n013=@@@
+ce(E_BTNFIND)
+?
+@@@
+
+n014=nowait
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=577,26
+n017=100006
+
+[s0007]
+n001=(bitmap)
+n002=S_CE_ITEMGROUP
+n012=@@@
+brifc(S_CBALL);
+brelseifc(S_CBALL);
+brelseifc(S_CBALL);
+brelseifc(S_CBALL1);
+brelse(S_CS_OPTS);
+@@@
+
+n013=@@@
+chg_st
+chg_cts
+chg_ots
+chg_all
+?
+@@@
+
+n014=nowait
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=823,265
+n017=100007
+
+[s0008]
+n001=(bitmap)
+n002=E_CB_ITEMS
+n005=S_CHK_EVT
+n006=@@@
+bool ce(string s)
+{
+    return m_curevt == s;
+}
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=399,245
+n017=100008
+
+[s0009]
+n001=(bitmap)
+n002=S_CBALL
+n005=S_INIT1
+n009=ctl_cball();
+n014=nowait
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=1049,199
+n017=100009
+
+[s000a]
+n001=(bitmap)
+n002=E_ISCB
+n006=@@@
+$macro:is_cb(st)$
+$macro:is_cb(cts)$
+$macro:is_cb(ots)$
+$macro:is_cb(all)$
+$macro:is_cb(cs)$
+$macro:is_cb(wd)$
+$macro:is_cb(rx)$
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=196,360
+n017=100010
+
+[s000b]
+n001=(bitmap)
+n002=E_FORM
+n006=public FindForm m_form;
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=27,59
+n017=100011
+
+[s000c]
+n001=(bitmap)
+n002=E_CTLCBALL
+n006=@@@
+void ctl_cball()
+{
+    var at = iscb_st && iscb_cts && iscb_ots;
+    var af = !iscb_st && !iscb_cts && !iscb_ots;
+    if (at) iscb_all = true;
+    if (af) iscb_all = false;
+}
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=400,387
+n017=100012
+
+[s000d]
+n001=(bitmap)
+n002=S_CBALL1
+n005=S_INIT1
+n009=@@@
+iscb_st = iscb_cts = iscb_ots = iscb_all;
+
+@@@
+
+n014=nowait
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=1044,310
+n017=100013
+
+[s000e]
+n001=(bitmap)
+n002=E_CBENABLED
+n005=S_CS_OPTS1
+n006=@@@
+void encb_cs(bool b) { m_form.cb_case.Enabled = b; }
+void encb_wd(bool b) { m_form.cb_word.Enabled = b; }
+
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=1054,601
+n017=100014
+
+[s000f]
+n001=(bitmap)
+n002=S_CS_OPTS
+n012=@@@
+brifc(S_CS_OPTS1);
+brelse(S_BACKTO_WAIT_EVT);
+@@@
+
+n013=@@@
+chg_rx
+?
+@@@
+
+n014=nowait
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=1050,435
+n017=100015
+
+[s0010]
+n001=(bitmap)
+n002=S_CS_OPTS1
+n005=S_INIT1
+n009=@@@
+var b = !iscb_rx;
+encb_cs(b);
+encb_wd(b);
+@@@
+
+n014=nowait
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=1300,364
+n017=100016
+
+[s0011]
+n001=(bitmap)
+n002=S_BACKTO_WAIT_EVT
+n005=S_TICK
+n014=nowait
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=1734,292
+n017=100017
+
+[s0012]
+n001=(bitmap)
+n002=S_INIT1
+n005=S_BACKTO_WAIT_EVT
+n009=chkchg_all();
+n014=nowait
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=1515,286
+n017=100027
+
+[s0013]
+n001=(bitmap)
+n002=S_BTNFIND1
+n005=S_BACKTO_WAIT_EVT
+n009=@@@
+exec_find();
+save_hist();
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=916,47
+n017=100019
+
+[s0014]
+n001=(bitmap)
+n002=E_VAR_CB_XX
+n006=@@@
+$macro:dec_cb(st,state)$
+$macro:dec_cb(cts,contents)$
+$macro:dec_cb(ots,others)$
+$macro:dec_cb(all,all)$
+$macro:dec_cb(cs,case)$
+$macro:dec_cb(wd,word)$
+$macro:dec_cb(rx,regex)$
+
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=194,94
+n017=100020
+
+[s0015]
+n001=(bitmap)
+n002=E_SAVE_CB
+n006=@@@
+bool sv_st;
+bool sv_cts;
+bool sv_ots;
+bool sv_all;
+bool sv_cs;
+bool sv_wd;
+bool sv_rx;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=30,605
+n017=100021
+
+[s0016]
+n001=(bitmap)
+n002=S_INIT
+n005=S_TICK
+n009=chkchg_all();
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=216,12
+n017=100022
+
+[s0017]
+n001=(bitmap)
+n002=E_CHGCB
+n006=@@@
+$macro:chk_cb(st)$
+$macro:chk_cb(cts)$
+$macro:chk_cb(ots)$
+$macro:chk_cb(all)$
+$macro:chk_cb(cs)$
+$macro:chk_cb(wd)$
+$macro:chk_cb(rx)$
+
+
+
+
+
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=197,519
+n017=100023
+
+[s0018]
+n001=(bitmap)
+n002=E_CHKCHG
+n006=@@@
+bool chg_st;
+bool chg_cts;
+bool chg_ots;
+bool chg_all;
+bool chg_cs;
+bool chg_wd;
+bool chg_rx;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=29,763
+n017=100024
+
+[s0019]
+n001=(bitmap)
+n002=E_CHKCHG_ALL
+n006=@@@
+bool chkchg_all()
+{
+    chg_st = chkcb_st();
+    chg_cts= chkcb_cts();
+    chg_ots= chkcb_ots();
+    chg_all = chkcb_all();
+    chg_cs = chkcb_cs();
+    chg_wd = chkcb_wd();
+    chg_rx = chkcb_rx();
+    return chg_st || chg_cts || chg_ots || chg_all || chg_cs || chg_wd || chg_rx;
+}
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=193,673
+n017=100025
+
+[s001a]
+n001=(bitmap)
+n002=S_CHKCHG
+n008=var bchg = false;
+n00c=bchg = chkchg_all();
+n012=@@@
+brifc(S_CE_ITEMGROUP);
+brelse(S_BACKTO_WAIT_EVT);
+@@@
+
+n013=@@@
+bchg
+?
+@@@
+
+n014=nowait
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=596,206
+n017=100026
+
+[s001b]
+n001=(bitmap)
+n002=S_TICK
+n005=S_CHK_EVT
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=397,25
+n017=100028
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2022/05/07 11:38:38
+; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
+psggfile=@@@
+FindFormControl.psgg
+@@@
+xlsfile=@@@
+FindFormControl.xlsx
+@@@
+guid=@@@
+b43bc19c-3fc1-4362-83f7-1e8791ab1112
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Initilized
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":27,"y":16}},{"Key":"S_END","Value":{"x":1891,"y":14}},{"Key":"E_EVENTLIST","Value":{"x":27,"y":133}},{"Key":"E_CONST","Value":{"x":25,"y":512}},{"Key":"E_VARS","Value":{"x":24,"y":447}},{"Key":"E_CB_ITEMS","Value":{"x":399,"y":245}},{"Key":"S_CE_ITEMGROUP","Value":{"x":823,"y":265}},{"Key":"E_ISCB","Value":{"x":196,"y":360}},{"Key":"E_FORM","Value":{"x":27,"y":59}},{"Key":"E_CTLCBALL","Value":{"x":400,"y":387}},{"Key":"S_CBALL","Value":{"x":1049,"y":199}},{"Key":"S_CBALL1","Value":{"x":1044,"y":310}},{"Key":"E_CBENABLED","Value":{"x":1054,"y":601}},{"Key":"S_CS_OPTS","Value":{"x":1050,"y":435}},{"Key":"S_CS_OPTS1","Value":{"x":1300,"y":364}},{"Key":"S_BACKTO_WAIT_EVT","Value":{"x":1734,"y":292}},{"Key":"S_BTNFIND1","Value":{"x":916,"y":47}},{"Key":"E_VAR_CB_XX","Value":{"x":194,"y":94}},{"Key":"E_SAVE_CB","Value":{"x":30,"y":605}},{"Key":"S_INIT","Value":{"x":216,"y":12}},{"Key":"E_CHGCB","Value":{"x":197,"y":519}},{"Key":"E_CHKCHG","Value":{"x":29,"y":763}},{"Key":"E_CHKCHG_ALL","Value":{"x":193,"y":673}},{"Key":"S_INIT1","Value":{"x":1515,"y":286}},{"Key":"S_CHKCHG","Value":{"x":596,"y":206}},{"Key":"S_CHK_EVT","Value":{"x":577,"y":26}},{"Key":"S_TICK","Value":{"x":397,"y":25}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=45
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=0
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+
+[[embed]]
+
+eof>>>
+[[members]]
+void [[state]](bool bFirst)
+{
+
+    [[vars]]
+
+    <<<?init
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        SetNextState([[nextstate]]);
+    }
+    >>>
+
+    //
+    if (HasNextState())
+    {
+        <<<?nowait
+        NoWait();
+        >>>
+
+        GoNextState();
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=https://github.com/NNNIC/psgg-starter-kit.git 503d07ee52cb241197c69b5626e881d1f3a57d6d
+
+
+psgg=FindFormControl.psgg
+xls=FindFormControl.xlsx
+sub_src=
+gen_src=FindFormControl.cs
+macro_ini=FindFormControl.ini
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=helpweb.html
+
+src_enc=utf-8
+
+[setupinfo]
+
+starterkit=https://github.com/NNNIC/psgg-starter-kit.git 503d07ee52cb241197c69b5626e881d1f3a57d6d
+
+
+lang=c#
+framework=Unity
+
+statemachie=FindFormControl
+prefix=__PREFIX__
+xlsdir=C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\310_findform\doc
+gendir=C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\310_findform
+genrdir=..
+incrdir=.
+
+code_output_start=[SYN-G-GEN OUTPUT START]
+code_output_end=[SYN-G-GEN OUTPUT END]
+
+[macro]
+; This section has macro defines for converting.
+
+; commentline format  {%0} will be replaced to a comment.
+commentline=// {%0}
+
+@branch=@@@
+<<<?"{%0}"/^brifc{0,1}$/
+if ([[brcond:{%N}]]) { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^brelseifc{0,1}$/
+else if ([[brcond:{%N}]]) { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^brelse$/
+else { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^br_/
+{%0}({%1});
+>>>
+@@@
+
+[jpn]
+title=C# スタートキット  2018/9/25
+
+detail=@@@
+
+C# 用のステートマシンを作成します。
+
+# 新機能
+- IF ブランチ機能
+- マネージャファイルなし
+- 変換ソース埋め込み
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\310_findform\doc
+
+  以下のファイルを作成します。
+
+      FindFormControl.pssg   --- エディタで次のエクセルファイルを開く。
+      FindFormControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\310_findform
+
+  以下のファイルが作成されます。
+
+      FindFormControl.cs  --- Excelファイルからの変換コードを本ファイルに埋め込む。
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+[en]
+title=C# STARTER KIT 2018/9/24
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# New Feature
+- Enabled If branches
+- No Manager file
+- Insert converted code
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\310_findform\doc
+
+  File:
+
+      FindFormControl.pssg  --- The editor opens the below excel file.
+      FindFormControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5000_ViewForm\5100_ViewForm_StateControl\310_findform
+
+　File:
+      FindFormControl.cs   -- The editor will insert converted source code to this file.
+
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[embed]
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[members]
+jpn=@@@
+メンバ変数及び関数等を指定する。
+@@@
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[vars]
+jpn=@@@
+変数宣言を指定する。
+@@@
+en=@@@
+Specify variable definitions.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'yes'を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'yes' if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

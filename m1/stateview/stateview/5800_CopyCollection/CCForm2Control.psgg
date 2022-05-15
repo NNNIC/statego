@@ -1,0 +1,1093 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=CCForm2Control.xlsx
+guid=bf4a4f66-888a-4fc9-95bf-3bad59930d66
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n01c,n003,n004,n005,n006,,n007,,n008,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,,,n022,n01e,n01f,n020,,n015,n016,n017,n018,,n019,n01a,n01b,,,,,,
+stateid_list=,,,,s0001,s0002,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s001e,s001b,s000e,s001d,s001c,s0020,s001f,s0021,s0022,,s0023
+max_name_id=34
+max_state_id=35
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=gosubstate
+n014=return
+n015=branch
+n016=branch-cmt
+n017=brcond
+n018=nowait
+n019=!dir
+n01a=!pos
+n01b=!uuid
+n01c=state-typ
+n01e=loop_init
+n01f=loop_cond
+n020=loop_next
+n022=loop
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s000e=C_0000
+s000f=S_CHECK_MODE
+s0010=S_CHECK_MOUSE_DOWN
+s0011=S_TICK
+s0012=S_OpenMenu
+s0013=S_DoDragDrop
+s0014=S_PAS000
+s0015=S_Copy
+s0016=S_Paste
+s0017=S_Delete
+s0018=S_Cut
+s0019=S_Down
+s001b=S_Up
+s001c=S_EditBitmap
+s001d=S_EditTitle
+s001e=E_0001
+s001f=S_TICK2
+s0020=S_FORCEUPDATE
+s0021=S_UPDATE_OTHERS
+s0022=S_OpenMenu1
+s0023=S_Explorer
+
+
+[s0001]
+n002=S_START
+n01c=start
+n006=S_CHECK_MOUSE_DOWN
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=32,385
+n01b=100001
+
+[s0002]
+n002=S_END
+n01c=end
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1070,55
+n01b=100002
+
+[s000e]
+n002=C_0000
+n003=@@@
+タイマUpdate時に呼ばれる。
+若干遅めの可能性あり、
+
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=43,37
+n01b=100003
+
+[s000f]
+n001=(bitmap)
+n002=S_CHECK_MODE
+n009=var bDone = check_mousehold();
+n00f=bDone == false
+n011=@@@
+select_work();
+m_form.Refresh();
+@@@
+
+n015=@@@
+brifc(S_OpenMenu);
+brelseifc(S_DoDragDrop);
+brelse(S_CHECK_MOUSE_DOWN);
+@@@
+
+n016=@@@
+メニュー表示へ
+ドラッグ＆ドロップへ
+?
+@@@
+
+n017=@@@
+check_mousedown_menu()
+check_mousedown_hold()
+?
+@@@
+
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=254,524
+n01b=100004
+
+[s0010]
+n002=S_CHECK_MOUSE_DOWN
+n006=
+n009=
+n00a=@@@
+mouse_init();
+m_ForceUpdate=false;
+@@@
+
+n00d=var b = mouse_is_down();
+n00f=b==false && m_ForceUpdate == false
+n015=@@@
+brifc(S_FORCEUPDATE);
+brelse(S_TICK);
+@@@
+
+n016=@@@
+強制更新
+?
+@@@
+
+n017=@@@
+m_ForceUpdate
+?
+@@@
+
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=261,230
+n01b=100005
+
+[s0011]
+n002=S_TICK
+n006=S_CHECK_MODE
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=549,345
+n01b=100006
+
+[s0012]
+n001=(bitmap)
+n002=S_OpenMenu
+n003=
+n006=
+n00a=open_menu();
+n00f=!done_menu()
+n015=@@@
+brifc(S_Copy);
+brelseifc(S_Paste);
+brelseifc(S_Delete);
+brelseifc(S_Cut);
+brelseifc(S_Up);
+brelseifc(S_Down);
+brelseifc(S_EditBitmap);
+brelseifc(S_EditTitle);
+brelseifc(S_Explorer);
+brelse(S_OpenMenu1);
+@@@
+
+n016=@@@
+?
+?
+?
+?
+?
+?
+?
+?
+?
+?
+@@@
+
+n017=@@@
+m_bMenuCopy
+m_bMenuPaste
+m_bMenuDelete
+m_bMenuCut
+m_bMenuUp
+m_bMenuDown
+m_bMenuEditBitmap
+m_bMenuEditTitle
+m_bMenuExplorer
+?
+@@@
+
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=533,620
+n01b=100007
+
+[s0013]
+n001=(bitmap)
+n002=S_DoDragDrop
+n003=
+n006=S_UPDATE_OTHERS
+n00a=dodrag();
+n00f=
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=538,1103
+n01b=100008
+
+[s0014]
+n001=(bitmap)
+n002=S_PAS000
+n01c=pass
+n006=S_CHECK_MOUSE_DOWN
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1369,902
+n01b=100009
+
+[s0015]
+n002=S_Copy
+n006=S_UPDATE_OTHERS
+n00a=menu_copy();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=780,296
+n01b=100010
+
+[s0016]
+n002=S_Paste
+n006=S_UPDATE_OTHERS
+n00a=menu_paste();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=780,358
+n01b=100011
+
+[s0017]
+n002=S_Delete
+n006=S_UPDATE_OTHERS
+n00a=menu_delete();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=780,424
+n01b=100012
+
+[s0018]
+n002=S_Cut
+n006=S_UPDATE_OTHERS
+n00a=menu_cut();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=780,500
+n01b=100013
+
+[s0019]
+n002=S_Down
+n006=S_UPDATE_OTHERS
+n00a=menu_down();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=780,688
+n01b=100014
+
+[s001b]
+n002=S_Up
+n006=S_UPDATE_OTHERS
+n00a=menu_up();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=780,635
+n01b=100016
+
+[s001c]
+n002=S_EditBitmap
+n006=S_UPDATE_OTHERS
+n00a=menu_edit_bitmap();
+n00f=!menu_edit_bitmap_done()
+n011=menu_edit_bitmap_post();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=780,739
+n01b=100017
+
+[s001d]
+n002=S_EditTitle
+n006=S_UPDATE_OTHERS
+n00a=menu_edit_title();
+n00f=!menu_edit_title_done()
+n011=menu_edit_title_post();
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=780,845
+n01b=100018
+
+[s001e]
+n002=E_0001
+n007=public bool m_ForceUpdate;
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=259,68
+n01b=100019
+
+[s001f]
+n002=S_TICK2
+n006=S_CHECK_MOUSE_DOWN
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=710,61
+n01b=100020
+
+[s0020]
+n002=S_FORCEUPDATE
+n006=S_TICK2
+n00a=force_update();
+n018=nowait
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=510,61
+n01b=100021
+
+[s0021]
+n001=(bitmap)
+n002=S_UPDATE_OTHERS
+n003=他の同ウインドウを更新
+n006=S_PAS000
+n00a=update_others();
+n00f=!update_others_done()
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1118,904
+n01b=100022
+
+[s0022]
+n002=S_OpenMenu1
+n01c=pass
+n003=new state
+n006=S_UPDATE_OTHERS
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=786,1057
+n01b=100023
+
+[s0023]
+n002=S_Explorer
+n003=アイテム保存場所をExplorerで開く
+n006=S_PAS000
+n00a=menu_explorer();
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=782,925
+n01b=100024
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2021/05/09 10:38:10
+; * pssgEditor version : 0.68.210082.b65a6cb1cb013e4bdc9dc56c1bd790b72f35da12
+psggfile=@@@
+CCForm2Control.psgg
+@@@
+xlsfile=@@@
+CCForm2Control.xlsx
+@@@
+guid=@@@
+bf4a4f66-888a-4fc9-95bf-3bad59930d66
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Initilized
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"The root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":32,"y":385}},{"Key":"S_END","Value":{"x":1070,"y":55}},{"Key":"C_0000","Value":{"x":43,"y":37}},{"Key":"S_CHECK_MODE","Value":{"x":254,"y":524}},{"Key":"S_CHECK_MOUSE_DOWN","Value":{"x":261,"y":230}},{"Key":"S_TICK","Value":{"x":549,"y":345}},{"Key":"S_PAS000","Value":{"x":1369,"y":902}},{"Key":"S_OpenMenu","Value":{"x":533,"y":620}},{"Key":"S_DoDragDrop","Value":{"x":538,"y":1103}},{"Key":"S_Copy","Value":{"x":780,"y":296}},{"Key":"S_Paste","Value":{"x":780,"y":358}},{"Key":"S_Delete","Value":{"x":780,"y":424}},{"Key":"S_Cut","Value":{"x":780,"y":500}},{"Key":"S_Up","Value":{"x":780,"y":635}},{"Key":"S_Down","Value":{"x":780,"y":688}},{"Key":"S_EditBitmap","Value":{"x":780,"y":739}},{"Key":"S_EditTitle","Value":{"x":780,"y":845}},{"Key":"E_0001","Value":{"x":259,"y":68}},{"Key":"S_TICK2","Value":{"x":710,"y":61}},{"Key":"S_FORCEUPDATE","Value":{"x":510,"y":61}},{"Key":"S_OpenMenu1","Value":{"x":786,"y":1057}},{"Key":"S_UPDATE_OTHERS","Value":{"x":1118,"y":904}},{"Key":"S_Explorer","Value":{"x":782,"y":925}}]},{"Key":"\/hoge2\/","Value":[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":926,"y":87}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=13
+contents_font_size=10
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"state-typ","Value":{"height":398,"width":330}},{"Key":"nowait","Value":{"height":401,"width":330}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=1
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+void [[state]](bool bFirst)
+{
+    Goto([[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^end$/
+void [[state]](bool bFirst)
+{
+}
+eof>>>
+
+<<<?state-typ/^gosub$/
+void [[state]](bool bFirst)
+{
+    GoSubState([[gosubstate]],[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^substart$/
+void [[state]](bool bFirst)
+{
+    Goto([[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^subreturn$/
+void [[state]](bool bFirst)
+{
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^loop$/
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[loop_init]]
+    Goto([[state]]_LoopCheckAndGosub____);
+    NoWait();
+}
+void [[state]]_LoopCheckAndGosub____(bool bFirst)
+{
+    if ([[loop_cond]]) GoSubState([[gosubstate]],[[state]]_LoopNext____);
+    else               Goto([[nextstate]]);
+    NoWait();
+}
+void [[state]]_LoopNext____(bool bFirst)
+{
+    [[loop_next]]
+    Goto([[state]]_LoopCheckAndGosub____);
+    NoWait();
+}
+eof>>>
+
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[vars]]
+
+    <<<?init
+    //
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto([[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+
+
+
+
+
+psgg=CCForm2Control.psgg
+xls=CCForm2Control.xlsx
+sub_src=
+gen_src=CCForm2Control.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit2\c-sharp\helpweb.html
+
+src_enc=utf-8
+
+
+
+
+
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+
+
+
+
+
+lang=c#
+framework=vs2015
+
+statemachine=CCForm2Control
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5800_CopyCollection
+@@@
+
+
+
+
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5800_CopyCollection
+@@@
+
+
+
+
+
+genrdir=.
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+
+
+
+
+
+[jpn]
+
+title=C# スタートキット  2019/10/31
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# ファイル
+
+      CCForm2Control.pssg --- StateGoデータファイル。
+      CCForm2Control.cs   --- 変換コードを本ファイルに埋め込む。
+
+@@@
+
+
+
+
+
+[en]
+
+title=C# STARTER KIT 2019/10/31
+
+detail=@@@
+To create c# Stata machine.
+
+# File:
+
+      CCForm2Control.pssg  --- StateGo Data File.
+      CCForm2Control.cs   -- The editor will insert converted source code to this file.
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[gosubstate]
+
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+
+jpn=サブルーチン処理を終了するときに指定する。"return"等を記述。
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[loop_next]
+
+en=loop  iterator advence.
+jpn=ループのイテレーターを更新
+[loop_cond]
+
+en=loop condition
+jpn=ループ条件
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[members]
+
+jpn=メンバ変数及び関数等を指定する。
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[vars]
+
+jpn=変数宣言を指定する。
+en=Specify variable definitions.
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[embed]
+
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[basestate]
+
+jpn=継承元を指定する。
+en=Specify inheritance source.
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[loop_init]
+
+en=loop initialization
+jpn=ループ用初期化
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[loop_break]
+
+en=Condition if break
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+loop-next=
+loop-cond=
+embed=
+loop_cond=
+branch=
+!dir=
+basestate=
+return=
+post_wait-cmt=
+state-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+members=
+thumbnail=
+update-cmt=
+gosubstate=
+loop_break=
+loop_ver=
+state-typ=@@@
+*select
+start
+end
+gosub
+substart
+subreturn
+loop
+@@@
+
+!pos=
+!uuid=
+S_=
+nextstate=
+state=
+loop_var=
+wait-cmt=
+loop-init=
+update=
+init-cmt=
+loop-ver=
+loop_next=
+vars=
+loop=
+C_=
+brcond=
+E_=
+init-ref=
+loop_init=
+post_wait=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+basestate=read_only,share,S.+
+state-typ=read_only,exclusion,(S0)
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

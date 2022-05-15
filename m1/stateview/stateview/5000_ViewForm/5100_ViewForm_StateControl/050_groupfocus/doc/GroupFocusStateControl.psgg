@@ -1,0 +1,419 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=GroupFocusStateControl.xlsx
+guid=db273eff-6fb2-4b91-975d-52f24ad81dd0
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,,,n005,,n006,,n007,,,,,,,,,,,,,,,,,,,,n008,n009,n00a,n00b,n00c,n00d
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b
+max_name_id=13
+max_state_id=11
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=nextstate
+n005=proc
+n006=wait
+n007=proc2
+n008=branch
+n009=branch-cmt
+n00a=nowait
+n00b=!pos
+n00c=!dir
+n00d=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_INIT
+s0004=S_CHECKMOUSE
+s0005=S_UPDATE_PB
+s0006=S_COLLECT
+s0007=S_FOCUS_NONE
+s0008=S_DRAW_FOCUS
+s0009=S_DESTROY
+s000a=S_CHECKPOS
+s000b=S_ONE_TICK
+
+
+[s0001]
+n002=S_START
+n003=開始
+n004=S_INIT
+n00a=NoWait();
+n00b=50,100
+n00d=100001
+
+[s0002]
+n002=S_END
+n003=終了
+n00b=1932,252
+n00d=100002
+
+[s0003]
+n002=S_INIT
+n003=PBを準備
+n004=S_CHECKPOS
+n005=init();
+n00a=NoWait();
+n00b=229,107
+n00d=100003
+
+[s0004]
+n002=S_CHECKMOUSE
+n003=マウス状態確認
+n005=check_mouse();
+n008=@@@
+br_MBDown(S_CHECKPOS);
+br_MBUp(S_COLLECT);
+br_MBCancel(S_FOCUS_NONE);
+@@@
+
+n00a=NoWait();
+n00b=1024,300
+n00d=100004
+
+[s0005]
+n002=S_UPDATE_PB
+n003=ＰＢ領域更新
+n004=S_ONE_TICK
+n005=update_pb();
+n00a=NoWait();
+n00b=617,115
+n00d=100005
+
+[s0006]
+n002=S_COLLECT
+n003=フォーカス対象を収集
+n005=collect_targets();
+n008=@@@
+br_Exist(S_DRAW_FOCUS);
+br_None(S_FOCUS_NONE);
+@@@
+
+n00a=NoWait();
+n00b=1303,172
+n00d=100006
+
+[s0007]
+n002=S_FOCUS_NONE
+n003=キャンセル決定
+n004=S_DESTROY
+n00a=NoWait();
+n00b=1487,351
+n00d=100007
+
+[s0008]
+n002=S_DRAW_FOCUS
+n003=@@@
+フォーカス描画
+ＰＢ内の全ステートをフォーカス描画
+@@@
+
+n004=S_DESTROY
+n005=drow_focuses();
+n00a=NoWait();
+n00b=1482,100
+n00d=100008
+
+[s0009]
+n002=S_DESTROY
+n003=PBを削除
+n004=S_END
+n005=destroy();
+n00b=1701,238
+n00d=100009
+
+[s000a]
+n002=S_CHECKPOS
+n003=PBを準備
+n005=checkpos();
+n008=@@@
+br_diff_pos(S_UPDATE_PB);
+br_same_pos(S_ONE_TICK);
+@@@
+
+n00a=NoWait();
+n00b=424,108
+n00d=100010
+
+[s000b]
+n002=S_ONE_TICK
+n003=ＰＢ領域更新
+n004=S_CHECKMOUSE
+n00b=805,281
+n00d=100011
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2022/05/07 10:46:09
+; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
+psggfile=@@@
+GroupFocusStateControl.psgg
+@@@
+xlsfile=@@@
+GroupFocusStateControl.xlsx
+@@@
+guid=@@@
+db273eff-6fb2-4b91-975d-52f24ad81dd0
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Initilized
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":1372,"y":246.25}},{"Key":"S_WAIT_MBDOWN","Value":{"x":295.25,"y":101.25}},{"Key":"S_INIT_VARS","Value":{"x":516,"y":105}},{"Key":"S_CHECKEVENT","Value":{"x":740.5,"y":102.5}},{"Key":"S_SETEVT_CLICK","Value":{"x":1008.75,"y":55}},{"Key":"S_SETEVT_DCLICK","Value":{"x":1010.75,"y":210}},{"Key":"S_SETEVT_DRAG","Value":{"x":1011.5,"y":368.75}},{"Key":"S_SETEVT_CANCEL","Value":{"x":1011,"y":537.5}}]
+@@@
+nodegroup_comment_list=@@@
+[]
+@@@
+nodegroup_pos_list=@@@
+[]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":1932,"y":252}},{"Key":"S_INIT","Value":{"x":229,"y":107}},{"Key":"S_CHECKMOUSE","Value":{"x":1024,"y":300}},{"Key":"S_UPDATE_PB","Value":{"x":617,"y":115}},{"Key":"S_COLLECT","Value":{"x":1303,"y":172}},{"Key":"S_FOCUS_NONE","Value":{"x":1487,"y":351}},{"Key":"S_DRAW_FOCUS","Value":{"x":1482,"y":100}},{"Key":"S_DESTROY","Value":{"x":1701,"y":238}},{"Key":"S_CHECKPOS","Value":{"x":424,"y":108}},{"Key":"S_ONE_TICK","Value":{"x":805,"y":281}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+
+@@@
+option_delete_thisstring=0
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=0
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=17
+contents_font_size=16
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=45
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=0
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=GroupFocusStateControl_created.cs
+:enc=utf-8
+::
+public partial class GroupFocusStateControl {
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](int phase, bool bFirst)
+{
+    if (phase==0)
+    {
+        if (bFirst)
+        {
+            [[proc]]
+        }
+        //else
+        {
+            <<<?wait
+            if (![[wait]]) return;
+            >>>
+
+            [[proc2]]
+
+            <<<?branch-cmt
+            /*
+                [[branch-cmt]]
+            */
+            >>>
+
+            [[branch]]
+
+            if (HasNextState())
+            {
+                [[nowait]]
+                GoNextState();
+                return;
+            }
+
+            <<<?nextstate
+            [[nowait]]
+            SetNextState([[nextstate]]);
+            GoNextState();
+            return;
+            >>>
+        }
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=GroupFocusStateControl.psgg
+xls=GroupFocusStateControl.xlsx
+
+sub_src=
+gen_src=GroupFocusStateControl_created.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=
+
+help=
+helpweb=
+src_enc=
+
+[setupinfo]
+
+starterkit=
+
+lang=cs
+framework=
+statemachie=GroupFocusStateControl
+
+prefix=GroupFocusState
+xlsdir=
+gendir=
+genrdir=..\created
+incrdir=.
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=GroupFocusStateControl.psgg
+xls=GroupFocusStateControl.xlsx
+
+sub_src=
+gen_src=GroupFocusStateControl_created.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=
+
+help=
+helpweb=
+src_enc=
+
+[setupinfo]
+
+starterkit=
+
+lang=cs
+framework=
+statemachie=GroupFocusStateControl
+
+prefix=GroupFocusState
+xlsdir=
+gendir=
+genrdir=..\created
+incrdir=.
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

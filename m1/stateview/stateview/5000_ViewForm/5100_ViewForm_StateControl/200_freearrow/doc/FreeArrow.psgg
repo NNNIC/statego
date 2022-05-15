@@ -1,0 +1,518 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=FreeArrow.xlsx
+guid=324b8624-e0e5-4fd3-a707-466bc1e1e2b2
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,,n006,n007,n008,,n009,n00a,,,,,,,,,,,,,,,,,,,,,,n00b,,n00c,n00d,n00e,n00f
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,,s000f
+max_name_id=15
+max_state_id=15
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-typ
+n005=nextstate
+n006=embed
+n007=init
+n008=proc
+n009=wait
+n00a=postwait
+n00b=branch
+n00c=nowaitbranch
+n00d=!dir
+n00e=!pos
+n00f=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_INIT
+s0003=S_CHECKPOS
+s0004=S_UPDATE_PICBOX
+s0005=S_DRAW_ARROW
+s0006=S_CHECK_MOUSE
+s0007=S_CHECK_DST
+s0008=S_SET_DST
+s0009=S_DESTROY
+s000a=S_END
+s000b=S_ONE_TICK
+s000c=E_INIT1
+s000d=S_SET_RESULT_CANCEL
+s000e=S_SET_RESULT_STATE
+s000f=S_SET_RESULT_STATE1
+
+
+[s0001]
+n001=(bitmap)
+n002=S_START
+n004=start
+n005=S_INIT
+n00e=68,38
+n00f=100001
+
+[s0002]
+n001=(bitmap)
+n002=S_INIT
+n003=@@@
+初期化
+Picturebox準備
+@@@
+
+n005=S_CHECKPOS
+n007=m_result = RESULT.none;
+n008=init();
+n00c=NoWait();
+n00e=50,134
+n00f=100002
+
+[s0003]
+n002=S_CHECKPOS
+n003=マウスポジション確認
+n008=checkpos();
+n00b=@@@
+br_diff_pos(S_UPDATE_PICBOX);
+br_same_pos(S_ONE_TICK);
+@@@
+
+n00c=NoWait();
+n00e=59,426
+n00f=100003
+
+[s0004]
+n002=S_UPDATE_PICBOX
+n003=ピクチャボックス更新
+n005=S_DRAW_ARROW
+n008=update_pb();
+n00c=NoWait();
+n00e=212,334
+n00f=100004
+
+[s0005]
+n002=S_DRAW_ARROW
+n003=矢印描画
+n005=S_ONE_TICK
+n008=draw_arrow();
+n00c=NoWait();
+n00e=449,328
+n00f=100005
+
+[s0006]
+n002=S_CHECK_MOUSE
+n003=マウスボタン状態確認
+n008=check_mouse();
+n00b=@@@
+br_stay(S_CHECKPOS);
+br_leave(S_CHECK_DST);
+@@@
+
+n00c=NoWait();
+n00e=587,620
+n00f=100006
+
+[s0007]
+n001=(bitmap)
+n002=S_CHECK_DST
+n003=行先確認
+n007=G.frontend_enable(false);
+n008=check_dst();
+n009=wait_checkdg_done()
+n00a=G.frontend_enable(true);
+n00b=@@@
+br_setdst(S_SET_DST);
+br_cancel(S_SET_RESULT_CANCEL);
+@@@
+
+n00e=922,607
+n00f=100007
+
+[s0008]
+n002=S_SET_DST
+n003=@@@
+行先を更新
+再描画依頼
+
+@@@
+
+n008=set_dst();
+n00b=@@@
+br_dst_is_state(S_SET_RESULT_STATE);
+br_dst_is_altstate(S_SET_RESULT_STATE1);
+@@@
+
+n00e=1193,402
+n00f=100008
+
+[s0009]
+n002=S_DESTROY
+n003=終了処理
+n005=S_END
+n008=destroy();
+n00c=NoWait();
+n00e=1686,623
+n00f=100009
+
+[s000a]
+n001=(bitmap)
+n002=S_END
+n004=end
+n00e=1919,144
+n00f=100010
+
+[s000b]
+n002=S_ONE_TICK
+n003=1 TICK 待つ
+n005=S_CHECK_MOUSE
+n00e=272,578
+n00f=100011
+
+[s000c]
+n001=(bitmap)
+n002=E_INIT1
+n006=@@@
+public enum RESULT
+{
+     none,
+     cancel,
+     dst_is_state,
+     dst_is_altstate
+}
+public RESULT m_result;
+@@@
+
+n00d=@@@
+/
+(100,100)
+
+@@@
+
+n00e=301,23
+n00f=100012
+
+[s000d]
+n001=(bitmap)
+n002=S_SET_RESULT_CANCEL
+n005=S_DESTROY
+n007=m_result = RESULT.cancel;
+n00d=@@@
+/
+(100,100)
+
+@@@
+
+n00e=1450,671
+n00f=100013
+
+[s000e]
+n001=(bitmap)
+n002=S_SET_RESULT_STATE
+n005=S_DESTROY
+n007=m_result = RESULT.dst_is_state;
+n00d=@@@
+/
+(100,100)
+
+@@@
+
+n00e=1449,370
+n00f=100014
+
+[s000f]
+n001=(bitmap)
+n002=S_SET_RESULT_STATE1
+n005=S_DESTROY
+n007=m_result = RESULT.dst_is_altstate;
+n00d=@@@
+/
+(100,100)
+
+@@@
+
+n00e=1447,531
+n00f=100015
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2022/05/07 11:33:55
+; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
+psggfile=@@@
+FreeArrow.psgg
+@@@
+xlsfile=@@@
+FreeArrow.xlsx
+@@@
+guid=@@@
+324b8624-e0e5-4fd3-a707-466bc1e1e2b2
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Initilized
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+[{"Key":"S_START","Value":{"x":68.40335,"y":38.48738}},{"Key":"S_INIT","Value":{"x":133.823456,"y":223.352936}},{"Key":"S_CHECKPOS","Value":{"x":347.285675,"y":224.025162}},{"Key":"S_UPDATE_PICBOX","Value":{"x":526.823547,"y":224.215652}},{"Key":"S_DRAW_ARROW","Value":{"x":729.0839,"y":224.4341}},{"Key":"S_CHECK_MOUSE","Value":{"x":1173.50708,"y":264.2325}},{"Key":"S_CHECK_DST","Value":{"x":1342.96094,"y":459.980316}},{"Key":"S_SET_DST","Value":{"x":1535.05872,"y":314.098022}},{"Key":"S_DESTROY","Value":{"x":1740.78442,"y":560.7142}},{"Key":"S_END","Value":{"x":2029.31128,"y":564.680664}},{"Key":"S_ONE_TICK","Value":{"x":976.396667,"y":302.9837}}]
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":68,"y":38}},{"Key":"S_INIT","Value":{"x":50,"y":134}},{"Key":"S_CHECKPOS","Value":{"x":59,"y":426}},{"Key":"S_UPDATE_PICBOX","Value":{"x":212,"y":334}},{"Key":"S_DRAW_ARROW","Value":{"x":449,"y":328}},{"Key":"S_CHECK_MOUSE","Value":{"x":587,"y":620}},{"Key":"S_CHECK_DST","Value":{"x":922,"y":607}},{"Key":"S_SET_DST","Value":{"x":1193,"y":402}},{"Key":"S_DESTROY","Value":{"x":1686,"y":623}},{"Key":"S_END","Value":{"x":1919,"y":144}},{"Key":"S_ONE_TICK","Value":{"x":272,"y":578}},{"Key":"E_INIT1","Value":{"x":301,"y":23}},{"Key":"S_SET_RESULT_STATE","Value":{"x":1449,"y":370}},{"Key":"S_SET_RESULT_STATE1","Value":{"x":1447,"y":531}},{"Key":"S_SET_RESULT_CANCEL","Value":{"x":1450,"y":671}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+
+@@@
+option_delete_thisstring=0
+option_delete_br_string=0
+option_delete_bracket_string=0
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=4
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=0
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=FreeArrowStateControl_created.cs
+:templatefunc=templatefunc.txt
+:enc=utf-8
+::
+//<<<include=using.txt
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+//using Excel = Microsoft.Office.Interop.Excel;
+//using Office = Microsoft.Office.Core;
+using G=stateview.Globals;
+using DStateData=stateview.Draw.DrawStateData;
+using EFU=stateview._5300_EditForm.EditFormUtil;
+using SS=stateview.StateStyle;
+using DS=stateview.DesignSpec;
+//>>>
+public partial class FreeArrowStateControl {
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+[[embed]]
+eof>>>
+void [[state]](int phase, bool bFirst)
+{
+    SetNextState([[nextstate]]);
+
+    <<<?init
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[proc]]
+
+    <<<?wait
+    if (![[wait]]) return;
+    >>>
+    [[postwait]]
+    [[branch]]
+
+    if (HasNextState())
+    {
+        [[nowaitbranch]]
+        GoNextState();
+        return;
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+psgg=FreeArrow.psgg
+xls=FreeArrow.xlsx
+sub_src=
+gen_src=FreeArrowStateControl_created.cs
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=helpweb.html
+
+src_enc=utf-8
+
+[setupinfo]
+lang=c#
+genrdir=..\created
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](int phase, bool bFirst)
+{
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+nextstate=
+nowaitbranch=
+!pos=
+postwait=
+S_=
+C_=
+E_=
+branch=
+init=
+embed=
+proc=
+!uuid=
+state-typ=
+state=
+!dir=
+wait=
+nowait=@@@
+*select
+nowait
+@@@
+
+thumbnail=
+state-cmt=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+state-typ=read_only,exclusion,(S0)
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+basestate=read_only,share,S.+
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,(S0)
+thumbnail=read_only,share,S.+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

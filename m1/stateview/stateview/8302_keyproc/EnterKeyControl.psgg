@@ -1,0 +1,1019 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=EnterKeyControl.xlsx
+guid=cfaabc99-88dd-472a-aa49-5a21838ac751
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n01c,n003,n004,n005,n006,,n007,,n008,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,,,n022,n01e,n01f,n020,,n015,n016,n017,n018,,n019,n01a,n01b,,,,,,
+stateid_list=,,,,s0001,s0002,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s001a,s001b,s000e,s001d,,s001c
+max_name_id=34
+max_state_id=29
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=gosubstate
+n014=return
+n015=branch
+n016=branch-cmt
+n017=brcond
+n018=nowait
+n019=!dir
+n01a=!pos
+n01b=!uuid
+n01c=state-typ
+n01e=loop_init
+n01f=loop_cond
+n020=loop_next
+n022=loop
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s000e=S_SITUATION
+s000f=S_CHECK_FOCUS
+s0010=S_SET_FOCUS
+s0011=S_STATEMENU
+s0012=S_CHECK_PLALERSELECT
+s0013=S_PLALERMENU
+s0014=S_CHECK_FOCUS1
+s0015=S_SET_FOCUS1
+s0016=S_CHECK_PLALERSELECT1
+s0017=S_GROUPMENU
+s0018=S_INOUTMENU
+s0019=S_BLANKMENU
+s001a=C_0003
+s001b=E_INPUT
+s001c=S_CHECK_FOCUS_SOME
+s001d=S_OFF_FOCUS
+
+
+[s0001]
+n002=S_START
+n01c=start
+n006=S_SITUATION
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=90,106
+n01b=100001
+
+[s0002]
+n002=S_END
+n01c=end
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=1376,394
+n01b=100002
+
+[s000e]
+n001=(bitmap)
+n002=S_SITUATION
+n003=状況
+n015=@@@
+brifc(S_CHECK_FOCUS);
+brelseifc(S_CHECK_FOCUS1);
+brelseifc(S_INOUTMENU);
+brelseifc(S_CHECK_FOCUS_SOME);
+brelse(S_END);
+@@@
+
+n016=@@@
+ステート上で
+グループノード上で
+IN-OUT-PIN上で
+ブランク上で
+?
+@@@
+
+n017=@@@
+is_on_state()
+is_on_groupnode()
+is_on_inout_pin()
+is_on_blank()
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=49,676
+n01b=100003
+
+[s000f]
+n002=S_CHECK_FOCUS
+n003=フォーカス確認
+n009=var b = is_state_focused();
+n015=@@@
+brifc(S_SET_FOCUS);
+brelse(S_CHECK_PLALERSELECT);
+@@@
+
+n016=@@@
+フォーカスされていない
+既にフォーカスされている
+@@@
+
+n017=@@@
+b==false
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=352,309
+n01b=100004
+
+[s0010]
+n002=S_SET_FOCUS
+n003=フォーカスする
+n006=S_END
+n00a=set_focus_state();
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=640,280
+n01b=100005
+
+[s0011]
+n002=S_STATEMENU
+n003=ステートメニュー表示
+n006=S_END
+n00a=G.keyexec = KEYEXEC.open_contextmenu;
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=935,515
+n01b=100006
+
+[s0012]
+n002=S_CHECK_PLALERSELECT
+n003=複数選択中か
+n009=var b = is_state_in_plural_selected();
+n015=@@@
+brifc(S_PLALERMENU);
+brelse(S_STATEMENU);
+@@@
+
+n016=@@@
+複数選択中
+単独選択
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=637,359
+n01b=100007
+
+[s0013]
+n002=S_PLALERMENU
+n003=複数選択用fメニュー表示
+n006=S_END
+n00a=G.keyexec = KEYEXEC.open_contextmenu;
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=935,397
+n01b=100008
+
+[s0014]
+n002=S_CHECK_FOCUS1
+n003=フォーカス確認
+n009=var b = is_groupnode_focused();
+n015=@@@
+brifc(S_SET_FOCUS1);
+brelse(S_CHECK_PLALERSELECT1);
+@@@
+
+n016=@@@
+フォーカスされていない
+既にフォーカスされている
+@@@
+
+n017=@@@
+b==false
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=348,486
+n01b=100009
+
+[s0015]
+n002=S_SET_FOCUS1
+n003=フォーカスする
+n006=S_END
+n00a=set_focus_groupnode();
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=643,515
+n01b=100010
+
+[s0016]
+n002=S_CHECK_PLALERSELECT1
+n003=複数選択中か
+n009=@@@
+var b = is_groupnode_in_plural_selected();
+@@@
+
+n015=@@@
+brifc(S_PLALERMENU);
+brelse(S_GROUPMENU);
+@@@
+
+n016=@@@
+複数選択中
+単独選択
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=644,586
+n01b=100011
+
+[s0017]
+n002=S_GROUPMENU
+n003=グループノードメニュー表示
+n006=S_END
+n00a=G.keyexec = KEYEXEC.open_contextmenu;
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=943,627
+n01b=100012
+
+[s0018]
+n002=S_INOUTMENU
+n003=可能であれば、IN/.OUTMENU表示
+n006=S_END
+n00a=G.keyexec = KEYEXEC.open_inout_menu;
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=943,747
+n01b=100013
+
+[s0019]
+n002=S_BLANKMENU
+n003=ブランクメニュー表示
+n006=S_END
+n00a=G.keyexec = KEYEXEC.open_contextmenu;
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=946,862
+n01b=100014
+
+[s001a]
+n002=C_0003
+n003=ENTERを押した際の挙動
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=32,11
+n01b=100015
+
+[s001b]
+n002=E_INPUT
+n007=@@@
+public Point  m_pointer;
+public string m_state_under_pointer;
+public string m_state_with_pin;
+public bool   m_in_or_outflow_pin;
+public InOutBaseData.ATTRIB m_outflow_attr;
+public int    m_branch_index;
+public string m_nextstate;
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=333,12
+n01b=100016
+
+[s001c]
+n002=S_CHECK_FOCUS_SOME
+n003=何かフォーカス中
+n009=var b = has_focuses();
+n015=@@@
+brifc(S_BLANKMENU);
+brelse(S_OFF_FOCUS);
+@@@
+
+n016=@@@
+フォーカスされていない
+既にフォーカスされている
+@@@
+
+n017=@@@
+b==false
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=358,828
+n01b=100017
+
+[s001d]
+n002=S_OFF_FOCUS
+n003=フォーカス削除
+n006=S_END
+n00a=G.keyexec = KEYEXEC.focus_clear;
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=953,993
+n01b=100018
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2019/12/30 22:50:01
+; * pssgEditor version : 0.62.56907.95a084d9eae26b1493a8c994f8aaf014df4637a6
+psggfile=@@@
+EnterKeyControl.psgg
+@@@
+xlsfile=@@@
+EnterKeyControl.xlsx
+@@@
+guid=@@@
+cfaabc99-88dd-472a-aa49-5a21838ac751
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+Edited a state.
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":90,"y":106}},{"Key":"S_END","Value":{"x":1376,"y":394}},{"Key":"S_SITUATION","Value":{"x":49,"y":676}},{"Key":"S_CHECK_FOCUS","Value":{"x":352,"y":309}},{"Key":"S_CHECK_FOCUS1","Value":{"x":348,"y":486}},{"Key":"S_SET_FOCUS","Value":{"x":640,"y":280}},{"Key":"S_SET_FOCUS1","Value":{"x":643,"y":515}},{"Key":"S_STATEMENU","Value":{"x":935,"y":515}},{"Key":"S_CHECK_PLALERSELECT","Value":{"x":637,"y":359}},{"Key":"S_PLALERMENU","Value":{"x":935,"y":397}},{"Key":"S_CHECK_PLALERSELECT1","Value":{"x":644,"y":586}},{"Key":"S_GROUPMENU","Value":{"x":943,"y":627}},{"Key":"S_INOUTMENU","Value":{"x":943,"y":747}},{"Key":"S_BLANKMENU","Value":{"x":946,"y":862}},{"Key":"C_0003","Value":{"x":32,"y":11}},{"Key":"E_INPUT","Value":{"x":333,"y":12}},{"Key":"S_CHECK_FOCUS2","Value":{"x":354,"y":858}},{"Key":"S_CHECK_FOCUS_SOME","Value":{"x":358,"y":828}},{"Key":"S_CHECK_FOCUS_SOME1","Value":{"x":651,"y":961}},{"Key":"S_OFF_FOCUS","Value":{"x":953,"y":993}}]},{"Key":"\/hoge2\/","Value":[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":926,"y":87}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"S_END"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor=@@@
+"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe" /Edit %1
+@@@
+source_editor_vs2015_support=1
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=13
+contents_font_size=10
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"state-typ","Value":{"height":398,"width":330}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+void [[state]](bool bFirst)
+{
+    Goto([[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^end$/
+void [[state]](bool bFirst)
+{
+}
+eof>>>
+
+<<<?state-typ/^gosub$/
+void [[state]](bool bFirst)
+{
+    GoSubState([[gosubstate]],[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^substart$/
+void [[state]](bool bFirst)
+{
+    Goto([[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^subreturn$/
+void [[state]](bool bFirst)
+{
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^loop$/
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[loop_init]]
+    Goto([[state]]_LoopCheckAndGosub____);
+    NoWait();
+}
+void [[state]]_LoopCheckAndGosub____(bool bFirst)
+{
+    if ([[loop_cond]]) GoSubState([[gosubstate]],[[state]]_LoopNext____);
+    else               Goto([[nextstate]]);
+    NoWait();
+}
+void [[state]]_LoopNext____(bool bFirst)
+{
+    [[loop_next]]
+    Goto([[state]]_LoopCheckAndGosub____);
+    NoWait();
+}
+eof>>>
+
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[vars]]
+
+    <<<?init
+    //
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto([[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+
+
+
+
+psgg=EnterKeyControl.psgg
+xls=EnterKeyControl.xlsx
+sub_src=
+gen_src=EnterKeyControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit2\c-sharp\helpweb.html
+
+src_enc=utf-8
+
+
+
+
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+
+
+
+
+lang=c#
+framework=Unity
+
+statemachine=EnterKeyControl
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8302_keyproc
+@@@
+
+
+
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8302_keyproc
+@@@
+
+
+
+
+genrdir=.
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+
+
+
+
+[jpn]
+
+title=C# スタートキット  2019/10/31
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# ファイル
+
+      EnterKeyControl.pssg --- StateGoデータファイル。
+      EnterKeyControl.cs   --- 変換コードを本ファイルに埋め込む。
+
+@@@
+
+
+
+[en]
+
+title=C# STARTER KIT 2019/10/31
+
+detail=@@@
+To create c# Stata machine.
+
+# File:
+
+      EnterKeyControl.pssg  --- StateGo Data File.
+      EnterKeyControl.cs   -- The editor will insert converted source code to this file.
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[gosubstate]
+
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+
+jpn=サブルーチン処理を終了するときに指定する。"return"等を記述。
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[loop_next]
+
+en=loop  iterator advence.
+jpn=ループのイテレーターを更新
+[loop_cond]
+
+en=loop condition
+jpn=ループ条件
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[members]
+
+jpn=メンバ変数及び関数等を指定する。
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[vars]
+
+jpn=変数宣言を指定する。
+en=Specify variable definitions.
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[embed]
+
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[basestate]
+
+jpn=継承元を指定する。
+en=Specify inheritance source.
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[loop_init]
+
+en=loop initialization
+jpn=ループ用初期化
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[loop_break]
+
+en=Condition if break
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+loop-next=
+loop-cond=
+embed=
+loop_cond=
+branch=
+!dir=
+basestate=
+return=
+post_wait-cmt=
+state-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+members=
+thumbnail=
+update-cmt=
+gosubstate=
+loop_break=
+loop_ver=
+state-typ=@@@
+*select
+start
+end
+gosub
+substart
+subreturn
+loop
+@@@
+
+!pos=
+!uuid=
+S_=
+nextstate=
+state=
+loop_var=
+wait-cmt=
+loop-init=
+update=
+init-cmt=
+loop-ver=
+loop_next=
+vars=
+loop=
+C_=
+brcond=
+E_=
+init-ref=
+loop_init=
+post_wait=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+basestate=read_only,share,S.+
+state-typ=read_only,exclusion,(S0)
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

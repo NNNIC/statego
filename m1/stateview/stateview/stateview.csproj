@@ -1,0 +1,910 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{69E6AF0C-0411-45AA-8C7F-D78C8D74228A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>stateview</RootNamespace>
+    <AssemblyName>PSGGEditorView</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <NoWarn>CS0168,CS0649, CS0414</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>..\..\StateViewer\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ExtendedLinguisticServices">
+      <HintPath>..\..\StateViewer\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Sensors">
+      <HintPath>..\..\StateViewer\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.Sensors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>..\..\StateViewer\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions">
+      <HintPath>..\..\StateViewer\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="ScintillaNET">
+      <HintPath>..\..\StateViewer\packages\unofficial.ScintillaNET.3.8.7\lib\net40\ScintillaNET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\StateViewer\StateViewer_starter2\util_app\HistoryUtil.cs">
+      <Link>8100_Util_app\HistoryUtil.cs</Link>
+    </Compile>
+    <Compile Include="0100_DesignSpec\DesignSpec.cs" />
+    <Compile Include="0500_Define\InOutBaseData.cs" />
+    <Compile Include="0500_Define\MouseEvent.cs" />
+    <Compile Include="1000_Globals\Globals.cs" />
+    <Compile Include="1050_Logging\Logging.cs" />
+    <Compile Include="1100_Save\SaveLoadIni.cs" />
+    <Compile Include="1100_Save\SaveData.cs" />
+    <Compile Include="1180_History\History.cs" />
+    <Compile Include="1180_History\History2.cs" />
+    <Compile Include="1180_History\HistoryRecordPanel.cs" />
+    <Compile Include="1185_FocusTrack\FocusTrack.cs" />
+    <Compile Include="1185_FocusTrack\FocusTrackPanel.cs" />
+    <Compile Include="1186_CustomPanel\CustomPanelControl.cs" />
+    <Compile Include="1190_MacroIni\MacroIni.cs" />
+    <Compile Include="1200_Converter\Converter.cs" />
+    <Compile Include="1210_GroupNodeDir\AltState\AltState.cs" />
+    <Compile Include="1210_GroupNodeDir\Tab_NodeTree\TabNodeTree.cs" />
+    <Compile Include="3000_Excel\ExcelConfig.cs" />
+    <Compile Include="3000_Excel\ExcelConvertSetting.cs" />
+    <Compile Include="3000_Excel\ExcelLayout.cs" />
+    <Compile Include="3000_Excel\ExcelProgramDirect _color.cs" />
+    <Compile Include="3000_Excel\ExcelProgramDirect.cs" />
+    <Compile Include="3000_Excel\ExcelSaveOneSheet.cs" />
+    <Compile Include="3100_ExcelDll\ExcelDll.cs" />
+    <Compile Include="3100_ExcelDll\ExcelDll2.cs" />
+    <Compile Include="3200_filedb\FileDb_folders.cs" />
+    <Compile Include="3200_filedb\FileDb_write_internal_files.cs" />
+    <Compile Include="3200_filedb\FileDbUtil.cs" />
+    <Compile Include="3200_filedb\FileDb_psgg_read.cs" />
+    <Compile Include="3200_filedb\FileDb_psgg_create.cs" />
+    <Compile Include="3200_filedb\FileDb_excel.cs" />
+    <Compile Include="3200_filedb\FileDb_statechart.cs" />
+    <Compile Include="3200_filedb\FileDbUtil_CopyComplexItem.cs" />
+    <Compile Include="3201_psggVerUpdate\psggVerUpdateControl.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_1140_DrawDeco.cs" />
+    <Compile Include="4000_Draw\4600_DrawUtil\DrawUtil_MeasureText.cs" />
+    <Compile Include="4050_DecoImage\DecoImage.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_0540_tab.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_3550_centerfocusgroup.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_3500_centerfocusstate.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_3400_link.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_3300_editbranch.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_3600_inoutmenu.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_4000_ask_dataupdatedlg.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_5100_alignHV.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_5000_alt_resolve.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_7000_CCDragDrop.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_6000_track_back_forward.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\src\base\StateManager.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\src\WebAdCheckControl.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\src\WebAdCheckControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\310_findform\FindFormControl.cs" />
+    <Compile Include="5000_ViewForm\5110_scroll\ScrollControl.cs" />
+    <Compile Include="5000_ViewForm\dialog\AltStateDistinationForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\AltStateDistinationForm1.Designer.cs">
+      <DependentUpon>AltStateDistinationForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\AltStateSourceForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\AltStateSourceForm1.Designer.cs">
+      <DependentUpon>AltStateSourceForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\ExternalCommendForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\ExternalCommendForm.Designer.cs">
+      <DependentUpon>ExternalCommendForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\FindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\FindForm.Designer.cs">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\MovetoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\MovetoForm.Designer.cs">
+      <DependentUpon>MovetoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\OkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\OkForm.Designer.cs">
+      <DependentUpon>OkForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\OptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\OptionForm.Designer.cs">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\RefactorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\RefactorForm.Designer.cs">
+      <DependentUpon>RefactorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SearchForm.Designer.cs">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetLabelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetLabelForm.Designer.cs">
+      <DependentUpon>SetLabelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetSourceEditorForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetSourceEditorForm2.Designer.cs">
+      <DependentUpon>SetSourceEditorForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetSourceEditorFormcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetSourceEditorFormcs.Designer.cs">
+      <DependentUpon>SetSourceEditorFormcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetSourceEditor_langPfChangeForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetSourceEditor_langPfChangeForm2.Designer.cs">
+      <DependentUpon>SetSourceEditor_langPfChangeForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetStarterKitRootForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetStarterKitRootForm.Designer.cs">
+      <DependentUpon>SetStarterKitRootForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetUserButtonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\SetUserButtonForm.Designer.cs">
+      <DependentUpon>SetUserButtonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\UpgradePsggForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\UpgradePsggForm.Designer.cs">
+      <DependentUpon>UpgradePsggForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\UpgradePsggSubForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\UpgradePsggSubForm.Designer.cs">
+      <DependentUpon>UpgradePsggSubForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\WindowListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\WindowListForm.Designer.cs">
+      <DependentUpon>WindowListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog_createclone\CreateCloneControl.cs" />
+    <Compile Include="5000_ViewForm\dialog_createclone\CreateCloneForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog_createclone\CreateCloneForm.Designer.cs">
+      <DependentUpon>CreateCloneForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog_editbranch\EditBranchEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog_editbranch\EditBranchEditorForm.Designer.cs">
+      <DependentUpon>EditBranchEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog_editbranch\EditBranchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog_editbranch\EditBranchForm.Designer.cs">
+      <DependentUpon>EditBranchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog_editbranch\src\EditBranchControl.cs" />
+    <Compile Include="5000_ViewForm\dialog_editbranch\src\EditBranchControl_created.cs" />
+    <Compile Include="5000_ViewForm\FillterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\FillterForm.Designer.cs">
+      <DependentUpon>FillterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\ScintillaBox\ScintillaBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\ScintillaBox\ScintillaDef.cs" />
+    <Compile Include="5000_ViewForm\syslang\SysLangWork.cs" />
+    <Compile Include="5000_ViewForm\WebBrowserFunc.cs" />
+    <Compile Include="5300_EditForm\5360_useExtEditorControl\ConfirmPickOutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\5360_useExtEditorControl\ConfirmPickOutForm.Designer.cs">
+      <DependentUpon>ConfirmPickOutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\5360_useExtEditorControl\UseExtEditorControl.cs" />
+    <Compile Include="5300_EditForm\EditForm_nextForm3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_nextForm3.Designer.cs">
+      <DependentUpon>EditForm_nextForm3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_textForm_selectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_textForm_selectForm.Designer.cs">
+      <DependentUpon>EditForm_textForm_selectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\etc\EditForm_nextForm3Control.cs" />
+    <Compile Include="5400_help_itemsinfo\helpProgram2.cs" />
+    <Compile Include="5400_help_itemsinfo\itemsInfoProgram.cs" />
+    <Compile Include="5700_ItemEditForm\io\ItemList_IO_Control.cs" />
+    <Compile Include="5700_ItemEditForm\io\ItemList_IO_InsertControl.cs" />
+    <Compile Include="5700_ItemEditForm\ItemEditControl_util.cs" />
+    <Compile Include="5700_ItemEditForm\ItemEditControl_clickok.cs" />
+    <Compile Include="5700_ItemEditForm\ItemEditControl_info.cs" />
+    <Compile Include="5700_ItemEditForm\ItemEditControl_help.cs" />
+    <Compile Include="5700_ItemEditForm\ItemEditControl_tick.cs" />
+    <Compile Include="5700_ItemEditForm\ItemEditControl_onload.cs" />
+    <Compile Include="5700_ItemEditForm\ItemEditControl.cs" />
+    <Compile Include="5700_ItemEditForm\ItemEditForm_importOptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5700_ItemEditForm\ItemEditForm_importOptionForm.Designer.cs">
+      <DependentUpon>ItemEditForm_importOptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5800_CopyCollection\CCBmpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5800_CopyCollection\CCBmpForm.Designer.cs">
+      <DependentUpon>CCBmpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5800_CopyCollection\CCCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5800_CopyCollection\CCCreateForm.Designer.cs">
+      <DependentUpon>CCCreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5800_CopyCollection\CCForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5800_CopyCollection\CCForm2.Designer.cs">
+      <DependentUpon>CCForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5800_CopyCollection\CCForm2Control.cs" />
+    <Compile Include="5800_CopyCollection\CCForm2PageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5800_CopyCollection\CCForm2PageForm.Designer.cs">
+      <DependentUpon>CCForm2PageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5800_CopyCollection\CCForm2PageFormControl.cs" />
+    <Compile Include="5800_CopyCollection\CopyCollection.cs" />
+    <Compile Include="6020_LineColor\LineColor.cs" />
+    <Compile Include="6200_msgboxForm\MsgBox2btnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="6200_msgboxForm\MsgBox2btnForm.Designer.cs">
+      <DependentUpon>MsgBox2btnForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="6200_msgboxForm\MsgBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="6200_msgboxForm\MsgBoxForm.Designer.cs">
+      <DependentUpon>MsgBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="6990_aboutForm\OssForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="6990_aboutForm\OssForm.Designer.cs">
+      <DependentUpon>OssForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="7500_addon\Addon.cs" />
+    <Compile Include="8000_Util\BitmapUtil.cs" />
+    <Compile Include="8000_Util\CmdLineUtil.cs" />
+    <Compile Include="8000_Util\DictionaryUtil.cs" />
+    <Compile Include="8000_Util\DirUtil.cs" />
+    <Compile Include="8000_Util\ExceptionUtil.cs" />
+    <Compile Include="8000_Util\ExecUtil.cs" />
+    <Compile Include="8000_Util\FileUtil.cs" />
+    <Compile Include="8000_Util\FindWindowsAppUtil.cs" />
+    <Compile Include="8000_Util\FormUtil.cs" />
+    <Compile Include="8000_Util\HashUtil.cs" />
+    <Compile Include="8000_Util\JsonUtil.cs" />
+    <Compile Include="8000_Util\PathUtil.cs" />
+    <Compile Include="8000_Util\RandomUtil.cs" />
+    <Compile Include="8000_Util\RegistryUtil.cs" />
+    <Compile Include="8000_Util\UnityUtil.cs" />
+    <Compile Include="8000_Util\VSUtil.cs" />
+    <Compile Include="8000_Util\WindowsUtil.cs" />
+    <Compile Include="8005_Util_ini\IniUtilControl.cs" />
+    <Compile Include="8100_Util_app\CommentUtil.cs" />
+    <Compile Include="8100_Util_app\ContentUtil.cs" />
+    <Compile Include="8100_Util_app\DirPathExcelUtil.cs" />
+    <Compile Include="8100_Util_app\ExecEditorUtil.cs" />
+    <Compile Include="8100_Util_app\HelpJumpUtil.cs" />
+    <Compile Include="8100_Util_app\ItemNameUtil.cs" />
+    <Compile Include="8100_Util_app\LocationUtil.cs" />
+    <Compile Include="8100_Util_app\MsgWinUtil.cs" />
+    <Compile Include="8100_Util_app\OpenLink.cs" />
+    <Compile Include="8100_Util_app\RegistryWork.cs" />
+    <Compile Include="8100_Util_app\SettingIniUtil.cs" />
+    <Compile Include="8100_Util_app\StartUtil.cs" />
+    <Compile Include="8100_Util_app\StateUtil.cs" />
+    <Compile Include="8100_Util_app\ViewUtil.cs" />
+    <Compile Include="8110_OpenEditor\OepnEditorControl.cs" />
+    <Compile Include="8110_OpenEditor\OpenEditorUtil.cs" />
+    <Compile Include="8200_Special\BranchApiCollector.cs" />
+    <Compile Include="8200_Special\CheckOpenSameDoc.cs" />
+    <Compile Include="8200_Special\FilteredTemplate.cs" />
+    <Compile Include="8200_Special\FindLine\FindLine.cs" />
+    <Compile Include="8200_Special\FindLine\FindLineControl.cs" />
+    <Compile Include="8200_Special\LinkItemsOnStateMenu.cs" />
+    <Compile Include="8300_copyandpaste\CopyAndPasteInfo.cs" />
+    <Compile Include="8300_copyandpaste\ImportControl.cs" />
+    <Compile Include="8301_SimpleTrace\SimpleTrace.cs" />
+    <Compile Include="8302_keyproc\ArrowKeyControl.cs" />
+    <Compile Include="8302_keyproc\EnterKeyControl.cs" />
+    <Compile Include="8302_keyproc\KeyProc.cs" />
+    <Compile Include="8400_etc\PanelEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="8410_ScrambleText\ScrambleText.cs" />
+    <Compile Include="1210_GroupNodeDir\GroupNodeDir.cs" />
+    <Compile Include="1210_GroupNodeDir\GroupNodeManager.cs" />
+    <Compile Include="1210_GroupNodeDir\GroupNodeUtil.cs" />
+    <Compile Include="1300_AppUpdate\Update.cs" />
+    <Compile Include="1500_MainFlow\Flow_01_main.cs" />
+    <Compile Include="1510_Arrow\ArrowFlowUtil.cs" />
+    <Compile Include="1510_Arrow\created\ArrowFlowStateControl2_created.cs" />
+    <Compile Include="1510_Arrow\StateControl\ArrowFlowStateControl2_0000_main.cs" />
+    <Compile Include="1510_Arrow\StateControl\ArrowFlowStateControl2_1000_outline.cs" />
+    <Compile Include="1510_Arrow\StateControl\ArrowFlowStateControl2_2000_check.cs" />
+    <Compile Include="1510_Arrow\StateControl\ArrowFlowStateControl2_3000_point.cs" />
+    <Compile Include="1510_Arrow\StateControl\ArrowFlowStateControl2_4000_setdiff.cs" />
+    <Compile Include="1510_Arrow\StateControl\ArrowFlowStateControl2_5000_branch.cs" />
+    <Compile Include="1510_Arrow\StateControl\ArrowFlowStateControl2_7000_tool.cs" />
+    <Compile Include="2000_StateInfo\StateInfo.cs" />
+    <Compile Include="2000_StateInfo\StateWork.cs" />
+    <Compile Include="3000_Excel\ExcelCellCacheItem.cs" />
+    <Compile Include="3000_Excel\ExcelCellCacheRead.cs" />
+    <Compile Include="3000_Excel\ExcelPicture.cs" />
+    <Compile Include="3000_Excel\ExcelProgram.cs" />
+    <Compile Include="3000_Excel\ExcelSave.cs" />
+    <Compile Include="3000_Excel\ExcelWork.cs" />
+    <Compile Include="4000_Draw\4000_DrawList\DrawList.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_0005_stagestyle.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_1010_statebox_tool.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_1100_DrawStateData_distination_info.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_1100_DrawStateData_abs.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_1130_DrawArrow.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_1120_DrawCircle.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_1110_DrawRect.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_1100_DrawStateData.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_0000_main.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_1000_statebox.cs" />
+    <Compile Include="4000_Draw\4500_Draw\Draw_0010_bg.cs" />
+    <Compile Include="4000_Draw\4600_DrawUtil\DrawUtil_LineType.cs" />
+    <Compile Include="4000_Draw\4600_DrawUtil\DrawUtil.cs" />
+    <Compile Include="5000_ViewForm\dialog\CheckDistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\CheckDistForm.Designer.cs">
+      <DependentUpon>CheckDistForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\EditGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\EditGroupForm.Designer.cs">
+      <DependentUpon>EditGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\InputGroupNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\InputGroupNameForm.Designer.cs">
+      <DependentUpon>InputGroupNameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\OKCancelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\dialog\OKCancelForm.Designer.cs">
+      <DependentUpon>OKCancelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\ViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\ViewForm.Designer.cs">
+      <DependentUpon>ViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5000_ViewForm\5050_ViewForm_IniFile\ViewForm_IniFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\created\ViewFormStateControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_0500_timelen.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_0550_subsc.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_0650_statemenu.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_1000_pointer.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_1100_focus.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_2400_freearrow.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_2300_branchdlg.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_3200_blank.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_3100_groupnode.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_9000_util.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_2500_branch.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_2200_editbox.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_1900_statebox.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_1600_ovlpb.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_1500_ovldraw.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_1400_ovlbmp.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_0700_wait.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_0600_move.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\control\ViewFormStateControl_0000_main.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\010_idle\created\IdleStateControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\010_idle\control\IdleStateControl_0300_rec.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\010_idle\control\IdleStateControl_0200_set.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\010_idle\control\IdleStateControl_3000_branch.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\010_idle\control\IdleStateControl_0100_check.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\010_idle\control\IdleStateControl_0000_main.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\020_checkonfocus\control\CheckOnFocusStateControl_3000_setevt.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\020_checkonfocus\control\CheckOnFocusStateControl_2000_checkevent.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\020_checkonfocus\control\CheckOnFocusStateControl_1000_proc.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\020_checkonfocus\control\CheckOnFocusStateControl_0000_main.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\020_checkonfocus\created\CheckOnFocusStateControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\050_groupfocus\control\GroupFocusStateControl_0000_main.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\050_groupfocus\control\GroupFocusStateControl_1000_proc.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\050_groupfocus\control\GroupFocusStateControl_9000_util.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\050_groupfocus\control\GroupFocusStateControl_5000_branch.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\050_groupfocus\created\GroupFocusStateControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\090_draganddropGN\control\DAnDGNStateControl_0000_main.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\090_draganddropGN\control\DAnDGNStateControl_1000_proc.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\080_checkonfocusGN\control\ChkOnFcsGNStateControl_0000_main.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\080_checkonfocusGN\control\ChkOnFcsGNStateControl_1000_proc.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\060_checkonfocusGF\control\ChkOnFcsGFStateControl_1000_proc.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\060_checkonfocusGF\control\ChkOnFcsGFStateControl_0000_main.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\060_checkonfocusGF\created\ChkOnFcsGFStateControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\070_draganddropGF\control\DAnDGFStateControl_1000_proc.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\070_draganddropGF\control\DAnDGFStateControl_0000_main.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\070_draganddropGF\created\DAnDGFStateControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\080_checkonfocusGN\created\ChkOnFcsGNStateControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\090_draganddropGN\created\DAnDGNStateControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\100_sliding\control\SlidingStateControl_1000_proc.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\100_sliding\control\SlidingStateControl_0000_main.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\100_sliding\created\SlidingStateControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\created\FreeArrowStateControl_created.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_0900_destroy.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_0800_setdst.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_0700_checkdst.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_0600_checkmouse.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_0400_drawarrow.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_0300_updatepb.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_0200_checkpos.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_0100_init.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_9000_util.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_3000_branch.cs" />
+    <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\control\FreeArroeStateControl_0000_main.cs" />
+    <Compile Include="5200_ChangeScale\ChangeScale.cs" />
+    <Compile Include="5300_EditForm\EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm.Designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_bmpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_bmpForm.Designer.cs">
+      <DependentUpon>EditForm_bmpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_branchGotoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_branchGotoForm.Designer.cs">
+      <DependentUpon>EditForm_branchGotoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_branchSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_branchSelectForm.Designer.cs">
+      <DependentUpon>EditForm_branchSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_Import\EdirForm_import.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_nextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_nextForm.Designer.cs">
+      <DependentUpon>EditForm_nextForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_nextForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_nextForm2.Designer.cs">
+      <DependentUpon>EditForm_nextForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_stateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_stateForm.Designer.cs">
+      <DependentUpon>EditForm_stateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_textForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5300_EditForm\EditForm_textForm.Designer.cs">
+      <DependentUpon>EditForm_textForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5300_EditForm\parial\EditForm_controlImage.cs" />
+    <Compile Include="5300_EditForm\util\EditFormUtil.cs" />
+    <Compile Include="5300_EditForm\5310_EditForm_Control\EditForm_Control.cs" />
+    <Compile Include="5300_EditForm\5320_EditForm_ClickControl\created\EditForm_ClickControl_created.cs" />
+    <Compile Include="5300_EditForm\5320_EditForm_ClickControl\StateControl\EditForm_ClickControl_95_util.cs" />
+    <Compile Include="5300_EditForm\5320_EditForm_ClickControl\StateControl\EditForm_ClickControl_10_input.cs" />
+    <Compile Include="5300_EditForm\5320_EditForm_ClickControl\StateControl\EditForm_ClickControl_80_br.cs" />
+    <Compile Include="5300_EditForm\5320_EditForm_ClickControl\StateControl\EditForm_ClickControl_20_dlg.cs" />
+    <Compile Include="5300_EditForm\5320_EditForm_ClickControl\StateControl\EditForm_ClickControl_00_main.cs" />
+    <Compile Include="5300_EditForm\5350_MultiEditControl\MultiEditControl.cs" />
+    <Compile Include="6000_ConfigForm\ConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="6000_ConfigForm\ConfigForm.Designer.cs">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="6990_aboutForm\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="6990_aboutForm\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="7000_DebugForm\DebugForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="7000_DebugForm\DebugForm.Designer.cs">
+      <DependentUpon>DebugForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="8000_Util\ArrayUtil.cs" />
+    <Compile Include="8100_Util_app\BranchParse.cs" />
+    <Compile Include="8000_Util\ColorUtil.cs" />
+    <Compile Include="8000_Util\Coroutine.cs" />
+    <Compile Include="8000_Util\DataGridViewUtil.cs" />
+    <Compile Include="8000_Util\EnumUtil.cs" />
+    <Compile Include="8000_Util\HashtableUtil.cs" />
+    <Compile Include="8005_Util_ini\IniUtil.cs" />
+    <Compile Include="8000_Util\MathX.cs" />
+    <Compile Include="8000_Util\ParseUtil.cs" />
+    <Compile Include="8000_Util\RectangleUtil.cs" />
+    <Compile Include="8000_Util\PointUtil.cs" />
+    <Compile Include="8000_Util\RegexUtil.cs" />
+    <Compile Include="8000_Util\StateControlBase.cs" />
+    <Compile Include="8000_Util\StateManagerWithPahse.cs" />
+    <Compile Include="8000_Util\StateSequencer.cs" />
+    <Compile Include="8000_Util\StringUtil.cs" />
+    <Compile Include="8100_Util_app\BranchUtil.cs" />
+    <Compile Include="8100_Util_app\DTBranchUtil.cs" />
+    <Compile Include="8100_Util_app\DrawBenri.cs" />
+    <Compile Include="8100_Util_app\GroupNameUtil.cs" />
+    <Compile Include="8100_Util_app\ItemDefUtil.cs" />
+    <Compile Include="8100_Util_app\LocUtil.cs" />
+    <Compile Include="8100_Util_app\WaitSentenceUtil.cs" />
+    <Compile Include="8200_Special\CopyRenameStateSave.cs" />
+    <Compile Include="5700_ItemEditForm\ItemEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5700_ItemEditForm\ItemEditForm.Designer.cs">
+      <DependentUpon>ItemEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5700_ItemEditForm\ItemEditInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5700_ItemEditForm\ItemEditInputForm.Designer.cs">
+      <DependentUpon>ItemEditInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="5700_ItemEditForm\ItemEditNewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="5700_ItemEditForm\ItemEditNewForm.Designer.cs">
+      <DependentUpon>ItemEditNewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3000_Excel\ExcelColorPickForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3000_Excel\ExcelColorPickForm.Designer.cs">
+      <DependentUpon>ExcelColorPickForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3200_filedb\FileDb.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StateView.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\WBEmulator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="5000_ViewForm\dialog\AltStateDistinationForm1.resx">
+      <DependentUpon>AltStateDistinationForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\AltStateSourceForm1.resx">
+      <DependentUpon>AltStateSourceForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\CheckDistForm.resx">
+      <DependentUpon>CheckDistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\EditGroupForm.resx">
+      <DependentUpon>EditGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\ExternalCommendForm.resx">
+      <DependentUpon>ExternalCommendForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\FindForm.resx">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\InputGroupNameForm.resx">
+      <DependentUpon>InputGroupNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\MovetoForm.resx">
+      <DependentUpon>MovetoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\OKCancelForm.resx">
+      <DependentUpon>OKCancelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\OkForm.resx">
+      <DependentUpon>OkForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\OptionForm.resx">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\RefactorForm.resx">
+      <DependentUpon>RefactorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\SearchForm.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\SetLabelForm.resx">
+      <DependentUpon>SetLabelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\SetSourceEditorForm2.resx">
+      <DependentUpon>SetSourceEditorForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\SetSourceEditorFormcs.resx">
+      <DependentUpon>SetSourceEditorFormcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\SetSourceEditor_langPfChangeForm2.resx">
+      <DependentUpon>SetSourceEditor_langPfChangeForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\SetStarterKitRootForm.resx">
+      <DependentUpon>SetStarterKitRootForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\SetUserButtonForm.resx">
+      <DependentUpon>SetUserButtonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\UpgradePsggForm.resx">
+      <DependentUpon>UpgradePsggForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\UpgradePsggSubForm.resx">
+      <DependentUpon>UpgradePsggSubForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog\WindowListForm.resx">
+      <DependentUpon>WindowListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog_createclone\CreateCloneForm.resx">
+      <DependentUpon>CreateCloneForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog_editbranch\EditBranchEditorForm.resx">
+      <DependentUpon>EditBranchEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\dialog_editbranch\EditBranchForm.resx">
+      <DependentUpon>EditBranchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\FillterForm.resx">
+      <DependentUpon>FillterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5000_ViewForm\ViewForm.resx">
+      <DependentUpon>ViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\5360_useExtEditorControl\ConfirmPickOutForm.resx">
+      <DependentUpon>ConfirmPickOutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\EditForm_nextForm3.resx">
+      <DependentUpon>EditForm_nextForm3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\EditForm_textForm_selectForm.resx">
+      <DependentUpon>EditForm_textForm_selectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5700_ItemEditForm\ItemEditForm.resx">
+      <DependentUpon>ItemEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5700_ItemEditForm\ItemEditForm_importOptionForm.resx">
+      <DependentUpon>ItemEditForm_importOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5700_ItemEditForm\ItemEditInputForm.resx">
+      <DependentUpon>ItemEditInputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5700_ItemEditForm\ItemEditNewForm.resx">
+      <DependentUpon>ItemEditNewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5800_CopyCollection\CCBmpForm.resx">
+      <DependentUpon>CCBmpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5800_CopyCollection\CCCreateForm.resx">
+      <DependentUpon>CCCreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5800_CopyCollection\CCForm2.resx">
+      <DependentUpon>CCForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5800_CopyCollection\CCForm2PageForm.resx">
+      <DependentUpon>CCForm2PageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="6200_msgboxForm\MsgBox2btnForm.resx">
+      <DependentUpon>MsgBox2btnForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="6200_msgboxForm\MsgBoxForm.resx">
+      <DependentUpon>MsgBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="6990_aboutForm\OssForm.resx">
+      <DependentUpon>OssForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\EditForm.resx">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\EditForm_bmpForm.resx">
+      <DependentUpon>EditForm_bmpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\EditForm_branchGotoForm.resx">
+      <DependentUpon>EditForm_branchGotoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\EditForm_branchSelectForm.resx">
+      <DependentUpon>EditForm_branchSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\EditForm_nextForm.resx">
+      <DependentUpon>EditForm_nextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\EditForm_nextForm2.resx">
+      <DependentUpon>EditForm_nextForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\EditForm_stateForm.resx">
+      <DependentUpon>EditForm_stateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="5300_EditForm\EditForm_textForm.resx">
+      <DependentUpon>EditForm_textForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="6000_ConfigForm\ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="6990_aboutForm\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="7000_DebugForm\DebugForm.resx">
+      <DependentUpon>DebugForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3000_Excel\ExcelColorPickForm.resx">
+      <DependentUpon>ExcelColorPickForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="0100_DesignSpec\デザイン仕様用.txt" />
+    <Content Include="8000_Util\_アプリ非依存ユーティリティ.txt" />
+    <Content Include="8100_Util_app\_アプリ依存ユーティリティ.txt" />
+    <Content Include="icon2.ico" />
+    <None Include="Resources\anchor-s.png" />
+    <None Include="Resources\pos_chang.png" />
+    <None Include="Resources\value_chang.png" />
+    <None Include="Resources\viewchange.png" />
+    <None Include="Resources\cc.png" />
+    <Content Include="statego.ico" />
+    <None Include="Resources\filedb_new.xlsx" />
+    <None Include="Resources\statego.ico" />
+    <None Include="Resources\reload2-s.png" />
+    <None Include="Resources\close-s.png" />
+    <None Include="Resources\reload2.png" />
+    <None Include="Resources\close2.png" />
+    <None Include="Resources\reload-s.png" />
+    <None Include="Resources\reload-l.png" />
+    <None Include="5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\doc\WebAdCheckControl.psgg" />
+    <None Include="Resources\reload.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\hold.png" />
+    <None Include="Resources\holdmark.png" />
+    <None Include="Resources\StateControl.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\StateViewer\WordStorage\WordStorage.csproj">
+      <Project>{205de666-76fc-426b-992a-849bbf2b6357}</Project>
+      <Name>WordStorage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="1210_GroupNodeDir\Cache\" />
+    <Folder Include="1510_Arrow\doc\" />
+    <Folder Include="5000_ViewForm\5100_ViewForm_StateControl\000_main\doc\" />
+    <Folder Include="5000_ViewForm\5100_ViewForm_StateControl\010_idle\doc\" />
+    <Folder Include="5000_ViewForm\5100_ViewForm_StateControl\020_checkonfocus\doc\" />
+    <Folder Include="5000_ViewForm\5100_ViewForm_StateControl\050_groupfocus\doc\" />
+    <Folder Include="5000_ViewForm\5100_ViewForm_StateControl\060_checkonfocusGF\doc\" />
+    <Folder Include="5000_ViewForm\5100_ViewForm_StateControl\070_draganddropGF\doc\" />
+    <Folder Include="5000_ViewForm\5100_ViewForm_StateControl\080_checkonfocusGN\doc\" />
+    <Folder Include="5000_ViewForm\5100_ViewForm_StateControl\090_draganddropGN\doc\" />
+    <Folder Include="5000_ViewForm\5100_ViewForm_StateControl\100_sliding\doc\" />
+    <Folder Include="5000_ViewForm\5100_ViewForm_StateControl\200_freearrow\doc\" />
+    <Folder Include="5300_EditForm\5320_EditForm_ClickControl\doc\" />
+    <Folder Include="5700_ItemEditForm\doc\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

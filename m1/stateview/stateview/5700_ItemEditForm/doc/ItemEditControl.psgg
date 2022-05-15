@@ -1,0 +1,1119 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=ItemEditControl.xlsx
+guid=d312a0ec-b893-45fb-b70a-5d6ece48b117
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,n006,,n007,,n008,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,,n015,n016,n017,,n018,n019,n01a
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s001a,s001b,s001c,s001e,s001d
+max_name_id=26
+max_state_id=30
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=gosubstate
+n014=return
+n015=branch
+n016=brcond
+n017=nowait
+n018=!dir
+n019=!pos
+n01a=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=E_MODE
+s0004=E_IMPORT
+s0005=S_CHECKMODE
+s0006=S_MAKE_TOPBAR
+s0007=E_GETTER
+s0008=S_MAKE_ITEMROWS
+s0009=S_MAKE_BORDER
+s000a=S_GETINI
+s000b=S_MODENONE
+s000c=S_WAITEVNT
+s000d=S_INIT
+s000e=C_CHECKCOL
+s000f=S_CONTEXTMENU
+s0010=S_EDIT
+s0011=S_INSERT
+s0012=S_REMOVE
+s0013=S_UP
+s0014=S_DOWN
+s0015=S_CANCEL
+s0016=S_IS_MODIFIABLE
+s0017=S_CHECKON
+s0018=S_CHECKOFF
+s0019=S_GETHELP
+s001a=S_SETUPVAL
+s001b=S_CONDCHG
+s001c=S_CLICK_OK
+s001d=S_HIDE_UNUSED
+s001e=S_LOCALIZE
+
+
+[s0001]
+n002=S_START
+n006=S_CHECKMODE
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=42,251
+n01a=100001
+
+[s0002]
+n002=S_END
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=2294,134
+n01a=100002
+
+[s0003]
+n001=(bitmap)
+n002=E_MODE
+n007=@@@
+public enum Mode {
+    none,
+    onload,
+    tick,
+
+}
+@@@
+
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=48,18
+n01a=100003
+
+[s0004]
+n001=(bitmap)
+n002=E_IMPORT
+n007=@@@
+public Mode  m_mode;
+public ItemEditForm m_form;
+public string m_evt;
+public int m_row;
+public int m_col;
+public string m_itemname;
+@@@
+
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=247,17
+n01a=100004
+
+[s0005]
+n001=(bitmap)
+n002=S_CHECKMODE
+n015=@@@
+brifc(S_GETINI);
+brelseifc(S_INIT);
+brelse(S_MODENONE);
+@@@
+
+n016=@@@
+m_mode==Mode.onload
+m_mode==Mode.tick
+?
+@@@
+
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=235,250
+n01a=100005
+
+[s0006]
+n001=(bitmap)
+n002=S_MAKE_TOPBAR
+n006=S_MAKE_BORDER
+n008=@@@
+//string[] m_slist = new string[]{  "S_", "E_", "C_" };
+@@@
+
+n00a=@@@
+make_topheader();
+make_toprows();
+
+@@@
+
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=997,35
+n01a=100006
+
+[s0007]
+n001=(bitmap)
+n002=E_GETTER
+n007=@@@
+public DataGridView m_dg { get { return m_form.dataGridView1; } }
+@@@
+
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=418,18
+n01a=100007
+
+[s0008]
+n001=(bitmap)
+n002=S_MAKE_ITEMROWS
+n006=S_LOCALIZE
+n00a=make_itemrows();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1390,35
+n01a=100008
+
+[s0009]
+n001=(bitmap)
+n002=S_MAKE_BORDER
+n006=S_MAKE_ITEMROWS
+n00a=make_borader();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1192,35
+n01a=100009
+
+[s000a]
+n001=(bitmap)
+n002=S_GETINI
+n006=S_GETHELP
+n008=public Info m_info;
+n00a=m_info = get_info();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=624,35
+n01a=100010
+
+[s000b]
+n001=(bitmap)
+n002=S_MODENONE
+n006=S_END
+n00a=m_mode = Mode.none;
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1994,131
+n01a=100011
+
+[s000c]
+n001=(bitmap)
+n002=S_WAITEVNT
+n00f=m_evt==null
+n015=@@@
+brifc(S_SETUPVAL);
+brelseifc(S_CLICK_OK);
+brelse(S_INIT);
+@@@
+
+n016=@@@
+m_evt == "cellclick"
+m_evt=="clickok"
+?
+@@@
+
+n017=nowait
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=621,501
+n01a=100012
+
+[s000d]
+n001=(bitmap)
+n002=S_INIT
+n006=S_WAITEVNT
+n00a=m_evt=null;
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=429,496
+n01a=100013
+
+[s000e]
+n001=(bitmap)
+n002=C_CHECKCOL
+n015=@@@
+brifc(?);
+brelse(?);
+@@@
+
+n016=@@@
+is_col(CN_INDEX)
+?
+@@@
+
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1185,338
+n01a=100014
+
+[s000f]
+n001=(bitmap)
+n002=S_CONTEXTMENU
+n00a=@@@
+m_evt=null;
+open_contextmenu();
+//m_form.contextMenuStrip_main.Show(Cursor.Position);
+
+@@@
+
+n00f=m_evt==null
+n015=@@@
+brifc(S_INIT);
+brelseifc(S_EDIT);
+brelseifc(S_CONDCHG);
+brelseifc(S_CHECKON);
+brelseifc(S_CHECKOFF);
+brelseifc(S_INSERT);
+brelseifc(S_REMOVE);
+brelseifc(S_UP);
+brelseifc(S_DOWN);
+brelseifc(S_CANCEL);
+brelse(S_CANCEL);
+@@@
+
+n016=@@@
+m_evt=="msm_closing"
+m_evt=="msm_edit"
+m_evt=="msm_condchg"
+m_evt=="msm_checkon"
+m_evt=="msm_checkoff"
+m_evt=="msm_insert"
+m_evt=="msm_remove"
+m_evt=="msm_up"
+m_evt=="msm_down"
+m_evt=="msm_cancel"
+?
+@@@
+
+n017=nowait
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1199,740
+n01a=100015
+
+[s0010]
+n001=(bitmap)
+n002=S_EDIT
+n006=S_INIT
+n00a=open_input_start();
+n00f=!open_input_done()
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1495,437
+n01a=100016
+
+[s0011]
+n001=(bitmap)
+n002=S_INSERT
+n006=S_INIT
+n00a=open_new_start();
+n00f=!open_new_done()
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1497,658
+n01a=100017
+
+[s0012]
+n001=(bitmap)
+n002=S_REMOVE
+n006=S_INIT
+n00a=ask_delete_start();
+n00f=!ask_delete_done()
+n011=@@@
+var b = ask_delete_result();
+if (b)
+{
+    remove_row();
+}
+@@@
+
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1496,731
+n01a=100018
+
+[s0013]
+n001=(bitmap)
+n002=S_UP
+n006=S_INIT
+n00a=up_row();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1498,899
+n01a=100019
+
+[s0014]
+n001=(bitmap)
+n002=S_DOWN
+n006=S_INIT
+n00a=down_row();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1500,954
+n01a=100020
+
+[s0015]
+n001=(bitmap)
+n002=S_CANCEL
+n006=S_INIT
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1502,1012
+n01a=100021
+
+[s0016]
+n001=(bitmap)
+n002=S_IS_MODIFIABLE
+n009=var b = is_modifiable_row();
+n015=@@@
+brifc(S_CONTEXTMENU);
+brelse(S_INIT);
+@@@
+
+n016=@@@
+b
+?
+@@@
+
+n017=nowait
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1029,511
+n01a=100022
+
+[s0017]
+n001=(bitmap)
+n002=S_CHECKON
+n006=S_INIT
+n00a=check_on();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1494,549
+n01a=100023
+
+[s0018]
+n001=(bitmap)
+n002=S_CHECKOFF
+n006=S_INIT
+n00a=check_off();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1497,605
+n01a=100024
+
+[s0019]
+n001=(bitmap)
+n002=S_GETHELP
+n006=S_MAKE_TOPBAR
+n008=public Help m_help;
+n00a=m_help = get_help();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=812,35
+n01a=100025
+
+[s001a]
+n001=(bitmap)
+n002=S_SETUPVAL
+n006=S_IS_MODIFIABLE
+n00a=cellclick_init();
+n017=nowait
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=816,528
+n01a=100026
+
+[s001b]
+n001=(bitmap)
+n002=S_CONDCHG
+n006=S_INIT
+n00a=cond_chg();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1495,502
+n01a=100027
+
+[s001c]
+n001=(bitmap)
+n002=S_CLICK_OK
+n006=S_INIT
+n00a=click_ok();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=824,639
+n01a=100028
+
+[s001d]
+n001=#E^4^eYQnzmSv^uCSSVq4gQ==
+n002=S_HIDE_UNUSED
+n003=@@@
+2019.9.23
+不要になったカラムを消す
+@@@
+
+n006=S_MODENONE
+n00a=hide_unused();
+n018=@@@
+/
+(100,100)
+The root
+@@@
+
+n019=1795,35
+n01a=100029
+
+[s001e]
+n002=S_LOCALIZE
+n006=S_HIDE_UNUSED
+n00a=localize();
+n018=@@@
+/
+(100,100)
+
+@@@
+
+n019=1597,35
+n01a=100030
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/04/25 9:01:30
+; * pssgEditor version : 0.64.9984.20f5788fb90322cd950bef51697078a471a3b45d
+psggfile=@@@
+ItemEditControl.psgg
+@@@
+xlsfile=@@@
+ItemEditControl.xlsx
+@@@
+guid=@@@
+d312a0ec-b893-45fb-b70a-5d6ece48b117
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Saved
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":42,"y":251}},{"Key":"S_END","Value":{"x":2294,"y":134}},{"Key":"E_MODE","Value":{"x":48,"y":18}},{"Key":"E_IMPORT","Value":{"x":247,"y":17}},{"Key":"S_CHECKMODE","Value":{"x":235,"y":250}},{"Key":"S_MAKE_TOPBAR","Value":{"x":997,"y":35}},{"Key":"E_GETTER","Value":{"x":418,"y":18}},{"Key":"S_MAKE_ITEMROWS","Value":{"x":1390,"y":35}},{"Key":"S_MAKE_BORDER","Value":{"x":1192,"y":35}},{"Key":"S_GETINI","Value":{"x":624,"y":35}},{"Key":"S_MODENONE","Value":{"x":1994,"y":131}},{"Key":"S_WAITEVNT","Value":{"x":621,"y":501}},{"Key":"S_INIT","Value":{"x":429,"y":496}},{"Key":"S_CONTEXTMENU","Value":{"x":1199,"y":740}},{"Key":"C_CHECKCOL","Value":{"x":1185,"y":338}},{"Key":"S_EDIT","Value":{"x":1495,"y":437}},{"Key":"S_INSERT","Value":{"x":1497,"y":658}},{"Key":"S_REMOVE","Value":{"x":1496,"y":731}},{"Key":"S_UP","Value":{"x":1498,"y":899}},{"Key":"S_DOWN","Value":{"x":1500,"y":954}},{"Key":"S_CANCEL","Value":{"x":1502,"y":1012}},{"Key":"S_IS_MODIFIABLE","Value":{"x":1029,"y":511}},{"Key":"S_CHECKON","Value":{"x":1494,"y":549}},{"Key":"S_CHECKOFF","Value":{"x":1497,"y":605}},{"Key":"S_GETHELP","Value":{"x":812,"y":35}},{"Key":"S_SETUPVAL","Value":{"x":816,"y":528}},{"Key":"S_CONDCHG","Value":{"x":1495,"y":502}},{"Key":"S_CLICK_OK","Value":{"x":824,"y":639}},{"Key":"S_HIDE_UNUSED","Value":{"x":1795,"y":35}},{"Key":"S_MAKE_ITEMROWS1","Value":{"x":1597,"y":35}},{"Key":"S_LOCALIZE","Value":{"x":1597,"y":35}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=45
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+
+[[embed]]
+
+eof>>>
+
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[vars]]
+
+    <<<?init
+    //
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+<<<?gosubstate
+    GoSubState([[gosubstate]],[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?return
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto([[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+
+[setting]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 739079cebe25b5952ab8fbe78f9986bdd853f9ca
+@@@
+
+
+
+psgg=ItemEditControl.psgg
+xls=ItemEditControl.xlsx
+sub_src=
+gen_src=ItemEditControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=helpweb.html
+
+src_enc=utf-8
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 739079cebe25b5952ab8fbe78f9986bdd853f9ca
+@@@
+
+
+
+lang=c#
+framework=vs2015
+
+statemachie=ItemEditControl
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm\doc
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm
+@@@
+
+genrdir=..
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+[jpn]
+
+title=C# スタートキット  2018/12/12
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# 新機能
+- macro埋め込み
+-サブルーチン機能
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm\doc
+
+  以下のファイルを作成します。
+
+      ItemEditControl.pssg   --- エディタで次のエクセルファイルを開く。
+      ItemEditControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm
+
+  以下のファイルが作成されます。
+
+      ItemEditControl.cs  --- Excelファイルからの変換コードを本ファイルに埋め込む。
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+
+[en]
+
+title=C# STARTER KIT 2018/12/12
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# New Feature
+- Embed macro in the target source.
+- Calling subroutine feature.
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm\doc
+
+  File:
+
+      ItemEditControl.pssg  --- The editor opens the below excel file.
+      ItemEditControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\5700_ItemEditForm
+
+　File:
+      ItemEditControl.cs   -- The editor will insert converted source code to this file.
+
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+@@@
+
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[embed]
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[members]
+jpn=@@@
+メンバ変数及び関数等を指定する。
+@@@
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[basestate]
+jpn=@@@
+継承元を指定する。
+@@@
+en=@@@
+Specify inheritance source.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[vars]
+jpn=@@@
+変数宣言を指定する。
+@@@
+en=@@@
+Specify variable definitions.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[gosubstate]
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+jpn=@@@
+サブルーチン処理を終了するときに指定する。"return"等を記述。
+@@@
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+hash=#E^4^eYQnzmSv^uCSSVq4gQ==
+
+###BITMAP-DATA-BEGIN###
+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
+###BITMAP-DATA-END###
+
+

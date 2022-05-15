@@ -1,32 +1,31 @@
-# Prerequisites
-*.d
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
 *.exe
-*.out
-*.app
+*.dll
+*.obj
+*.db
+*.cache
+*.pdb
+*.suo
+*.zip
+*.force
+*.opendb
+*.user
+*.sdf
+*.BAK
+
+~*.*
+
+obj/
+bin/
+
+
+m1/StateViewer/.vs/*
+m1/StateViewer/obj/*
+m1/StateViewer/bin/*
+m1/StateViewer/packages/*
+
+m1/StateViewer/StateViewer/bin/Debug/StateGo.exe.CodeAnalysisLog.xml
+
+Work/*
+head.txt

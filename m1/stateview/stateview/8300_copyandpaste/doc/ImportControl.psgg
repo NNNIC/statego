@@ -1,0 +1,1188 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=ImportControl.xlsx
+guid=9e3b7592-26b3-4e94-8406-98fd6f4eaa01
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,n006,,n007,,n008,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,,n015,n016,n017,n018,,n019,n01a,n01b
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,s000f,s0010,s0011,s0012,s0013,s0014,s0016,s0015,s0018,s0017
+max_name_id=27
+max_state_id=24
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=gosubstate
+n014=return
+n015=branch
+n016=branch-cmt
+n017=brcond
+n018=nowait
+n019=!dir
+n01a=!pos
+n01b=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_0003
+s0004=E_ENUM
+s0005=E_INPUT
+s0006=E_DICDIC
+s0007=S_0004
+s0008=E_ERROR
+s0009=S_0005
+s000a=E_INFO
+s000b=S_0006
+s000c=S_0007
+s000d=S_0008
+s000e=S_0009
+s000f=S_0011
+s0010=S_0010
+s0011=S_0012
+s0012=S_0013
+s0013=S_0002
+s0014=S_0001
+s0015=S_0014
+s0016=S_0015
+s0017=S_0016
+s0018=S_0017
+
+
+[s0001]
+n002=S_START
+n006=S_0004
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=36,272
+n01b=100001
+
+[s0002]
+n001=(bitmap)
+n002=S_END
+n004=ViewFormStateControl.psgg
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=2075,888
+n01b=100002
+
+[s0003]
+n001=(bitmap)
+n002=S_0003
+n003=クリップボードテキストから infodicとdicdirを取得する。
+n008=string m_cs; //クリップボードストリング
+n00a=@@@
+m_cs = Clipboard.GetText();
+m_dicdic = get_dicdic(m_cs);
+
+@@@
+
+n015=@@@
+brifc(S_0005);
+brelse(S_END);
+@@@
+
+n016=@@@
+?
+?
+@@@
+
+n017=@@@
+m_error==null
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=428,252
+n01b=100003
+
+[s0004]
+n001=(bitmap)
+n002=E_ENUM
+n007=@@@
+enum IMPORT_TYPE
+{
+    NONE,
+    POS_CHANGE,
+    DIRPOS_CHANGE,
+}
+
+
+
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=53,21
+n01b=100004
+
+[s0005]
+n001=(bitmap)
+n002=E_INPUT
+n007=@@@
+public Point m_click_pos;
+public bool  m_wo_outflow;//出力先除外
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=220,19
+n01b=100005
+
+[s0006]
+n001=(bitmap)
+n002=E_DICDIC
+n003=dicdic,infodic,bmpdocの変数
+n007=@@@
+Dictionary<string, Dictionary<string,string>> m_dicdic;
+Dictionary<string, string> m_infodic;
+Dictionary<string, string> m_bmpdic;
+
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=400,15
+n01b=100006
+
+[s0007]
+n001=(bitmap)
+n002=S_0004
+n003=初期化
+n006=S_0003
+n00a=m_error = null;
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=241,265
+n01b=100008
+
+[s0008]
+n001=(bitmap)
+n002=E_ERROR
+n007=public string m_error;
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=220,120
+n01b=100007
+
+[s0009]
+n001=(bitmap)
+n002=S_0005
+n003=@@@
+infodic取得
+bmpdic取得
+@@@
+
+n00a=@@@
+m_infodic = get_infodic(ref m_dicdic);
+m_bmpdic = get_bmpdic(ref m_dicdic);
+m_src_dir = DictionaryUtil.Get(m_infodic,"curdir").Trim();
+
+@@@
+
+n015=@@@
+brifc(S_0006);
+brelse(S_END);
+@@@
+
+n016=@@@
+?
+?
+@@@
+
+n017=@@@
+m_error==null
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=674,255
+n01b=100009
+
+[s000a]
+n001=(bitmap)
+n002=E_INFO
+n007=@@@
+string m_src_dir;
+Dictionary<string,Point> m_src_nodegroup_pos_list;
+Dictionary<string,string> m_src_nodegroup_comment_list;
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=598,4
+n01b=100011
+
+[s000b]
+n001=(bitmap)
+n002=S_0006
+n003=nodegroup情報取得
+n00a=@@@
+m_src_nodegroup_comment_list=get_nodegroup_comment_list(m_infodic);
+m_src_nodegroup_pos_list=get_nodegroup_pos_list(m_infodic);
+@@@
+
+n015=@@@
+brifc(S_0007);
+brelse(S_END);
+@@@
+
+n016=@@@
+?
+?
+@@@
+
+n017=@@@
+m_error==null
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=927,256
+n01b=100010
+
+[s000c]
+n001=(bitmap)
+n002=S_0007
+n003=コピー元のdir とコピー先の dirを調整する
+n00a=adjust_dirpath(ref m_dicdic, m_src_dir);
+n015=@@@
+brifc(S_0008);
+brelse(S_END);
+@@@
+
+n016=@@@
+?
+?
+@@@
+
+n017=@@@
+m_error == null
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=46,583
+n01b=100012
+
+[s000d]
+n001=(bitmap)
+n002=S_0008
+n003=コピー位置算出のため、直下のステートとグループの位置を囲む最少矩形を求める。
+n008=@@@
+Point m_pmin;
+Point m_pmax;
+Point m_psize;
+@@@
+
+n00a=@@@
+get_maxmin_p(G.m_target_pathdir, m_src_nodegroup_pos_list, m_dicdic,out m_pmin,out m_pmax, out m_psize);
+@@@
+
+n015=@@@
+brifc(S_0015);
+brelse(S_END);
+@@@
+
+n016=@@@
+?
+?
+@@@
+
+n017=@@@
+m_error == null
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=299,563
+n01b=100013
+
+[s000e]
+n001=(bitmap)
+n002=S_0009
+n003=直下のステートとグループのそれぞれの位置をクリックポジションから算出して移動
+n00a=@@@
+change_all_pos(ref m_dicdic, ref m_src_nodegroup_pos_list, G.m_target_pathdir, m_pmin, m_pmax, m_psize, m_click_pos);
+@@@
+
+n015=@@@
+brifc(S_0010);
+brelse(S_END);
+@@@
+
+n016=@@@
+?
+?
+@@@
+
+n017=@@@
+m_error==null
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=734,554
+n01b=100014
+
+[s000f]
+n001=(bitmap)
+n002=S_0011
+n003=dicdic内の直下の同名グループのリネーム
+n00a=@@@
+rename_if_same_group_exists(G.m_target_pathdir, ref m_dicdic, ref m_src_nodegroup_pos_list, ref m_src_nodegroup_comment_list);
+@@@
+
+n015=@@@
+brifc(S_0014);
+brelse(S_END);
+@@@
+
+n016=@@@
+?
+?
+@@@
+
+n017=@@@
+m_error==null
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=295,980
+n01b=100016
+
+[s0010]
+n001=(bitmap)
+n002=S_0010
+n003=dicdic内の同名のステート時にリネーム
+n00a=@@@
+rename_if_same_state_exists(ref m_dicdic);
+@@@
+
+n015=@@@
+brifc(S_0011);
+brelse(S_END);
+@@@
+
+n016=@@@
+?
+?
+@@@
+
+n017=@@@
+m_error==null
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=69,988
+n01b=100015
+
+[s0011]
+n001=(bitmap)
+n002=S_0012
+n003=@@@
+dicdicのステートをコピー
+groupnode_..._listの関連を反映
+@@@
+
+n00a=@@@
+copy_from_states_in_dicdic(m_dicdic, m_src_nodegroup_pos_list, m_src_nodegroup_comment_list);
+increment_cc_counter();
+@@@
+
+n015=@@@
+brifc(S_0013);
+brelse(S_END);
+@@@
+
+n016=@@@
+?
+?
+@@@
+
+n017=@@@
+m_error==null
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=273,1266
+n01b=100017
+
+[s0012]
+n001=(bitmap)
+n002=S_0013
+n003=フォーカスリストの作成
+n006=S_0016
+n00a=@@@
+setup_focus_list(G.m_target_pathdir, m_dicdic,m_src_nodegroup_pos_list);
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=500,1262
+n01b=100018
+
+[s0013]
+n001=(bitmap)
+n002=S_0002
+n003=@@@
+BitmapをfileDBキャッシュへ
+最終コピー前に
+@@@
+
+n006=S_0012
+n00a=write_bimtap_filedb(m_bmpdic);
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=63,1274
+n01b=100021
+
+[s0014]
+n001=(bitmap)
+n002=S_0001
+n003=histroy save
+n006=S_0017
+n00a=@@@
+                History.SaveForce("Pasting was done.");
+
+
+@@@
+
+n019=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n01a=954,1261
+n01b=100020
+
+[s0015]
+n002=S_0014
+n003=流出先除外指定時に、流出先を除外させる。
+n006=S_0002
+n00a=@@@
+if (m_wo_outflow)
+{
+    exclude_outflow(ref m_dicdic);
+}
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=545,985
+n01b=100022
+
+[s0016]
+n002=S_0015
+n003=はみ出す場合のコピー位置調整。
+n006=S_0009
+n00a=@@@
+adjust_location(m_pmin,m_psize,ref m_click_pos);
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=516,557
+n01b=100023
+
+[s0017]
+n002=S_0016
+n003=カーソルポインタを移動
+n006=S_0001
+n00a=@@@
+Cursor.Position = Point.Round(G.vf_sc.GetScreenPosFormPointOnImage(m_click_pos));
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=724,1265
+n01b=100024
+
+[s0018]
+n002=S_0017
+n003=focus track
+n006=S_END
+n00a=@@@
+FocusTrack.Record(G.vf_sc.m_group_focus_list);
+
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=1166,1258
+n01b=100025
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/05/24 14:18:52
+; * pssgEditor version : 0.64.48831.no hash because of debug
+psggfile=@@@
+ImportControl.psgg
+@@@
+xlsfile=@@@
+ImportControl.xlsx
+@@@
+guid=@@@
+9e3b7592-26b3-4e94-8406-98fd6f4eaa01
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Saved
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"This is the root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":36,"y":272}},{"Key":"S_END","Value":{"x":2075,"y":888}},{"Key":"E_ENUM","Value":{"x":53,"y":21}},{"Key":"E_INPUT","Value":{"x":220,"y":19}},{"Key":"E_DICDIC","Value":{"x":400,"y":15}},{"Key":"S_0003","Value":{"x":428,"y":252}},{"Key":"E_ERROR","Value":{"x":220,"y":120}},{"Key":"S_0004","Value":{"x":241,"y":265}},{"Key":"S_0005","Value":{"x":674,"y":255}},{"Key":"E_INFO","Value":{"x":598,"y":4}},{"Key":"S_0006","Value":{"x":927,"y":256}},{"Key":"S_0007","Value":{"x":46,"y":583}},{"Key":"S_0008","Value":{"x":299,"y":563}},{"Key":"S_0009","Value":{"x":734,"y":554}},{"Key":"S_0010","Value":{"x":69,"y":988}},{"Key":"S_0011","Value":{"x":295,"y":980}},{"Key":"S_0012","Value":{"x":273,"y":1266}},{"Key":"S_0013","Value":{"x":500,"y":1262}},{"Key":"S_0001","Value":{"x":954,"y":1261}},{"Key":"S_0002","Value":{"x":63,"y":1274}},{"Key":"S_0014","Value":{"x":545,"y":985}},{"Key":"S_0015","Value":{"x":516,"y":557}},{"Key":"S_0016","Value":{"x":724,"y":1265}},{"Key":"S_0017","Value":{"x":1166,"y":1258}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"},{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"END"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=4
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"init","Value":{"height":663,"width":1134}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+
+[[embed]]
+
+eof>>>
+
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[vars]]
+
+    <<<?init
+    //
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+<<<?gosubstate
+    GoSubState([[gosubstate]],[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?return
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto([[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 0e5d1e482ea7edce6fd0b43d8572377598f3bfc6
+@@@
+
+
+
+psgg=ImportControl.psgg
+xls=ImportControl.xlsx
+sub_src=
+gen_src=ImportControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=helpweb.html
+
+src_enc=utf-8
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 0e5d1e482ea7edce6fd0b43d8572377598f3bfc6
+@@@
+
+
+
+lang=c#
+framework=vs2015
+
+statemachie=ImportControl
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8300_copyandpaste\doc
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8300_copyandpaste
+@@@
+
+genrdir=..
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+[jpn]
+
+title=C# スタートキット  2018/12/12
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# 新機能
+- macro埋め込み
+-サブルーチン機能
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8300_copyandpaste\doc
+
+  以下のファイルを作成します。
+
+      ImportControl.pssg   --- エディタで次のエクセルファイルを開く。
+      ImportControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8300_copyandpaste
+
+  以下のファイルが作成されます。
+
+      ImportControl.cs  --- Excelファイルからの変換コードを本ファイルに埋め込む。
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+
+[en]
+
+title=C# STARTER KIT 2018/12/12
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# New Feature
+- Embed macro in the target source.
+- Calling subroutine feature.
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8300_copyandpaste\doc
+
+  File:
+
+      ImportControl.pssg  --- The editor opens the below excel file.
+      ImportControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\stateview\stateview\8300_copyandpaste
+
+　File:
+      ImportControl.cs   -- The editor will insert converted source code to this file.
+
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[embed]
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[members]
+jpn=@@@
+メンバ変数及び関数等を指定する。
+@@@
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[basestate]
+jpn=@@@
+継承元を指定する。
+@@@
+en=@@@
+Specify inheritance source.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[vars]
+jpn=@@@
+変数宣言を指定する。
+@@@
+en=@@@
+Specify variable definitions.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[gosubstate]
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+jpn=@@@
+サブルーチン処理を終了するときに指定する。"return"等を記述。
+@@@
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+wait-cmt=
+embed=
+gosubstate=
+branch=
+!dir=
+return=
+post_wait-cmt=
+nowait=
+members=
+thumbnail=
+update-cmt=
+post_wait=
+state-cmt=
+!pos=
+!uuid=
+nextstate=
+state=
+S_=
+brcond=
+update=
+init-cmt=
+basestate=
+vars=
+C_=
+E_=
+init-ref=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+basestate=read_only,share,S.+
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

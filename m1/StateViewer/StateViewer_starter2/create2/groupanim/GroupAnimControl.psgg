@@ -1,0 +1,785 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=GroupAnimControl.xlsx
+guid=854d0489-6e78-49fb-9b46-5ee73d47b85b
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,,n006,n007,n008,,n009,n00a,,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,n013
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,s000f,s0010,s0011,s0012,s0013,s0014
+max_name_id=19
+max_state_id=20
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=init
+n007=init-cmt
+n008=init-ref
+n009=update
+n00a=update-cmt
+n00b=wait
+n00c=wait-cmt
+n00d=post_wait
+n00e=post_wait-cmt
+n00f=branch
+n010=nowait
+n011=!dir
+n012=!pos
+n013=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_G4toG6
+s0004=S_MOVENEXT
+s0005=S_INIT
+s0006=S_WAIT_REQUEST
+s0007=S_G1toG2
+s0008=S_G2toG3
+s0009=S_G3toG4
+s000a=S_G4toG5
+s000b=S_MOVEBACK
+s000c=S_G5toG4
+s000d=S_G4toG3
+s000e=S_G3toG2
+s000f=S_G2toG1
+s0010=S_G5toG6
+s0011=S_G6toG5
+s0012=S_G6toG4
+s0013=S_G2toG6
+s0014=S_G6toG2
+
+
+[s0001]
+n001=(bitmap)
+n002=S_START
+n005=S_INIT
+n010=nowait
+n012=90,171
+n013=100001
+
+[s0002]
+n002=S_END
+n012=832,276
+n013=100002
+
+[s0003]
+n001=(bitmap)
+n002=S_G4toG6
+n005=S_MOVENEXT
+n006=setnext(4,6);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=363,439
+n013=100018
+
+[s0004]
+n001=(bitmap)
+n002=S_MOVENEXT
+n003=移動
+n005=S_WAIT_REQUEST
+n006=movefwd_start(0.1f);
+n009=movefwd_update();
+n00b=movefwd_isdone()
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=642,243
+n013=100004
+
+[s0005]
+n001=(bitmap)
+n002=S_INIT
+n003=initialize
+n005=S_WAIT_REQUEST
+n006=init();
+n010=nowait
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=88,334
+n013=100005
+
+[s0006]
+n001=(bitmap)
+n002=S_WAIT_REQUEST
+n003=リクエスト待ち
+n00f=@@@
+br_G1toG2(S_G1toG2);
+br_G2toG3(S_G2toG3);
+br_G3toG4(S_G3toG4);
+br_G4toG5(S_G4toG5);
+br_G5toG6(S_G5toG6);
+br_G4toG6(S_G4toG6);
+br_G2toG6(S_G2toG6);
+br_G6toG5(S_G6toG5);
+br_G5toG4(S_G5toG4);
+br_G4toG3(S_G4toG3);
+br_G3toG2(S_G3toG2);
+br_G2toG1(S_G2toG1);
+br_G6toG4(S_G6toG4);
+br_G6toG2(S_G6toG2);
+@@@
+
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=72,540
+n013=100006
+
+[s0007]
+n001=(bitmap)
+n002=S_G1toG2
+n005=S_MOVENEXT
+n006=setnext(1,2);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=361,118
+n013=100007
+
+[s0008]
+n001=(bitmap)
+n002=S_G2toG3
+n005=S_MOVENEXT
+n006=setnext(2,3);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=361,180
+n013=100008
+
+[s0009]
+n001=(bitmap)
+n002=S_G3toG4
+n005=S_MOVENEXT
+n006=setnext(3,4);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=354,248
+n013=100009
+
+[s000a]
+n001=(bitmap)
+n002=S_G4toG5
+n005=S_MOVENEXT
+n006=setnext(4,5);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=354,311
+n013=100010
+
+[s000b]
+n001=(bitmap)
+n002=S_MOVEBACK
+n003=移動
+n005=S_WAIT_REQUEST
+n006=movebk_start(0.1f);
+n009=movebk_update();
+n00b=movebk_isdone()
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=634,646
+n013=100011
+
+[s000c]
+n001=(bitmap)
+n002=S_G5toG4
+n005=S_MOVEBACK
+n006=setback(5,4);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=377,618
+n013=100012
+
+[s000d]
+n001=(bitmap)
+n002=S_G4toG3
+n005=S_MOVEBACK
+n006=setback(4,3);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=378,675
+n013=100013
+
+[s000e]
+n001=(bitmap)
+n002=S_G3toG2
+n005=S_MOVEBACK
+n006=setback(3,2);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=376,735
+n013=100014
+
+[s000f]
+n001=(bitmap)
+n002=S_G2toG1
+n003=G1へ
+n005=S_MOVEBACK
+n006=setback(2,1);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=375,802
+n013=100015
+
+[s0010]
+n001=(bitmap)
+n002=S_G5toG6
+n005=S_MOVENEXT
+n006=setnext(5,6);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=356,374
+n013=100016
+
+[s0011]
+n001=(bitmap)
+n002=S_G6toG5
+n005=S_MOVEBACK
+n006=setback(6,5);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=376,563
+n013=100017
+
+[s0012]
+n001=(bitmap)
+n002=S_G6toG4
+n005=S_MOVEBACK
+n006=setback(6,4);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=372,874
+n013=100019
+
+[s0013]
+n001=(bitmap)
+n002=S_G2toG6
+n005=S_MOVENEXT
+n006=setnext(2,6);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=369,498
+n013=100020
+
+[s0014]
+n001=(bitmap)
+n002=S_G6toG2
+n005=S_MOVEBACK
+n006=setback(6,2);
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=374,942
+n013=100021
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2022/05/07 14:37:30
+; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
+psggfile=@@@
+GroupAnimControl.psgg
+@@@
+xlsfile=@@@
+GroupAnimControl.xlsx
+@@@
+guid=@@@
+854d0489-6e78-49fb-9b46-5ee73d47b85b
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Initilized
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":90,"y":171}},{"Key":"S_END","Value":{"x":832,"y":276}},{"Key":"S_INIT","Value":{"x":88,"y":334}},{"Key":"S_WAIT_REQUEST","Value":{"x":72,"y":540}},{"Key":"S_MOVENEXT","Value":{"x":642,"y":243}},{"Key":"S_G1toG2","Value":{"x":361,"y":118}},{"Key":"S_G2toG3","Value":{"x":361,"y":180}},{"Key":"S_G3toG4","Value":{"x":354,"y":248}},{"Key":"S_G4toG5","Value":{"x":354,"y":311}},{"Key":"S_MOVEBACK","Value":{"x":634,"y":646}},{"Key":"S_G5toG4","Value":{"x":377,"y":618}},{"Key":"S_G4toG3","Value":{"x":378,"y":675}},{"Key":"S_G3toG2","Value":{"x":376,"y":735}},{"Key":"S_G2toG1","Value":{"x":375,"y":802}},{"Key":"S_G4toG6","Value":{"x":363,"y":439}},{"Key":"S_G5toG6","Value":{"x":356,"y":374}},{"Key":"S_G6toG5","Value":{"x":376,"y":563}},{"Key":"S_G6toG4","Value":{"x":372,"y":874}},{"Key":"S_G2toG6","Value":{"x":369,"y":498}},{"Key":"S_G6toG2","Value":{"x":374,"y":942}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=0
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=9
+comment_font_size=0
+contents_font_size=0
+state_width=100
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=10
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=0
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=GroupAnimControl_created.cs
+::tempfunc=template-func.txt
+:enc=utf-8
+::
+public partial class GroupAnimControl : StateManager {
+
+    public void Start()
+    {
+        Goto(S_START);
+    }
+    public bool IsEnd()
+    {
+        return CheckState(S_END);
+    }
+
+
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](bool bFirst)
+{
+    if (bFirst)
+    {
+        [[init]]
+    }
+
+    [[update]]
+
+    <<<?wait
+    if (![[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    [[branch]]
+
+    <<<?nextstate
+    if (!HasNextState())
+    {
+        SetNextState([[nextstate]]);
+    }
+    >>>
+
+    if (HasNextState())
+    {
+        <<<?nowait
+            NoWait();
+        >>>
+
+        GoNextState();
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=GroupAnimControl.psgg
+xls=GroupAnimControl.xlsx
+sub_src=GroupAnimControl.cs
+gen_src=GroupAnimControl_created.cs
+
+manager_src=StateManager.cs
+manager_dir=base
+
+template_src=template-source.txt
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=helpweb.html
+
+[setupinfo]
+
+; converter=user.dll
+
+lang=c#
+framework=
+
+prefix=GroupAnim
+xlsdir=C:\Users\gea01\Documents\psgg\psgg-editor\m1\StateViewer\StateViewer_starter2\create2\groupanim
+gendir=C:\Users\gea01\Documents\psgg\psgg-editor\m1\StateViewer\StateViewer_starter2\create2\groupanim
+genrdir=.
+incrdir=.
+
+[macro]
+
+@branch=br_MOVE({%1},"{%0}");
+
+[jpn]
+title=C# サンプル 1
+
+detail=@@@
+
+C# 用のステートマシンを作成します。
+
+# ドキュメント用フォルダ
+   ステート図ファイルとEditor起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\StateViewer\StateViewer_starter2\create2\groupanim
+
+  以下のファイルを作成します。
+
+      GroupAnimControl.pssg   --- PSSG Editorで次のエクセルファイルを開く。
+      GroupAnimControl.xlsx   --- ステート図格納用Excelファイル。PSSG Editorが編集。
+
+# ソース用フォルダ
+　PSSG Editorが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\StateViewer\StateViewer_starter2\create2\groupanim
+
+  以下のファイルが作成されます。
+
+      GroupAnimControl_created.cs  --- Excelファイルからの変換ソースコード。変換プロセスの度に上書きされる。
+                                        ※生成直後は関数なしのクラス定義のみ
+
+     GroupAnimControl.cs          --- ユーザ実装用　（ここにプログラムを書く！）
+                                        ※生成直後は関数なしのクラス定義のみ
+
+# 共通管理クラスファイル
+
+　以下に作成されます。
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\StateViewer\StateViewer_starter2\create2\groupanim/base/StateManager.cs
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+記 2018.7.7
+@@@
+
+
+[en]
+title=C# Sample 1
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\StateViewer\StateViewer_starter2\create2\groupanim
+
+  File:
+
+      GroupAnimControl.pssg  --- PSSG Editor opens the below excel file.
+      GroupAnimControl.xlsx  --- Excel File that has a state chart. PSSG Editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by PSSG Editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\StateViewer\StateViewer_starter2\create2\groupanim
+
+　File:
+      GroupAnimControl_created.cs   -- PSSG Editor will convert from the excel file to this file. This file will overwriten whenever using the converting process of PSSG Editor.
+                                        * The file has only a class define without methods immediately after this creation.
+
+      GroupAnimControl.cs　　　　　 -- For implementation. (You have to write program in this file!!)
+                                        * The file has only class define without methods immediately after this creation.
+
+# Common State Manager Class File
+
+  File:
+
+      C:\Users\gea01\Documents\psgg\psgg-editor\m1\StateViewer\StateViewer_starter2\create2\groupanim/base/StateManager.cs
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+
+
+Wrote 2018.7.7
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'yes'を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'yes' if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+
