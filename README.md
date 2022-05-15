@@ -20,3 +20,7 @@ ex) ```set NUGET=C:\nuget\nuget.exe```
 - git  
    https://git-scm.com/download/win
 
+# Build
+
+Run BuildControl.bat
+
