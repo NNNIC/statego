@@ -60,7 +60,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>E6A1807EFB95F21CE3FD3DB5C7D9B554EA5D8818</ManifestCertificateThumbprint>
