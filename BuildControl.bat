@@ -88,7 +88,7 @@ goto :S_START
     ::
         if "%MSBUILD14%"=="" set MSBUILD14=C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe
         if "%MSBUILD15%"=="" set MSBUILD15=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe
-        if "%NUGET%"=="" set NUGET=%CD%\..\nuget.exe
+        if "%NUGET%"=="" set NUGET=C:\nuget\nuget.exe
         goto :S_0004
         goto :S_0003
     ::
@@ -99,6 +99,8 @@ goto :S_START
         if not exist "%MSBUILD14%" (
             goto :S_0005
         ) else if not exist "%MSBUILD15%" (
+            goto :S_0005
+        ) else if not exist "%NUGET%" (
             goto :S_0005
         ) else goto :S_0006
         goto :S_0004

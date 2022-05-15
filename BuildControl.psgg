@@ -137,7 +137,7 @@ n006=S_0004
 n007=@@@
 if "%MSBUILD14%"=="" set MSBUILD14=C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe
 if "%MSBUILD15%"=="" set MSBUILD15=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe
-if "%NUGET%"=="" set NUGET=%CD%\..\nuget.exe
+if "%NUGET%"=="" set NUGET=C:\nuget\nuget.exe
 @@@
 
 n00c=@@@
@@ -173,18 +173,21 @@ n003=環境存在確認
 n009=@@@
 brifc(S_0005);
 brelseifc(S_0005);
+brelseifc(S_0005);
 brelse(S_0006);
 @@@
 
 n00a=@@@
 VS2015
 VS2017
+NUGET
 ?
 @@@
 
 n00b=@@@
 not exist "%MSBUILD14%"
 not exist "%MSBUILD15%"
+not exist "%NUGET%"
 ?
 @@@
 
@@ -588,7 +591,7 @@ n00e=100030
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2022/05/15 10:35:05
+; The setting was created automatically. 2022/05/15 11:00:46
 ; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
 psggfile=@@@
 BuildControl.psgg
@@ -671,7 +674,7 @@ userbutton_command=@@@
 @@@
 userbutton_callafterconvert=0
 itemeditform_size_list=@@@
-[{"Key":"command","Value":{"height":1209,"width":2521}},{"Key":"state-cmt","Value":{"height":398,"width":564}}]
+[{"Key":"command","Value":{"height":955,"width":1420}},{"Key":"state-cmt","Value":{"height":398,"width":564}}]
 @@@
 decoimage_typ_name=@@@
 sym
