@@ -1,7 +1,6 @@
 # StateGo 
 
-Under Construction!!
-
+StateGo is a visual programming tool that used mixed with source code, and can be used in various programming languages, platforms, frameworks.
  
 # Evnvironment
 
