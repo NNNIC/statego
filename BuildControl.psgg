@@ -13,9 +13,9 @@ check_excel_writable=no
 
 sheet=state-chart
 nameid_list=,n001,n002,n003,n004,n00f,n005,n006,,n014,n007,n008,,n010,,n011,n012,n013,,n009,n00a,n00b,,n00c,n00d,n00e,,
-stateid_list=,,,,s0001,s0002,s0004,s0003,s0005,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s000e,s001a,s001b,s001c
+stateid_list=,,,,s0001,s0002,s0004,s0003,s0005,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s000e,s001a,s001b,s001c,,s001d
 max_name_id=20
-max_state_id=28
+max_state_id=29
 [id_name_dic]
 n001=thumbnail
 n002=state
@@ -60,6 +60,7 @@ s0019=S_0014
 s001a=S_PAS000
 s001b=S_0015
 s001c=S_0016
+s001d=S_0017
 
 
 [s0001]
@@ -87,7 +88,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=1154,110
+n00d=3270,121
 n00e=100002
 
 [s0003]
@@ -228,6 +229,8 @@ n002=S_0006
 n003=メニュー表示
 n007=@@@
 cd /d %~dp0
+set CFG=
+set TGT=
 set a=
 echo :
 echo : 0. Clean
@@ -306,7 +309,7 @@ n00e=100020
 n001=(bitmap)
 n002=S_0008
 n003=Build Debug
-n006=S_0010
+n006=S_0017
 n007=@@@
 set CFG=Debug
 echo :
@@ -327,7 +330,7 @@ n00e=100021
 n001=(bitmap)
 n002=S_0009
 n003=Build Relase
-n006=S_0010
+n006=S_0017
 n007=@@@
 set CFG=Release
 echo :
@@ -368,7 +371,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=1208,1009
+n00d=1615,1002
 n00e=100023
 
 [s0016]
@@ -413,7 +416,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=2081,1014
+n00d=2488,1007
 n00e=100024
 
 [s0017]
@@ -444,7 +447,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=1849,1009
+n00d=2256,1002
 n00e=100025
 
 [s0018]
@@ -475,7 +478,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=1609,1009
+n00d=2016,1002
 n00e=100026
 
 [s0019]
@@ -509,7 +512,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=1402,1009
+n00d=1809,1002
 n00e=100027
 
 [s001a]
@@ -579,8 +582,22 @@ n00c=@@@
 
 @@@
 
-n00d=2330,1009
+n00d=2737,1002
 n00e=100030
+
+[s001d]
+n002=S_0017
+n003=MD WORK
+n006=S_0010
+n007=md Work 2>nul
+n00c=@@@
+/
+(100,100)
+
+@@@
+
+n00d=1430,1002
+n00e=100031
 
 
 
@@ -589,7 +606,7 @@ n00e=100030
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2022/05/15 12:23:28
+; The setting was created automatically. 2022/05/15 12:56:09
 ; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
 psggfile=@@@
 BuildControl.psgg
@@ -607,7 +624,7 @@ c_thumbnail=1
 c_contents=1
 force_display_outpin=0
 last_action=@@@
-varied,Edited a state.
+init,Saved
 @@@
 target_pathdir=@@@
 /
@@ -622,7 +639,7 @@ nodegroup_pos_list=@@@
 [{"Key":"\/","Value":{"x":100,"y":100}}]
 @@@
 fillter_state_location_list=@@@
-[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":45,"y":41}},{"Key":"S_END","Value":{"x":1154,"y":110}},{"Key":"S_0001","Value":{"x":339,"y":38}},{"Key":"S_0002","Value":{"x":526,"y":35}},{"Key":"S_0003","Value":{"x":135,"y":661}},{"Key":"S_0000","Value":{"x":157,"y":41}},{"Key":"S_0004","Value":{"x":323,"y":660}},{"Key":"S_0005","Value":{"x":599,"y":208}},{"Key":"S_0006","Value":{"x":637,"y":804}},{"Key":"S_0007","Value":{"x":898,"y":652}},{"Key":"S_0008","Value":{"x":902,"y":935}},{"Key":"S_0009","Value":{"x":905,"y":1086}},{"Key":"S_0010","Value":{"x":1208,"y":1009}},{"Key":"S_0011","Value":{"x":2081,"y":1014}},{"Key":"S_0012","Value":{"x":1849,"y":1009}},{"Key":"S_0013","Value":{"x":1609,"y":1009}},{"Key":"S_0014","Value":{"x":1402,"y":1009}},{"Key":"S_PAS000","Value":{"x":595,"y":504}},{"Key":"S_0015","Value":{"x":906,"y":1276}},{"Key":"S_0016","Value":{"x":2330,"y":1009}}]}]
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":45,"y":41}},{"Key":"S_END","Value":{"x":3270,"y":121}},{"Key":"S_0001","Value":{"x":339,"y":38}},{"Key":"S_0002","Value":{"x":526,"y":35}},{"Key":"S_0003","Value":{"x":135,"y":661}},{"Key":"S_0000","Value":{"x":157,"y":41}},{"Key":"S_0004","Value":{"x":323,"y":660}},{"Key":"S_0005","Value":{"x":599,"y":208}},{"Key":"S_0006","Value":{"x":637,"y":804}},{"Key":"S_0007","Value":{"x":898,"y":652}},{"Key":"S_0008","Value":{"x":902,"y":935}},{"Key":"S_0009","Value":{"x":905,"y":1086}},{"Key":"S_0010","Value":{"x":1615,"y":1002}},{"Key":"S_0011","Value":{"x":2488,"y":1007}},{"Key":"S_0012","Value":{"x":2256,"y":1002}},{"Key":"S_0013","Value":{"x":2016,"y":1002}},{"Key":"S_0014","Value":{"x":1809,"y":1002}},{"Key":"S_PAS000","Value":{"x":595,"y":504}},{"Key":"S_0015","Value":{"x":906,"y":1276}},{"Key":"S_0016","Value":{"x":2737,"y":1002}},{"Key":"S_0017","Value":{"x":1430,"y":1002}}]}]
 @@@
 linecolor_data=@@@
 [{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]

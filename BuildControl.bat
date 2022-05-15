@@ -122,6 +122,8 @@ goto :S_START
     :: ƒƒjƒ…[•\Ž¦
     ::
         cd /d %~dp0
+        set CFG=
+        set TGT=
         set a=
         echo :
         echo : 0. Clean
@@ -169,7 +171,7 @@ goto :S_START
         echo :
         echo : Start "Build Debug"
         echo :
-        goto :S_0010
+        goto :S_0017
         goto :S_0008
     ::
     :S_0009
@@ -180,7 +182,7 @@ goto :S_START
         echo :
         echo : Start "Build Relase"
         echo :
-        goto :S_0010
+        goto :S_0017
         goto :S_0009
     ::
     :S_0010
@@ -339,6 +341,14 @@ goto :S_START
         copy %SRC%\Others\archivebatch\__setup.bat %TGT%\*.*
         goto :S_PAS000
         goto :S_0016
+    ::
+    :S_0017
+    ::
+    :: MD WORK
+    ::
+        md Work 2>nul
+        goto :S_0010
+        goto :S_0017
     ::
     :S_END
     ::
