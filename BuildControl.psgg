@@ -606,7 +606,7 @@ n00e=100031
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2022/05/15 12:56:09
+; The setting was created automatically. 2022/05/15 13:07:16
 ; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
 psggfile=@@@
 BuildControl.psgg
@@ -624,7 +624,7 @@ c_thumbnail=1
 c_contents=1
 force_display_outpin=0
 last_action=@@@
-init,Saved
+init,Initilized
 @@@
 target_pathdir=@@@
 /
