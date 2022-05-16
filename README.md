@@ -10,6 +10,10 @@ StateGo is a visual programming tool that used mixed with source code, and can b
  
 ![](https://statego.programanic.com/images/langs190504.png)
  
+By changing the template, it can be applied to any programming language.
+The programming languages that StateGo has enabled visual programming are as follows.
+Typescript(Anguler), Bash, C, C++, C#, C#(Unity), VBA(Excel), Javascript, Python, Rust, Tyranoscript, Visaul Basic, Win-bat, Delphi, Swift, PHP 
+ 
 # Evnvironment
 
 - Windows 10 Pro
