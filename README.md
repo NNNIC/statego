@@ -4,11 +4,11 @@
 
 StateGo is a visual programming tool that used mixed with source code, and can be used in various programming languages, platforms, frameworks.
  
-![](https://statego.programanic.com/images/banner.png) 
+<img src=https://statego.programanic.com/images/banner.png width=600px /> 
  
 ## Supports all programming languages 
- 
-![](https://statego.programanic.com/images/langs190504.png)
+
+<img src=https://statego.programanic.com/images/langs190504.png width=500px />
  
 By changing the template, it can be applied to any programming language.
 The programming languages that StateGo has enabled visual programming are as follows.
