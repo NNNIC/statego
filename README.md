@@ -38,9 +38,10 @@ Run BuildControl.bat
 # Unzip release file
 
 1. Download from [the release](https://github.com/NNNIC/statego/tags).
-2. Unzip StateGo.zip
-3. Unlock security for all exes and dlls.
-4. Run __setup.bat to let StateGo File(.psgg) to be associated with StrateGo app
+2. Unzip StateGo.zip 
+<a href=./wiki/unlock.png ><img src=./wiki/unlock.png width=100 /></a>
+4. Unlock security for all exes and dlls.
+5. Run __setup.bat to let StateGo File(.psgg) to be associated with StrateGo app
 
 # How to use StateGo?
 
