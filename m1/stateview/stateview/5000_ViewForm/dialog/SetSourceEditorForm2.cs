@@ -167,6 +167,21 @@ namespace stateview._5000_ViewForm.dialog
             },
 
             new string[] {
+                "Microsoft Visual Studio 2022",
+                @"%ProgramFiles%\Microsoft Visual Studio\2022\*\Common7\IDE\devenv.exe",
+                "%3 /Command \"Edit.Goto %2\" %1",
+                //@"/Edit %1",
+                @"use_VisualStudioFileOpenTool"
+            },
+            new string[] {
+                "Microsoft Visual Studio 2022 %VS2022Exe%",
+                @"%VS2022Exe%",
+                "%3 /Command \"Edit.Goto %2\" %1",
+                //@"/Edit %1",
+                @"use_VisualStudioFileOpenTool"
+            },
+
+            new string[] {
                 "Visual Studio Code",
                 @"%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\bin\code.cmd",
                 @"-g %1:%2"

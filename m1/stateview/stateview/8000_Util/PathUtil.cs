@@ -190,6 +190,11 @@ public partial class PathUtil
             if (string.IsNullOrEmpty(env)) return path;
             var env2 = env.Trim('%');
             var val = Environment.GetEnvironmentVariable(env2);
+            if (env2=="ProgramFiles" && val.Contains(" (x86)")) //※ 86モードでは、ProgramFilesは (x86)が追加される
+            {
+                val = val.Replace(" (x86)", "");//削除
+            }
+
             path = path.Replace(env,val);
         }
         throw new SystemException("Unexpected! {D834DC40-1A29-4078-91FC-13B232DC3440}");

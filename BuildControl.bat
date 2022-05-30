@@ -130,6 +130,8 @@ goto :S_START
         echo : 1. Build Debug
         echo : 2. Build Release
         echo : 3. Create Release ZIP ¦First Buld Release
+        echo : 4. Update existing files in Program Files (*use admin)
+        echo : 5. Copy Debug Files to existing files in Program Files(*use admin)
         set /p a="Select : "
         if "%a%"=="0" (
             goto :S_0007
@@ -139,6 +141,10 @@ goto :S_START
             goto :S_0009
         ) else if "%a%"=="3" (
             goto :S_0015
+        ) else if "%a%"=="4" (
+            goto :S_0018
+        ) else if "%a%"=="5" (
+            goto :S_0021
         ) else goto :S_0006
         goto :S_0006
     ::
@@ -160,7 +166,7 @@ goto :S_START
         rd /s /q m1\StateViewer\StateViewer\obj 2>nul
         rd /s /q Work 2>nul
         md Work 2>nul
-        goto :S_PAS000
+        goto :S_BACKTO_000
         goto :S_0007
     ::
     :S_0008
@@ -339,7 +345,7 @@ goto :S_START
         robocopy %SRC%\Work\conv\psggConverter\psggConverterLib\bin\%CFG% %TGT% *.*
         ::_setup
         copy %SRC%\Others\archivebatch\__setup.bat %TGT%\*.*
-        goto :S_PAS000
+        goto :S_BACKTO_000
         goto :S_0016
     ::
     :S_0017
@@ -350,18 +356,72 @@ goto :S_START
         goto :S_0010
         goto :S_0017
     ::
+    :S_0018
+    ::
+    :: Confirm existing files.
+    ::
+        if exist "%ProgramFiles(x86)%\PSGG\StateGo.exe" (
+            goto :S_0020
+        ) else goto :S_0019
+        goto :S_0018
+    ::
+    :S_0019
+    ::
+    ::
+    ::
+        echo : %ProgramFiles(x86)%\PSGG\StateGo.exe not found.
+        echo : So, Files can not be updated.
+        pause
+        goto :S_BACKTO_000
+        goto :S_0019
+    ::
+    :S_0020
+    ::
+    ::
+    ::
+        echo : Update...
+        echo on
+        robocopy .\m1\StateViewer\StateViewer\bin\Release "%ProgramFiles(x86)%\PSGG" *.* /S /E
+        @echo off
+        popd
+        pause
+        goto :S_BACKTO_000
+        goto :S_0020
+    ::
+    :S_0021
+    ::
+    :: Confirm existing files.
+    ::
+        if exist "%ProgramFiles(x86)%\PSGG\StateGo.exe" (
+            goto :S_0022
+        ) else goto :S_0019
+        goto :S_0021
+    ::
+    :S_0022
+    ::
+    ::
+    ::
+        echo : Update...
+        echo on
+        robocopy .\m1\StateViewer\StateViewer\bin\Debug "%ProgramFiles(x86)%\PSGG" *.*
+        @echo off
+        popd
+        pause
+        goto :S_BACKTO_000
+        goto :S_0022
+    ::
+    :S_BACKTO_000
+    ::
+    ::
+    ::
+        goto :S_0006
+        goto :S_BACKTO_000
+    ::
     :S_END
     ::
     ::
     ::
         goto :_end
-    ::
-    :S_PAS000
-    ::
-    ::
-    ::
-        goto :S_0006
-        goto :S_PAS000
     ::
     :S_START
     ::
