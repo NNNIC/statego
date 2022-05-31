@@ -9,8 +9,8 @@
 
 set VS=0.70
 set ST=2022/05/31
-set MS=R0.7
-set MSTXT=R0.7
+set MS=r0.7
+set MSTXT=r0.7
 
 set VM=%~dp0..\..\..\tools\version-maker\bin\vm.exe
 dir %VM%
