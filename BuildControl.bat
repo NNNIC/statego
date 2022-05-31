@@ -196,16 +196,14 @@ goto :S_START
     :: Build Version Maker
     ::
         echo : ------------------------------
-        echo : build VisualStudioFileOpenTool
+        echo : build Version Maker
         echo : ------------------------------
-        md Work\VisualStudioFileOpenTool 2>nul
-        git clone https://github.com/aienabled/VisualStudioFileOpenTool Work\VisualStudioFileOpenTool
-        pushd Work\VisualStudioFileOpenTool
-            "%MSBUILD15%" AtomicTorch.VisualStudioFileOpenTool.sln /t:Build /p:Configuration=%CFG%
+        pushd Tools\version-maker\vm
+            "%MSBUILD15%" vm.sln /t:Build /p:Configuration=Release
         popd
         echo : done!
         %DP%
-        goto :S_0014
+        goto :S_0023
         goto :S_0010
     ::
     :S_0011
@@ -409,6 +407,23 @@ goto :S_START
         pause
         goto :S_BACKTO_000
         goto :S_0022
+    ::
+    :S_0023
+    ::
+    :: Build Visual Studio open tool
+    ::
+        echo : ------------------------------
+        echo : build VisualStudioFileOpenTool
+        echo : ------------------------------
+        md Work\VisualStudioFileOpenTool 2>nul
+        git clone https://github.com/aienabled/VisualStudioFileOpenTool Work\VisualStudioFileOpenTool
+        pushd Work\VisualStudioFileOpenTool
+            "%MSBUILD15%" AtomicTorch.VisualStudioFileOpenTool.sln /t:Build /p:Configuration=%CFG%
+        popd
+        echo : done!
+        %DP%
+        goto :S_0014
+        goto :S_0023
     ::
     :S_BACKTO_000
     ::

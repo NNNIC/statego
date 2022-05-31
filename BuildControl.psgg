@@ -13,9 +13,9 @@ check_excel_writable=no
 
 sheet=state-chart
 nameid_list=,n001,n002,n003,n004,n00f,n005,n006,,n014,n007,n008,,n010,,n011,n012,n013,,n009,n00a,n00b,,n00c,n00d,n00e,,
-stateid_list=,,,,s0001,s0002,s0004,s0003,s0005,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s000e,s001a,s001b,s001c,s001e,s001d,s0020,s001f,s0022,s0021
+stateid_list=,,,,s0001,s0002,s0004,s0003,s0005,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s000e,s001a,s001b,s001c,s001e,s001d,s0020,s001f,s0022,s0021,,s0023
 max_name_id=20
-max_state_id=34
+max_state_id=35
 [id_name_dic]
 n001=thumbnail
 n002=state
@@ -66,6 +66,7 @@ s001f=S_0019
 s0020=S_0020
 s0021=S_0021
 s0022=S_0022
+s0023=S_0023
 
 
 [s0001]
@@ -364,15 +365,13 @@ n00e=100022
 n001=(bitmap)
 n002=S_0010
 n003=Build Version Maker
-n006=S_0014
+n006=S_0023
 n007=@@@
 echo : ------------------------------
-echo : build VisualStudioFileOpenTool
+echo : build Version Maker
 echo : ------------------------------
-md Work\VisualStudioFileOpenTool 2>nul
-git clone https://github.com/aienabled/VisualStudioFileOpenTool Work\VisualStudioFileOpenTool
-pushd Work\VisualStudioFileOpenTool
-    "%MSBUILD15%" AtomicTorch.VisualStudioFileOpenTool.sln /t:Build /p:Configuration=%CFG%
+pushd Tools\version-maker\vm
+    "%MSBUILD15%" vm.sln /t:Build /p:Configuration=Release
 popd
 echo : done!
 %DP%
@@ -384,7 +383,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=1615,1002
+n00d=1615,1005
 n00e=100023
 
 [s0016]
@@ -429,7 +428,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=2488,1007
+n00d=2888,1005
 n00e=100024
 
 [s0017]
@@ -460,7 +459,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=2256,1002
+n00d=2644,1005
 n00e=100025
 
 [s0018]
@@ -491,7 +490,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=2016,1002
+n00d=2384,1005
 n00e=100026
 
 [s0019]
@@ -525,7 +524,7 @@ n00c=@@@
 The root
 @@@
 
-n00d=1809,1002
+n00d=2144,1005
 n00e=100027
 
 [s001a]
@@ -555,7 +554,7 @@ echo : Created Zip at %CD%\Work\archive\stagego.zip.
 n00c=@@@
 /
 (100,100)
-
+The root
 @@@
 
 n00d=906,1276
@@ -592,10 +591,10 @@ copy %SRC%\Others\archivebatch\__setup.bat %TGT%\*.*
 n00c=@@@
 /
 (100,100)
-
+The root
 @@@
 
-n00d=2737,1002
+n00d=3155,1005
 n00e=100030
 
 [s001d]
@@ -606,10 +605,10 @@ n007=md Work 2>nul
 n00c=@@@
 /
 (100,100)
-
+The root
 @@@
 
-n00d=1430,1002
+n00d=1436,1005
 n00e=100031
 
 [s001e]
@@ -633,7 +632,7 @@ exist "%ProgramFiles(x86)%\PSGG\StateGo.exe"
 n00c=@@@
 /
 (100,100)
-
+The root
 @@@
 
 n00d=910,1587
@@ -651,7 +650,7 @@ pause
 n00c=@@@
 /
 (100,100)
-
+The root
 @@@
 
 n00d=1220,1739
@@ -672,7 +671,7 @@ pause
 n00c=@@@
 /
 (100,100)
-
+The root
 @@@
 
 n00d=1207,1472
@@ -699,7 +698,7 @@ exist "%ProgramFiles(x86)%\PSGG\StateGo.exe"
 n00c=@@@
 /
 (100,100)
-
+The root
 @@@
 
 n00d=915,1771
@@ -720,11 +719,37 @@ pause
 n00c=@@@
 /
 (100,100)
-
+The root
 @@@
 
 n00d=1251,2005
 n00e=100036
+
+[s0023]
+n002=S_0023
+n003=Build Visual Studio open tool
+n006=S_0014
+n007=@@@
+echo : ------------------------------
+echo : build VisualStudioFileOpenTool
+echo : ------------------------------
+md Work\VisualStudioFileOpenTool 2>nul
+git clone https://github.com/aienabled/VisualStudioFileOpenTool Work\VisualStudioFileOpenTool
+pushd Work\VisualStudioFileOpenTool
+    "%MSBUILD15%" AtomicTorch.VisualStudioFileOpenTool.sln /t:Build /p:Configuration=%CFG%
+popd
+echo : done!
+%DP%
+@@@
+
+n00c=@@@
+/
+(100,100)
+The root
+@@@
+
+n00d=1872,1005
+n00e=100037
 
 
 
@@ -733,8 +758,8 @@ n00e=100036
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2022/05/30 18:19:41
-; * pssgEditor version : .f8b32bbf6590cf1ff017303dd75a5bbbad37de0c
+; The setting was created automatically. 2022/05/31 16:36:28
+; * pssgEditor version : .72f410e1d882f4b91a087a1c6280c4a85876a982
 psggfile=@@@
 BuildControl.psgg
 @@@
@@ -751,7 +776,7 @@ c_thumbnail=1
 c_contents=1
 force_display_outpin=0
 last_action=@@@
-varied,Edited a state.
+varied,Changed an arrow direction
 @@@
 target_pathdir=@@@
 /
@@ -760,13 +785,13 @@ state_location_list=@@@
 
 @@@
 nodegroup_comment_list=@@@
-[{"Key":"\/","Value":""}]
+[{"Key":"\/","Value":"The root"}]
 @@@
 nodegroup_pos_list=@@@
 [{"Key":"\/","Value":{"x":100,"y":100}}]
 @@@
 fillter_state_location_list=@@@
-[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":45,"y":41}},{"Key":"S_END","Value":{"x":3270,"y":121}},{"Key":"S_0001","Value":{"x":339,"y":38}},{"Key":"S_0002","Value":{"x":526,"y":35}},{"Key":"S_0003","Value":{"x":135,"y":661}},{"Key":"S_0000","Value":{"x":157,"y":41}},{"Key":"S_0004","Value":{"x":323,"y":660}},{"Key":"S_0005","Value":{"x":599,"y":208}},{"Key":"S_0006","Value":{"x":637,"y":804}},{"Key":"S_0007","Value":{"x":898,"y":652}},{"Key":"S_0008","Value":{"x":902,"y":935}},{"Key":"S_0009","Value":{"x":905,"y":1086}},{"Key":"S_0010","Value":{"x":1615,"y":1002}},{"Key":"S_0011","Value":{"x":2488,"y":1007}},{"Key":"S_0012","Value":{"x":2256,"y":1002}},{"Key":"S_0013","Value":{"x":2016,"y":1002}},{"Key":"S_0014","Value":{"x":1809,"y":1002}},{"Key":"S_0015","Value":{"x":906,"y":1276}},{"Key":"S_0016","Value":{"x":2737,"y":1002}},{"Key":"S_0017","Value":{"x":1430,"y":1002}},{"Key":"S_0018","Value":{"x":910,"y":1587}},{"Key":"S_0019","Value":{"x":1220,"y":1739}},{"Key":"S_BACKTO_000","Value":{"x":595,"y":504}},{"Key":"S_0020","Value":{"x":1207,"y":1472}},{"Key":"S_0021","Value":{"x":915,"y":1771}},{"Key":"S_0022","Value":{"x":1251,"y":2005}}]}]
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":45,"y":41}},{"Key":"S_END","Value":{"x":3270,"y":121}},{"Key":"S_0001","Value":{"x":339,"y":38}},{"Key":"S_0002","Value":{"x":526,"y":35}},{"Key":"S_0003","Value":{"x":135,"y":661}},{"Key":"S_0000","Value":{"x":157,"y":41}},{"Key":"S_0004","Value":{"x":323,"y":660}},{"Key":"S_0005","Value":{"x":599,"y":208}},{"Key":"S_0006","Value":{"x":637,"y":804}},{"Key":"S_0007","Value":{"x":898,"y":652}},{"Key":"S_0008","Value":{"x":902,"y":935}},{"Key":"S_0009","Value":{"x":905,"y":1086}},{"Key":"S_0010","Value":{"x":1615,"y":1005}},{"Key":"S_0011","Value":{"x":2888,"y":1005}},{"Key":"S_0012","Value":{"x":2644,"y":1005}},{"Key":"S_0013","Value":{"x":2384,"y":1005}},{"Key":"S_0014","Value":{"x":2144,"y":1005}},{"Key":"S_0015","Value":{"x":906,"y":1276}},{"Key":"S_0016","Value":{"x":3155,"y":1005}},{"Key":"S_0017","Value":{"x":1436,"y":1005}},{"Key":"S_0018","Value":{"x":910,"y":1587}},{"Key":"S_0019","Value":{"x":1220,"y":1739}},{"Key":"S_BACKTO_000","Value":{"x":595,"y":504}},{"Key":"S_0020","Value":{"x":1207,"y":1472}},{"Key":"S_0021","Value":{"x":915,"y":1771}},{"Key":"S_0022","Value":{"x":1251,"y":2005}},{"Key":"S_0023","Value":{"x":1872,"y":1005}}]}]
 @@@
 linecolor_data=@@@
 [{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
