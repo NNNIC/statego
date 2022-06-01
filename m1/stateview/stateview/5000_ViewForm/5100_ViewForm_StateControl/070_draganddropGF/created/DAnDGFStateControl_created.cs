@@ -81,8 +81,9 @@ public partial class DAnDGFStateControl  {
         {
     	    if (bFirst)
     	    {
-    	        move_update();
+    	        ovlpb_show();
     	    }
+    	    move_update();
     	    if (!wait_mouseany()) return;
     	    // branch
     	    br_IsDrop(S_Drop);

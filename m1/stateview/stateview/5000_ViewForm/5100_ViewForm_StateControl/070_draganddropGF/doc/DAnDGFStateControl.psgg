@@ -111,7 +111,8 @@ n01b=3
 [s0011]
 n002=S_DragMove
 n003=ドラッグ移動
-n00a=move_update();
+n00a=ovlpb_show();
+n00d=move_update();
 n00f=!wait_mouseany()
 n015=@@@
 br_IsDrop(S_Drop);
@@ -193,8 +194,8 @@ n01b=8
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2022/05/07 11:26:05
-; * pssgEditor version : 0.69.15095.8f2427b09778fae5a89b1b7643b85859014d0ebb
+; The setting was created automatically. 2022/06/01 18:11:46
+; * pssgEditor version : 0.70.998.432aa023411a280b742ac86d5c3a2b38f2509b02
 psggfile=@@@
 DAnDGFStateControl.psgg
 @@@
@@ -211,7 +212,7 @@ c_thumbnail=1
 c_contents=1
 force_display_outpin=0
 last_action=@@@
-init,Saved
+varied,Edited a state.
 @@@
 target_pathdir=@@@
 /
