@@ -7,10 +7,10 @@
 :: vm.exeにより、開始日からの分数がマイナーバージョンとなる。
 ::
 
-set VS=0.70
-set ST=2022/05/31
-set MS=r0.7
-set MSTXT=r0.7
+set VS=0.71
+set ST=2022/06/04
+set MS=r0.71
+set MSTXT=r0.71
 
 set VM=%~dp0..\..\..\tools\version-maker\bin\vm.exe
 dir %VM%
