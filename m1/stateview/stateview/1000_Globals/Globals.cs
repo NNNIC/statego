@@ -1084,7 +1084,7 @@ namespace stateview
         internal static string web_info_js {
             get
             {
-                var url = string.Format("https://statego.programanic.com/add/{0}/", milestone);
+                var url = string.Format("https://statego.programanic.com/add/{0}/", "r0.x"/*milestone*/);
                 return (system_lang == "jpn") ? url + "index-off-j.html" : url + "index-off-e.html";
             }
         }
