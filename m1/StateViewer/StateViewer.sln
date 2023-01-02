@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateViewer", "StateViewer\StateViewer.csproj", "{C11F5434-E025-4DFD-847F-2221DEAC1C2D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -101,5 +101,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35FC5D16-5999-435F-A5FB-C43E6C57C59C}
 	EndGlobalSection
 EndGlobal
