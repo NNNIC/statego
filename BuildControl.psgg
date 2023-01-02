@@ -13,7 +13,7 @@ check_excel_writable=no
 
 sheet=state-chart
 nameid_list=,n001,n002,n003,n004,n00f,n005,n006,,n014,n007,n008,,n010,,n011,n012,n013,,n009,n00a,n00b,,n00c,n00d,n00e,,
-stateid_list=,,,,s0001,s0002,s0004,s0003,s0005,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s000e,s001a,s001b,s001c,s001e,s001d,s0020,s001f,s0022,s0021,,s0023
+stateid_list=,,,,s0001,s0002,s0004,s0003,,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s000e,s001a,s001b,s001c,s001e,s001d,s0020,s001f,s0022,s0021,,s0023
 max_name_id=20
 max_state_id=35
 [id_name_dic]
@@ -44,7 +44,6 @@ s0001=S_START
 s0002=S_END
 s0003=S_0002
 s0004=S_0001
-s0005=S_0003
 s000e=S_0000
 s000f=S_0004
 s0010=S_0005
@@ -102,7 +101,7 @@ n001=(bitmap)
 n002=S_0002
 n003=
 n00f=
-n006=S_0003
+n006=S_0004
 n007=@@@
 echo :
 echo : StateGo build batch
@@ -135,27 +134,6 @@ The root
 n00d=339,38
 n00e=100014
 
-[s0005]
-n001=(bitmap)
-n002=S_0003
-n003=定義がない場合に設定
-n00f=
-n006=S_0004
-n007=@@@
-if "%MSBUILD14%"=="" set MSBUILD14=C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe
-if "%MSBUILD15%"=="" set MSBUILD15=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe
-if "%NUGET%"=="" set NUGET=C:\nuget\nuget.exe
-@@@
-
-n00c=@@@
-/
-(100,100)
-The root
-@@@
-
-n00d=135,661
-n00e=100016
-
 [s000e]
 n002=S_0000
 n006=S_0002
@@ -180,20 +158,17 @@ n003=環境存在確認
 n009=@@@
 brifc(S_0005);
 brelseifc(S_0005);
-brelseifc(S_0005);
 brelse(S_0006);
 @@@
 
 n00a=@@@
-VS2015
-VS2017
+VS2022
 NUGET
 ?
 @@@
 
 n00b=@@@
-not exist "%MSBUILD14%"
-not exist "%MSBUILD15%"
+not exist "%MSBUILD17%"
 not exist "%NUGET%"
 ?
 @@@
@@ -214,8 +189,7 @@ n003=環境エラー
 n006=S_END
 n007=@@@
 echo : ERROR
-echo : Please install Visual Studio 2015 for c++ and c#
-echo : Please install Visual Studio 2017 for c++
+echo : Please install Visual Studio 2022 for c++ and c#
 echo :
 pause
 @@@
@@ -371,7 +345,7 @@ echo : ------------------------------
 echo : build Version Maker
 echo : ------------------------------
 pushd Tools\version-maker\vm
-    "%MSBUILD15%" vm.sln /t:Build /p:Configuration=Release
+    "%MSBUILD17%" vm.sln /t:Build /p:Configuration=Release
 popd
 echo : done!
 %DP%
@@ -395,19 +369,16 @@ echo : --------------
 echo : build conveter
 echo : --------------
 pushd Work
-
     md conv 2>nul
     git clone https://github.com/NNNIC/psgg-converter.git conv
     pushd conv
         git rev-parse HEAD > ..\head.txt
     popd
-
     set hash=
     for /f %%i in (head.txt) do if "%hash%"=="" set hash=%%i
     echo :
     echo :  hash=%hash%
     echo :
-
     echo namespace psggConverterLib { public class githash { public const string hash="%hash%"; }} > conv\psggConverter\psggConverterLib\githash.cs
     echo : type conv\psggConverter\psggConverterLib\githash.cs
     echo : vvvv
@@ -416,7 +387,7 @@ pushd Work
     echo : Start build...
     echo : .
     pushd conv\psggConverter
-        "%MSBUILD14%" psggConverter.sln /t:psggConverter:Rebuild /p:Configuration=%CFG%
+        "%MSBUILD17%" psggConverter.sln /t:psggConverter:Rebuild /p:Configuration=%CFG%
     popd
 popd
 echo : done!
@@ -512,7 +483,7 @@ echo :
 echo : build relase
 pushd m1\StateViewer
     "%NUGET%" restore StateViewer.sln
-    "%MSBUILD14%" StateViewer.sln /t:StateViewer:Rebuild /p:Configuration=%CFG%
+    "%MSBUILD17%" StateViewer.sln /t:StateViewer:Rebuild /p:Configuration=%CFG%
 popd
 echo : done!
 %DP%
@@ -736,7 +707,7 @@ echo : ------------------------------
 md Work\VisualStudioFileOpenTool 2>nul
 git clone https://github.com/aienabled/VisualStudioFileOpenTool Work\VisualStudioFileOpenTool
 pushd Work\VisualStudioFileOpenTool
-    "%MSBUILD15%" AtomicTorch.VisualStudioFileOpenTool.sln /t:Build /p:Configuration=%CFG%
+    "%MSBUILD17%" AtomicTorch.VisualStudioFileOpenTool.sln /t:Build /p:Configuration=%CFG%
 popd
 echo : done!
 %DP%
@@ -758,8 +729,8 @@ n00e=100037
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2022/05/31 16:36:28
-; * pssgEditor version : .72f410e1d882f4b91a087a1c6280c4a85876a982
+; The setting was created automatically. 2023/01/02 11:23:23
+; * pssgEditor version : 0.71.517.775f10c3ed21877e76e9a7f1cbdab5a9aa30adf3
 psggfile=@@@
 BuildControl.psgg
 @@@
@@ -776,7 +747,7 @@ c_thumbnail=1
 c_contents=1
 force_display_outpin=0
 last_action=@@@
-varied,Changed an arrow direction
+init,Initilized
 @@@
 target_pathdir=@@@
 /
@@ -791,7 +762,7 @@ nodegroup_pos_list=@@@
 [{"Key":"\/","Value":{"x":100,"y":100}}]
 @@@
 fillter_state_location_list=@@@
-[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":45,"y":41}},{"Key":"S_END","Value":{"x":3270,"y":121}},{"Key":"S_0001","Value":{"x":339,"y":38}},{"Key":"S_0002","Value":{"x":526,"y":35}},{"Key":"S_0003","Value":{"x":135,"y":661}},{"Key":"S_0000","Value":{"x":157,"y":41}},{"Key":"S_0004","Value":{"x":323,"y":660}},{"Key":"S_0005","Value":{"x":599,"y":208}},{"Key":"S_0006","Value":{"x":637,"y":804}},{"Key":"S_0007","Value":{"x":898,"y":652}},{"Key":"S_0008","Value":{"x":902,"y":935}},{"Key":"S_0009","Value":{"x":905,"y":1086}},{"Key":"S_0010","Value":{"x":1615,"y":1005}},{"Key":"S_0011","Value":{"x":2888,"y":1005}},{"Key":"S_0012","Value":{"x":2644,"y":1005}},{"Key":"S_0013","Value":{"x":2384,"y":1005}},{"Key":"S_0014","Value":{"x":2144,"y":1005}},{"Key":"S_0015","Value":{"x":906,"y":1276}},{"Key":"S_0016","Value":{"x":3155,"y":1005}},{"Key":"S_0017","Value":{"x":1436,"y":1005}},{"Key":"S_0018","Value":{"x":910,"y":1587}},{"Key":"S_0019","Value":{"x":1220,"y":1739}},{"Key":"S_BACKTO_000","Value":{"x":595,"y":504}},{"Key":"S_0020","Value":{"x":1207,"y":1472}},{"Key":"S_0021","Value":{"x":915,"y":1771}},{"Key":"S_0022","Value":{"x":1251,"y":2005}},{"Key":"S_0023","Value":{"x":1872,"y":1005}}]}]
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":45,"y":41}},{"Key":"S_END","Value":{"x":3270,"y":121}},{"Key":"S_0001","Value":{"x":339,"y":38}},{"Key":"S_0002","Value":{"x":526,"y":35}},{"Key":"S_0000","Value":{"x":157,"y":41}},{"Key":"S_0004","Value":{"x":323,"y":660}},{"Key":"S_0005","Value":{"x":599,"y":208}},{"Key":"S_0006","Value":{"x":637,"y":804}},{"Key":"S_0007","Value":{"x":898,"y":652}},{"Key":"S_0008","Value":{"x":902,"y":935}},{"Key":"S_0009","Value":{"x":905,"y":1086}},{"Key":"S_0010","Value":{"x":1615,"y":1005}},{"Key":"S_0011","Value":{"x":2888,"y":1005}},{"Key":"S_0012","Value":{"x":2644,"y":1005}},{"Key":"S_0013","Value":{"x":2384,"y":1005}},{"Key":"S_0014","Value":{"x":2144,"y":1005}},{"Key":"S_0015","Value":{"x":906,"y":1276}},{"Key":"S_0016","Value":{"x":3155,"y":1005}},{"Key":"S_0017","Value":{"x":1436,"y":1005}},{"Key":"S_0018","Value":{"x":910,"y":1587}},{"Key":"S_0019","Value":{"x":1220,"y":1739}},{"Key":"S_BACKTO_000","Value":{"x":595,"y":504}},{"Key":"S_0020","Value":{"x":1207,"y":1472}},{"Key":"S_0021","Value":{"x":915,"y":1771}},{"Key":"S_0022","Value":{"x":1251,"y":2005}},{"Key":"S_0023","Value":{"x":1872,"y":1005}}]}]
 @@@
 linecolor_data=@@@
 [{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]

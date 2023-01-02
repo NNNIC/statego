@@ -79,26 +79,14 @@ goto :S_START
         echo :
         echo : StateGo build batch
         echo :
-        goto :S_0003
-        goto :S_0002
-    ::
-    :S_0003
-    ::
-    :: 定義がない場合に設定
-    ::
-        if "%MSBUILD14%"=="" set MSBUILD14=C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe
-        if "%MSBUILD15%"=="" set MSBUILD15=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe
-        if "%NUGET%"=="" set NUGET=C:\nuget\nuget.exe
         goto :S_0004
-        goto :S_0003
+        goto :S_0002
     ::
     :S_0004
     ::
     :: 環境存在確認
     ::
-        if not exist "%MSBUILD14%" (
-            goto :S_0005
-        ) else if not exist "%MSBUILD15%" (
+        if not exist "%MSBUILD17%" (
             goto :S_0005
         ) else if not exist "%NUGET%" (
             goto :S_0005
@@ -110,8 +98,7 @@ goto :S_START
     :: 環境エラー
     ::
         echo : ERROR
-        echo : Please install Visual Studio 2015 for c++ and c#
-        echo : Please install Visual Studio 2017 for c++
+        echo : Please install Visual Studio 2022 for c++ and c#
         echo :
         pause
         goto :S_END
@@ -199,7 +186,7 @@ goto :S_START
         echo : build Version Maker
         echo : ------------------------------
         pushd Tools\version-maker\vm
-            "%MSBUILD15%" vm.sln /t:Build /p:Configuration=Release
+            "%MSBUILD17%" vm.sln /t:Build /p:Configuration=Release
         popd
         echo : done!
         %DP%
@@ -232,7 +219,7 @@ goto :S_START
             echo : Start build...
             echo : .
             pushd conv\psggConverter
-                "%MSBUILD14%" psggConverter.sln /t:psggConverter:Rebuild /p:Configuration=%CFG%
+                "%MSBUILD17%" psggConverter.sln /t:psggConverter:Rebuild /p:Configuration=%CFG%
             popd
         popd
         echo : done!
@@ -300,7 +287,7 @@ goto :S_START
         echo : build relase
         pushd m1\StateViewer
             "%NUGET%" restore StateViewer.sln
-            "%MSBUILD14%" StateViewer.sln /t:StateViewer:Rebuild /p:Configuration=%CFG%
+            "%MSBUILD17%" StateViewer.sln /t:StateViewer:Rebuild /p:Configuration=%CFG%
         popd
         echo : done!
         %DP%
@@ -418,7 +405,7 @@ goto :S_START
         md Work\VisualStudioFileOpenTool 2>nul
         git clone https://github.com/aienabled/VisualStudioFileOpenTool Work\VisualStudioFileOpenTool
         pushd Work\VisualStudioFileOpenTool
-            "%MSBUILD15%" AtomicTorch.VisualStudioFileOpenTool.sln /t:Build /p:Configuration=%CFG%
+            "%MSBUILD17%" AtomicTorch.VisualStudioFileOpenTool.sln /t:Build /p:Configuration=%CFG%
         popd
         echo : done!
         %DP%
