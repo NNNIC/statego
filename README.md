@@ -18,7 +18,7 @@ Typescript(Anguler), Bash, C, C++, C#, C#(Unity), VBA(Excel), Javascript, Python
 
 - Windows 10 Pro
 
-- Visual Studio 2022
+- Visual Studio 2022  
 ex) ```set MSBUILD17=C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe```
 
 - nuget  
