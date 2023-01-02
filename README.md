@@ -33,7 +33,8 @@ ex) ```set NUGET=C:\nuget\nuget.exe```
 
 # Build
 
-Run BuildControl.bat
+Edit BuildStart.bat for the environments.
+Run BuildStart.bat
 
 # Unzip release file
 
