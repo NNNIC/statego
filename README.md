@@ -45,3 +45,6 @@ Run BuildStart.bat
 
 See https://statego.programanic.com/en/entry2.html
 
+# Test Release
+
+https://1drv.ms/u/s!AiwhClIHaF1QjoI_d-Cz899TnGs_DQ?e=WGMqW8
