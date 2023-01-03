@@ -705,7 +705,7 @@ echo : ------------------------------
 echo : build VisualStudioFileOpenTool
 echo : ------------------------------
 md Work\VisualStudioFileOpenTool 2>nul
-//git clone https://github.com/aienabled/VisualStudioFileOpenTool Work\VisualStudioFileOpenTool
+::git clone https://github.com/aienabled/VisualStudioFileOpenTool Work\VisualStudioFileOpenTool
 git clone https://github.com/zhsfei/VisualStudioFileOpenTool2022 Work\VisualStudioFileOpenTool
 pushd Work\VisualStudioFileOpenTool
     "%MSBUILD17%" AtomicTorch.VisualStudioFileOpenTool.sln /t:Build /p:Configuration=%CFG%
@@ -730,8 +730,8 @@ n00e=100037
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2023/01/03 10:29:30
-; * pssgEditor version : 0.72.2065.27838591920f2b2c8fae8a57cca3149921c02ccc
+; The setting was created automatically. 2023/01/04 8:14:19
+; * pssgEditor version : 0.73.479.5ce28aad6f78c3418f2de7bcf5d8edc440d2427f
 psggfile=@@@
 BuildControl.psgg
 @@@
@@ -748,7 +748,7 @@ c_thumbnail=1
 c_contents=1
 force_display_outpin=0
 last_action=@@@
-init,Saved
+varied,Edited a state.
 @@@
 target_pathdir=@@@
 /
