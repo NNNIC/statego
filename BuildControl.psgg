@@ -730,8 +730,8 @@ n00e=100037
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2023/01/03 10:17:57
-; * pssgEditor version : 0.71.517.775f10c3ed21877e76e9a7f1cbdab5a9aa30adf3
+; The setting was created automatically. 2023/01/03 10:29:30
+; * pssgEditor version : 0.72.2065.27838591920f2b2c8fae8a57cca3149921c02ccc
 psggfile=@@@
 BuildControl.psgg
 @@@
@@ -748,7 +748,7 @@ c_thumbnail=1
 c_contents=1
 force_display_outpin=0
 last_action=@@@
-varied,Edited a state.
+init,Saved
 @@@
 target_pathdir=@@@
 /

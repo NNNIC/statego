@@ -446,6 +446,7 @@ public partial class OepnEditorControl  {
     void exec_vs2015jump(string dir, string src, int line)
     {
         var appdir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+        appdir = appdir.Replace(@"file:\", "");
         var exepath = Path.Combine(appdir, "tools", "VisualStudioOpenFile.exe");
         if (!File.Exists(exepath))
         {
