@@ -42,7 +42,7 @@ namespace stateview._5000_ViewForm.dialog
 
 
             textBox1.Text = G.external_source_editor;
-            checkBox_jumpforVS2015.Checked = G.source_editor_vs2015_support;
+            //廃止checkBox_jumpforVS2015.Checked = G.source_editor_vsXXXX_support;
             
             history_setup(); 
 
@@ -115,10 +115,10 @@ namespace stateview._5000_ViewForm.dialog
         private void buttonOK_Click(object sender,EventArgs e)
         {
             G.external_source_editor = textBox1.Text.Trim();
-            G.source_editor_vs2015_support = checkBox_jumpforVS2015.Checked;
+            //廃止　G.source_editor_vs2015_support = checkBox_jumpforVS2015.Checked;
             history_record(G.external_source_editor);
 
-            var option = (G.source_editor_vs2015_support ? WordStorage.Store.srceditcmd_option_vs2015 :"");
+            var option = (G.source_editor_vsXXXX_support ? WordStorage.Store.srceditcmd_option_vs2015 :"");
 
             RegistryWork.Set_srceditcmd(G.external_source_editor, SettingIniUtil.GetLangFramrwork_registName(), option);
             

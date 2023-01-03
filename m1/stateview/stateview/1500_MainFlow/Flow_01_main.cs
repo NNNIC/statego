@@ -241,12 +241,12 @@ namespace stateview
 
                     G.external_source_editor = RegistryWork.Get_srceditcmd(registname);
                 }
-                {
-                    var optionstr = RegistryWork.Get_srceditcmd_option(SettingIniUtil.GetLangFramrwork_registName());
-                    if (optionstr!=null) {
-                        G.source_editor_vs2015_support = optionstr.Contains(WordStorage.Store.srceditcmd_option_vs2015);
-                    }
-                }
+                //廃止{
+                //    var optionstr = RegistryWork.Get_srceditcmd_option(SettingIniUtil.GetLangFramrwork_registName());
+                //    if (optionstr!=null) {
+                //        G.source_editor_vs2015_support = optionstr.Contains(WordStorage.Store.srceditcmd_option_vs2015);
+                //    }
+                //}
                 {
                     G.use_batch_for_source_editor_open = RegistryWork.Get_execbatch_editor();
                 }

@@ -403,7 +403,8 @@ goto :S_START
         echo : build VisualStudioFileOpenTool
         echo : ------------------------------
         md Work\VisualStudioFileOpenTool 2>nul
-        git clone https://github.com/aienabled/VisualStudioFileOpenTool Work\VisualStudioFileOpenTool
+        //git clone https://github.com/aienabled/VisualStudioFileOpenTool Work\VisualStudioFileOpenTool
+        git clone https://github.com/zhsfei/VisualStudioFileOpenTool2022 Work\VisualStudioFileOpenTool
         pushd Work\VisualStudioFileOpenTool
             "%MSBUILD17%" AtomicTorch.VisualStudioFileOpenTool.sln /t:Build /p:Configuration=%CFG%
         popd

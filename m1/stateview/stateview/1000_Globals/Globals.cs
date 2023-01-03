@@ -1029,9 +1029,20 @@ namespace stateview
         internal static string source_editor_set; 
 
         internal static string external_source_editor;
+        [Obsolete("廃止！  source_editor_vsXXXX_supportを使え")]
         internal static bool source_editor_vs2015_support;
         internal static bool use_batch_for_source_editor_open;
         internal static bool use_cmn_editor;
+
+        internal static bool source_editor_vsXXXX_support
+        {
+            get {
+                var exe = G.external_source_editor_path;
+                if (string.IsNullOrEmpty(exe)) return false;
+                var b = (exe.Contains("Microsoft Visual Studio") && exe.EndsWith(@"devenv.exe"));
+                return b;
+            }
+        }
 
         /// <summary>
         ///  ソースエディタパスは引数込みなので、パス部分のみを抽出する。

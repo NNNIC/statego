@@ -163,6 +163,7 @@
             this.label4.Tag = "ssed_vsdesc";
             this.label4.Text = "Because Visual Studio \'jump to line number\' \r\ncommand option does not work curren" +
     "tly versions";
+            this.label4.Visible = false;
             // 
             // checkBox_jumpforVS2015
             // 
@@ -176,6 +177,7 @@
             this.checkBox_jumpforVS2015.Tag = "ssed_vscheck";
             this.checkBox_jumpforVS2015.Text = "For Visual Studio  2015 and 2017, call Jump tool after calling the command.";
             this.checkBox_jumpforVS2015.UseVisualStyleBackColor = true;
+            this.checkBox_jumpforVS2015.Visible = false;
             // 
             // textBox_LabelEditorCandidate
             // 

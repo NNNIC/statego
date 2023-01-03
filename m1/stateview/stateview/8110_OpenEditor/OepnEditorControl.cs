@@ -436,7 +436,7 @@ public partial class OepnEditorControl  {
 		var file = Path.GetFileName(fullpath);
 		var dir  = Path.GetDirectoryName(fullpath);
 
-        if (G.source_editor_vs2015_support)
+        if (G.source_editor_vsXXXX_support)
         {
             var line = m_linenum==null ? 1 : (int)m_linenum;
             exec_vs2015jump(dir,fullpath,line);
@@ -446,7 +446,13 @@ public partial class OepnEditorControl  {
     void exec_vs2015jump(string dir, string src, int line)
     {
         var appdir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
-        var cmd = "\"" + Path.Combine(appdir,"tools","VisualStudioOpenFile.exe") + "\"  \"" + src +"\" " + line.ToString();
+        var exepath = Path.Combine(appdir, "tools", "VisualStudioOpenFile.exe");
+        if (!File.Exists(exepath))
+        {
+            exepath = Path.Combine(appdir, "VisualStudioOpenFile.exe");
+        }
+        var cmd = "\"" + exepath + "\"  \"" + src +"\" " + line.ToString();
+        
         ExecUtil.execute_start2(cmd,dir);
     }
     //void exec_vsopen(string dir, string src, int line)
@@ -492,7 +498,7 @@ public partial class OepnEditorControl  {
 
     bool hasVSOpenOption()
     {
-        return G.source_editor_vs2015_support;
+        return G.source_editor_vsXXXX_support;
     }
 
     void sleep(double t)

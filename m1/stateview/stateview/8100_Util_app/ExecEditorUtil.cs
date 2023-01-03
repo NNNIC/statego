@@ -85,11 +85,11 @@ namespace stateview
 
 			ExecUtil.execute_start2(cmdline,dir);
 
-            if (lineparam!=null && G.source_editor_vs2015_support && cmdline.Contains("devenv.exe"))
+            //if (lineparam!=null && G.source_editor_vs2015_support && cmdline.Contains("devenv.exe"))
+            if (G.source_editor_vsXXXX_support)
             {
                 exec_vs2015jump(dir,fullpath,(int)lineparam);
             }
-
 
         }
         private static void exec_vs2015jump(string dir, string src, int line)

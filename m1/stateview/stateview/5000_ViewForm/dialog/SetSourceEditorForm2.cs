@@ -54,7 +54,7 @@ namespace stateview._5000_ViewForm.dialog
         {
             this.textBox_Lang.Text = SettingIniUtil.GetLangFramework();
             this.textBox_Command.Text = G.external_source_editor;
-            this.checkBox_jumpforVS2015.Checked = G.source_editor_vs2015_support;
+            //廃止this.checkBox_jumpforVS2015.Checked = G.source_editor_vsXXXX_support;
             this.checkBox_use_batch.Checked = G.use_batch_for_source_editor_open;
         }
         void init_editor_set()
@@ -289,13 +289,13 @@ namespace stateview._5000_ViewForm.dialog
             }
 
             G.external_source_editor = textBox_Command.Text.Trim();
-            G.source_editor_vs2015_support = checkBox_jumpforVS2015.Checked;
+            //廃止　G.source_editor_vs2015_support = checkBox_jumpforVS2015.Checked;
             G.source_editor_set = textBox_SetName.Text;
             G.use_batch_for_source_editor_open = checkBox_use_batch.Checked;
 
             history_record(G.external_source_editor);
 
-            var option = (G.source_editor_vs2015_support ? WordStorage.Store.srceditcmd_option_vs2015 :"");
+            var option = (G.source_editor_vsXXXX_support ? WordStorage.Store.srceditcmd_option_vs2015 :"");
 
 
             var registname = SettingIniUtil.GetLangFramrwork_registName();
