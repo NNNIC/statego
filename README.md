@@ -47,5 +47,5 @@ See https://statego.programanic.com/en/entry2.html
 
 # Test Release  
 
-Release candidate under testing.
+Release candidate under testing.  
 https://1drv.ms/u/s!AiwhClIHaF1QjoI_d-Cz899TnGs_DQ?e=WGMqW8
