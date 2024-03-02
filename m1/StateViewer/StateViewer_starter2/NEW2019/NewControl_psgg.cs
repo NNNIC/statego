@@ -129,6 +129,23 @@ namespace StateViewer_starter2.NEW2019
                 return "{37522A6A-D605-4F45-A715-F28F699E99BD} " + e.Message;
             }
         }
+        public string get_genhppfileFullpath_from_settingini() //生成ファイルのフルパス psgg相対となっている
+        {
+            try
+            {
+                var gen_hpp = IniUtil.GetValue(WordStorage.Store.settingini_group_setting,WordStorage.Store.settingini_setting_genhpp, m_settingini);
+                var genrdir = IniUtil.GetValue(WordStorage.Store.settingini_group_setupinfo,WordStorage.Store.settingini_setupinfo_genrdir, m_settingini);
+                var path = Path.Combine( Path.GetDirectoryName(m_filepath), genrdir, gen_hpp);
+
+                var path2 = (new FileInfo(path).FullName);
+                return path2;
+            }
+            catch (SystemException e)
+            {
+                return "{37522A6A-D605-4F45-A715-F28F699E99BD} " + e.Message;
+            }
+        }
+
         public string get_impfileFullpath_from_settingini() //実装ファイルのフルパス 旧仕様
         {
             try { 

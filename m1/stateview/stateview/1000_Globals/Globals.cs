@@ -312,7 +312,8 @@ namespace stateview
         public   static string                  load_file_name_woext { get { return Path.GetFileNameWithoutExtension(_load_file); } } //拡張子を除いたファイル名
 
         public   static string                  gen_dir { get { return SettingIniUtil.GetGenDir(); } } //生成用フォルダ - フルパス
-        public   static string                  gen_file { get { return SettingIniUtil.GetGeneratedSource(); } }  //生成用ファイル - フルパス
+        public   static string                  gen_file    { get { return SettingIniUtil.GetGeneratedSource(); } }  //生成用ファイル - フルパス
+        public   static string                  genhpp_file { get { return SettingIniUtil.GetGeneratedHpp(); } }  //生成用HPPファイル - フルパス
         public   static string                  imp_file { get { return SettingIniUtil.GetSourceForImplementing(); } } //実装用ファイル - フルパス
         public   static string                  macro_file { get { return SettingIniUtil.GetMacroIni(); } } //マクロファイル - フルパス
         //public   static string                  psgg_file { get { return Path.Combine(load_file_dir,load_file_name_woext) + ".psgg"; } }

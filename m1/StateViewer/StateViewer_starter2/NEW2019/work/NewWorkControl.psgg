@@ -229,6 +229,7 @@ public string m_new_excel;
 public string m_new_psgg;
 public string m_new_helpweb;
 public string m_new_genfile;
+public string m_new_genhpp;
 public string m_new_impfile;
 public string m_new_macro;
 @@@
@@ -251,6 +252,7 @@ public string m_org_excel;
 public string m_org_psgg;
 public string m_org_helpweb;
 public string m_org_genfile;
+public string m_org_genhpp;
 public string m_org_impfile;
 public string m_org_macro;
 @@@
@@ -273,6 +275,7 @@ m_new_excel = mcnd(m_org_excel);
 m_new_psgg = mcnd(m_org_psgg);
 m_new_helpweb = mcnd(m_org_helpweb);
 m_new_genfile = mcng(m_org_genfile);
+m_new_genhpp  = mcng(m_org_genhpp);
 m_new_impfile = mcng(m_org_impfile);
 m_new_macro = mcnd(m_org_macro);
 m_genc = getgenc(m_pd.m_src_enc);
@@ -928,8 +931,8 @@ n018=100052
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2020/09/26 10:50:58
-; * pssgEditor version : 0.66.51249.eb0da3450145a82e8134dcbafdae88a330253a4d
+; The setting was created automatically. 2024/03/02 11:00:28
+; * pssgEditor version : 0.73.172009.ddf164274cdb5999dda57d462a9268c5ede78159
 psggfile=@@@
 NewWorkControl.psgg
 @@@
@@ -946,7 +949,7 @@ c_thumbnail=1
 c_contents=1
 force_display_outpin=0
 last_action=@@@
-mov,S_CONFRM_DIALOG
+init,Saved
 @@@
 target_pathdir=@@@
 /
@@ -1015,6 +1018,13 @@ itemeditform_size_list=@@@
 @@@
 decoimage_typ_name=@@@
 sym
+@@@
+use_donotedit_mark=1
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
 @@@
 
 ###VARIOUS-CONTENTS-END###

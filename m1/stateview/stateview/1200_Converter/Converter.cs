@@ -63,7 +63,7 @@ namespace stateview
         #endregion
 
         #region PSGG Setup
-        private static void _psggConverter_setup()
+        private static void _psggConverter_setup(bool for_hpp_file=false)
         {
             psggConverterLib.template_src = G.excel_convertsettings.m_template_src;
             psggConverterLib.template_func = G.excel_convertsettings.m_template_func;
@@ -97,7 +97,7 @@ namespace stateview
 
             psggConverterLib.MARK_START     = SettingIniUtil.GetCodeOutputStart();
             psggConverterLib.MARK_END       = SettingIniUtil.GetCodeOutputEnd();
-            psggConverterLib.TGTFILE        = SettingIniUtil.GetGeneratedSource(); //セッティングより
+            psggConverterLib.TGTFILE        = for_hpp_file ? SettingIniUtil.GetGeneratedHpp(): SettingIniUtil.GetGeneratedSource(); //セッティングより
 
             var enc = SettingIniUtil.GetSrcEnc();
             psggConverterLib.ENC            = string.IsNullOrEmpty(enc) ? "utf-8" : enc;
@@ -106,7 +106,7 @@ namespace stateview
 
             //psggファイルの相対
             var psggfile = G.psgg_file;
-            var genfile = G.gen_file;
+            var genfile = for_hpp_file ? G.genhpp_file : G.gen_file;
             var psggrelfile = PathUtil.GetRelativePath(Path.GetDirectoryName(genfile), psggfile);
             psggConverterLib.PSGGFILE = psggrelfile;
 
@@ -138,7 +138,7 @@ namespace stateview
             }
         }
 
-        public static void Convert()
+        public static void Convert(bool for_hpp=false)
         {
             if (!string.IsNullOrEmpty(G.excel_convertsettings.m_template_src))
             {
@@ -146,7 +146,7 @@ namespace stateview
             }
             else
             {
-                convert_w_insertmode();
+                convert_w_insertmode(for_hpp);
             }
         }
 
@@ -192,7 +192,7 @@ namespace stateview
                 G.NoticeToUser_warning("Internal Converter Error : " + ExceptionUtil.GetDetail(e));
             }
         }
-        static void convert_w_insertmode()
+        static void convert_w_insertmode(bool for_hpp = false)
         {
             if (psggConverterLib == null)
             {
@@ -200,7 +200,7 @@ namespace stateview
                 return;
             }
 
-            _psggConverter_setup();
+            _psggConverter_setup(for_hpp);
 
             psggConverterLib.BRKGS = BRKGS; //breakpoint
 
@@ -211,7 +211,8 @@ namespace stateview
 
             try
             {
-                psggConverterLib.InsertOutputToFile(excel, SettingIniUtil.GetGeneratedSource(), gendir);
+                var src = for_hpp ?SettingIniUtil.GetGeneratedHpp() : SettingIniUtil.GetGeneratedSource();
+                psggConverterLib.InsertOutputToFile(excel, src, gendir);
             }
             catch (SystemException e)
             {
@@ -221,10 +222,10 @@ namespace stateview
         public static string GetGeneratedSource()
         {
             try {
-            string enc    = psggConverterLib.ENC;
-            string file = GetGeneratedSourceFileName();
-            var text = File.ReadAllText(file,Encoding.GetEncoding(enc));
-            return text;
+                string enc  = psggConverterLib.ENC;
+                string file = GetGeneratedSourceFileName();
+                var    text = File.ReadAllText(file,Encoding.GetEncoding(enc));
+                return text;
             } catch (SystemException  e)
             {
                 return "GetGeneratedSource Unexpected! {176391BA-BC1D-475F-9F5A-5F4477A5DF66}," + ExceptionUtil.GetDetail(e);

@@ -116,6 +116,7 @@ m_b_excel = cfe(m_new_excel);
 m_b_psgg  = cfe(m_new_psgg);
 m_b_helpweb = cfe(m_new_helpweb);
 m_b_genfile = cfe(m_new_genfile);
+m_b_genhpp  = cfe(m_new_genhpp);
 m_b_impfile = cfe(m_new_impfile);
 m_b_macro = cfe(m_new_macro);
 m_bYesNo = check_exist_result();
@@ -191,8 +192,8 @@ n005=S_INIT_DSTFILENAME
 n009=@@@
 m_org_excel = G.load_file;
 m_org_psgg  = G.psgg_file;
-//m_org_helpweb = G.helpweb_file;
 m_org_genfile = G.gen_file;
+m_org_genhpp = G.genhpp_file;
 m_org_impfile = G.imp_file;
 m_org_macro = G.macro_file;
 @@@
@@ -215,6 +216,7 @@ string m_new_excel;
 string m_new_psgg;
 string m_new_helpweb;
 string m_new_genfile;
+string m_new_genhpp;
 string m_new_impfile;
 string m_new_macro;
 @@@
@@ -237,6 +239,7 @@ string m_org_excel;
 string m_org_psgg;
 string m_org_helpweb;
 string m_org_genfile;
+string m_org_genhpp;
 string m_org_impfile;
 string m_org_macro;
 @@@
@@ -259,6 +262,7 @@ m_new_excel = mcnd(m_org_excel);
 m_new_psgg = mcnd(m_org_psgg);
 m_new_helpweb = mcnd(m_org_helpweb);
 m_new_genfile = mcng(m_org_genfile);
+m_new_genhpp  = mcng(m_org_genhpp);
 m_new_impfile = mcng(m_org_impfile);
 m_new_macro = mcnd(m_org_macro);
 @@@
@@ -280,6 +284,7 @@ bool? m_b_excel;
 bool? m_b_psgg;
 bool? m_b_helpweb;
 bool? m_b_genfile;
+bool? m_b_genhpp;
 bool? m_b_impfile;
 bool? m_b_macro;
 @@@
@@ -324,6 +329,7 @@ n009=@@@
 chgs(m_new_psgg);
 chgs(m_new_helpweb);
 chgs(m_new_genfile,m_genc);
+chgs(m_new_genhpp,m_genc);
 chgs(m_new_impfile,m_genc);
 chgs(m_new_macro);
 @@@
@@ -634,6 +640,7 @@ n002=S_CONV_FILES1
 n003=他ファイル内のステートマシン名を変換
 n009=@@@
 chgs(m_new_genfile,m_genc);
+chgs(m_new_genhpp,m_genc);
 chgs(m_new_impfile,m_genc);
 chgs(m_new_macro);
 @@@
@@ -771,8 +778,8 @@ n018=100035
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2019/09/21 12:04:09
-; * pssgEditor version : 0.60.2761.770c0362cf397b88000b3a33baf5a747e03b2071
+; The setting was created automatically. 2024/03/02 18:15:13
+; * pssgEditor version : 0.73.172009.ddf164274cdb5999dda57d462a9268c5ede78159
 psggfile=@@@
 CreateCloneControl.psgg
 @@@
@@ -789,7 +796,7 @@ c_thumbnail=1
 c_contents=1
 force_display_outpin=0
 last_action=@@@
-Edited a state.
+varied,Edited a state.
 @@@
 target_pathdir=@@@
 /
@@ -804,7 +811,7 @@ nodegroup_pos_list=@@@
 [{"Key":"\/","Value":{"x":100,"y":100}}]
 @@@
 fillter_state_location_list=@@@
-[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":28,"y":26}},{"Key":"S_END","Value":{"x":2615,"y":1083}},{"Key":"S_CONFIRM_NEW_EXCEL","Value":{"x":58,"y":994}},{"Key":"S_ERRORDIALOG","Value":{"x":577,"y":1168}},{"Key":"E_VAR","Value":{"x":285,"y":1310}},{"Key":"S_ERROR_EXIST","Value":{"x":273,"y":1154}},{"Key":"E_DEC_NEWFILES","Value":{"x":637,"y":13}},{"Key":"E_DEC_ORGFILES","Value":{"x":433,"y":14}},{"Key":"S_INIT_ORGFILENAME","Value":{"x":429,"y":174}},{"Key":"S_INIT_DSTFILENAME","Value":{"x":629,"y":176}},{"Key":"S_CONV_SHEETS","Value":{"x":943,"y":847}},{"Key":"S_CONV_FILES","Value":{"x":1171,"y":832}},{"Key":"S_CONFRM_DIALOG","Value":{"x":268,"y":981}},{"Key":"S_COPY","Value":{"x":409,"y":506}},{"Key":"E_BOOL_EXIST","Value":{"x":1012,"y":12}},{"Key":"E_DEC_ENC","Value":{"x":822,"y":16}},{"Key":"E_DEC_NAME","Value":{"x":237,"y":43}},{"Key":"S_INITNAMES","Value":{"x":231,"y":173}},{"Key":"S_INIT_ENC","Value":{"x":816,"y":176}},{"Key":"S_DONEDIALOG","Value":{"x":1590,"y":849}},{"Key":"S_NEW_GUID","Value":{"x":1392,"y":779}},{"Key":"S_MOD_GUID_GENRDIR","Value":{"x":1385,"y":909}},{"Key":"S_CHECK_PSGG_W_DATA","Value":{"x":605,"y":524}},{"Key":"S_COPY_FILEDB","Value":{"x":1405,"y":318}},{"Key":"S_CREATE_NEW_GUID","Value":{"x":986,"y":345}},{"Key":"S_CONV_FILES1","Value":{"x":1621,"y":197}},{"Key":"S_CREATE_PSGG","Value":{"x":2069,"y":238}},{"Key":"S_REPLACE_WORDS","Value":{"x":1173,"y":325}},{"Key":"S_CLEAR_ERR","Value":{"x":794,"y":385}},{"Key":"C_CONV_SHEETS1","Value":{"x":1302,"y":184}},{"Key":"S_ERRMSG","Value":{"x":2085,"y":781}},{"Key":"S_DONEDIALOG1","Value":{"x":2461,"y":238}},{"Key":"S_CREATE_EXCEL_IFNEEDS","Value":{"x":2259,"y":229}},{"Key":"S_0001","Value":{"x":1837,"y":227}},{"Key":"S_SET_PATH_SETTINGINI","Value":{"x":1837,"y":227}}]}]
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":28,"y":26}},{"Key":"S_END","Value":{"x":2615,"y":1083}},{"Key":"S_CONFIRM_NEW_EXCEL","Value":{"x":58,"y":994}},{"Key":"S_ERRORDIALOG","Value":{"x":577,"y":1168}},{"Key":"E_VAR","Value":{"x":285,"y":1310}},{"Key":"S_ERROR_EXIST","Value":{"x":273,"y":1154}},{"Key":"E_DEC_NEWFILES","Value":{"x":637,"y":13}},{"Key":"E_DEC_ORGFILES","Value":{"x":433,"y":14}},{"Key":"S_INIT_ORGFILENAME","Value":{"x":429,"y":174}},{"Key":"S_INIT_DSTFILENAME","Value":{"x":629,"y":176}},{"Key":"S_CONV_SHEETS","Value":{"x":943,"y":847}},{"Key":"S_CONV_FILES","Value":{"x":1171,"y":832}},{"Key":"S_CONFRM_DIALOG","Value":{"x":268,"y":981}},{"Key":"S_COPY","Value":{"x":409,"y":506}},{"Key":"E_BOOL_EXIST","Value":{"x":1012,"y":12}},{"Key":"E_DEC_ENC","Value":{"x":822,"y":16}},{"Key":"E_DEC_NAME","Value":{"x":237,"y":43}},{"Key":"S_INITNAMES","Value":{"x":231,"y":173}},{"Key":"S_INIT_ENC","Value":{"x":816,"y":176}},{"Key":"S_DONEDIALOG","Value":{"x":1590,"y":849}},{"Key":"S_NEW_GUID","Value":{"x":1392,"y":779}},{"Key":"S_MOD_GUID_GENRDIR","Value":{"x":1385,"y":909}},{"Key":"S_CHECK_PSGG_W_DATA","Value":{"x":605,"y":524}},{"Key":"S_COPY_FILEDB","Value":{"x":1405,"y":318}},{"Key":"S_CREATE_NEW_GUID","Value":{"x":986,"y":345}},{"Key":"S_CONV_FILES1","Value":{"x":1621,"y":197}},{"Key":"S_CREATE_PSGG","Value":{"x":2069,"y":238}},{"Key":"S_REPLACE_WORDS","Value":{"x":1173,"y":325}},{"Key":"S_CLEAR_ERR","Value":{"x":794,"y":385}},{"Key":"C_CONV_SHEETS1","Value":{"x":1302,"y":184}},{"Key":"S_ERRMSG","Value":{"x":2085,"y":781}},{"Key":"S_DONEDIALOG1","Value":{"x":2461,"y":238}},{"Key":"S_CREATE_EXCEL_IFNEEDS","Value":{"x":2259,"y":229}},{"Key":"S_SET_PATH_SETTINGINI","Value":{"x":1837,"y":227}}]}]
 @@@
 linecolor_data=@@@
 [{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
@@ -813,10 +820,9 @@ use_external_command=0
 external_command=@@@
 
 @@@
-source_editor=@@@
-"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe" /Edit %1
+source_editor_set=@@@
+
 @@@
-source_editor_vs2015_support=1
 label_show=0
 label_text=@@@
 test
@@ -829,6 +835,7 @@ option_copy_output_to_clipboard=0
 option_convert_with_confirm=0
 option_ignore_case_of_state=0
 option_editbranch_automode=1
+option_use_custom_prefix=0
 option_omit_basestate_string=0
 option_hide_basestate_contents=0
 option_hide_branchcmt_onbranchbox=0
@@ -840,6 +847,8 @@ comment_font_size=0
 contents_font_size=0
 state_width=140
 state_height=20
+state_short_width=50
+state_short_height=20
 comment_block_height=4
 content_max_height=100
 comment_block_fixed=0
@@ -851,6 +860,20 @@ userbutton_command=@@@
 
 @@@
 userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"init","Value":{"height":751,"width":760}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+use_donotedit_mark=1
+donotedit_mark_columns=@@@
+76,116,136
+@@@
+donotedit_mark=@@@
+*DoNotEdit*
+@@@
+
 ###VARIOUS-CONTENTS-END###
 
 
@@ -931,7 +954,6 @@ void [[state]](bool bFirst)
 sheet=setting.ini
 
 ###VARIOUS-CONTENTS-BEGIN###
-
 [setting]
 
 starterkit=@@@
@@ -1079,8 +1101,6 @@ This dialog will create files for a state machine.
 NOTE : If the same name files exists, the file will not be created.
        Please delete the same name files ahead of the creation.
 @@@
-
-
 ###VARIOUS-CONTENTS-END###
 
 

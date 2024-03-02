@@ -49,6 +49,7 @@ namespace StateViewer_starter2
             public string manager_dir;
             public string sub_src;
 			public string gen_src;
+            public string gen_hpp;
             public string macro_ini;
 
             public string template_src;

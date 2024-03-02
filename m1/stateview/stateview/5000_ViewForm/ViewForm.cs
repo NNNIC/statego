@@ -974,6 +974,10 @@ namespace stateview._5000_MainForm
                 //Command
                 if (bExecCommand){
                     Converter.Convert();
+                    if (!string.IsNullOrEmpty(SettingIniUtil.GetGeneratedHpp()))
+                    {
+                        Converter.Convert(true);
+                    }
                 }
 
                 if (G.option_copy_output_to_clipboard)

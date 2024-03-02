@@ -102,6 +102,7 @@ namespace WordStorage
         public static readonly string         settingini_setting_xls       = "xls";
         public static readonly string         settingini_setting_sub_src   = "sub_src";
         public static readonly string         settingini_setting_gensrc    = "gen_src";
+        public static readonly string         settingini_setting_genhpp    = "gen_hpp";
         public static readonly string         settingini_setting_macroini  = "macro_ini";
 
         public static readonly string         settingini_setting_manager_src = "manager_src";

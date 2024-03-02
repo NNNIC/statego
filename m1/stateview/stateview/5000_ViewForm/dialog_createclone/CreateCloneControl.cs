@@ -104,7 +104,11 @@ public partial class CreateCloneControl  {
             msg += m_new_helpweb + "\n";
         }
         msg += m_new_genfile + "\n";
-        if (m_b_impfile!=null && (bool)m_b_impfile == false)
+        if (m_b_genhpp != null && (bool)m_b_genhpp == false)
+        {
+            msg += m_new_genhpp + "\n";
+        }
+        if (m_b_impfile != null && (bool)m_b_impfile == false)
         {
             msg += m_new_impfile + "\n";
         }
@@ -144,6 +148,7 @@ public partial class CreateCloneControl  {
         cp(m_org_psgg, m_new_psgg);
         cp(m_org_helpweb, m_new_helpweb);
         cp(m_org_genfile, m_new_genfile);
+        cp(m_org_genhpp, m_new_genhpp);
         cp(m_org_impfile, m_new_impfile);
         cp(m_org_macro, m_new_macro);
     }
@@ -309,609 +314,617 @@ public partial class CreateCloneControl  {
 	}
 
 	#region    // [SYN-G-GEN OUTPUT START] indent(8) $/./$
-//  psggConverterLib.dll converted from CreateCloneControl.xlsx.    psgg-file:doc\CreateCloneControl.psgg
-        /*
-            E_BOOL_EXIST
-        */
-        bool? m_b_excel;
-        bool? m_b_psgg;
-        bool? m_b_helpweb;
-        bool? m_b_genfile;
-        bool? m_b_impfile;
-        bool? m_b_macro;
-        /*
-            E_DEC_ENC
-            生成時用エンコード
-        */
-        Encoding m_genc = Encoding.UTF8;
-        /*
-            E_DEC_NAME
-        */
-        string m_orgname;
-        string m_newname;
-        string m_newdocdir;
-        string m_newsrcdir;
-        /*
-            E_DEC_NEWFILES
-        */
-        //新 フルパス格納
-        string m_new_excel;
-        string m_new_psgg;
-        string m_new_helpweb;
-        string m_new_genfile;
-        string m_new_impfile;
-        string m_new_macro;
-        /*
-            E_DEC_ORGFILES
-        */
-        //元 フルパス格納
-        string m_org_excel;
-        string m_org_psgg;
-        string m_org_helpweb;
-        string m_org_genfile;
-        string m_org_impfile;
-        string m_org_macro;
-        /*
-            E_VAR
-        */
-        string m_err = null;
-        /*
-            S_CHECK_PSGG_W_DATA
-        */
-        void S_CHECK_PSGG_W_DATA(bool bFirst)
-        {
-            // branch
-            if (G.psgg_file_w_data) { SetNextState( S_CLEAR_ERR ); }
-            else { SetNextState( S_CONV_SHEETS ); }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_CLEAR_ERR
-        */
-        void S_CLEAR_ERR(bool bFirst)
-        {
-            if (bFirst)
-            {
-                m_err=null;
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_CREATE_NEW_GUID);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_CONFIRM_NEW_EXCEL
-            新規エクセルと同名ファイルが存在しない
-            ※helpwebは除く
-        */
-        void S_CONFIRM_NEW_EXCEL(bool bFirst)
-        {
-            if (bFirst)
-            {
-                m_b_excel = cfe(m_new_excel);
-                m_b_psgg  = cfe(m_new_psgg);
-                m_b_helpweb = cfe(m_new_helpweb);
-                m_b_genfile = cfe(m_new_genfile);
-                m_b_impfile = cfe(m_new_impfile);
-                m_b_macro = cfe(m_new_macro);
-                m_bYesNo = check_exist_result();
-            }
-            // branch
-            br_YES(S_CONFRM_DIALOG);
-            br_NO(S_ERROR_EXIST);
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_CONFRM_DIALOG
-        */
-        void S_CONFRM_DIALOG(bool bFirst)
-        {
-            var msg = make_clone_confirm_msg();
-            if (bFirst)
-            {
-                show_confirm_dlg(msg);
-            }
-            // branch
-            br_YES(S_COPY);
-            br_NO(S_END);
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_CONV_FILES
-            他ファイル内のステートマシン名を変換
-        */
-        void S_CONV_FILES(bool bFirst)
-        {
-            if (bFirst)
-            {
-                chgs(m_new_psgg);
-                chgs(m_new_helpweb);
-                chgs(m_new_genfile,m_genc);
-                chgs(m_new_impfile,m_genc);
-                chgs(m_new_macro);
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_MOD_GUID_GENRDIR);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_CONV_FILES1
-            他ファイル内のステートマシン名を変換
-        */
-        void S_CONV_FILES1(bool bFirst)
-        {
-            if (bFirst)
-            {
-                chgs(m_new_genfile,m_genc);
-                chgs(m_new_impfile,m_genc);
-                chgs(m_new_macro);
-            }
-            // branch
-            if (m_err==null) { SetNextState( S_SET_PATH_SETTINGINI ); }
-            else { SetNextState( S_ERRMSG ); }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_CONV_SHEETS
-            各シート内のステートマシン名を変換
-        */
-        void S_CONV_SHEETS(bool bFirst)
-        {
-            if (bFirst)
-            {
-                cvtsheet("setting.ini");
-                cvtsheet("help");
-                cvtsheet("template-statefunc");
-                cvtsheet("templcate-source");
-                cvtsheet("config");
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_CONV_FILES);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_COPY
-            コピー
-            ※helpwebは既にあれば除外
-        */
-        void S_COPY(bool bFirst)
-        {
-            if (bFirst)
-            {
-                copyfiles();
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_CHECK_PSGG_W_DATA);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_COPY_FILEDB
-            GUIDを入れ替えたＰＳＧＧからFileDBを作成
-        */
-        void S_COPY_FILEDB(bool bFirst)
-        {
-            if (bFirst)
-            {
-                np_create_filedb();
-            }
-            // branch
-            if (m_err==null) { SetNextState( S_CONV_FILES1 ); }
-            else { SetNextState( S_ERRMSG ); }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_CREATE_EXCEL_IFNEEDS
-            必要があればエクセルを作成
-        */
-        void S_CREATE_EXCEL_IFNEEDS(bool bFirst)
-        {
-            if (bFirst)
-            {
-                np_create_excel_ifneeds();
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_DONEDIALOG1);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_CREATE_NEW_GUID
-            新規GUIDを生成して、コピー先のPSGG内の現GUIDと入れ替える。
-        */
-        void S_CREATE_NEW_GUID(bool bFirst)
-        {
-            if (bFirst)
-            {
-                np_new_psgg();
-            }
-            // branch
-            if (m_err==null) { SetNextState( S_REPLACE_WORDS ); }
-            else { SetNextState( S_ERRMSG ); }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_CREATE_PSGG
-            生成したファイルから新規のＰＳＧＧを作成
-        */
-        void S_CREATE_PSGG(bool bFirst)
-        {
-            if (bFirst)
-            {
-                np_create_psgg();
-            }
-            // branch
-            if (m_err==null) { SetNextState( S_CREATE_EXCEL_IFNEEDS ); }
-            else { SetNextState( S_ERRMSG ); }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_DONEDIALOG
-        */
-        void S_DONEDIALOG(bool bFirst)
-        {
-            if (bFirst)
-            {
-                show_done_dlg();
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_END);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_DONEDIALOG1
-        */
-        void S_DONEDIALOG1(bool bFirst)
-        {
-            if (bFirst)
-            {
-                show_done_dlg();
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_END);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_END
-        */
-        void S_END(bool bFirst)
-        {
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_ERRMSG
-        */
-        void S_ERRMSG(bool bFirst)
-        {
-            if (bFirst)
-            {
-                show_err_start();
-            }
-            if (show_err_done()==false) return;
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_END);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_ERROR_EXIST
-        */
-        void S_ERROR_EXIST(bool bFirst)
-        {
-            if (bFirst)
-            {
-                m_err = G.Localize("ccf_errore");// "Cloning files exist or state machine name is not valid. The clone process was terminated.";
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_ERRORDIALOG);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_ERRORDIALOG
-        */
-        void S_ERRORDIALOG(bool bFirst)
-        {
-            if (bFirst)
-            {
-                show_error_dlg(m_err);
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_END);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_INIT_DSTFILENAME
-        */
-        void S_INIT_DSTFILENAME(bool bFirst)
-        {
-            if (bFirst)
-            {
-                m_new_excel = mcnd(m_org_excel);
-                m_new_psgg = mcnd(m_org_psgg);
-                m_new_helpweb = mcnd(m_org_helpweb);
-                m_new_genfile = mcng(m_org_genfile);
-                m_new_impfile = mcng(m_org_impfile);
-                m_new_macro = mcnd(m_org_macro);
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_INIT_ENC);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_INIT_ENC
-        */
-        void S_INIT_ENC(bool bFirst)
-        {
-            if (bFirst)
-            {
-                m_genc = G.src_enc;
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_CONFIRM_NEW_EXCEL);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_INIT_ORGFILENAME
-        */
-        void S_INIT_ORGFILENAME(bool bFirst)
-        {
-            if (bFirst)
-            {
-                m_org_excel = G.load_file;
-                m_org_psgg  = G.psgg_file;
-                //m_org_helpweb = G.helpweb_file;
-                m_org_genfile = G.gen_file;
-                m_org_impfile = G.imp_file;
-                m_org_macro = G.macro_file;
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_INIT_DSTFILENAME);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_INITNAMES
-        */
-        void S_INITNAMES(bool bFirst)
-        {
-            if (bFirst)
-            {
-                m_orgname = m_form.textBox_this.Text;
-                m_newname =m_form.textBox_new.Text;
-                m_newdocdir=m_form.textBox_docdir.Text;
-                m_newsrcdir = m_form.textBox_srcdir.Text;
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_INIT_ORGFILENAME);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_MOD_GUID_GENRDIR
-            S_MOD_GUID_GENRDIR
-            シートのguidとgenrdirの更新
-        */
-        void S_MOD_GUID_GENRDIR(bool bFirst)
-        {
-            if (bFirst)
-            {
-                newguidsheet("config");
-                modgenrdir("setting.ini",m_new_psgg,m_new_genfile);
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_DONEDIALOG);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_NEW_GUID
-            configシートのGUIDを更新
-        */
-        void S_NEW_GUID(bool bFirst)
-        {
-            if (bFirst)
-            {
-                newguidsheet("config");
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_DONEDIALOG);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_REPLACE_WORDS
-            PSGG内の全ステートマシン名を入れ替える
-        */
-        void S_REPLACE_WORDS(bool bFirst)
-        {
-            if (bFirst)
-            {
-                np_replace_psgg();
-            }
-            // branch
-            if (m_err==null) { SetNextState( S_COPY_FILEDB ); }
-            else { SetNextState( S_ERRMSG ); }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_SET_PATH_SETTINGINI
-            シートsetting.ini内のパスを調整する。
-        */
-        void S_SET_PATH_SETTINGINI(bool bFirst)
-        {
-            if (bFirst)
-            {
-                set_path_setting();
-            }
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_CREATE_PSGG);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-        /*
-            S_START
-        */
-        void S_START(bool bFirst)
-        {
-            //
-            if (!HasNextState())
-            {
-                SetNextState(S_INITNAMES);
-            }
-            //
-            if (HasNextState())
-            {
-                GoNextState();
-            }
-        }
-
-
+        //             psggConverterLib.dll converted from psgg-file:doc\CreateCloneControl.psgg                    // *DoNotEdit*
+                                                                            // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            E_BOOL_EXIST                                                    // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        bool? m_b_excel;                                                    // *DoNotEdit*
+        bool? m_b_psgg;                                                     // *DoNotEdit*
+        bool? m_b_helpweb;                                                  // *DoNotEdit*
+        bool? m_b_genfile;                                                  // *DoNotEdit*
+        bool? m_b_genhpp;                                                   // *DoNotEdit*
+        bool? m_b_impfile;                                                  // *DoNotEdit*
+        bool? m_b_macro;                                                    // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            E_DEC_ENC                                                       // *DoNotEdit*
+            生成時用エンコード                                              // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        Encoding m_genc = Encoding.UTF8;                                    // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            E_DEC_NAME                                                      // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        string m_orgname;                                                   // *DoNotEdit*
+        string m_newname;                                                   // *DoNotEdit*
+        string m_newdocdir;                                                 // *DoNotEdit*
+        string m_newsrcdir;                                                 // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            E_DEC_NEWFILES                                                  // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        //新 フルパス格納                                                   // *DoNotEdit*
+        string m_new_excel;                                                 // *DoNotEdit*
+        string m_new_psgg;                                                  // *DoNotEdit*
+        string m_new_helpweb;                                               // *DoNotEdit*
+        string m_new_genfile;                                               // *DoNotEdit*
+        string m_new_genhpp;                                                // *DoNotEdit*
+        string m_new_impfile;                                               // *DoNotEdit*
+        string m_new_macro;                                                 // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            E_DEC_ORGFILES                                                  // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        //元 フルパス格納                                                   // *DoNotEdit*
+        string m_org_excel;                                                 // *DoNotEdit*
+        string m_org_psgg;                                                  // *DoNotEdit*
+        string m_org_helpweb;                                               // *DoNotEdit*
+        string m_org_genfile;                                               // *DoNotEdit*
+        string m_org_genhpp;                                                // *DoNotEdit*
+        string m_org_impfile;                                               // *DoNotEdit*
+        string m_org_macro;                                                 // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            E_VAR                                                           // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        string m_err = null;                                                // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_CHECK_PSGG_W_DATA                                             // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_CHECK_PSGG_W_DATA(bool bFirst)                               // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            // branch                                                       // *DoNotEdit*
+            if (G.psgg_file_w_data) { SetNextState( S_CLEAR_ERR ); }        // *DoNotEdit*
+            else { SetNextState( S_CONV_SHEETS ); }                         // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_CLEAR_ERR                                                     // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_CLEAR_ERR(bool bFirst)                                       // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                m_err=null;                                                 // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_CREATE_NEW_GUID);                            // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_CONFIRM_NEW_EXCEL                                             // *DoNotEdit*
+            新規エクセルと同名ファイルが存在しない                          // *DoNotEdit*
+            ※helpwebは除く                                                 // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_CONFIRM_NEW_EXCEL(bool bFirst)                               // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                m_b_excel = cfe(m_new_excel);                               // *DoNotEdit*
+                m_b_psgg  = cfe(m_new_psgg);                                // *DoNotEdit*
+                m_b_helpweb = cfe(m_new_helpweb);                           // *DoNotEdit*
+                m_b_genfile = cfe(m_new_genfile);                           // *DoNotEdit*
+                m_b_genhpp  = cfe(m_new_genhpp);                            // *DoNotEdit*
+                m_b_impfile = cfe(m_new_impfile);                           // *DoNotEdit*
+                m_b_macro = cfe(m_new_macro);                               // *DoNotEdit*
+                m_bYesNo = check_exist_result();                            // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            // branch                                                       // *DoNotEdit*
+            br_YES(S_CONFRM_DIALOG);                                        // *DoNotEdit*
+            br_NO(S_ERROR_EXIST);                                           // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_CONFRM_DIALOG                                                 // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_CONFRM_DIALOG(bool bFirst)                                   // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            var msg = make_clone_confirm_msg();                             // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                show_confirm_dlg(msg);                                      // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            // branch                                                       // *DoNotEdit*
+            br_YES(S_COPY);                                                 // *DoNotEdit*
+            br_NO(S_END);                                                   // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_CONV_FILES                                                    // *DoNotEdit*
+            他ファイル内のステートマシン名を変換                            // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_CONV_FILES(bool bFirst)                                      // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                chgs(m_new_psgg);                                           // *DoNotEdit*
+                chgs(m_new_helpweb);                                        // *DoNotEdit*
+                chgs(m_new_genfile,m_genc);                                 // *DoNotEdit*
+                chgs(m_new_genhpp,m_genc);                                  // *DoNotEdit*
+                chgs(m_new_impfile,m_genc);                                 // *DoNotEdit*
+                chgs(m_new_macro);                                          // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_MOD_GUID_GENRDIR);                           // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_CONV_FILES1                                                   // *DoNotEdit*
+            他ファイル内のステートマシン名を変換                            // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_CONV_FILES1(bool bFirst)                                     // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                chgs(m_new_genfile,m_genc);                                 // *DoNotEdit*
+                chgs(m_new_genhpp,m_genc);                                  // *DoNotEdit*
+                chgs(m_new_impfile,m_genc);                                 // *DoNotEdit*
+                chgs(m_new_macro);                                          // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            // branch                                                       // *DoNotEdit*
+            if (m_err==null) { SetNextState( S_SET_PATH_SETTINGINI ); }     // *DoNotEdit*
+            else { SetNextState( S_ERRMSG ); }                              // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_CONV_SHEETS                                                   // *DoNotEdit*
+            各シート内のステートマシン名を変換                              // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_CONV_SHEETS(bool bFirst)                                     // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                cvtsheet("setting.ini");                                    // *DoNotEdit*
+                cvtsheet("help");                                           // *DoNotEdit*
+                cvtsheet("template-statefunc");                             // *DoNotEdit*
+                cvtsheet("templcate-source");                               // *DoNotEdit*
+                cvtsheet("config");                                         // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_CONV_FILES);                                 // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_COPY                                                          // *DoNotEdit*
+            コピー                                                          // *DoNotEdit*
+            ※helpwebは既にあれば除外                                       // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_COPY(bool bFirst)                                            // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                copyfiles();                                                // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_CHECK_PSGG_W_DATA);                          // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_COPY_FILEDB                                                   // *DoNotEdit*
+            GUIDを入れ替えたＰＳＧＧからFileDBを作成                        // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_COPY_FILEDB(bool bFirst)                                     // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                np_create_filedb();                                         // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            // branch                                                       // *DoNotEdit*
+            if (m_err==null) { SetNextState( S_CONV_FILES1 ); }             // *DoNotEdit*
+            else { SetNextState( S_ERRMSG ); }                              // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_CREATE_EXCEL_IFNEEDS                                          // *DoNotEdit*
+            必要があればエクセルを作成                                      // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_CREATE_EXCEL_IFNEEDS(bool bFirst)                            // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                np_create_excel_ifneeds();                                  // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_DONEDIALOG1);                                // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_CREATE_NEW_GUID                                               // *DoNotEdit*
+            新規GUIDを生成して、コピー先のPSGG内の現GUIDと入れ替える。      // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_CREATE_NEW_GUID(bool bFirst)                                 // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                np_new_psgg();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            // branch                                                       // *DoNotEdit*
+            if (m_err==null) { SetNextState( S_REPLACE_WORDS ); }           // *DoNotEdit*
+            else { SetNextState( S_ERRMSG ); }                              // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_CREATE_PSGG                                                   // *DoNotEdit*
+            生成したファイルから新規のＰＳＧＧを作成                        // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_CREATE_PSGG(bool bFirst)                                     // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                np_create_psgg();                                           // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            // branch                                                       // *DoNotEdit*
+            if (m_err==null) { SetNextState( S_CREATE_EXCEL_IFNEEDS ); }    // *DoNotEdit*
+            else { SetNextState( S_ERRMSG ); }                              // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_DONEDIALOG                                                    // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_DONEDIALOG(bool bFirst)                                      // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                show_done_dlg();                                            // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_END);                                        // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_DONEDIALOG1                                                   // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_DONEDIALOG1(bool bFirst)                                     // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                show_done_dlg();                                            // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_END);                                        // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_END                                                           // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_END(bool bFirst)                                             // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_ERRMSG                                                        // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_ERRMSG(bool bFirst)                                          // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                show_err_start();                                           // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            if (show_err_done()==false) return;                             // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_END);                                        // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_ERROR_EXIST                                                   // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_ERROR_EXIST(bool bFirst)                                     // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                m_err = "Cloning files exist or state machine name is not valid. The clone process was terminated.";                    // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_ERRORDIALOG);                                // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_ERRORDIALOG                                                   // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_ERRORDIALOG(bool bFirst)                                     // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                show_error_dlg(m_err);                                      // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_END);                                        // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_INIT_DSTFILENAME                                              // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_INIT_DSTFILENAME(bool bFirst)                                // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                m_new_excel = mcnd(m_org_excel);                            // *DoNotEdit*
+                m_new_psgg = mcnd(m_org_psgg);                              // *DoNotEdit*
+                m_new_helpweb = mcnd(m_org_helpweb);                        // *DoNotEdit*
+                m_new_genfile = mcng(m_org_genfile);                        // *DoNotEdit*
+                m_new_genhpp  = mcng(m_org_genhpp);                         // *DoNotEdit*
+                m_new_impfile = mcng(m_org_impfile);                        // *DoNotEdit*
+                m_new_macro = mcnd(m_org_macro);                            // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_INIT_ENC);                                   // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_INIT_ENC                                                      // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_INIT_ENC(bool bFirst)                                        // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                m_genc = G.src_enc;                                         // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_CONFIRM_NEW_EXCEL);                          // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_INIT_ORGFILENAME                                              // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_INIT_ORGFILENAME(bool bFirst)                                // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                m_org_excel = G.load_file;                                  // *DoNotEdit*
+                m_org_psgg  = G.psgg_file;                                  // *DoNotEdit*
+                m_org_genfile = G.gen_file;                                 // *DoNotEdit*
+                m_org_genhpp = G.genhpp_file;                               // *DoNotEdit*
+                m_org_impfile = G.imp_file;                                 // *DoNotEdit*
+                m_org_macro = G.macro_file;                                 // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_INIT_DSTFILENAME);                           // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_INITNAMES                                                     // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_INITNAMES(bool bFirst)                                       // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                m_orgname = m_form.textBox_this.Text;                       // *DoNotEdit*
+                m_newname =m_form.textBox_new.Text;                         // *DoNotEdit*
+                m_newdocdir=m_form.textBox_docdir.Text;                     // *DoNotEdit*
+                m_newsrcdir = m_form.textBox_srcdir.Text;                   // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_INIT_ORGFILENAME);                           // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_MOD_GUID_GENRDIR                                              // *DoNotEdit*
+            S_MOD_GUID_GENRDIR                                              // *DoNotEdit*
+            シートのguidとgenrdirの更新                                     // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_MOD_GUID_GENRDIR(bool bFirst)                                // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                newguidsheet("config");                                     // *DoNotEdit*
+                modgenrdir("setting.ini",m_new_psgg,m_new_genfile);         // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_DONEDIALOG);                                 // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_NEW_GUID                                                      // *DoNotEdit*
+            configシートのGUIDを更新                                        // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_NEW_GUID(bool bFirst)                                        // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                newguidsheet("config");                                     // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_DONEDIALOG);                                 // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_REPLACE_WORDS                                                 // *DoNotEdit*
+            PSGG内の全ステートマシン名を入れ替える                          // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_REPLACE_WORDS(bool bFirst)                                   // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                np_replace_psgg();                                          // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            // branch                                                       // *DoNotEdit*
+            if (m_err==null) { SetNextState( S_COPY_FILEDB ); }             // *DoNotEdit*
+            else { SetNextState( S_ERRMSG ); }                              // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_SET_PATH_SETTINGINI                                           // *DoNotEdit*
+            シートsetting.ini内のパスを調整する。                           // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_SET_PATH_SETTINGINI(bool bFirst)                             // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                set_path_setting();                                         // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_CREATE_PSGG);                                // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_START                                                         // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_START(bool bFirst)                                           // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_INITNAMES);                                  // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
+                                                                            // *DoNotEdit*
+                                                                            // *DoNotEdit*
 	#endregion // [SYN-G-GEN OUTPUT END]
 
 	// write your code below

@@ -45,6 +45,14 @@ namespace stateview
 			if (string.IsNullOrEmpty(dir)) return null;
 			return Path.Combine(dir,file);
         }
+        public static string GetGeneratedHpp()
+        {
+            var file = get_setting(WordStorage.Store.settingini_setting_genhpp/* "genhpp" */);
+            if (string.IsNullOrEmpty(file)) return null;
+            var dir = GetGenDir();
+            if (string.IsNullOrEmpty(dir)) return null;
+            return Path.Combine(dir, file);
+        }
         public static void CopyGeneratedSourceToClipboard()
         {
             try {
