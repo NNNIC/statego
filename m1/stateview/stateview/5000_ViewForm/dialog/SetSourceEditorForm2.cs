@@ -183,7 +183,7 @@ namespace stateview._5000_ViewForm.dialog
 
             new string[] {
                 "Visual Studio Code",
-                @"%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\bin\code.cmd",
+                @"%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\code.exe",
                 @"-g %1:%2"
             },
             new string[] {
