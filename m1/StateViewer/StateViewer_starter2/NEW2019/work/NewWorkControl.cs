@@ -1017,7 +1017,7 @@ namespace StateViewer_starter2.NEW2019 {
 
                 var repword = "class " + projectname.ToUpper() + "_API";
                 var newtext = Regex.Replace(text, srcworrd, repword);
-                File.WriteAllText(m_new_genhpp, newtext, enc);
+                File.WriteAllText(m_new_genhpp, newtext, m_genc);
             }
         }
         #endregion

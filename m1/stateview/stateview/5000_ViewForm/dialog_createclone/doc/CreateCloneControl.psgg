@@ -13,9 +13,9 @@ check_excel_writable=no
 
 sheet=state-chart
 nameid_list=,n001,n002,n003,n004,n005,,n006,,n007,,n008,n009,n00a,n00b,,n00c,n00d,,n00e,n00f,,n010,n011,,n012,n013,n014,n015,,n016,n017,n018
-stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s001a,s001b,s001c,s001d,s001e,s001f,s0020,s0021,s0022
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,s000f,s0010,s0011,s0012,s0013,s0014,s0015,s0016,s0017,s0018,s0019,s001a,s001b,s001c,s001d,s001e,s001f,s0020,s0021,s0022,,s0023
 max_name_id=24
-max_state_id=34
+max_state_id=35
 [id_name_dic]
 n001=thumbnail
 n002=state
@@ -78,6 +78,7 @@ s001f=S_ERRMSG
 s0020=S_DONEDIALOG1
 s0021=S_CREATE_EXCEL_IFNEEDS
 s0022=S_SET_PATH_SETTINGINI
+s0023=S_UE5ACTOR
 
 
 [s0001]
@@ -738,14 +739,14 @@ n016=@@@
 This is the root
 @@@
 
-n017=2461,238
+n017=2690,233
 n018=100033
 
 [s0021]
 n001=(bitmap)
 n002=S_CREATE_EXCEL_IFNEEDS
 n003=必要があればエクセルを作成
-n005=S_DONEDIALOG1
+n005=S_UE5ACTOR
 n009=np_create_excel_ifneeds();
 n016=@@@
 /
@@ -771,6 +772,26 @@ n016=@@@
 n017=1837,227
 n018=100035
 
+[s0023]
+n002=S_UE5ACTOR
+n003=UE5ActorであればAPI名変更
+n005=S_DONEDIALOG1
+n009=@@@
+if (G.is_ue5_actor_special_condition)
+{
+    ue5actor_work();
+}
+@@@
+
+n016=@@@
+/
+(100,100)
+
+@@@
+
+n017=2466,229
+n018=100036
+
 
 
 ------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
@@ -778,8 +799,8 @@ n018=100035
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2024/03/02 18:15:13
-; * pssgEditor version : 0.73.172009.ddf164274cdb5999dda57d462a9268c5ede78159
+; The setting was created automatically. 2024/03/20 21:23:44
+; * pssgEditor version : 0.75.643.b6374744957205afe5ec793648f2597ffa833c76
 psggfile=@@@
 CreateCloneControl.psgg
 @@@
@@ -811,7 +832,7 @@ nodegroup_pos_list=@@@
 [{"Key":"\/","Value":{"x":100,"y":100}}]
 @@@
 fillter_state_location_list=@@@
-[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":28,"y":26}},{"Key":"S_END","Value":{"x":2615,"y":1083}},{"Key":"S_CONFIRM_NEW_EXCEL","Value":{"x":58,"y":994}},{"Key":"S_ERRORDIALOG","Value":{"x":577,"y":1168}},{"Key":"E_VAR","Value":{"x":285,"y":1310}},{"Key":"S_ERROR_EXIST","Value":{"x":273,"y":1154}},{"Key":"E_DEC_NEWFILES","Value":{"x":637,"y":13}},{"Key":"E_DEC_ORGFILES","Value":{"x":433,"y":14}},{"Key":"S_INIT_ORGFILENAME","Value":{"x":429,"y":174}},{"Key":"S_INIT_DSTFILENAME","Value":{"x":629,"y":176}},{"Key":"S_CONV_SHEETS","Value":{"x":943,"y":847}},{"Key":"S_CONV_FILES","Value":{"x":1171,"y":832}},{"Key":"S_CONFRM_DIALOG","Value":{"x":268,"y":981}},{"Key":"S_COPY","Value":{"x":409,"y":506}},{"Key":"E_BOOL_EXIST","Value":{"x":1012,"y":12}},{"Key":"E_DEC_ENC","Value":{"x":822,"y":16}},{"Key":"E_DEC_NAME","Value":{"x":237,"y":43}},{"Key":"S_INITNAMES","Value":{"x":231,"y":173}},{"Key":"S_INIT_ENC","Value":{"x":816,"y":176}},{"Key":"S_DONEDIALOG","Value":{"x":1590,"y":849}},{"Key":"S_NEW_GUID","Value":{"x":1392,"y":779}},{"Key":"S_MOD_GUID_GENRDIR","Value":{"x":1385,"y":909}},{"Key":"S_CHECK_PSGG_W_DATA","Value":{"x":605,"y":524}},{"Key":"S_COPY_FILEDB","Value":{"x":1405,"y":318}},{"Key":"S_CREATE_NEW_GUID","Value":{"x":986,"y":345}},{"Key":"S_CONV_FILES1","Value":{"x":1621,"y":197}},{"Key":"S_CREATE_PSGG","Value":{"x":2069,"y":238}},{"Key":"S_REPLACE_WORDS","Value":{"x":1173,"y":325}},{"Key":"S_CLEAR_ERR","Value":{"x":794,"y":385}},{"Key":"C_CONV_SHEETS1","Value":{"x":1302,"y":184}},{"Key":"S_ERRMSG","Value":{"x":2085,"y":781}},{"Key":"S_DONEDIALOG1","Value":{"x":2461,"y":238}},{"Key":"S_CREATE_EXCEL_IFNEEDS","Value":{"x":2259,"y":229}},{"Key":"S_SET_PATH_SETTINGINI","Value":{"x":1837,"y":227}}]}]
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":28,"y":26}},{"Key":"S_END","Value":{"x":2615,"y":1083}},{"Key":"S_CONFIRM_NEW_EXCEL","Value":{"x":58,"y":994}},{"Key":"S_ERRORDIALOG","Value":{"x":577,"y":1168}},{"Key":"E_VAR","Value":{"x":285,"y":1310}},{"Key":"S_ERROR_EXIST","Value":{"x":273,"y":1154}},{"Key":"E_DEC_NEWFILES","Value":{"x":637,"y":13}},{"Key":"E_DEC_ORGFILES","Value":{"x":433,"y":14}},{"Key":"S_INIT_ORGFILENAME","Value":{"x":429,"y":174}},{"Key":"S_INIT_DSTFILENAME","Value":{"x":629,"y":176}},{"Key":"S_CONV_SHEETS","Value":{"x":943,"y":847}},{"Key":"S_CONV_FILES","Value":{"x":1171,"y":832}},{"Key":"S_CONFRM_DIALOG","Value":{"x":268,"y":981}},{"Key":"S_COPY","Value":{"x":409,"y":506}},{"Key":"E_BOOL_EXIST","Value":{"x":1012,"y":12}},{"Key":"E_DEC_ENC","Value":{"x":822,"y":16}},{"Key":"E_DEC_NAME","Value":{"x":237,"y":43}},{"Key":"S_INITNAMES","Value":{"x":231,"y":173}},{"Key":"S_INIT_ENC","Value":{"x":816,"y":176}},{"Key":"S_DONEDIALOG","Value":{"x":1590,"y":849}},{"Key":"S_NEW_GUID","Value":{"x":1392,"y":779}},{"Key":"S_MOD_GUID_GENRDIR","Value":{"x":1385,"y":909}},{"Key":"S_CHECK_PSGG_W_DATA","Value":{"x":605,"y":524}},{"Key":"S_COPY_FILEDB","Value":{"x":1405,"y":318}},{"Key":"S_CREATE_NEW_GUID","Value":{"x":986,"y":345}},{"Key":"S_CONV_FILES1","Value":{"x":1621,"y":197}},{"Key":"S_CREATE_PSGG","Value":{"x":2069,"y":238}},{"Key":"S_REPLACE_WORDS","Value":{"x":1173,"y":325}},{"Key":"S_CLEAR_ERR","Value":{"x":794,"y":385}},{"Key":"C_CONV_SHEETS1","Value":{"x":1302,"y":184}},{"Key":"S_ERRMSG","Value":{"x":2085,"y":781}},{"Key":"S_DONEDIALOG1","Value":{"x":2690,"y":233}},{"Key":"S_CREATE_EXCEL_IFNEEDS","Value":{"x":2259,"y":229}},{"Key":"S_SET_PATH_SETTINGINI","Value":{"x":1837,"y":227}},{"Key":"S_UE5ACTOR","Value":{"x":2466,"y":229}}]}]
 @@@
 linecolor_data=@@@
 [{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]

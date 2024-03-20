@@ -571,7 +571,7 @@ public partial class CreateCloneControl  {
             //                                                              // *DoNotEdit*
             if (!HasNextState())                                            // *DoNotEdit*
             {                                                               // *DoNotEdit*
-                SetNextState(S_DONEDIALOG1);                                // *DoNotEdit*
+                SetNextState(S_UE5ACTOR);                                   // *DoNotEdit*
             }                                                               // *DoNotEdit*
             //                                                              // *DoNotEdit*
             if (HasNextState())                                             // *DoNotEdit*
@@ -923,6 +923,30 @@ public partial class CreateCloneControl  {
                 GoNextState();                                              // *DoNotEdit*
             }                                                               // *DoNotEdit*
         }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_UE5ACTOR                                                      // *DoNotEdit*
+            UE5ActorであればAPI名変更                                       // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_UE5ACTOR(bool bFirst)                                        // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                if (G.is_ue5_actor_special_condition)                       // *DoNotEdit*
+                {                                                           // *DoNotEdit*
+                    ue5actor_work();                                        // *DoNotEdit*
+                }                                                           // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_DONEDIALOG1);                                // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
                                                                             // *DoNotEdit*
                                                                             // *DoNotEdit*
 	#endregion // [SYN-G-GEN OUTPUT END]
@@ -1091,4 +1115,53 @@ public partial class CreateCloneControl  {
     }
     #endregion
 
+    #region UE5 ACTOR
+    void ue5actor_work()
+    {
+        //new_genhpp_file ... 対象ファイル
+        string projectname = null;
+        string folder = Path.GetDirectoryName(m_new_genfile);
+        string rootPath = Path.GetPathRoot(m_new_genfile);
+        int loop = 0;
+        while (!String.Equals(
+            Path.GetFullPath(folder),
+            Path.GetFullPath(rootPath),
+            StringComparison.OrdinalIgnoreCase)
+            )
+        {
+            loop++;
+            if (loop > 100) break; //無限ループ回避
+
+            var files = Directory.GetFiles(folder, "*.uproject");
+            if (files.Length > 0)
+            {
+                projectname = Path.GetFileNameWithoutExtension(files[0]);
+                break;
+            }
+            folder = Path.Combine(folder, "..");
+        }
+        if (projectname != null)
+        {
+
+            //m_new_genhppファイル内の UCLASS()の次の行を取得する。
+            var lines = File.ReadAllLines(m_new_genhpp);
+            var uclassline = "";
+            for (var n = 0; n < lines.Length; n++)
+            {
+                if (lines[n].StartsWith("UCLASS()"))
+                {
+                    uclassline = lines[n + 1];
+                    break;
+                }
+            }
+            //その行から正規表現 "^class .+_API" を取得する
+            var srcworrd = RegexUtil.Get1stMatch(@"^class\s.+?_API", uclassline);
+            var text = File.ReadAllText(m_new_genhpp,m_genc);
+
+            var repword = "class " + projectname.ToUpper() + "_API";
+            var newtext = Regex.Replace(text, srcworrd, repword);
+            File.WriteAllText(m_new_genhpp, newtext, m_genc);
+        }
+    }
+    #endregion
 }

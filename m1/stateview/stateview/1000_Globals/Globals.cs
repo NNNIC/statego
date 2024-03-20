@@ -644,7 +644,7 @@ namespace stateview
         internal static string option_donotedit_mark = "*DoNotEdit*";        //編集不可マーク
 
         internal static string special_condition = "";                       //特別な条件
-        internal static bool   is_ue5_actor_special_condition= special_condition == "ue5-actor";
+        internal static bool   is_ue5_actor_special_condition=> special_condition == "ue5-actor";
 
         internal static bool   option_lexical_color_onoff = true;            //字句解析により色設定ON/OFF
 
