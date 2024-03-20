@@ -16,7 +16,9 @@ using System.Windows.Forms;
 namespace StateViewer_starter2.NEW2019 { 
 
     public partial class NewWorkControl  {
-    #region implement
+        #region implement
+
+        public bool m_bUE5Actor = false;
 
         string m_system_lang { get {  return RegistryWork.Get_lang()=="jp" ? "jpn" : "en";  } }
 
@@ -537,7 +539,7 @@ namespace StateViewer_starter2.NEW2019 {
                 np_repw_files();                                            // *DoNotEdit*
             }                                                               // *DoNotEdit*
             // branch                                                       // *DoNotEdit*
-            if (m_err==null) { SetNextState( S_DONEDIALOG1 ); }             // *DoNotEdit*
+            if (m_err==null) { SetNextState( S_UE5SPECIALWORK ); }          // *DoNotEdit*
             else { SetNextState( S_CLEAR_ERR3 ); }                          // *DoNotEdit*
             //                                                              // *DoNotEdit*
             if (HasNextState())                                             // *DoNotEdit*
@@ -915,6 +917,29 @@ namespace StateViewer_starter2.NEW2019 {
                 GoNextState();                                              // *DoNotEdit*
             }                                                               // *DoNotEdit*
         }                                                                   // *DoNotEdit*
+        /*                                                                  // *DoNotEdit*
+            S_UE5SPECIALWORK                                                // *DoNotEdit*
+        */                                                                  // *DoNotEdit*
+        void S_UE5SPECIALWORK(bool bFirst)                                  // *DoNotEdit*
+        {                                                                   // *DoNotEdit*
+            if (bFirst)                                                     // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                if (m_bUE5Actor)                                            // *DoNotEdit*
+                {                                                           // *DoNotEdit*
+                    ue5actor_work();                                        // *DoNotEdit*
+                }                                                           // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (!HasNextState())                                            // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                SetNextState(S_DONEDIALOG1);                                // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+            //                                                              // *DoNotEdit*
+            if (HasNextState())                                             // *DoNotEdit*
+            {                                                               // *DoNotEdit*
+                GoNextState();                                              // *DoNotEdit*
+            }                                                               // *DoNotEdit*
+        }                                                                   // *DoNotEdit*
                                                                             // *DoNotEdit*
                                                                             // *DoNotEdit*
 #endregion // [SYN-G-GEN OUTPUT END]
@@ -944,5 +969,58 @@ namespace StateViewer_starter2.NEW2019 {
 			    }
 		    }
 	    }
+        #region UE5 ACTOR
+        void ue5actor_work()
+        {
+            //m_new_genfile ... cpp
+            //m_new_genhpp  ... h
+            string projectname = null;
+            string folder = Path.GetDirectoryName(m_new_genfile);
+            string rootPath = Path.GetPathRoot(m_new_genfile);
+            int loop = 0;
+            while (!String.Equals(
+                Path.GetFullPath(folder),
+                Path.GetFullPath(rootPath),
+                StringComparison.OrdinalIgnoreCase)
+                )
+            {
+                loop++;
+                if (loop > 100) break; //無限ループ回避
+
+                var files = Directory.GetFiles(folder, "*.uproject");
+                if (files.Length > 0)
+                {
+                    projectname = Path.GetFileNameWithoutExtension(files[0]);
+                    break;
+                }
+                folder = Path.Combine(folder, "..");
+            }
+            if (projectname != null)
+            {
+
+                //m_new_genhppファイル内の UCLASS()の次の行を取得する。
+                var lines = File.ReadAllLines(m_new_genhpp);
+                var uclassline = "";
+                for (var n = 0; n < lines.Length; n++)
+                {
+                    if (lines[n].StartsWith("UCLASS()"))
+                    {
+                        uclassline = lines[n + 1];
+                        break;
+                    }
+                }
+                //その行から正規表現 "^class .+_API" を取得する
+                var srcworrd = RegexUtil.Get1stMatch(@"^class\s.+?_API", uclassline);
+                var enc = Encoding.UTF8;
+                enc = getEncW_CheckBOM(m_new_genhpp, enc);
+                var text = File.ReadAllText(m_new_genhpp,enc);
+
+                var repword = "class " + projectname.ToUpper() + "_API";
+                var newtext = Regex.Replace(text, srcworrd, repword);
+                File.WriteAllText(m_new_genhpp, newtext, enc);
+            }
+        }
+        #endregion
+
     }
 }

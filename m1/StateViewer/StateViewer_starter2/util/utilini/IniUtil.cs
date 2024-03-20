@@ -32,7 +32,7 @@ public partial class IniUtil {
     }
     public static string GetValueFromHashtable(string key, Hashtable ht)
     {
-        if (ht.Contains(key))
+        if (ht!=null && ht.Contains(key))
         {
             return ht[key].ToString();
         }

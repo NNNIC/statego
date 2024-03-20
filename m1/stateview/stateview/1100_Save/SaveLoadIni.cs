@@ -240,6 +240,9 @@ namespace stateview
             _addstr( "donotedit_mark_columns", sd.donotedit_mark_columns);
             _addstr( "donotedit_mark", sd.donotedit_mark);
 
+            //特別な条件
+            _addstr("special_condition", sd.special_condition);
+
             return s;
         }
 
@@ -409,6 +412,9 @@ namespace stateview
             sd.donotedit_mark_columns      = _getwerr("donotedit_mark_columns", "76,116,136");
             sd.donotedit_mark              = _getwerr("donotedit_mark", "*DoNotEdit*");
 
+            //特別な条件
+            sd.special_condition           = _get("special_condition");
+
             return sd;
         }
         private static SaveData store_SaveData()
@@ -496,6 +502,8 @@ namespace stateview
             sd.donotedit_mark_columns      = G.option_donotedit_mark_columns;
             sd.donotedit_mark              = G.option_donotedit_mark;
 
+            //特別な条件
+            sd.special_condition           = G.special_condition;
             return sd;
         }
         private static void load_SaveData(SaveData sd)
@@ -595,6 +603,10 @@ namespace stateview
             G.option_use_donotedit_mark     = sd.use_donotedit_mark;
             G.option_donotedit_mark_columns = sd.donotedit_mark_columns;
             G.option_donotedit_mark         = sd.donotedit_mark;
+
+            //特別な条件
+            G.special_condition             = sd.special_condition;
+
         }
         private static void updatePosition()
         {

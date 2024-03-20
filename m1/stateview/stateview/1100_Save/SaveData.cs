@@ -124,5 +124,9 @@ namespace stateview
         public string donotedit_mark_columns;
         public string donotedit_mark;
         #endregion
+
+        #region 特別な条件
+        public string special_condition;
+        #endregion
     }
 }

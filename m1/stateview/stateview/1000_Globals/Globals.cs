@@ -643,6 +643,9 @@ namespace stateview
         internal static string option_donotedit_mark_columns = "76,116,136"; //編集不可マークの追加カラム数。直近のカラム数が使われ、それ以上は後ろに追加される。
         internal static string option_donotedit_mark = "*DoNotEdit*";        //編集不可マーク
 
+        internal static string special_condition = "";                       //特別な条件
+        internal static bool   is_ue5_actor_special_condition= special_condition == "ue5-actor";
+
         internal static bool   option_lexical_color_onoff = true;            //字句解析により色設定ON/OFF
 
         internal static string font_name = DEFAULT_FONT;

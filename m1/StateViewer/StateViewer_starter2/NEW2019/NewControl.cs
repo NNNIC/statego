@@ -919,6 +919,11 @@ namespace StateViewer_starter2.NEW2019
                 }
             }
             m_form.textBox_desc.Text = desc;
+
+            m_form.checkBox_control_name.Enabled = !m_pd.m_special_condition_is_ue5_actor;
+
+            _addTailControl();
+
         }
         void statemachine_namechanged()
         {
@@ -959,9 +964,15 @@ namespace StateViewer_starter2.NEW2019
 
         private void _addTailControl()
         {
-            if (!m_form.textBox_statemachine.Text.EndsWith("Control"))
+            var word = "Control";
+            if (m_pd?.m_special_condition_is_ue5_actor ?? false)
             {
-                m_form.textBox_statemachine.Text += "Control";
+                word = "Actor";
+            }
+
+            if (!m_form.textBox_statemachine.Text.EndsWith(word))
+            {
+                m_form.textBox_statemachine.Text += word;
             }
         }
 
@@ -1040,6 +1051,8 @@ namespace StateViewer_starter2.NEW2019
                 MessageBox.Show(err,"Error");
                 return false;
             }
+
+            sm.m_bUE5Actor = m_pd.m_special_condition_is_ue5_actor;
 
             sm.Run();
 
@@ -1153,7 +1166,7 @@ namespace StateViewer_starter2.NEW2019
                 m_form.DialogResult = DialogResult.Cancel;
             }
         }
-#endregion
+        #endregion
     }
 }
 /*  :::: PSGG MACRO ::::

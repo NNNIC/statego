@@ -13,9 +13,9 @@ check_excel_writable=no
 
 sheet=state-chart
 nameid_list=,n001,n002,n003,n004,n019,n005,,n006,,n007,,n008,n009,n00a,n00b,,n00c,n00d,,n00e,n00f,,n010,n011,,n012,n013,n014,n015,,n016,n017,n018,
-stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s0023,s0024,s000e,s000f,s0010,s0011,s0029,s0025,s0026,s0027,s0028,s0017,s002a,s0019,s001a,s001b,s001c,s001d,s001e,s001f,s0020,s002b,s0022,s002d,s002c,s002f,s002e,s0030
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s0023,s0024,s000e,s000f,s0010,s0011,s0029,s0025,s0026,s0027,s0028,s0017,s002a,s0019,s001a,s001b,s001c,s001d,s001e,s001f,s0020,s002b,s0022,s002d,s002c,s002f,s002e,s0030,,s0031
 max_name_id=25
-max_state_id=48
+max_state_id=49
 [id_name_dic]
 n001=thumbnail
 n002=state
@@ -84,6 +84,7 @@ s002d=S_NG
 s002e=S_CLEAR_ERR1
 s002f=S_CLEAR_ERR2
 s0030=S_CLEAR_ERR3
+s0031=S_UE5SPECIALWORK
 
 
 [s0001]
@@ -429,7 +430,7 @@ n003=他のファイルの該当部分置き換え
 n005=
 n009=np_repw_files();
 n012=@@@
-brifc(S_DONEDIALOG1);
+brifc(S_UE5SPECIALWORK);
 brelse(S_CLEAR_ERR3);
 @@@
 
@@ -924,6 +925,25 @@ The root
 n017=2500,1191
 n018=100052
 
+[s0031]
+n002=S_UE5SPECIALWORK
+n005=S_DONEDIALOG1
+n009=@@@
+if (m_bUE5Actor)
+{
+    ue5actor_work();
+}
+@@@
+
+n016=@@@
+/
+(100,100)
+
+@@@
+
+n017=2532,452
+n018=100053
+
 
 
 ------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
@@ -931,13 +951,13 @@ n018=100052
 sheet=config
 
 ###VARIOUS-CONTENTS-BEGIN###
-; The setting was created automatically. 2024/03/02 11:00:28
-; * pssgEditor version : 0.73.172009.ddf164274cdb5999dda57d462a9268c5ede78159
+; The setting was created automatically. 2024/03/20 21:03:02
+; * pssgEditor version : 0.75.643.b6374744957205afe5ec793648f2597ffa833c76
 psggfile=@@@
 NewWorkControl.psgg
 @@@
 xlsfile=@@@
-NewWorkControl.xlsx
+NewWorkControl.psgg.xlsx
 @@@
 guid=@@@
 8f848a44-9f2d-4b94-9f5a-13ec7b73763a
@@ -964,7 +984,7 @@ nodegroup_pos_list=@@@
 [{"Key":"\/","Value":{"x":100,"y":100}}]
 @@@
 fillter_state_location_list=@@@
-[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":16,"y":198}},{"Key":"S_END","Value":{"x":3355,"y":1267}},{"Key":"E_VAR","Value":{"x":266,"y":1569}},{"Key":"E_DEC_NEWFILES","Value":{"x":637,"y":13}},{"Key":"E_DEC_ORGFILES","Value":{"x":433,"y":14}},{"Key":"S_INIT_DSTFILENAME","Value":{"x":250,"y":347}},{"Key":"S_CONFRM_DIALOG","Value":{"x":228,"y":737}},{"Key":"S_COPY","Value":{"x":617,"y":423}},{"Key":"E_DEC_ENC","Value":{"x":822,"y":16}},{"Key":"E_DEC_NAME","Value":{"x":246,"y":21}},{"Key":"S_CLEAR_ERR","Value":{"x":218,"y":195}},{"Key":"C_CONV_SHEETS1","Value":{"x":1289,"y":25}},{"Key":"S_ERRMSG","Value":{"x":2778,"y":1176}},{"Key":"S_DONEDIALOG1","Value":{"x":2833,"y":431}},{"Key":"C_CONFIRM_NEW_EXCEL","Value":{"x":50,"y":1261}},{"Key":"C_ERROR_EXIST","Value":{"x":265,"y":1421}},{"Key":"C_ERRORDIALOG","Value":{"x":569,"y":1435}},{"Key":"C_BOOL_EXIST","Value":{"x":1012,"y":12}},{"Key":"E_PSGGDATA","Value":{"x":51,"y":22}},{"Key":"C_CREATE_NEW_GUID","Value":{"x":1104,"y":219}},{"Key":"S_PREPARE_NEW_PSGG","Value":{"x":840,"y":423}},{"Key":"S_REPLACE_WORDS1","Value":{"x":1030,"y":423}},{"Key":"S_SET_NEWGUID","Value":{"x":1448,"y":423}},{"Key":"S_SET_PATH_SETTINGINI1","Value":{"x":1895,"y":423}},{"Key":"S_CREATE_PSGG1","Value":{"x":2125,"y":423}},{"Key":"C_REPLACE_WORDS","Value":{"x":1338,"y":220}},{"Key":"C_CONV_FILES1","Value":{"x":1621,"y":197}},{"Key":"C_SET_PATH_SETTINGINI","Value":{"x":1837,"y":227}},{"Key":"C_CREATE_PSGG","Value":{"x":2064,"y":208}},{"Key":"S_CHGWORD_OTHERS","Value":{"x":2326,"y":423}},{"Key":"S_CREATE_PSGG_HT","Value":{"x":1235,"y":423}},{"Key":"S_SET_PATH_SETTINGINI2","Value":{"x":1674,"y":423}},{"Key":"E_KIT_PATH","Value":{"x":438,"y":166}},{"Key":"E_OK","Value":{"x":640,"y":198}},{"Key":"S_OK","Value":{"x":3040,"y":431}},{"Key":"S_NG","Value":{"x":3072,"y":1248}},{"Key":"S_CLEAR_ERR1","Value":{"x":1564,"y":1160}},{"Key":"S_CLEAR_ERR2","Value":{"x":632,"y":1303}},{"Key":"S_CLEAR_ERR3","Value":{"x":2500,"y":1191}}]}]
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":16,"y":198}},{"Key":"S_END","Value":{"x":3355,"y":1267}},{"Key":"E_VAR","Value":{"x":266,"y":1569}},{"Key":"E_DEC_NEWFILES","Value":{"x":637,"y":13}},{"Key":"E_DEC_ORGFILES","Value":{"x":433,"y":14}},{"Key":"S_INIT_DSTFILENAME","Value":{"x":250,"y":347}},{"Key":"S_CONFRM_DIALOG","Value":{"x":228,"y":737}},{"Key":"S_COPY","Value":{"x":617,"y":423}},{"Key":"E_DEC_ENC","Value":{"x":822,"y":16}},{"Key":"E_DEC_NAME","Value":{"x":246,"y":21}},{"Key":"S_CLEAR_ERR","Value":{"x":218,"y":195}},{"Key":"C_CONV_SHEETS1","Value":{"x":1289,"y":25}},{"Key":"S_ERRMSG","Value":{"x":2778,"y":1176}},{"Key":"S_DONEDIALOG1","Value":{"x":2833,"y":431}},{"Key":"C_CONFIRM_NEW_EXCEL","Value":{"x":50,"y":1261}},{"Key":"C_ERROR_EXIST","Value":{"x":265,"y":1421}},{"Key":"C_ERRORDIALOG","Value":{"x":569,"y":1435}},{"Key":"C_BOOL_EXIST","Value":{"x":1012,"y":12}},{"Key":"E_PSGGDATA","Value":{"x":51,"y":22}},{"Key":"C_CREATE_NEW_GUID","Value":{"x":1104,"y":219}},{"Key":"S_PREPARE_NEW_PSGG","Value":{"x":840,"y":423}},{"Key":"S_REPLACE_WORDS1","Value":{"x":1030,"y":423}},{"Key":"S_SET_NEWGUID","Value":{"x":1448,"y":423}},{"Key":"S_SET_PATH_SETTINGINI1","Value":{"x":1895,"y":423}},{"Key":"S_CREATE_PSGG1","Value":{"x":2125,"y":423}},{"Key":"C_REPLACE_WORDS","Value":{"x":1338,"y":220}},{"Key":"C_CONV_FILES1","Value":{"x":1621,"y":197}},{"Key":"C_SET_PATH_SETTINGINI","Value":{"x":1837,"y":227}},{"Key":"C_CREATE_PSGG","Value":{"x":2064,"y":208}},{"Key":"S_CHGWORD_OTHERS","Value":{"x":2326,"y":423}},{"Key":"S_CREATE_PSGG_HT","Value":{"x":1235,"y":423}},{"Key":"S_SET_PATH_SETTINGINI2","Value":{"x":1674,"y":423}},{"Key":"E_KIT_PATH","Value":{"x":438,"y":166}},{"Key":"E_OK","Value":{"x":640,"y":198}},{"Key":"S_OK","Value":{"x":3040,"y":431}},{"Key":"S_NG","Value":{"x":3072,"y":1248}},{"Key":"S_CLEAR_ERR1","Value":{"x":1564,"y":1160}},{"Key":"S_CLEAR_ERR2","Value":{"x":632,"y":1303}},{"Key":"S_CLEAR_ERR3","Value":{"x":2500,"y":1191}},{"Key":"S_CHGWORD_OTHERS1","Value":{"x":2532.3103,"y":451.6207}},{"Key":"S_UE5SPECIALWORK","Value":{"x":2532,"y":452}}]}]
 @@@
 linecolor_data=@@@
 [{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]

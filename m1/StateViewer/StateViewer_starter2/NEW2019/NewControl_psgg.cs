@@ -32,6 +32,8 @@ namespace StateViewer_starter2.NEW2019
         public string m_config;
         public int    m_config_index;     //psgg_parts_list内のindex
 
+        public bool   m_special_condition_is_ue5_actor; 
+
         public List<string> m_psgg_parts = new List<string>();
 
         public string m_src_enc; //ソースのエンコード
@@ -105,6 +107,9 @@ namespace StateViewer_starter2.NEW2019
                 if (m_config_index >=0)
                 {
                     m_config = psgg_parts[m_config_index];
+
+                    var special_condition = IniUtil.GetValue("special_condition",m_config);
+                    m_special_condition_is_ue5_actor = (special_condition ?? "") == "ue5-actor";
                 }
             }   
             
