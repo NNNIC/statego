@@ -1094,7 +1094,9 @@ namespace StateViewer_starter2.NEW2019
             if (string.IsNullOrEmpty(sm.m_org_genfile) || !File.Exists(sm.m_org_genfile)) { return "{1B4182AD-A0F0-41E6-8AF3-D79AB7DE4B7E} " + sm.m_org_genfile; }
 
             sm.m_org_genhpp = m_pd.get_genhppfileFullpath_from_settingini() ;
-            if (string.IsNullOrEmpty(sm.m_org_genhpp) || !File.Exists(sm.m_org_genhpp)) { return "{23488C36-C943-4D98-B56C-44E6FD80F0EC}" + sm.m_org_genfile; }
+            if (string.IsNullOrEmpty(sm.m_org_genhpp) || !File.Exists(sm.m_org_genhpp)) {
+                sm.m_org_genhpp = null; 
+            }
 
             sm.m_org_impfile = m_pd.get_impfileFullpath_from_settingini();
             if (!string.IsNullOrEmpty(sm.m_org_impfile) && !File.Exists(sm.m_org_impfile)) { return "{1D972EF8-D40D-436E-A853-DE050382E35A} " + sm.m_org_impfile; } //オプション。null時OK
