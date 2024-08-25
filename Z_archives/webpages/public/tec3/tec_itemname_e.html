@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header -->
+<header id="header">
+<div class="container">
+
+<div class=j_or_e>
+  <a class=lang_a href=tec_itemname_j.html>Japanese</a>
+  <a class=lang_a >English</a>
+</div>
+
+<div class=toc>
+  <b class=tocitem><a href="https://statego.programanic.com/">HOME</a></b>
+  <b class=tocitem><a href=tec_main_e.html>MAIN</a></b>
+<b class=tocitem><a href=tec_basic_e.html>BASIC OPERATION</a></b>
+<b class=tocitem><a href=tec_userguide_e.html>USAGE GUIDE</a></b>
+<b class=tocitem><a href=tec_functemplate_e.html>FUNCTION TEMPLATE</a></b>
+<b class=tocitem><a href=tec_itemname_e.html>ITEM NAME</a></b>
+<b class=tocitem><a href=tec_macro_e.html>MACRO</a></b>
+<b class=tocitem><a href=tec_output_e.html>OUTPUT</a></b>
+<b class=tocitem><a href=tec_state_e.html>STATE</a></b>
+<b class=tocitem><a href=tec_setting_e.html>SETTING</a></b>
+<b class=tocitem><a href=tec_tips_e.html>TIPS</a></b>
+
+  <b class=tocitem><a href="./shortcuts/mouse-e.htm">MOUSE OPERATION</a></b>
+  <b class=tocitem><a href="./shortcuts/shortcuts-e.htm">SHORTCUTS</a></b>
+</div><!-- /toc -->
+
+<div class=outline>
+  <div class=outlinetitle>ITEM NAME</div>
+  <div class=outlineitem>
+    Defined data item name.<br>
+
+  </div>
+</div>
+<!-- /outline -->
+
+</div><!-- /container -->
+</header>
+
+
+<!-- contents -->
+<section id="contents">
+<div class="container">
+
+  <!-- sidebar -->
+  <div id="sidebar">
+
+    <div class=toclist>
+      <div class=toctitle><a href=#thumbnail>thumbnail<br>
+</a></div>
+<div class=toctitle><a href=tec_main_e.html#state>state<br>
+</a></div>
+<div class=toctitle><a href=#nextstate>nextstate<br>
+</a></div>
+<div class=toctitle><a href=#basestate>basestate<br>
+</a></div>
+<div class=toctitle><a href=#branch>branch<br>
+</a></div>
+<div class=toctitle><a href=#branch-cmt>branch-cmt<br>
+</a></div>
+<div class=toctitle><a href=#brcond>brcond<br>
+</a></div>
+<div class=toctitle><a href=#itemname-cmt>(itemname)-cmt<br>
+</a></div>
+<div class=toctitle><a href=#itemname-ref>(itemname)-ref<br>
+</a></div>
+<div class=toctitle><a href=#itemname-regulation>item name regulation<br>
+</a></div>
+<div class=toctitle><a href=#system-item>!itemname<br>
+</a></div>
+<div class=toctitle><a href=#gosubstate>gosubstate<br>
+</a></div>
+<div class=toctitle><a href=#return>return<br>
+</a></div>
+
+      <!--
+        <div class=toctitle><a href=tec_macro_e.html#calling-macro>マクロの呼出し<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#normal-macro-args>ノーマルマクロと引数<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#split-args>行変換時の引数分解<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#where-define>マクロの定義場所<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#how-to-define>マクロ定義方法<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#use-args>引数の使い方 <br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#use-args-dq>引数の使い方  ダブルクオート削除<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#line-macro>行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#line-macro-sp>特別行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#linenumber-arg>行番号引数<br>
+        </a></div>
+      -->
+    </div>
+  </div><!-- /sidebar -->
+
+
+  <!-- main -->
+  <div id="main">
+
+    <div class=ctslist>
+    <div class=item id=thumbnail>
+<div class=title>thumbnail<br>
+</div>
+<div class=desc>For thumbnail.<br>
+Insert 100x100 bitmap.<br>
+Reserved name.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=state>
+<div class=title>state<br>
+</div>
+<div class=desc>State name.<br>
+It starts with An alphabet and underber.<br>
+Reserved name.<br>
+
+<br>
+<li><a class=itemlink href=tec_state_e.html#s_state>S_XXXX</a></li>
+<li><a class=itemlink href=tec_state_e.html#e_embed>E_XXXX</a></li>
+<li><a class=itemlink href=tec_state_e.html#c_comment>C_XXXX</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=nextstate>
+<div class=title>nextstate<br>
+</div>
+<div class=desc>Next execution state.<br>
+Reserved name.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basestate>
+<div class=title>basestate<br>
+</div>
+<div class=desc>Designate base state<br>
+Inheritance function<br>
+It becomes the reference data destination of each item of this state<br>
+Reserved name<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=branch>
+<div class=title>branch<br>
+</div>
+<div class=desc>For branch api.<br>
+Reserved name.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=branch-cmt>
+<div class=title>branch-cmt<br>
+</div>
+<div class=desc>For branch comment.<br>
+Reserved name.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=brcond>
+<div class=title>brcond<br>
+</div>
+<div class=desc>For branch instruction condition<br>
+Reserved name<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=itemname-cmt>
+<div class=title>(itemname)-cmt<br>
+</div>
+<div class=desc>Itemname + "-cmt"<br>
+the comment of the item.<br>
+"-cmt" is reserved name.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=itemname-ref>
+<div class=title>(itemname)-ref<br>
+</div>
+<div class=desc>itemname + "-ref".<br>
+It's for reference information.<br>
+Specify the reference URL or connection state machine name (XXXX.psgg).<br>
+"-ref" is a reserved name.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=itemname-regulation>
+<div class=title>item name regulation<br>
+</div>
+<div class=desc>An item name consists of alphabets, numbers, and underscores.<br>
+Reserved name can not be used.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=system-item>
+<div class=title>!itemname<br>
+</div>
+<div class=desc>A character string beginning with "!"<br>
+System uses.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=gosubstate>
+<div class=title>gosubstate<br>
+</div>
+<div class=desc>Specify the starting state of subroutine.<br>
+Reserved name.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=return>
+<div class=title>return<br>
+</div>
+<div class=desc>End of the subroutine. Return to the calling state.<br>
+Reserved name.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+
+    </div><!-- /ctslist -->
+
+  </div><!-- /main -->
+
+</div><!-- /container -->
+</section><!-- /contents -->
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header -->
+<header id="header">
+<div class="container">
+
+<div class=j_or_e>
+  <a class=lang_a >Japanese</a>
+  <a class=lang_a href=tec_itemname_e.html>English</a>
+</div>
+
+<div class=toc>
+  <b class=tocitem><a href="https://statego.programanic.com/">HOME</a></b>
+  <b class=tocitem><a href=tec_main_j.html>メイン</a></b>
+<b class=tocitem><a href=tec_basic_j.html>基本操作</a></b>
+<b class=tocitem><a href=tec_userguide_j.html>利用ガイド</a></b>
+<b class=tocitem><a href=tec_functemplate_j.html>関数テンプレート</a></b>
+<b class=tocitem><a href=tec_itemname_j.html>項目名</a></b>
+<b class=tocitem><a href=tec_macro_j.html>マクロ</a></b>
+<b class=tocitem><a href=tec_output_j.html>アウトプット</a></b>
+<b class=tocitem><a href=tec_state_j.html>ステート</a></b>
+<b class=tocitem><a href=tec_setting_j.html>SETTING</a></b>
+<b class=tocitem><a href=tec_tips_j.html>便利な使い方</a></b>
+
+  <b class=tocitem><a href="./shortcuts/mouse-j.htm">マウス操作</a></b>
+  <b class=tocitem><a href="./shortcuts/shortcuts-j.htm">キーボードショートカット</a></b>
+</div><!-- /toc -->
+
+<div class=outline>
+  <div class=outlinetitle>項目名</div>
+  <div class=outlineitem>
+    定義済みのデータ項目名。<br>
+
+  </div>
+</div>
+<!-- /outline -->
+
+</div><!-- /container -->
+</header>
+
+
+<!-- contents -->
+<section id="contents">
+<div class="container">
+
+  <!-- sidebar -->
+  <div id="sidebar">
+
+    <div class=toclist>
+      <div class=toctitle><a href=#thumbnail>thumbnail<br>
+</a></div>
+<div class=toctitle><a href=tec_main_j.html#state>state<br>
+</a></div>
+<div class=toctitle><a href=#nextstate>nextstate<br>
+</a></div>
+<div class=toctitle><a href=#basestate>basestate<br>
+</a></div>
+<div class=toctitle><a href=#branch>branch<br>
+</a></div>
+<div class=toctitle><a href=#branch-cmt>branch-cmt<br>
+</a></div>
+<div class=toctitle><a href=#brcond>brcond<br>
+</a></div>
+<div class=toctitle><a href=#itemname-cmt>(項目名)-cmt<br>
+</a></div>
+<div class=toctitle><a href=#itemname-ref>(項目名)-ref<br>
+</a></div>
+<div class=toctitle><a href=#itemname-regulation>項目名の制限<br>
+</a></div>
+<div class=toctitle><a href=#system-item>!項目<br>
+</a></div>
+<div class=toctitle><a href=#gosubstate>gosubstate<br>
+</a></div>
+<div class=toctitle><a href=#return>return<br>
+</a></div>
+
+      <!--
+        <div class=toctitle><a href=tec_macro_j.html#calling-macro>マクロの呼出し<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#normal-macro-args>ノーマルマクロと引数<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#split-args>行変換時の引数分解<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#where-define>マクロの定義場所<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#how-to-define>マクロ定義方法<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#use-args>引数の使い方 <br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#use-args-dq>引数の使い方  ダブルクオート削除<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#line-macro>行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#line-macro-sp>特別行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#linenumber-arg>行番号引数<br>
+        </a></div>
+      -->
+    </div>
+  </div><!-- /sidebar -->
+
+
+  <!-- main -->
+  <div id="main">
+
+    <div class=ctslist>
+    <div class=item id=thumbnail>
+<div class=title>thumbnail<br>
+</div>
+<div class=desc>サムネル用<br>
+100x100のイメージを挿入<br>
+予約語<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=state>
+<div class=title>state<br>
+</div>
+<div class=desc>ステート名<br>
+アルファベット１文字＋アンダーバーで始まる。<br>
+予約語<br>
+
+<br>
+<li><a class=itemlink href=tec_state_j.html#s_state>S_XXXX</a></li>
+<li><a class=itemlink href=tec_state_j.html#e_embed>E_XXXX</a></li>
+<li><a class=itemlink href=tec_state_j.html#c_comment>C_XXXX</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=nextstate>
+<div class=title>nextstate<br>
+</div>
+<div class=desc>次実行ステート名<br>
+予約語<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basestate>
+<div class=title>basestate<br>
+</div>
+<div class=desc>ベースとなるステートを指定<br>
+継承機能<br>
+本ステートの各項目の元データ参照先となる<br>
+予約語<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=branch>
+<div class=title>branch<br>
+</div>
+<div class=desc>分岐命令用<br>
+予約語<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=branch-cmt>
+<div class=title>branch-cmt<br>
+</div>
+<div class=desc>分岐用コメント<br>
+予約語<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=brcond>
+<div class=title>brcond<br>
+</div>
+<div class=desc>分岐命令条件用<br>
+予約語<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=itemname-cmt>
+<div class=title>(項目名)-cmt<br>
+</div>
+<div class=desc>アイテム名 + "-cmt"でコメント項目<br>
+-cmtは予約語<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=itemname-ref>
+<div class=title>(項目名)-ref<br>
+</div>
+<div class=desc>アイテム名 + "-ref"でリンク項目。<br>
+リファレンスのURLや接続ステートマシン名 (XXXX.psgg)を指定する。<br>
+"-ref"は予約語<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=itemname-regulation>
+<div class=title>項目名の制限<br>
+</div>
+<div class=desc>項目名は、アルファベット・数字・アンダーバーで構成されます。<br>
+予約語は使用できません。<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=system-item>
+<div class=title>!項目<br>
+</div>
+<div class=desc>!で始まる文字列<br>
+システムで使用。<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=gosubstate>
+<div class=title>gosubstate<br>
+</div>
+<div class=desc>サブルーチンの先頭ステートを指定<br>
+予約語<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=return>
+<div class=title>return<br>
+</div>
+<div class=desc>サブルーチンの終了。呼出し元へ戻る。<br>
+予約語<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+
+    </div><!-- /ctslist -->
+
+  </div><!-- /main -->
+
+</div><!-- /container -->
+</section><!-- /contents -->
+
+</body>
+</html>

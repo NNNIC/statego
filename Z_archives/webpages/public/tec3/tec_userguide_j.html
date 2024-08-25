@@ -1,0 +1,865 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header -->
+<header id="header">
+<div class="container">
+
+<div class=j_or_e>
+  <a class=lang_a >Japanese</a>
+  <a class=lang_a href=tec_userguide_e.html>English</a>
+</div>
+
+<div class=toc>
+  <b class=tocitem><a href="https://statego.programanic.com/">HOME</a></b>
+  <b class=tocitem><a href=tec_main_j.html>メイン</a></b>
+<b class=tocitem><a href=tec_basic_j.html>基本操作</a></b>
+<b class=tocitem><a href=tec_userguide_j.html>利用ガイド</a></b>
+<b class=tocitem><a href=tec_functemplate_j.html>関数テンプレート</a></b>
+<b class=tocitem><a href=tec_itemname_j.html>項目名</a></b>
+<b class=tocitem><a href=tec_macro_j.html>マクロ</a></b>
+<b class=tocitem><a href=tec_output_j.html>アウトプット</a></b>
+<b class=tocitem><a href=tec_state_j.html>ステート</a></b>
+<b class=tocitem><a href=tec_setting_j.html>SETTING</a></b>
+<b class=tocitem><a href=tec_tips_j.html>便利な使い方</a></b>
+
+  <b class=tocitem><a href="./shortcuts/mouse-j.htm">マウス操作</a></b>
+  <b class=tocitem><a href="./shortcuts/shortcuts-j.htm">キーボードショートカット</a></b>
+</div><!-- /toc -->
+
+<div class=outline>
+  <div class=outlinetitle>利用ガイド</div>
+  <div class=outlineitem>
+    ツール内の<img src="./../images/tec/question.png" />をクリックすると本ページの項目へ誘導されます。<br>
+
+  </div>
+</div>
+<!-- /outline -->
+
+</div><!-- /container -->
+</header>
+
+
+<!-- contents -->
+<section id="contents">
+<div class="container">
+
+  <!-- sidebar -->
+  <div id="sidebar">
+
+    <div class=toclist>
+      <div class=toctitle><a href=#start-dialog>スタートダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#start-dialog-new>新規ステートマシン作成<br>
+</a></div>
+<div class=toctitle><a href=#window-description>メインウインドウ<br>
+</a></div>
+<div class=toctitle><a href=#window-top-desc>メインウインドウ・上部<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-file>メインウインドウ・ファイルメニュー<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-convert>メインウインドウ・コンバートメニュー<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-tool>メインウインドウ・ツールメニュー<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-wins>メインウインドウ・ウインドウズメニュー<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-help>メインウインドウ・ヘルプメニュー<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-other>メインウインドウ・その他メニュー<br>
+</a></div>
+<div class=toctitle><a href=#window-panel-main>メインウインドウ・メインパネル<br>
+</a></div>
+<div class=toctitle><a href=#window-panel-contents>メインウインドウ・コンテンツパネル<br>
+</a></div>
+<div class=toctitle><a href=#window-panel-custom>メインウインドウ・カスタムパネル<br>
+</a></div>
+<div class=toctitle><a href=#window-panel-help>メインウインドウ・ヘルプパネル<br>
+</a></div>
+<div class=toctitle><a href=#window-panel-src>メインウインドウ・ソースパネル<br>
+</a></div>
+<div class=toctitle><a href=#window-utility>メインウインドウ・ユーティリティパネル<br>
+</a></div>
+<div class=toctitle><a href=#edit-item-dlg>アイテム編集ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#edit-thumb-dlg>サムネイル編集ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#edit-state-dlg>ステート編集ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#edit-branch-dlg>分岐編集ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#context-state-menu>ステートメニュー<br>
+</a></div>
+<div class=toctitle><a href=#set-state-dlg>ステート指定ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#edit-item-text>アイテムテキスト編集ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#context-blank-menu>ブランクメニュー<br>
+</a></div>
+<div class=toctitle><a href=#context-group-menu>グループメニュー<br>
+</a></div>
+<div class=toctitle><a href=#context-multi-select-menu>複数選択メニュー<br>
+</a></div>
+<div class=toctitle><a href=#config-dlg>コンフィグダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#edit-item-define-dlg>アイテムリスト編集ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#find-dlg>検索ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#set-source-editor-dlg>ソースエディタ設定ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#set-user-custom-button-dlg>ユーザカスタムボタン設定ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#set-label-dlg>ラベル設定ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#clone-dlg>クローン生成ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#search-statego-dlg>StateGo検索ダイアログ<br>
+</a></div>
+<div class=toctitle><a href=#group-dlg>グループダイアログ<br>
+</a></div>
+
+      <!--
+        <div class=toctitle><a href=tec_macro_j.html#calling-macro>マクロの呼出し<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#normal-macro-args>ノーマルマクロと引数<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#split-args>行変換時の引数分解<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#where-define>マクロの定義場所<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#how-to-define>マクロ定義方法<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#use-args>引数の使い方 <br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#use-args-dq>引数の使い方  ダブルクオート削除<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#line-macro>行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#line-macro-sp>特別行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#linenumber-arg>行番号引数<br>
+        </a></div>
+      -->
+    </div>
+  </div><!-- /sidebar -->
+
+
+  <!-- main -->
+  <div id="main">
+
+    <div class=ctslist>
+    <div class=item id=start-dialog>
+<div class=title>スタートダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/start-dialog-j.png" /><br>
+<img src="./../images/tec/start-dialog2-j.png" /><br>
+StateGo.exeを実行すると、スタートダイアログが表示される。<br>
+① 日本語と英語を切替る。<br>
+② <a href=#start-dialog-new>新規作成用。</a><br>
+③ 既存ファイルをファイルオープンダイアログを使い開く。<br>
+④ 履歴より既存ファイルを開く。<br>
+⑤ ウインドウを拡張する。⑥⑦の補助機能が利用できる。<br>
+⑥ テキストからStateGoファイルを検索する。検索結果リストの項目をダブルクリックして開く。<br>
+⑦ ドロップされたファイルを解析して関連StateGoファイルを開く<br>
+
+<br>
+<li><a class=itemlink href=#start-dialog-new>新規ステートマシン作成</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=start-dialog-new>
+<div class=title>新規ステートマシン作成<br>
+</div>
+<div class=desc><img src="./../images/tec/start-dialog-new-b7-j.png" /><br>
+■新規ステートマシンを作成します。<br>
+<br>
+StateGoのステートマシンは基本２つのファイルから構成されます。<br>
+<br>
+・　拡張子 .psggのStateGoデータファイル<br>
+　　StateGoステートマシンを構成するデータをテキストで格納　 　<br>
+<br>
+・　出力ソース<br>
+　　出力用のソースで、拡張子はプログラム言語により異なる。<br>
+<br>
+以上のファイルは、同じファイル名で管理される。<br>
+<br>
+例えば、ファイル名が HogeControl として、プログラミング言語がC#の場合<pre>HogeControl.psgg
+HogeControl.cs
+</pre>
+となる。<br>
+<br>
+注１）スタートキットにより上記以外のファイルを生成する場合ある。<br>
+helpweb.html<br>
+マクロファイル<br>
+管理ファイル<br>
+<br>
+注２）ExcelファイルはEdit内オプションでの生成へと変更になりました。<br>
+<br>
+<br>
+■手順と各項目内容は以下の通り<br>
+<br>
+１、スタートキットの選択<br>
+　①スタートキットのルートパス表示<br>
+　②スタートキットのルートパスをリセット（デフォルトへ）<br>
+　③スタートキットのルートパスを変更<br>
+　④スタートキット一覧<br>
+　⑤選択中のスタートキット名<br>
+　⑥選択中のスタートキットの詳細<br>
+<br>
+２、ステートマシン名の決定<br>
+　⑦ステートマシン名入力エリア<br>
+　⑧ステートマシン名の語尾を”Control”に強制用チェックボックス<br>
+　⑨ステートマシン名をリセット（デフォルトへ）<br>
+<br>
+３、生成ソース格納フォルダの決定<br>
+　⑩生成ソースの格納フォルダ用入力エリア<br>
+　⑪フォルダ指定ダイアログを開く<br>
+<br>
+４、ドキュメント格納フォルダの決定<br>
+　⑫ドキュメント格納フォルダ用入力エリア（必要に応じて）<br>
+　⑬ソース格納フォルダ直下のdocフォルダ強制用チェックボックス<br>
+　⑭ドキュメント格納フォルダを個別指定用チェックボックス<br>
+　※⑬・⑭を指定しない場合は、ソースフォルダと同じになる。<br>
+<br>
+５．生成<br>
+　⑯生成用ボタン<br>
+<br>
+注意：旧スタートキットは⑮のボタンで利用可能<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-description>
+<div class=title>メインウインドウ<br>
+</div>
+<div class=desc><img src="./../images/tec/window-1-j.png" /><br>
+① 通知パネル<br>
+　処理状況を通知する。<br>
+　重要な問題は赤字で通知する。<br>
+② マルチパネル<br>
+<a href=#window-panel-main>メインパネル</a>・<a href=#window-panel-contents>コンテンツパネル</a>・<a href=#window-panel-help>カスタムパネル</a>・<a href=#window-panel-help>ヘルプパネル</a>・<a href=#window-panel-src>ソースパネル</a><br>
+③ <a href=#window-utility>ユーティリティパネル</a><br>
+　ファイルへの変換、エディタでの表示等々のボタン<br>
+④ ステート編集パネル<br>
+　GUIにてステートを編集　<br>
+　<a href=tec_basic_j.html#basic-new-node>基本操作</a><br>
+⑤ 広告パネル<br>
+
+<br>
+<li><a class=itemlink href=#window-top-desc>メインウインドウ・上部</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-top-desc>
+<div class=title>メインウインドウ・上部<br>
+</div>
+<div class=desc><img src="./../images/tec/window-top-j.png" /><br>
+① 作業ファイル名と現在表示中のグループパスとコメントを表示<br>
+　グループトップは"/"<br>
+② <a href=#window-menu-file>ファイル関連メニュー表示</a><br>
+③ <a href=#window-menu-convert>コンバート設定関連メニュー表示</a><br>
+④ <a href=#window-menu-tool>ツール関連メニュー表示</a><br>
+⑤ ウインドウ選択メニュー表示<br>
+　複数のStateGoを利用時、一覧を表示・選択可。<br>
+⑥ <a href=#window-menu-help>ヘルプメニュー表示</a><br>
+⑦ <a href=#window-menu-other>その他メニュー表示</a><br>
+⑧ ポインタ位置<br>
+⑨ 拡大率変更ボタン<br>
+⑩ クリックすると、先頭および最後尾へ移動<br>
+⑪ 編集された種類を通知<br>
+　C : 値が編集<br>
+　P : ステート位置が編集<br>
+　V : 表示グループが変更<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-file>
+<div class=title>メインウインドウ・ファイルメニュー<br>
+</div>
+<div class=desc><img src="./../images/tec/menu-file-j.png" /><br>
+<h3>新規作成 / オープン</h3>
+　<a href=#start-dialog>スタートダイアログを開く。</a><br>
+<h3>保存</h3>
+　全情報をセーブする。<br>
+<h3>保存と変換</h3>
+　全情報をセーブ後、ソースコードに変換する。<br>
+　<a href=#window-utility>ユーティリティパネルの"保存➡変換"ボタンと同等。</a><br>
+<h3>エクセルインポート</h3>
+　【旧バージョン互換用】<br>
+　エクセルファイルをインポートする<br>
+<h3>リロード</h3>
+　再ロードする。<br>
+<h3>リフレッシュ</h3>
+　再描画を実行。<br>
+　※編集中の内容がリセットされる。<br>
+<h3>作業スペース変更</h3>
+　作業スペース変更ダイアログを開く。<br>
+<h3>イメージをコピー</h3>
+　ステート編集パネルをクリップボードへコピーする。<br>
+　※ドキュメント作成やプリントアウトに利用下さい<br>
+<h3>ファイル名コピー</h3>
+　ファイル名をクリップボードにコピーする。<br>
+<h3>終了</h3>
+　StateGoを終了する。<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-convert>
+<div class=title>メインウインドウ・コンバートメニュー<br>
+</div>
+<div class=desc><img src="./../images/tec/menu-convert-j.png" /><br>
+<h3>ソーステンプレート編集</h3>
+　旧版との互換用。<br>
+<h3>関数テンプレート編集</h3>
+　テンプレートを編集するため、指定の外部エディタが開く。<br>
+<h3>アイテム編集</h3>
+　アイテム編集ダイアログが開く。<br>
+<h3>設定編集</h3>
+　設定編集するため、指定の外部エディタが開く。<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-tool>
+<div class=title>メインウインドウ・ツールメニュー<br>
+</div>
+<div class=desc><img src="./../images/tec/menu-tool-j.png" /><br>
+<h3>検索</h3>
+　検索ダイアログを開く。<br>
+<h3>ソースエディタ設定</h3>
+　ソースエディタ設定ダイアログを開く。<br>
+<h3>Set User Custom Button</h3>
+　ユーザボタン設定ダイアログを開く。<br>
+　<a href=window-utility>ユーティリティパネルのユーザカスタムボタン設定用</a><br>
+<h3>ラベル設定</h3>
+　ラベル設定ダイアログを開く。<br>
+<h3>クローン生成</h3>
+　クローン生成ダイアログを開く。<br>
+<h3>StateGoファイル検索</h3>
+　StateGoファイル検索ダイアログを開く。<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-wins>
+<div class=title>メインウインドウ・ウインドウズメニュー<br>
+</div>
+<div class=desc><img src="./../images/tec/menu-windows-j.png" /><br>
+実行中の全StateGoウインドウ一覧を表示する。<br>
+選択後該当StateGoウインドウへ移動する。<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-help>
+<div class=title>メインウインドウ・ヘルプメニュー<br>
+</div>
+<div class=desc><img src="./../images/tec/help-menu-j.png" /><br>
+<h3>基本操作</h3>
+　基本操作説明サイトを開く<br>
+<h3>リファレンス</h3>
+　リファレンスサイトを開く<br>
+<h3>コンタクト</h3>
+　コンタクト用サイトを開く<br>
+<h3>ホームページ</h3>
+　ホームページを開く<br>
+<h3>情報</h3>
+　情報ダイアログを表示<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-other>
+<div class=title>メインウインドウ・その他メニュー<br>
+</div>
+<div class=desc><img src="./../images/tec/other-menu-j.png" /><br>
+<h3>言語</h3>
+　言語を切り替える。<br>
+<h3>フォーカス履歴パネルON/OFF</h3>
+　フォーカス履歴パネルの表示・非表示<br>
+<h3>変更履歴パネルON/OFF</h3>
+　変更履歴パネルの表示・非表示<br>
+<h3>オプションく</h3>
+　オプションダイアログを開く<br>
+<h3>アナリティクス ON/OFF</h3>
+　アナリティクス ON/OFFダイアログを開く。<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-panel-main>
+<div class=title>メインウインドウ・メインパネル<br>
+</div>
+<div class=desc><img src="./../images/tec/window-panel-main-j.png" /><br>
+① 拡大率<br>
+変更可<br>
+② 拡大用ゲージ<br>
+③ ノードツリー<br>
+　各ステートの色は、表示中と同じ色を示す。<br>
+　ステート編集パネルにてグループを移動すると対応した表示に変更される。<br>
+　<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-panel-contents>
+<div class=title>メインウインドウ・コンテンツパネル<br>
+</div>
+<div class=desc><img src="./../images/tec/window-panel-contents-j.png" /><br>
+① ステート描画オプション<br>
+② テキストオプション変更<br>
+③ マーク変更<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-panel-custom>
+<div class=title>メインウインドウ・カスタムパネル<br>
+</div>
+<div class=desc><img src="./../images/tec/window-panel-custom-j.png" /><br>
+① ステート内フォント設定<br>
+② 矢印部のカラー設定<br>
+　正規表現で一致するステートに対する色を指定する。<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-panel-help>
+<div class=title>メインウインドウ・ヘルプパネル<br>
+</div>
+<div class=desc><img src="./../images/tec/window-panel-help-j.png" /><br>
+ドキュメントフォルダのhelpweb.htmlを表示する。<br>
+作成時の注意等に利用する。<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-panel-src>
+<div class=title>メインウインドウ・ソースパネル<br>
+</div>
+<div class=desc><img src="./../images/tec/window-panel-src-j.png" /><br>
+① 出力ファイル内の本ソースが該当する行数<br>
+② テンプレート表示へ<br>
+　クリックするとテンプレートを表示<br>
+③ ソース表示へ<br>
+　クリックするとソース表示へ<br>
+④ 変換結果またはテンプレート<br>
+　ステート編集パネルでフォーカスしたステートの変換結果<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-utility>
+<div class=title>メインウインドウ・ユーティリティパネル<br>
+</div>
+<div class=desc><img src="./../images/tec/window-utility-j.png" /><br>
+・『保存➡変換』ボタン<br>
+　ソースへ変換します。<br>
+・『ドキュメントフォルダ』ボタン<br>
+　ドキュメントフォルダを開く。<br>
+・『ソースフォルダ』ボタン<br>
+　ソースフォルダを開くする。<br>
+・『変換ソース』ボタン<br>
+　変換したソースを開く。<br>
+・『ユーザボタン』<br>
+　ユーザが指定した処理を実行する。<br>
+　ウインドウメニューの【ツール】➡【ユーザボタン設定】にて設定する。<br>
+・『マクロファイル』ボタン<br>
+　スタートキットにて指定されている場合のみ有効となり、押下時にマクロファイルを開く<br>
+・『実装用ソース』ボタン<br>
+　旧バージョンとの互換性のため設置。<br>
+
+<br>
+<li><a class=itemlink href=#window-description>メインウインドウ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-item-dlg>
+<div class=title>アイテム編集ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/edit-item-dlg-j.png" /><br>
+①　変更対象のステート名<br>
+②　"thumbnail"をダブルクリックすると"サムネイル編集ダイアログ"を開く<br>
+③　"state"をダブルクックすると"ステート編集ダイアログ"を開く<br>
+④　これらのアイテムを編集するためには、ターゲットのアイテム上でダブルクリックする　<br>
+※ライトグレーのアイテムは無視可能。<br>
+⑤　アイテム表示数を選択<br>
+　- 最小表示　必要最低限のアイテム表示<br>
+　- 中間表示　最小表示とそれに関連したアイテムを含む表示 <br>
+　- 全体表示　すべてのアイテムを表示<br>
+⑥　"アイテムの説明"部分の表示・非表示切り替え<br>
+<br>
+※アイテムと出力結果の関係はテンプレートにより制御される。<br>
+
+<br>
+<li><a class=itemlink href=#context-state-menu>ステートメニュー</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-thumb-dlg>
+<div class=title>サムネイル編集ダイアログ<br>
+</div>
+<div class=desc>ビットマップのロードまたはペーストから１００ｘ１００ピクセルのビットマップを作成する。ビットマップの縦横比は維持される。<br>
+<img src="./../images/tec/edit-thumb-j.png" /><br>
+<br>
+
+<br>
+<li><a class=itemlink href=#edit-item-dlg>アイテム編集ダイアログ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-state-dlg>
+<div class=title>ステート編集ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/edit-state-dlg-j.png" /><br>
+①　ステート名入力<br>
+　<a href=tec_state_j.html#s_state>参照</a><br>
+②　コメント入力<br>
+③　コメント消去<br>
+④　参照リンク入力<br>
+　ステートメニューの【リンクへジャンプ】にて使用する。<br>
+　入力ケース１）StateGoファイル指定。<br>
+　【リンクへジャンプ】にて、フォルダを検索して該当StateGoファイルを開く<br>
+　例) HogeControl<br>
+       ※拡張子 .psgg 省略可<br>
+　入力ケース２）URL入力  <br>
+　【リンクへジャンプ】にて、ブラウザで該当URLを開く<br>
+　例）https://www.google.com<br>
+⑤　参照リンクのオープン<br>
+⑥　説明欄<br>
+⑦　クリックするとノード名が"S_0123"の様な番号となる。<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#edit-item-dlg>アイテム編集ダイアログ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-branch-dlg>
+<div class=title>分岐編集ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/edit-branch-dlg-j.png" /><br>
+①　使用中のプログラム言語の文法に従った条件式を入力。<br>
+②　コメントを入力する。コメントはステートノードに表示される。<br>
+　コメントがない場合は、①の条件式が表示される。<br>
+③　変更前の状態に戻す。<br>
+④　チェックすると新規のモード入力を自動で行う。<br>
+<br>
+
+<br>
+<li><a class=itemlink href=tec_basic_j.html#basic-branch>プログラム分岐作成</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=context-state-menu>
+<div class=title>ステートメニュー<br>
+</div>
+<div class=desc><img src="./../images/tec/state-menu-j.png" /><br>
+<h3>アイテム編集</h3>
+　アイテム編集ダイアログを開く<br>
+<br>
+<h3>分岐編集</h3>
+　分岐編集ダイアログを開く<br>
+<br>
+<h3>削除</h3>
+　選択中のステート削除<br>
+<br>
+<h3>グループ変更</h3>
+　所属するグループを変更<br>
+<br>
+<h3>コピー</h3>
+　コピー情報をクリップボードへ<br>
+<br>
+<h3>リンクへジャンプ</h3>
+　リンク定義時にジャンプする<br>
+<br>
+<h3>フォーカス</h3>
+　サブメニューに表示される関連ステートへフォーカスへ移動<br>
+
+<br>
+<li><a class=itemlink href=#edit-item-dlg>アイテム編集ダイアログ</a></li>
+<li><a class=itemlink href=tec_basic_j.html#basic-contextmenu>コンテキストメニュー表示</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=set-state-dlg>
+<div class=title>ステート指定ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/select-next-dlg-j.png" /><br>
+①　ステート名を指定<br>
+②　ダブルクリックすると、ステート名が①のテキストボックスに入力される。<br>
+　※ヘッダの"Path","State"または"Comment"をクリックするとソートされる。<br>
+③　フィルター<br>
+
+<br>
+<li><a class=itemlink href=#edit-item-dlg>アイテム編集ダイアログ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-item-text>
+<div class=title>アイテムテキスト編集ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/edit-item-text-dlg-j.png" /><br>
+①　ここにデータまたはプログラムを入力する。<br>
+②　クリックすると①のテキストボックスをクリアする。<br>
+③　コメントを入力。<br>
+④　ヘルプを参照できる。<br>
+⑤　参照用のリンク等がある場合に、ここに入力する。<br>
+⑥　入力値に制限用の定義を表示。<br>
+　※ 定義がある場合は、下図のようになる。<br>
+<img src="./../images/tec/edit-item-specifiedtext-dlg-j.png" /><br>
+
+<br>
+<li><a class=itemlink href=#edit-item-dlg>アイテム編集ダイアログ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=context-blank-menu>
+<div class=title>ブランクメニュー<br>
+</div>
+<div class=desc><img src="./../images/tec/blank-menu-j.png" /><br>
+<h3>グループを出る</h3>
+　上位グループへ移動する<br>
+<br>
+<h3>新規ステート作成</h3>
+　新規ステートを作成する。<br>
+<br>
+<h3>ペースト</h3>
+　コピークリップボードにあるノードをペーストする。<br>
+<br>
+<h3>ペースト(流出先除外)</h3>
+　コピークリップボードにあるノードを流出先を除外してペーストする。<br>
+<br>
+<h3>変更履歴</h3>
+　ユーザ操作を一つ戻す、または前に進める。<br>
+<br>
+<h3>フォーカス履歴</h3>
+　フォーカスを一つ戻す、または先に進める。<br>
+<br>
+<h3>先頭</h3>
+　先頭のステートに移動する。<br>
+
+<br>
+<li><a class=itemlink href=tec_basic_j.html#basic-contextmenu>コンテキストメニュー表示</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=context-group-menu>
+<div class=title>グループメニュー<br>
+</div>
+<div class=desc><img src="./../images/tec/group-menu-j.png" /><br>
+<h3>グループ内へ入る</h3>
+　グループ内へ移動する。<br>
+<br>
+<h3>編集</h3>
+　グループ編集ダイアログを開く。<br>
+<br>
+<h3>グループ変更</h3>
+　所属グループを変更。<br>
+<br>
+<h3>グループ分解</h3>
+　グループを分解する。<br>
+<br>
+<h3>削除</h3>
+　グループを削除する。<br>
+<br>
+<h3>コピー</h3>
+　グループをクリップボードへ記録する。<br>
+<br>
+
+<br>
+<li><a class=itemlink href=tec_basic_j.html#basic-contextmenu>コンテキストメニュー表示</a></li>
+<li><a class=itemlink href=#group-dlg>グループダイアログ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=context-multi-select-menu>
+<div class=title>複数選択メニュー<br>
+</div>
+<div class=desc><img src="./../images/tec/multi-select-menu-j.png" /><br>
+<h3>グループ作成</h3>
+　グループ化のためグループ編集ダイアログ開く。<br>
+<br>
+<h3>削除</h3>
+　選択中ノードを全削除。<br>
+<br>
+<h3>コピー</h3>
+　選択中ステート情報をクリップボードへコピー。<br>
+<br>
+<h3>水平に揃える</h3>
+　選択中ステートを水平に揃える<br>
+<br>
+<h3>垂直に揃える</h3>
+　選択中ステートを垂直に揃える<br>
+
+<br>
+<li><a class=itemlink href=tec_basic_j.html#basic-contextmenu>コンテキストメニュー表示</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=config-dlg>
+<div class=title>コンフィグダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/config-dlg-j.png" /><br>
+①　ステート編集パネルのビットマップの大きさを指定<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-file>メインウインドウ・ファイルメニュー</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-item-define-dlg>
+<div class=title>アイテムリスト編集ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/item-list-edit-j.png"/><br>
+<br>
+<h3>追加/削除/上移動/下移動</h3>
+インデックス欄をクリックしサブメニューを表示し選択。<br>
+<br>
+<h3>編集</h3>
+アイテム名欄をクリックしサブメニューを表示し編集を選択。<br>
+(メソッド・説明欄でも同様)<br>
+<br>
+<h3>メソッドについて</h3>
+一行目にメソッド種別を指定し、２行目以降は種別に応じたデータを記入する。<br>
+１）選択肢  <br>
+　1行目に "*select"を記入し、２行目以降に値<br>
+ <pre>
+*select
+apple
+banana
+orange
+</pre>
+２）正規表現<br>
+　1行目に "*regex"を記入し、２行目に正規表現を記入<br>
+<pre>
+*regex
+[0-9]+
+</pre>
+３）全ての行に正規表現<br>
+　1行目に"*regex_by_line"<br>
+<pre>
+*regex_by_line
+[0-9]+
+</pre>
+
+<br>
+<li><a class=itemlink href=#window-menu-convert>メインウインドウ・コンバートメニュー</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=find-dlg>
+<div class=title>検索ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/find-dlg-j.png" /><br>
+①　検索テキストを入力する<br>
+②　検索対象の指定<br>
+③　検索モードの指定<br>
+④　検索ボタン<br>
+⑤　結果表示<br>
+<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>メインウインドウ・ツールメニュー</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=set-source-editor-dlg>
+<div class=title>ソースエディタ設定ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/set-source-editor-dlg-j.png" /><br>
+①　言語とフレームワーク表示<br>
+②　言語とフレームワーク変更ボタン<br>
+③　ソース編集用エディタのコマンドを設定する。<br>
+　コマンドは以下の引数を設定できる。<br>
+　%1 -- ファイルパスに変換される。<br>
+　%2 -- 行番号に変換される。<br>
+　%3 -- ソリューションに変換される。<br>
+④　初期状態へ<br>
+⑤　Visual Studio用行番号ジャンプツールの使用・不使用指定<br>
+⑥　エディタ候補を指定してコマンドを入力<br>
+⑦　履歴<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>メインウインドウ・ツールメニュー</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=set-user-custom-button-dlg>
+<div class=title>ユーザカスタムボタン設定ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/set-user-custom-btn-dlg-j.png" /><br>
+①　ボタン名を設定<br>
+②　コマンドを設定<br>
+③　チェックすると変換後に自動で呼び出される。<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>メインウインドウ・ツールメニュー</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=set-label-dlg>
+<div class=title>ラベル設定ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/set-label-dlg-j.png" /><br>
+①　ラベル名を設定する。<br>
+②　ラベル名表示<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>メインウインドウ・ツールメニュー</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=clone-dlg>
+<div class=title>クローン生成ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/clone-dlg-j.png" /><br>
+①　コピー先のステートマシン名を設定。<br>
+②　ここをクリックするとディレクトリダイアログが開く。<br>
+③　クローンを作成。<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>メインウインドウ・ツールメニュー</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=search-statego-dlg>
+<div class=title>StateGo検索ダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/search-statego-dlg-j.png" /><br>
+①　検索するステートマシン名を設定する。<br>
+　近隣を検索する。<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>メインウインドウ・ツールメニュー</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=group-dlg>
+<div class=title>グループダイアログ<br>
+</div>
+<div class=desc><img src="./../images/tec/group-dlg-j.png" /><br>
+①　グループ名入力<br>
+②　コメント入力<br>
+
+<br>
+<li><a class=itemlink href=#context-group-menu>グループメニュー</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+
+    </div><!-- /ctslist -->
+
+  </div><!-- /main -->
+
+</div><!-- /container -->
+</section><!-- /contents -->
+
+</body>
+</html>

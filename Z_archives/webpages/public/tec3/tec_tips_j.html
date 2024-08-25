@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?
+id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header -->
+<header id="header">
+<div class="container">
+
+<div class=j_or_e>
+  <a class=lang_a >Japanese</a>
+  <a class=lang_a href=tec_tips_e.html>English</a>
+</div>
+
+<div class=toc>
+  <b class=tocitem><a href="https://statego.programanic.com/">HOME</a></b>
+  <b class=tocitem><a href=tec_main_j.html>メイン</a></b>
+<b class=tocitem><a href=tec_basic_j.html>基本操作</a></b>
+<b class=tocitem><a href=tec_userguide_j.html>利用ガイド</a></b>
+<b class=tocitem><a href=tec_functemplate_j.html>関数テンプレート</a></b>
+<b class=tocitem><a href=tec_itemname_j.html>項目名</a></b>
+<b class=tocitem><a href=tec_macro_j.html>マクロ</a></b>
+<b class=tocitem><a href=tec_output_j.html>アウトプット</a></b>
+<b class=tocitem><a href=tec_state_j.html>ステート</a></b>
+<b class=tocitem><a href=tec_setting_j.html>SETTING</a></b>
+<b class=tocitem><a href=tec_tips_j.html>便利な使い方</a></b>
+
+  <b class=tocitem><a href="./shortcuts/mouse-j.htm">マウス操作</a></b>
+  <b class=tocitem><a href="./shortcuts/shortcuts-j.htm">キーボードショートカット</a></b>
+</div><!-- /toc -->
+
+<div class=outline>
+  <div class=outlinetitle>便利な使い方</div>
+  <div class=outlineitem>
+    
+  </div>
+</div>
+<!-- /outline -->
+
+</div><!-- /container -->
+</header>
+
+
+<!-- contents -->
+<section id="contents">
+<div class="container">
+
+  <!-- sidebar -->
+  <div id="sidebar">
+
+    <div class=toclist>
+      <div class=toctitle><a href=#link_to_antoher_sm>別のStateGoファイルにリンクする<br>
+</a></div>
+<div class=toctitle><a href=#new_state_name>新規ステート名作成<br>
+</a></div>
+<div class=toctitle><a href=#how_to_edit_items>アイテム編集の使い方<br>
+</a></div>
+<div class=toctitle><a href=#how_to_rename>ファイル名の変更<br>
+</a></div>
+
+      <!--
+        <div class=toctitle><a href=tec_macro_j.html#calling-macro>マクロの呼出し<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#normal-macro-args>ノーマルマクロと引数<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#split-args>行変換時の引数分解<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#where-define>マクロの定義場所<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#how-to-define>マクロ定義方法<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#use-args>引数の使い方 <br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#use-args-dq>引数の使い方  ダブルクオート削除<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#line-macro>行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#line-macro-sp>特別行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#linenumber-arg>行番号引数<br>
+        </a></div>
+      -->
+    </div>
+  </div><!-- /sidebar -->
+
+
+  <!-- main -->
+  <div id="main">
+
+    <div class=ctslist>
+    <div class=item id=link_to_antoher_sm>
+<div class=title>別のStateGoファイルにリンクする<br>
+</div>
+<div class=desc>データテーブルのstate-refに別のStateGoファイルのショートカット(psggファイル)を指定できる。<br>
+ステートメニューのリンクに表示され、クリックすると指定されたステートマシンが開く。<br>
+パスなしのpsggファイルを指定する。<br>
+※同名のステートマシンが複数あると正しく動作しない。<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=new_state_name>
+<div class=title>新規ステート名作成<br>
+</div>
+<div class=desc>最後に選択したステート名を使って新規ステート名が作成される。<br>
+そのため、シリーズのステート名を作りたい際は一度選択後、新規ステートを作成すると便利。<br>
+解説：<br>
+新規ステート名は、参照されたステート名文末の数字を繰り上げた名前を作成する。<br>
+ステート名文末が数字でない場合は、数字１が追加される。<br>
+既に使用されている場合は、その次の数字になる。<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=how_to_edit_items>
+<div class=title>アイテム編集の使い方<br>
+</div>
+<div class=desc><a href="../img/itemedit.png">参照</a><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=how_to_rename>
+<div class=title>ファイル名の変更<br>
+</div>
+<div class=desc>メニューバーより [Tools]⇒[Create Clone]を選択して、クローンを作成する。<br>
+旧ファイルは手動で削除して下さい。<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+
+    </div><!-- /ctslist -->
+
+  </div><!-- /main -->
+
+</div><!-- /container -->
+</section><!-- /contents -->
+
+</body>
+</html>

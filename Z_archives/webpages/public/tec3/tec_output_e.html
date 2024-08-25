@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?
+id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header -->
+<header id="header">
+<div class="container">
+
+<div class=j_or_e>
+  <a class=lang_a href=tec_output_j.html>Japanese</a>
+  <a class=lang_a >English</a>
+</div>
+
+<div class=toc>
+  <b class=tocitem><a href="https://statego.programanic.com/">HOME</a></b>
+  <b class=tocitem><a href=tec_main_e.html>MAIN</a></b>
+<b class=tocitem><a href=tec_basic_e.html>BASIC OPERATION</a></b>
+<b class=tocitem><a href=tec_userguide_e.html>USAGE GUIDE</a></b>
+<b class=tocitem><a href=tec_functemplate_e.html>FUNCTION TEMPLATE</a></b>
+<b class=tocitem><a href=tec_itemname_e.html>ITEM NAME</a></b>
+<b class=tocitem><a href=tec_macro_e.html>MACRO</a></b>
+<b class=tocitem><a href=tec_output_e.html>OUTPUT</a></b>
+<b class=tocitem><a href=tec_state_e.html>STATE</a></b>
+<b class=tocitem><a href=tec_setting_e.html>SETTING</a></b>
+<b class=tocitem><a href=tec_tips_e.html>TIPS</a></b>
+
+  <b class=tocitem><a href="./shortcuts/mouse-e.htm">MOUSE OPERATION</a></b>
+  <b class=tocitem><a href="./shortcuts/shortcuts-e.htm">SHORTCUTS</a></b>
+</div><!-- /toc -->
+
+<div class=outline>
+  <div class=outlinetitle>OUTPUT</div>
+  <div class=outlineitem>
+    Definition for output source.<br>
+Used in source.<br>
+
+  </div>
+</div>
+<!-- /outline -->
+
+</div><!-- /container -->
+</header>
+
+
+<!-- contents -->
+<section id="contents">
+<div class="container">
+
+  <!-- sidebar -->
+  <div id="sidebar">
+
+    <div class=toclist>
+      <div class=toctitle><a href=#setting-output>Setting output<br>
+</a></div>
+<div class=toctitle><a href=#start-mark>Output start mark<br>
+</a></div>
+<div class=toctitle><a href=#conv-cmd>Converison command<br>
+</a></div>
+<div class=toctitle><a href=#end-mark>Output end mark<br>
+</a></div>
+<div class=toctitle><a href=#enum-sample>Sample: Create enum of state names<br>
+</a></div>
+
+      <!--
+        <div class=toctitle><a href=tec_macro_e.html#calling-macro>マクロの呼出し<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#normal-macro-args>ノーマルマクロと引数<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#split-args>行変換時の引数分解<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#where-define>マクロの定義場所<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#how-to-define>マクロ定義方法<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#use-args>引数の使い方 <br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#use-args-dq>引数の使い方  ダブルクオート削除<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#line-macro>行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#line-macro-sp>特別行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#linenumber-arg>行番号引数<br>
+        </a></div>
+      -->
+    </div>
+  </div><!-- /sidebar -->
+
+
+  <!-- main -->
+  <div id="main">
+
+    <div class=ctslist>
+    <div class=item id=setting-output>
+<div class=title>Setting output<br>
+</div>
+<div class=desc>Output the conversion result in betwenn the output start and end marks in the source file.<br>
+ie)<br>
+<pre>
+// [PSGG OUTPUT START] indent(4)  $/./$
+    OUTPUT HERE !!
+// [PSGG OUTPUT END]
+</pre>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=start-mark>
+<div class=title>Output start mark<br>
+</div>
+<div class=desc>The output start mark is set at code_output_start of setting.ini.<br>
+After the start mark, set numbers of indent and conversion command.<br>
+Format: START-MARK indent (number)  $conversion command$<br>
+Example)<br>
+<pre>
+[PSGG OUTPUT START] indent(4) $/^S_/$
+</pre>
+--- Indent 4 characters. Convert states starting with S_.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=conv-cmd>
+<div class=title>Converison command<br>
+</div>
+<div class=desc><pre>
+$/Regular expression/$
+</pre>
+After filtering each state with regular expression, convert states to program.<br>
+<pre>
+$/Regular expression/->#macro$
+</pre>
+After filtering each state with regular expression, convert states to program using #macro.<br>
+※ The order of conversion is alphabetical order.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=end-mark>
+<div class=title>Output end mark<br>
+</div>
+<div class=desc>The output end mark is set at code_output_end of setting.ini.<br>
+End of output.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=enum-sample>
+<div class=title>Sample: Create enum of state names<br>
+</div>
+<div class=desc># Macro<br>
+<pre>
+#enum=[state],
+</pre>
+# Source<br>
+<pre>
+public enum STATE {
+    //PSGG OUTPUT START] indent(4)  $/^S_/->#enum$
+    //PSGG OUTPUT END]
+}
+</pre>
+# Converted<br>
+<pre>
+public enum STATE {
+    //[SYN-G-GEN OUTPUT START] indent(4)  $/^S_/->#enum$
+    S_0001,
+    S_0002,
+        :
+    //[SYN-G-GEN OUTPUT END]
+}
+</pre>
+
+</div> <!-- desc --></div> <!-- class=item -->
+
+    </div><!-- /ctslist -->
+
+  </div><!-- /main -->
+
+</div><!-- /container -->
+</section><!-- /contents -->
+
+</body>
+</html>

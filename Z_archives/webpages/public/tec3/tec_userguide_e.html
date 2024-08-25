@@ -1,0 +1,866 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header -->
+<header id="header">
+<div class="container">
+
+<div class=j_or_e>
+  <a class=lang_a href=tec_userguide_j.html>Japanese</a>
+  <a class=lang_a >English</a>
+</div>
+
+<div class=toc>
+  <b class=tocitem><a href="https://statego.programanic.com/">HOME</a></b>
+  <b class=tocitem><a href=tec_main_e.html>MAIN</a></b>
+<b class=tocitem><a href=tec_basic_e.html>BASIC OPERATION</a></b>
+<b class=tocitem><a href=tec_userguide_e.html>USAGE GUIDE</a></b>
+<b class=tocitem><a href=tec_functemplate_e.html>FUNCTION TEMPLATE</a></b>
+<b class=tocitem><a href=tec_itemname_e.html>ITEM NAME</a></b>
+<b class=tocitem><a href=tec_macro_e.html>MACRO</a></b>
+<b class=tocitem><a href=tec_output_e.html>OUTPUT</a></b>
+<b class=tocitem><a href=tec_state_e.html>STATE</a></b>
+<b class=tocitem><a href=tec_setting_e.html>SETTING</a></b>
+<b class=tocitem><a href=tec_tips_e.html>TIPS</a></b>
+
+  <b class=tocitem><a href="./shortcuts/mouse-e.htm">MOUSE OPERATION</a></b>
+  <b class=tocitem><a href="./shortcuts/shortcuts-e.htm">SHORTCUTS</a></b>
+</div><!-- /toc -->
+
+<div class=outline>
+  <div class=outlinetitle>USAGE GUIDE</div>
+  <div class=outlineitem>
+    Click <img src="./../images/tec/question.png" /> on the tool, the related item on this page will be shown. <br>
+
+  </div>
+</div>
+<!-- /outline -->
+
+</div><!-- /container -->
+</header>
+
+
+<!-- contents -->
+<section id="contents">
+<div class="container">
+
+  <!-- sidebar -->
+  <div id="sidebar">
+
+    <div class=toclist>
+      <div class=toctitle><a href=#start-dialog>Start dialog<br>
+</a></div>
+<div class=toctitle><a href=#start-dialog-new>Create New Statemachine<br>
+</a></div>
+<div class=toctitle><a href=#window-description>Main Window<br>
+</a></div>
+<div class=toctitle><a href=#window-top-desc>Main Window Top<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-file>Main Window・File Menu<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-convert>Main Window・Convert Menu<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-tool>Main Window・Tool Menu<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-wins>Main Window・Windows Menu<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-help>Main Window・Help Menu<br>
+</a></div>
+<div class=toctitle><a href=#window-menu-other>Main Window・Other Menu<br>
+</a></div>
+<div class=toctitle><a href=#window-panel-main>Main Window・Main Panel<br>
+</a></div>
+<div class=toctitle><a href=#window-panel-contents>Main Window・Contents Panel<br>
+</a></div>
+<div class=toctitle><a href=#window-panel-custom>Main Window・Custom Panel<br>
+</a></div>
+<div class=toctitle><a href=#window-panel-help>Main Window・Help Panel<br>
+</a></div>
+<div class=toctitle><a href=#window-panel-src>Main Window・Source Panel<br>
+</a></div>
+<div class=toctitle><a href=#window-utility>Main Window・Utility Panel<br>
+</a></div>
+<div class=toctitle><a href=#edit-item-dlg>Edit Item Dialog<br>
+</a></div>
+<div class=toctitle><a href=#edit-thumb-dlg>Edit Thumbnail Dialog<br>
+</a></div>
+<div class=toctitle><a href=#edit-state-dlg>Edit State Dialog<br>
+</a></div>
+<div class=toctitle><a href=#edit-branch-dlg>Edit Branch Dialog<br>
+</a></div>
+<div class=toctitle><a href=#context-state-menu>State Menu<br>
+</a></div>
+<div class=toctitle><a href=#set-state-dlg>Specify State Dialog<br>
+</a></div>
+<div class=toctitle><a href=#edit-item-text>Edit Item Text Dialog<br>
+</a></div>
+<div class=toctitle><a href=#context-blank-menu>Blank Menu<br>
+</a></div>
+<div class=toctitle><a href=#context-group-menu>Group Menu<br>
+</a></div>
+<div class=toctitle><a href=#context-multi-select-menu>Mutil-select-menu<br>
+</a></div>
+<div class=toctitle><a href=#config-dlg>Configuration Dialog<br>
+</a></div>
+<div class=toctitle><a href=#edit-item-define-dlg>Edit Item List Dialog<br>
+</a></div>
+<div class=toctitle><a href=#find-dlg>Find Dialog<br>
+</a></div>
+<div class=toctitle><a href=#set-source-editor-dlg>Set Source Editor Dialog<br>
+</a></div>
+<div class=toctitle><a href=#set-user-custom-button-dlg>Set User Custom Button Dialog<br>
+</a></div>
+<div class=toctitle><a href=#set-label-dlg>Set Label Dialog<br>
+</a></div>
+<div class=toctitle><a href=#clone-dlg>Create Clone Dialog<br>
+</a></div>
+<div class=toctitle><a href=#search-statego-dlg>Search StateGo Dialog<br>
+</a></div>
+<div class=toctitle><a href=#group-dlg>Group Dialog<br>
+</a></div>
+
+      <!--
+        <div class=toctitle><a href=tec_macro_e.html#calling-macro>マクロの呼出し<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#normal-macro-args>ノーマルマクロと引数<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#split-args>行変換時の引数分解<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#where-define>マクロの定義場所<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#how-to-define>マクロ定義方法<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#use-args>引数の使い方 <br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#use-args-dq>引数の使い方  ダブルクオート削除<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#line-macro>行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#line-macro-sp>特別行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#linenumber-arg>行番号引数<br>
+        </a></div>
+      -->
+    </div>
+  </div><!-- /sidebar -->
+
+
+  <!-- main -->
+  <div id="main">
+
+    <div class=ctslist>
+    <div class=item id=start-dialog>
+<div class=title>Start dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/start-dialog-e.png" /><img src="./../images/tec/start-dialog2-e.png" /><br>
+When "StateGo.exe" executes then its start dialog will be displayed. <br>
+① Change language between Japanese and English.<br>
+② <a href=#start-dialog-new>Create new statemachine.</a><br>
+③ Open an existance file using File Open Dialog.<br>
+④ Open an file from history list.<br>
+⑤ Expand the window. You can use both ⑥ and ⑦ features.<br>
+⑥ Search StateGo file using text. You can open a StateGo file on the result list by double-clicking.<br>
+⑦ Open StateGo File by analyzing a dropping file.<br>
+
+<br>
+<li><a class=itemlink href=#start-dialog-new>Create New Statemachine</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=start-dialog-new>
+<div class=title>Create New Statemachine<br>
+</div>
+<div class=desc><img src="./../images/tec/start-dialog-new-b7-e.png" /><br>
+# Create a new state machine.<br>
+<br>
+StateGo's state machine basically consists of two files.<br>
+<br>
+- StateGo data file with extension .psgg<br>
+<br>
+Stores the data composing the StateGo state machine in text format<br>
+<br>
+- Output source<br>
+<br>
+This is an output source, and the extension varies depending on the programming language.<br>
+<br>
+The above files are managed with the same file name.<br>
+<br>
+For example, if the file name is HogeControl and the programming language is C #<br>
+<br>
+HogeControl.psgg<br>
+HogeControl.cs<br>
+<br>
+Note 1) Files other than the above may be generated by the start kit.<br>
+<br>
+i.e.<br>
+<br>
+helpweb.html<br>
+Macro file<br>
+Management file<br>
+<br>
+Note 2) The Excel file has been changed to use the Edit option.<br>
+<br>
+<br>
+# The procedure and contents of each item are as follows<br>
+<br>
+1. Select start kit<br>
+<br>
+① Start kit route path display<br>
+② Reset start kit root path (to default)<br>
+③ Change the start kit route path<br>
+④ Start kit list<br>
+⑤ Start kit name being selected<br>
+⑥ Details of the selected start kit<br>
+<br>
+2. Determination of state machine name<br>
+<br>
+⑦ State machine name input area<br>
+⑧ Check box for forcing the state machine name to end with “Control”<br>
+⑨ Reset state machine name (to default)<br>
+<br>
+3. Determine the source folder<br>
+<br>
+⑩ Input area for storage folder of generated source<br>
+⑪ Open the folder specification dialog<br>
+<br>
+4. Determination of document storage folder<br>
+<br>
+⑫ Document storage folder input area (if necessary)<br>
+⑬ Check box for forcing doc folder directly under source storage folder<br>
+⑭ Check box for individually specifying the document storage folder<br>
+* If ⑬ and ⑭ is not specified, it will be the same as the source folder.<br>
+<br>
+5. Generation<br>
+<br>
+⑯ Button for generating a state-machine.<br>
+<br>
+Note: The old start kit can be used with the ⑮ button.<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-description>
+<div class=title>Main Window <br>
+</div>
+<div class=desc><img src="./../images/tec/window-1-e.png" /><br>
+① Notice panel<br>
+　It notifies the process status.<br>
+　It displays important issue with red color.<br>
+② Multi panel<br>
+<a href=#window-panel-main>Main Panel</a>・<a href=#window-panel-contents>Contents Panel</a>・<a href=#window-panel-help>Custom Panel</a>・<a href=#window-panel-help>Help Panel</a>・<a href=#window-panel-src>Source Panel</a><br>
+③ <a href=#window-utility>Utility panel</a><br>
+　 Convert button, open file button, etc.<br>
+④ State Edit panel<br>
+　Edit states by GUI.<br>
+　<a href=tec_basic_e.html#basic-new-node>Basic Operation</a><br>
+⑤ Advertisement panel<br>
+
+<br>
+<li><a class=itemlink href=#window-top-desc>Main Window Top</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-top-desc>
+<div class=title>Main Window Top<br>
+</div>
+<div class=desc><img src="./../images/tec/window-top-e.png" /><br>
+① It shows the working file name and current group path.<br>
+　The group root is "/"<br>
+② <a href=#window-menu-file>It shows File Menu.</a><br>
+③ <a href=#window-menu-convert>It shows Convert setting Menu.</a><br>
+④ <a href=#window-menu-tool>It shows Tools Menu.</a><br>
+⑤ It shows Window Selection Menu.<br>
+　It shows list of StateGo windows.<br>
+⑥ <a href=#window-menu-help>It shows Help Menu.</a><br>
+⑦ <a href=#window-menu-other>It shows Other Menu.</a><br>
+⑧ It shows the pointer position.<br>
+　You may use it for searching state position.<br>
+⑨ Enlarge and Shrink buttons.<br>
+⑩ [Go to Head] and [Go to Tail] buttons.<br>
+⑪ Notice what to change.<br>
+　C : Some Item values are changed.<br>
+　P : Some positions are changed.<br>
+　V : Viewing groug is changed.<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-file>
+<div class=title>Main Window・File Menu<br>
+</div>
+<div class=desc><img src="./../images/tec/menu-file-e.png" /><br>
+<h3>Create or Open</h3>
+　<a href=#start-dialog>Open Start Dialog</a><br>
+<h3>Save</h3>
+　Save all information.<br>
+<h3>Save and Convert</h3>
+　Save all information, then convert to the source code.<br>
+　<a href=#window-utility>This is as same as "Save and Convert" button on Utility Panel.</a><br>
+<h3>Import excel</h3>
+　[Compatibility of previous versions]<br>
+　Import StateGo Excel file.<br>
+<h3>Reload</h3>
+　Reload all information from file.<br>
+　※ The information that is being edited will be lost.<br>
+<h3>Refresh</h3>
+　Refresh Edit State Panel.<br>
+<h3>Change Work Space</h3>
+　Open "Change Work Space" dialog.<br>
+<h3>Copy Image</h3>
+　Copy Edit State Panel to clipboard.<br>
+　※The image may be used for printout and etc.<br>
+<h3>Copy Filename</h3>
+　Copy this work file name to the clipboard.<br>
+<h3>Exit</h3>
+　Exit StateGo.<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-convert>
+<div class=title>Main Window・Convert Menu<br>
+</div>
+<div class=desc><img src="./../images/tec/menu-convert-e.png" /><br>
+<h3>Edit template-source</h3>
+　This is for old StateGo release.<br>
+　It has not been used since beta release.<br>
+<h3>Edit template-function</h3>
+　Open the specified editor to edit Template-function.<br>
+<h3>Edit Items</h3>
+　Open Edit Item Dialog.<br>
+<h3>Edit Settings</h3>
+　Open the specified editor to edit the settings.<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-tool>
+<div class=title>Main Window・Tool Menu<br>
+</div>
+<div class=desc><img src="./../images/tec/menu-tool-e.png" /><br>
+<h3>Find</h3>
+　Open Find Dialog.<br>
+<h3>Set Source Editor</h3>
+　Open Set Source Editor Dialog.<br>
+<h3>Set User Button</h3>
+　Open Set User Button Dialog.<br>
+　<a href=window-utility>This dialog specifies User Custom Button on Utility Panel.</a><br>
+<h3>Set Label</h3>
+　Open Set Label Dialog.<br>
+<h3>Create Clone</h3>
+　Open Create Clone Dialog.<br>
+<h3>Search StateGo Files</h3>
+　Open Search StateGo Files Dialog.<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-wins>
+<div class=title>Main Window・Windows Menu<br>
+</div>
+<div class=desc><img src="./../images/tec/menu-windows-e.png" /><br>
+It shows all running StateGo as a list.<br>
+Selecting a StateGo on the list causes to switch the current StateGo to it.<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-help>
+<div class=title>Main Window・Help Menu<br>
+</div>
+<div class=desc><img src="./../images/tec/help-menu-e.png" /><br>
+<h3>Basic Operation</h3>
+　Open Basic Operation Site.<br>
+<h3>Reference</h3>
+　Open Referenc Site.<br>
+<h3>Contact</h3>
+　Open Contact Site.<br>
+<h3>Homepage</h3>
+　Open Homepage Site.<br>
+<h3>About</h3>
+　Open About Dialog.<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-menu-other>
+<div class=title>Main Window・Other Menu<br>
+</div>
+<div class=desc><img src="./../images/tec/other-menu-e.png" /><br>
+<h3>Language</h3>
+　Change language between English and Japanese.<br>
+<h3>Focus Record Panel ON / OFF </h3>
+　Open or close Focus Record Panel.<br>
+<h3>History Record Panel ON / OFF </h3>
+　Open or close History Record Panel.<br>
+<h3>Option</h3>
+  Open Option dialog.　<br>
+<h3>Analytics ON / OFF</h3>
+　Open Analytics ON/OFF dialog.<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-panel-main>
+<div class=title>Main Window・Main Panel<br>
+</div>
+<div class=desc><img src="./../images/tec/window-panel-main-e.png" /><br>
+① Magnification rate<br>
+　It is modifiable.<br>
+② Magnification gauge.<br>
+③ Node Tree<br>
+　The state color is same as its drawing on State Edit panel. <br>
+　When you move to a group, The tree will be refreshed to show correspondly.　<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-panel-contents>
+<div class=title>Main Window・Contents Panel<br>
+</div>
+<div class=desc><img src="./../images/tec/window-panel-contents-e.png" /><br>
+① There are State drawing options.<br>
+② There are Text options on state.<br>
+③ Threre are symbol mark options.<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-panel-custom>
+<div class=title>Main Window・Custom Panel<br>
+</div>
+<div class=desc><img src="./../images/tec/window-panel-custom-e.png" /><br>
+① There are font settings for states on State Edit Panel<br>
+② There are arrow settings.<br>
+　Set arrow color with regular expression.<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-panel-help>
+<div class=title>Main Window・Help Panel<br>
+</div>
+<div class=desc><img src="./../images/tec/window-panel-help-e.png" /><br>
+It shows helpweb.html on Document Folder.<br>
+You may use it as note for creating state machine.<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-panel-src>
+<div class=title>Main Window・Source Panel<br>
+</div>
+<div class=desc><img src="./../images/tec/window-panel-src-e.png" /><br>
+① The number indicates that the line number of the displaying content in the output source.<br>
+② Change to the template by clicking.<br>
+③ Change to the converted source by clicking.<br>
+④ Display the conveted source  or the template.<br>
+　The converted source of the focused state on State Edit Panel.<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=window-utility>
+<div class=title>Main Window・Utility Panel<br>
+</div>
+<div class=desc><img src="./../images/tec/window-utility-e.png" /><br>
+・【Save and Convert】button<br>
+　It saves all data and converts from the state machine to the source.<br>
+・【Doc folder】button<br>
+　It opens Document Folder.<br>
+・【Source folder】button<br>
+　It opens Source Folder.<br>
+・【Converted source】button<br>
+　It shows the converted source.<br>
+・【User button】<br>
+　It executes the custom process.<br>
+　The custom process is set by Windows Menu [tools]➡[Set User Button] <br>
+・【Macro file】button<br>
+　It is valid when the starter-kit defines a macro file. Pushing causes opening the macro file.<br>
+・【Implement source】button<br>
+　This button exists for compatible with older StateGo release.<br>
+
+<br>
+<li><a class=itemlink href=#window-description>Main Window </a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-item-dlg>
+<div class=title>Edit Item Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/edit-item-dlg-e.png" /><br>
+①　The state name is displayed.<br>
+②　Double-clicking "thumbnail" causes opening "Edit Thumbnail Dialog".<br>
+③　Double-clicking "state" causes opening "Edit State Dialog".<br>
+※ Light gray items are able to be ignored.<br>
+④　To edit these items double click. <br>
+⑤　Select the number of displayed items.<br>
+　- "Minimum" displays minimum number of items.<br>
+　- "Intermediate" displays items that include related the minum items.<br>
+　- "Overall" displays all items.<br>
+⑥　Show or hide "Description of item" part.<br>
+※　To know the relation between item and output, see the template.<br>
+
+<br>
+<li><a class=itemlink href=#context-state-menu>State Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-thumb-dlg>
+<div class=title>Edit Thumbnail Dialog<br>
+</div>
+<div class=desc>Loading or Pasting bitmap causes creating 100 pixel x 100 pixel bitmap for thumbnail. The width and height ration is preserved.<br>
+<img src="./../images/tec/edit-thumb-e.png" /><br>
+
+<br>
+<li><a class=itemlink href=#edit-item-dlg>Edit Item Dialog</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-state-dlg>
+<div class=title>Edit State Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/edit-state-dlg-e.png" /><br>
+①　Input State name. <br>
+　<a href=#s_stata>See the reference.</a><br>
+②　Inpunt Comment.<br>
+③　Clear comment.<br>
+④　Input reference link.<br>
+　It is used for State Menu "Jump to link".<br>
+　Input case #1) Specify StateGo File.<br>
+　Selecting "Jump to link" on State Menu causes opening the StateGo file. If the file cannot be found on the current folder, this tool will traverse near folders to find it.<br>
+　Input case #2) Specify URL.<br>
+　Selecting "Jump to link" on State Menu causes opening opening brwoser with the url.<br>
+⑤　Open the reference link for test.<br>
+⑥　Discription of this dialog.<br>
+⑦　Clicking this text causes creating numberd node name. ex) S_0123<br>
+ <br>
+
+<br>
+<li><a class=itemlink href=#edit-item-dlg>Edit Item Dialog</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-branch-dlg>
+<div class=title>Edit Branch Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/edit-branch-dlg-e.png" /><br>
+①　Input condition that is followed the programming language syntax.<br>
+②　Input comment. The comment is displayed on state node.<br>
+　The condition is displayed if comment is nothing.<br>
+③　Revert to the data before change<br>
+④　Checking causes selecting mode automatically when new condition is added.<br>
+
+<br>
+<li><a class=itemlink href=tec_basic_e.html#basic-branch>Creating program branch</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=context-state-menu>
+<div class=title>State Menu<br>
+</div>
+<div class=desc><img src="./../images/tec/state-menu-e.png" /><br>
+<h3>Edit items</h3>
+　Open Edit Item Dialog.<br>
+<br>
+<h3>Edit branch</h3>
+　Open Edit Branch Dialog.<br>
+<br>
+<h3>Delete</h3>
+　Delete this state.<br>
+<br>
+<h3>Change Group</h3>
+　Change the group that belongs the state.<br>
+<br>
+<h3>Copy to clipboard</h3>
+　Copy this state to clipboard.<br>
+<br>
+<h3>Jump to link</h3>
+　If the state has link data, jump to it.<br>
+<br>
+<h3>Focus</h3>
+　Move the focus to a state on the sub menu list. <br>
+<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#edit-item-dlg>Edit Item Dialog</a></li>
+<li><a class=itemlink href=tec_basic_e.html#basic-contextmenu>Open Context Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=set-state-dlg>
+<div class=title>Specify State Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/select-next-dlg-e.png" /><br>
+①　Specify State Name.<br>
+②　Double clicking row causes to input the state name to ①'s text box.<br>
+　※ Clicking "Path", "Stata" or "Comment" on the header causes sorting.<br>
+③　Filtter<br>
+
+<br>
+<li><a class=itemlink href=#edit-item-dlg>Edit Item Dialog</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-item-text>
+<div class=title>Edit Item Text Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/edit-item-text-dlg-e.png" /><br>
+①　Input data or program code here.<br>
+②　Clicking causes deleting text on ①'s text box.<br>
+③　Input Comment.<br>
+④　Help message.<br>
+⑤　You may input reference link.<br>
+⑥　Input Specification.<br>
+　※ In a case that the input specification is defined,  the dialog will be displayed like below.<br>
+<img src="./../images/tec/edit-item-specifiedtext-dlg-e.png" /><br>
+
+<br>
+<li><a class=itemlink href=#edit-item-dlg>Edit Item Dialog</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=context-blank-menu>
+<div class=title>Blank Menu<br>
+</div>
+<div class=desc><img src="./../images/tec/blank-menu-e.png" /><br>
+<h3>Leave</h3>
+　Leave this group. Go to the upper group.<br>
+<br>
+<h3>New state</h3>
+　Create a new state.<br>
+<br>
+<h3>Paste</h3>
+　Paste nodes from clipboard.<br>
+<br>
+<h3>Paste without outflow</h3>
+　Paste nodes without outflow from clipboard.<br>
+<br>
+<h3>History</h3>
+　Move back or forward user manipulation.<br>
+<br>
+<h3>Focus<h3><br>
+　Move focus  back or forward  user manipulation.<br>
+<br>
+<h3>Head</h3>
+　Move focus to a leading state.<br>
+
+<br>
+<li><a class=itemlink href=tec_basic_e.html#basic-contextmenu>Open Context Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=context-group-menu>
+<div class=title>Group Menu<br>
+</div>
+<div class=desc><img src="./../images/tec/group-menu-e.png" /><br>
+<h3>Enter</h3>
+　Enter this group.<br>
+<br>
+<h3>Edit</h3>
+　Open Group Edit Dialog.<br>
+<br>
+<h3>Change group</h3>
+　Open Change Group Dialog.<br>
+<br>
+<h3>Ungroup</h3>
+　Make ungrouping this group.<br>
+<br>
+<h3>Delete</h3>
+　Delete this group.<br>
+<br>
+<h3>Copy to clipboard</h3>
+　Copy this group data to clipboard.<br>
+
+<br>
+<li><a class=itemlink href=tec_basic_e.html#basic-contextmenu>Open Context Menu</a></li>
+<li><a class=itemlink href=#group-dlg>Group Dialog</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=context-multi-select-menu>
+<div class=title>Mutil-select-menu<br>
+</div>
+<div class=desc><img src="./../images/tec/multi-select-menu-e.png" /><br>
+<h3>Make group</h3>
+　Open Edit Group Dialog to make a group.<br>
+<br>
+<h3>Delete</h3>
+　Delete these selected nodes.<br>
+<br>
+<h3>Copy to clipboard</h3>
+　Copy these slected nodes data to clipboard.<br>
+<br>
+<h3>Align holisontally</h3>
+　Aling holizontally selected states.<br>
+<br>
+<h3>Align vertically</h3>
+　Align vertically selected states.<br>
+
+<br>
+<li><a class=itemlink href=tec_basic_e.html#basic-contextmenu>Open Context Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=config-dlg>
+<div class=title>Configuration Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/config-dlg-e.png" /><br>
+①　Specify size of Edit State Panel's bitmap.<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-file>Main Window・File Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=edit-item-define-dlg>
+<div class=title>Edit Item List Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/item-list-edit-e.png"/><br>
+<br>
+<h3>Insert/Remove/Up/Down</h3>
+Clicking Index column on the target item causes to show sub-menu then select.<br>
+<br>
+<h3>Edit</h3>
+Clicking Item name or Explanation, Method colums on the target item causes to show sub-menu then select.<br>
+<br>
+<h3>About Method</h3>
+1st line : method (select,regex,regex_by_line)<br>
+From 2nd line : parameter for selected mthod.<br>
+<br>
+ex) Input one of the three values.<br>
+<pre>
+*select
+apple
+banana
+orange
+</pre>
+<br>
+ex) Checking if a value is numeric.<br>
+<pre>
+*regex
+[0-9]+
+</pre>
+<br>
+ex) Checking if a value is numeric for all lines.<br>
+<pre>
+*regex_by_line
+[0-9]+
+</pre>
+
+<br>
+<li><a class=itemlink href=#window-menu-convert>Main Window・Convert Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=find-dlg>
+<div class=title>Find Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/find-dlg-e.png" /><br>
+①　Input text.<br>
+②　Set range of search.<br>
+③　Set type of search.<br>
+④　Find Button<br>
+⑤　Output will be displayed.<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>Main Window・Tool Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=set-source-editor-dlg>
+<div class=title>Set Source Editor Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/set-source-editor-dlg-e.png" /><br>
+①　Display using program language and framework. <br>
+②　A button for changing using program language and framework.<br>
+③　Set command for editor.<br>
+　There are two specail words for command.<br>
+　%1 -- Used as file path.<br>
+　%2 -- Used as line number.<br>
+　%3 -- Used as solution file path.<br>
+④　Reset the command.<br>
+⑤ 　Set use or not use Visual Studio Jump Tool.<br>
+⑥　Input command by selecting tool.<br>
+⑦　Command history.<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>Main Window・Tool Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=set-user-custom-button-dlg>
+<div class=title>Set User Custom Button Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/set-user-custom-btn-dlg.png-e" /><br>
+①　Set the button's name.<br>
+②　Set the command.<br>
+③　If checked, the command will be executed right after the converting.<br>
+<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>Main Window・Tool Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=set-label-dlg>
+<div class=title>Set Label Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/set-label-dlg-e.png" /><br>
+①　Set the label name.<br>
+②　If checked, the label will be shown.<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>Main Window・Tool Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=clone-dlg>
+<div class=title>Create Clone Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/clone-dlg-e.png" /><br>
+①　Set the new state mchine name.<br>
+②　If clicked, Directory Dialog will be opened.<br>
+③　Create a clone.<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>Main Window・Tool Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=search-statego-dlg>
+<div class=title>Search StateGo Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/search-statego-dlg-e.png" /><br>
+①　Set the state machine name.<br>
+Search the state machine near the  current document folder.<br>
+
+<br>
+<li><a class=itemlink href=#window-menu-tool>Main Window・Tool Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=group-dlg>
+<div class=title>Group Dialog<br>
+</div>
+<div class=desc><img src="./../images/tec/group-dlg-e.png" /><br>
+①　Input Group name.<br>
+②　Input comment.<br>
+
+<br>
+<li><a class=itemlink href=#context-group-menu>Group Menu</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+
+    </div><!-- /ctslist -->
+
+  </div><!-- /main -->
+
+</div><!-- /container -->
+</section><!-- /contents -->
+
+</body>
+</html>
