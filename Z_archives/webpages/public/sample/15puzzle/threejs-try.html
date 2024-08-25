@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+    <!--
+        縦横は ResizeControlにて設定
+        仮想サイズは 960x640
+      -->
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+    <script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'XXXXXXXXXXXX');
+		</script>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+  body {
+    margin: 0;
+    overflow: hidden;
+  } 
+      canvas {
+          margin:0;
+          padding: 0;
+          position: absolute;
+      }
+      .msg {
+          margin:0;
+          padding: 0;
+          font-size: 24;
+          color: red;
+          position: absolute;
+          top: 10px;
+          opacity: 1;
+          
+         -webkit-touch-callout: none; /* iOS Safari */
+         -webkit-user-select: none; /* Safari */
+         -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+         -ms-user-select: none; /* Internet Explorer/Edge */
+         user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+
+      }   
+    
+ </style>
+
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script> 
+    
+  <script src="./three.js"></script>
+  <script src="./js/G.js"></script>
+  <script src="./js/D.js"></script>
+  <script src="js/MainControl.js"></script>
+  <script src="js/FEControl.js"></script>
+  <script src="js/KeyControl.js"></script>
+  <script src="js/FadeControl.js"></script>
+  <script src="js/FadeTextControl.js"></script>
+  <script src="js/ResizeControl.js"></script>
+  <script src="js/CreatePanelsControl.js"></script>
+  <script src="js/MapControl.js"></script>
+  <script src="js/TouchControl.js"></script>
+  <script src="js/MoveLogicControl.js"></script>
+  <script src="js/TitleControl.js"></script>
+    
+  <script>
+    // ページの読み込みを待つ      
+    window.addEventListener('load', init);
+    
+    // 停止 https://tiltilmitil.co.jp/blog/891
+    var movefun = function( event ){
+	    event.preventDefault();
+    }  
+    window.addEventListener( 'touchmove' , movefun , { passive: false } );
+
+    function init() {
+      //    
+      // シーン、カメラ、レンダラー準備
+        
+      // サイズを指定
+      const width  = ResizeControl.WIDTH;
+      G.width      = width;
+      const height = 640;
+      G.height     = ResizeControl.HEIGHT;    
+        
+      // ローダー作成
+      const loader = new THREE.TextureLoader();
+      G.loader = loader;    
+
+      // レンダラーを作成
+      const renderer = new THREE.WebGLRenderer({
+        canvas: document.querySelector('#myCanvas')
+      });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(width, height);
+      G.renderer = renderer;
+        
+      // シーンを作成
+      const scene = new THREE.Scene();
+      G.scene = scene;
+        
+      // カメラを作成
+      const camera = new THREE.PerspectiveCamera(45, width / height);
+      camera.position.set(0, 0, +1000);
+      G.camera = camera;
+        
+      // ライト
+      const light = new THREE.DirectionalLight( 0xffffff, 4); // 色、光の強さ
+      light.position.set(0, 100, 30);
+      G.light = light;
+        
+      scene.add(light);          
+      
+      //
+      // 2D用シーンとカメラ
+      //    
+    　const _2d_scene = new THREE.Scene();
+      G._2d_scene = _2d_scene;
+      //const _2d_camera = new THREE.OrthographicCamera( -width * 0.5, width * 0.5, height * 0.5,  - height * 0.5, 1,1000);
+      const _2d_camera = new THREE.OrthographicCamera( 0, width , height,  0, 1,1000);
+      _2d_camera.position.set(0, 0, +500);
+      G._2d_camera = _2d_camera;
+        
+      //
+      // FADE用シーンとカメラ
+      //    
+    　const fade_scene = new THREE.Scene();
+      G.fade_scene = fade_scene;
+      //const fade_camera = new THREE.PerspectiveCamera(45, width / height);
+      const fade_camera = new THREE.OrthographicCamera(-1,1,1,-1,0,1000);          
+      fade_camera.position.set(0, 0, +100);
+      G.fade_camera = fade_camera;
+      
+      //
+      // タイトル用シーン (3Dテキスト用)
+    　//
+      const title_scene = new THREE.Scene();
+      G.title_scene = title_scene;
+      const title_camera = new THREE.PerspectiveCamera(45, width / height,0.1,3000);
+      title_camera.position.set(0,0, +1000);
+      G.title_camera = title_camera;
+        
+      //ステートマシン --------------------------------------------------------------    
+      var main_sm = new MainControl();   //メイン 
+      main_sm.start();        
+      add_update(main_sm);
+      G.main_control = main_sm;    
+
+      var fe_sm = new FEControl();       //フロントエンド
+      fe_sm.start();
+      add_update(fe_sm);
+      G.fe_control = fe_sm;     
+       
+      var key_sm = new KeyControl();
+      key_sm.start();
+      add_update(key_sm);
+      G.key_control = key_sm;
+        
+      var fade_sm = new FadeControl();   //フェード
+      fade_sm.start();
+      add_update(fade_sm);
+      G.fade_control = fade_sm;
+
+      var fadetxt_sm = new FadeTextControl();   //フェードテキスト
+      fadetxt_sm.start();
+      add_update(fadetxt_sm);
+      G.fadetxt_control = fadetxt_sm;
+        
+      var create_panel_sm = new CreatePanelsControl(); //パネル生成
+      create_panel_sm.start();
+      add_update(create_panel_sm);
+      G.create_panel_control = create_panel_sm;          
+        
+      var map_sm = new MapControl(); //マップ制御
+      map_sm.start();
+      add_update(map_sm);
+      G.map_control = map_sm;
+        
+      var touch_sm = new TouchControl(); //タッチ制御　（３D内）
+      touch_sm.start();
+      add_update(touch_sm);
+      G.touch_control = touch_sm;
+        
+      var move_logic_sm = new MoveLogicControl(); //移動制御
+      G.move_logic_control = move_logic_sm;
+        
+      var title_sm = new TitleControl(); //タイトル制御
+      title_sm.start();
+      add_update(title_sm);
+      G.title_control = title_sm;
+     
+        
+      // レンダー手動  --------------------------------------------------------------    
+      renderer.setClearColor(0x000000);      
+      renderer.autoClear = false;    
+    　
+      // マウスイベント--------------------------------------------------------------    
+      //#region !!マウスイベント https://ics.media/tutorial-three/raycast/
+      // canvas 要素の参照を取得する
+      const canvas = document.querySelector('#myCanvas');
+      // マウス座標管理用のベクトルを作成
+      const mouse = new THREE.Vector2();
+      // マウスイベントを登録                                           G.mouse_click / G.mouse_down /  G.mouse : 位置
+      canvas.addEventListener('mousemove', handleMouseMove);
+      canvas.addEventListener('click', function(){G.mouse_click=true;});
+      canvas.addEventListener('mousedown', function(){G.mouse_down=true;});
+      canvas.addEventListener('mouseup', function(){G.mouse_down=false;});
+      // マウスを動かしたときのイベント
+      function handleMouseMove(event) {
+          const element = event.currentTarget;
+          //console.log("--mouse move event--");
+          //console.log(event);
+          // canvas要素上のXY座標
+          
+          const x = event.clientX - element.offsetLeft;
+          const y = event.clientY - element.offsetTop;
+          // canvas要素の幅・高さ
+          const w = element.offsetWidth;
+          const h = element.offsetHeight;
+
+          // -1〜+1の範囲で現在のマウス座標を登録する
+          mouse.x = ( x / w ) * 2 - 1;
+          mouse.y = -( y / h ) * 2 + 1;
+          G.mouse = mouse;
+          console.log(event.clientX + "," + event.clientY +"/" + mouse.x +"," + mouse.y);
+          //console.log(G.mouse);
+      }
+      canvas.addEventListener('touchmove', handleTouchMove, {passive: false});    
+      // タッチを動かしたときのイベント
+      function handleTouchMove(event) {
+          event.preventDefault();
+          const element = event.currentTarget;
+          const et = event.changedTouches[0];
+          //console.log("element.offsetLeft="+element.offsetLeft);
+          //console.log("element.offsetTop="+element.offsetTop);
+          //console.log("element.offsetWidth="+element.offsetWidth);
+          //console.log("element.offsetHeight="+element.offsetHeight);
+          //console.log(et.pageX + "," + et.pageY);
+          // canvas要素上のXY座標
+          const x = et.pageX  - element.offsetLeft;
+          const y = et.pageY  - element.offsetTop;
+          // canvas要素の幅・高さ
+          const w = element.offsetWidth;
+          const h = element.offsetHeight;
+
+          // -1〜+1の範囲で現在のマウス座標を登録する
+          mouse.x = ( x / w ) * 2 - 1;
+          mouse.y = -( y / h ) * 2 + 1;
+          G.mouse = mouse;
+          //console.log(et.pageX + "," + et.pageY+"/"+mouse.x + "," + mouse.y);
+      }
+      canvas.addEventListener('touchstart', function(event){G.mouse_down=true; G.mouse_click=true;  handleTouchMove(event); });
+      canvas.addEventListener('touchend', function(){G.mouse_down=false;});
+        
+        
+      G.raycaster = new THREE.Raycaster();
+      //#endregion    
+    
+      // キーイベント --------------------------------------------------------------    
+      //#region !!キーイベント
+      window.addEventListener('keydown',(e)=>{ G.key_down = String.fromCharCode( e.keyCode );  });
+        
+      // tick       --------------------------------------------------------------    
+      G.mouse_click = false;
+      var save_time = performance.now();
+      tick();
+
+      // 毎フレーム時に実行されるループイベントです
+      function tick() {
+        //差分計測
+        var now = performance.now();
+        G.time_diff = now - save_time;
+        save_time = now;
+        //console.log(G.time_diff);  
+          
+        if (scene!==null) {
+            renderer.render(scene, camera); // 3Dシーン レンダリング
+            renderer.clearDepth();
+
+            renderer.render(title_scene, title_camera); // タイトルシーン　レンダリング
+            renderer.clearDepth();
+            
+            renderer.render(_2d_scene, _2d_camera); // 2Dシーン レンダリング
+            renderer.clearDepth();
+            
+            renderer.render(fade_scene, fade_camera); // フェード レンダリング
+        }
+        exec_update();
+        //if (G.mouse_click) console.log("clicked!!");  
+        G.mouse_click = false;
+        if (G.key_down!=='') console.log(G.key_down);
+        G.key_down = '';
+        requestAnimationFrame(tick);
+      }
+        
+      // リサイズ    --------------------------------------------------------------     
+      // https://ics.media/tutorial-three/renderer_resize/
+      onResize();
+      // リサイズイベント発生時に実行
+      window.addEventListener('resize', onResize);
+
+     function onResize() {
+        // サイズを取得
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+         
+        var sm = new ResizeControl();
+        sm.width  = width;
+        sm.height = height;
+        sm.run(); 
+
+        // レンダラーのサイズを調整する
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(sm.fixwidth, sm.fixheight);
+
+        // カメラのアスペクト比を正す
+        camera.aspect = ResizeControl.WIDTH / ResizeControl.HEIGHT;
+        camera.updateProjectionMatrix();
+
+        // 2Dカメラ用に
+        _2d_camera.right = ResizeControl.WIDTH;
+        _2d_camera.top   = ResizeControl.HEIGHT; 
+        _2d_camera.updateProjectionMatrix();
+         
+        //※タイトルカメラ用に
+        title_camera.aspect = camera.aspect;
+        title_camera.updateProjectionMatrix();         
+     }    
+  }
+  </script>
+</head>
+<body>
+  <canvas id="myCanvas">
+  </canvas>
+  <div class="msg">15 PUZZLE</div>    
+</body>
+</html>
