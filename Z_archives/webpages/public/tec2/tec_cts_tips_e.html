@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+
+<style>
+h1 {
+border-bottom: solid 3px black;
+}
+
+.item {
+width: 90%;
+margin: 1em;
+position: relative;
+line-height: 1.4;
+padding:0.25em 1em;
+display: inline-block;
+top:0;
+}
+.item:before,h1:after{ 
+  position: absolute;
+  top: 0;
+  content:'';
+width: 8px;
+height: 100%;
+display: inline-block;
+}
+.item:before{
+border-left: solid 1px black;
+border-top: solid 1px black;
+border-bottom: solid 1px black;
+  left: 0;
+}
+
+
+.title {
+color: black;
+padding: 0.5em 0;
+border-top: solid 3px black;
+border-bottom: solid 3px black;
+}
+
+.desc {
+padding: 1em;
+line-height: 200%
+}
+
+.j_or_e {
+    right: 20px;
+    text-align: right;
+}
+.lang_a {
+    padding: 5px;
+    font-style: italic;
+}
+
+.outline {
+    padding: 15px;
+}
+
+.outlinetitle {
+    font-size: 30px;
+    font-style: italic;
+}
+.outlineitem {
+    font-size: 20px;
+}
+
+
+.tocitem {
+    padding: 8px;
+}
+.toc {
+    border-bottom: solid 3px black;
+}
+.toctitle {
+    padding: 8px;
+}
+.toclist {
+    padding: 8px; 
+}
+pre {
+    background-color: antiquewhite;
+
+}    
+</style>
+
+
+</head>
+<body>
+
+<div class=j_or_e>
+<a class=lang_a href=./tec_toc_main_j.html>Japanese</a>
+<a class=lang_a href=./tec_toc_main_e.html>English</a>
+</div>
+
+
+<div class=toc><b class=tocitem><a href=tec_toc_main_e.html>MAIN</a></b><b class=tocitem><a href=tec_toc_functemplate_e.html>Function template</a></b><b class=tocitem><a href=tec_toc_itemname_e.html>ITEM NAME</a></b><b class=tocitem><a href=tec_toc_macro_e.html>MACRO</a></b><b class=tocitem><a href=tec_toc_output_e.html>OUTPUT</a></b><b class=tocitem><a href=tec_toc_state_e.html>STATE</a></b><b class=tocitem><a href=tec_toc_setting_e.html>SETTING</a></b><b class=tocitem><a href=tec_toc_knownissue_e.html>KNOWN ISSUES</a></b><b class=tocitem><a href=tec_toc_tips_e.html>TIPS</a></b></div><div class=ctslist><div class=item id=link_to_antoher_sm><div class=title>Link to an another StateGo file.<br>
+</div><div class=desc>You can specify an another StateGo shortcut (psgg file) for the data table "state-ref".<br>
+The state menu shows the link. When clicked it opens the specified state machine.<br>
+Specify a psgg file without path.<br>
+Note: If there are multiple state machines of the same name, it will not work properly.<br>
+</div></div><div class=item id=new_state_name><div class=title>Create new state<br>
+</div><div class=desc>A new state name is created using the last selected state name.<br>
+Therefore, when you want to create a state name of a series, it is convenient to create a new state once the original state is selected.<br>
+Explanation:<br>
+When the tool creates new state's name, the tool uses the latest selected state's name. If the selected state's name has numbers of its end, the tool increments the numbers. If the state's name does not have numbers of its end, the tool adds a number '1'. If the same name state exist, the tool increments the number.<br>
+<br>
+</div></div><div class=item id=how_to_edit_items><div class=title>How to use "Items Editor"<br>
+</div><div class=desc><a href="../img/itemedit.png">See the link.</a><br>
+</div></div><div class=item id=how_to_rename><div class=title>How to rename files<br>
+</div><div class=desc>Select [Tools] ⇒ [Create Clone] from the menu bar to create a clone.<br>
+Please delete old files manually.<br>
+</div></div></div></body>
+</html>

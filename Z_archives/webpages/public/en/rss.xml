@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<title>Ｖｉｓｕａｌ　Ｐｒｏｇｒａｍｍｉｎｇ　Ｔｏｏｌ　ＳｔａｔｅＧｏ</title>
+		<link>https://statego.programanic.com/en/</link>
+		<description>ＳｔａｔｅＧｏ　ｉｓ　ａ　ｍｕｌｔｉ　ｐｒｏｇｒａｍｍｉｎｇ　ｌａｕｎｇａｇｅ　ａｎｄ　ｍｕｌｔｉ　ｐｌａｔｆｏｍ　　ｖｉｓｕａｌ　ｐｒｏｇｒａｍｍｉｎｇ　ｔｏｏｌ．</description>
+		<language>ja</language>
+		<pubDate>Mon, 22 Jun 2020 23:27:47 +0900</pubDate>
+		<lastBuildDate>Mon, 22 Jun 2020 23:27:47 +0900</lastBuildDate>
+		<item>
+			<title>Ｕｓａｇｅ　Ｇｕｉｄｅ</title>
+			<link>https://statego.programanic.com/en/entry2.html</link>
+			<description><![CDATA[
+This tool and the website is made by myself only.Furthermore, I'm working for a game project in  a game Company.So, the web site in English does not have enough information of StateGo.I recommend to go Japanese site and use translation site to get the detail.Go to Japanese site.
+			]]></description>
+			<pubDate>Sun, 21 Jun 2020 10:32:56 +0900</pubDate>
+			<guid isPermaLink="true">https://statego.programanic.com/en/entry2.html</guid>
+		</item>
+		<item>
+			<title>Ｄｏｗｎｌｏａｄ</title>
+			<link>https://statego.programanic.com/en/entry1.html</link>
+			<description><![CDATA[
+StateGo's latest release is Beta 10.There are no time limits or feature limitations.You can use all the features for free.This tool and the website is made by myself only.Furthermore, I'm working for a game project in  a game Company.So, the web site in English does not have enough information of StateGo.I recommend to use translation site to get the detail.
+			]]></description>
+			<pubDate>Sun, 21 Jun 2020 10:32:32 +0900</pubDate>
+			<guid isPermaLink="true">https://statego.programanic.com/en/entry1.html</guid>
+		</item>
+	</channel>
+</rss>
