@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header -->
+<header id="header">
+<div class="container">
+
+<div class=j_or_e>
+  <a class=lang_a href=tec_basic_j.html>Japanese</a>
+  <a class=lang_a >English</a>
+</div>
+
+<div class=toc>
+  <b class=tocitem><a href="https://statego.programanic.com/">HOME</a></b>
+  <b class=tocitem><a href=tec_main_e.html>MAIN</a></b>
+<b class=tocitem><a href=tec_basic_e.html>BASIC OPERATION</a></b>
+<b class=tocitem><a href=tec_userguide_e.html>USAGE GUIDE</a></b>
+<b class=tocitem><a href=tec_functemplate_e.html>FUNCTION TEMPLATE</a></b>
+<b class=tocitem><a href=tec_itemname_e.html>ITEM NAME</a></b>
+<b class=tocitem><a href=tec_macro_e.html>MACRO</a></b>
+<b class=tocitem><a href=tec_output_e.html>OUTPUT</a></b>
+<b class=tocitem><a href=tec_state_e.html>STATE</a></b>
+<b class=tocitem><a href=tec_setting_e.html>SETTING</a></b>
+<b class=tocitem><a href=tec_tips_e.html>TIPS</a></b>
+
+  <b class=tocitem><a href="./shortcuts/mouse-e.htm">MOUSE OPERATION</a></b>
+  <b class=tocitem><a href="./shortcuts/shortcuts-e.htm">SHORTCUTS</a></b>
+</div><!-- /toc -->
+
+<div class=outline>
+  <div class=outlinetitle>BASIC OPERATION</div>
+  <div class=outlineitem>
+    
+  </div>
+</div>
+<!-- /outline -->
+
+</div><!-- /container -->
+</header>
+
+
+<!-- contents -->
+<section id="contents">
+<div class="container">
+
+  <!-- sidebar -->
+  <div id="sidebar">
+
+    <div class=toclist>
+      <div class=toctitle><a href=#basic-new-node>Creating a new state<br>
+</a></div>
+<div class=toctitle><a href=#basic-input-code>Writing program code and data<br>
+</a></div>
+<div class=toctitle><a href=#basic-branch>Creating program branch<br>
+</a></div>
+<div class=toctitle><a href=#basic-move-state>Moving a state<br>
+</a></div>
+<div class=toctitle><a href=#basic-move-states>Moving selected states<br>
+</a></div>
+<div class=toctitle><a href=#basic-grouping>Grouping states<br>
+</a></div>
+<div class=toctitle><a href=#basic-copy>Copy and paste<br>
+</a></div>
+<div class=toctitle><a href=#basic-slide>Sliding<br>
+</a></div>
+<div class=toctitle><a href=#basic-nodenames>Node Names<br>
+</a></div>
+<div class=toctitle><a href=#basic-contextmenu>Open Context Menu<br>
+</a></div>
+<div class=toctitle><a href=#basic-item-extedit>Use External Editor for item's text<br>
+</a></div>
+
+      <!--
+        <div class=toctitle><a href=tec_macro_e.html#calling-macro>マクロの呼出し<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#normal-macro-args>ノーマルマクロと引数<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#split-args>行変換時の引数分解<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#where-define>マクロの定義場所<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#how-to-define>マクロ定義方法<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#use-args>引数の使い方 <br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#use-args-dq>引数の使い方  ダブルクオート削除<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#line-macro>行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#line-macro-sp>特別行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_e.html#linenumber-arg>行番号引数<br>
+        </a></div>
+      -->
+    </div>
+  </div><!-- /sidebar -->
+
+
+  <!-- main -->
+  <div id="main">
+
+    <div class=ctslist>
+    <div class=item id=basic-new-node>
+<div class=title>Creating a new state<br>
+</div>
+<div class=desc>１．Clicking blank space causes displaying Blank menu then select "Create New State" to creating a new state.<br>
+２．Drag the red circle of the node and draw an arrow to connect the states.<br>
+<img src="./../images/tec/new-state-e.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-input-code>
+<div class=title>Writing program code and data<br>
+</div>
+<div class=desc>１．Clicking the state causes displaying State Menu then select "Edit item".<br>
+➡Item Edit Dialog will be displayed.<br>
+２．Click "state" then input a state name and a comment.<br>
+３．Click "init" then write code after entering the state.<br>
+※ Edit items as its need.<br>
+<img src="./../images/tec/edit-a-newstate.gif" /><br>
+<br>
+※NOTE:<br>
+The items are converted to the output using the template.<br>
+Your first step is understanding the relationship between the items and the template.<br>
+Afterthat, your peformance can be accelerated using customizing the items  and  the template.<br>
+<br>
+<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-branch>
+<div class=title>Creating program branch<br>
+</div>
+<div class=desc>1. Clicking on the state causes opening STATE MENU.<br>
+2. Selecting "Edit Branch" causes opening BRANCH EDIT DIALOG.<br>
+3. Clicking on blank causes opening a context menu then click "IF".<br>
+4. Input conditions.<br>
+5. Close the dialog.<br>
+6. Connect branches to next states.<br>
+<img src="./../images/tec/edit-branch.gif" /><br>
+※ Confirm output on Source Panel.<br>
+<img src="./../images/tec/branch-output.png" /><br>
+
+<br>
+<li><a class=itemlink href=tec_userguide_e.html#edit-branch-dlg>Edit Branch Dialog</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-move-state>
+<div class=title>Moving a state<br>
+</div>
+<div class=desc>１．Pushing down and holding a mouse button on the state causes floating it to move.<br>
+２．Move the state then release the button.<br>
+<img src="./../images/tec/move-a-state.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-move-states>
+<div class=title>Moving selected states<br>
+</div>
+<div class=desc>１．Pushing down and holding a mouse button while moving a mouse on blank space causes displaying a red rectangle to select nodes.<br>
+２．Select states.<br>
+３．Pushing down and holding a mouse button on a selected state causes floating them to move.<br>
+４．Moving them and release the button.<br>
+<img src="./../images/tec/move-states.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-grouping>
+<div class=title>Grouping states<br>
+</div>
+<div class=desc>１．Pushing down and holding a mouse button while moving a mouse on blank space causes displaying a red rectangle to select nodes.<br>
+２．Select states.<br>
+３．Clicking a selected state causes displaying Selected States Menu then select "Make Group".<br>
+➡ Making group dialog will be displayed.<br>
+４．Input group name and comment.<br>
+<img src="./../images/tec/grouping-e.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-copy>
+<div class=title>Copy and paste<br>
+</div>
+<div class=desc>１．Select "Copy" on Selected States Menu.<br>
+２．Select "Paste" on Blank Menu.<br>
+<img src="./../images/tec/copy_and_paste.gif" /><br>
+※ Pasting to another State Edit Panel on the other StateGo is ok.<br>
+<img src="./../images/tec/copy_and_paste2.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-slide>
+<div class=title>Sliding<br>
+</div>
+<div class=desc>①　Clicking on blank space causes displaying "Θ".<br>
+②　Moving the mouse causes sliding the edit image.<br>
+③　Releasing the mouse button causes stopping its slide. <br>
+<img src="./../images/tec/slide.gif" /><br>
+<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-nodenames>
+<div class=title>Node Names <br>
+</div>
+<div class=desc><img src="./../images/tec/state-edit-panel-state.png" /><br>
+①　State<br>
+②　State out of group<br>
+　States do not belong to the displaying group.<br>
+　They are displayed because sources and distinations of the states on the current group. <br>
+③　Group<br>
+　It has states in the node.<br>
+　To enter, Clinking the group causes displaying "Group Menu" then select "Enter group".<br>
+④　Embed node<br>
+　The program code in this node will output as-is to the file. <br>
+⑤　Comment node.<br>
+　Just displaying comment for this document.<br>
+<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-contextmenu>
+<div class=title>Open Context Menu<br>
+</div>
+<div class=desc>A menu to be displayed differs depending on the place where you click.<br>
+<div class=smallpart><br>
+<h3>Clicking on State causes to open State Menu</h3>
+<img src="./../images/tec/state-menu-e.gif" /><br>
+<li><a href=tec_userguide_e.html#context-state-menu>STATE MENU</a></li><br>
+</div><br>
+<div class=smallpart><br>
+<h3>Clicking on blank causes to open Blank Menu</h3>
+<img src="./../images/tec/blank-menu-e.gif" /><br>
+<li><a href=tec_userguide_e.html#context-blank-menu>BLANK MENU</a></li><br>
+</div><br>
+<div class=smallpart><br>
+<h3>Clinking on Group causes to open Group Menu</h3>
+<img src="./../images/tec/group-menu-e.gif" /><br>
+<li><a href=tec_userguide_e.html#context-group-menu>GROUP MENU</a></li><br>
+</div><br>
+<div class=smallpart><br>
+<h3>Clicking on one of multiple seleected states causes to open Multiple Selected Menu.</h3>
+<img src="./../images/tec/multiselect-menu-e.gif" /><br>
+<li><a href=tec_userguide_e.html#context-multi-select-menu>MULTI SELECT MENU</a></li><br>
+</div><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-item-extedit>
+<div class=title>Use External Editor for item's text<br>
+</div>
+<div class=desc>(Adopted after the beta-4 release)<br>
+Use external editor for editting item's text.<br>
+<a href="./../images/tec/item-ext-editor-e.gif"><img src="./../images/tec/item-ext-editor-e.gif" /></a><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+
+    </div><!-- /ctslist -->
+
+  </div><!-- /main -->
+
+</div><!-- /container -->
+</section><!-- /contents -->
+
+</body>
+</html>

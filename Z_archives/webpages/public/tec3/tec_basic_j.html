@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- header -->
+<header id="header">
+<div class="container">
+
+<div class=j_or_e>
+  <a class=lang_a >Japanese</a>
+  <a class=lang_a href=tec_basic_e.html>English</a>
+</div>
+
+<div class=toc>
+  <b class=tocitem><a href="https://statego.programanic.com/">HOME</a></b>
+  <b class=tocitem><a href=tec_main_j.html>メイン</a></b>
+<b class=tocitem><a href=tec_basic_j.html>基本操作</a></b>
+<b class=tocitem><a href=tec_userguide_j.html>利用ガイド</a></b>
+<b class=tocitem><a href=tec_functemplate_j.html>関数テンプレート</a></b>
+<b class=tocitem><a href=tec_itemname_j.html>項目名</a></b>
+<b class=tocitem><a href=tec_macro_j.html>マクロ</a></b>
+<b class=tocitem><a href=tec_output_j.html>アウトプット</a></b>
+<b class=tocitem><a href=tec_state_j.html>ステート</a></b>
+<b class=tocitem><a href=tec_setting_j.html>SETTING</a></b>
+<b class=tocitem><a href=tec_tips_j.html>便利な使い方</a></b>
+
+  <b class=tocitem><a href="./shortcuts/mouse-j.htm">マウス操作</a></b>
+  <b class=tocitem><a href="./shortcuts/shortcuts-j.htm">キーボードショートカット</a></b>
+</div><!-- /toc -->
+
+<div class=outline>
+  <div class=outlinetitle>基本操作</div>
+  <div class=outlineitem>
+    
+  </div>
+</div>
+<!-- /outline -->
+
+</div><!-- /container -->
+</header>
+
+
+<!-- contents -->
+<section id="contents">
+<div class="container">
+
+  <!-- sidebar -->
+  <div id="sidebar">
+
+    <div class=toclist>
+      <div class=toctitle><a href=#basic-new-node>新規ステート生成<br>
+</a></div>
+<div class=toctitle><a href=#basic-input-code>プログラムまたはデータ入力<br>
+</a></div>
+<div class=toctitle><a href=#basic-branch>プログラム分岐作成<br>
+</a></div>
+<div class=toctitle><a href=#basic-move-state>ステート移動<br>
+</a></div>
+<div class=toctitle><a href=#basic-move-states>複数ステート移動<br>
+</a></div>
+<div class=toctitle><a href=#basic-grouping>グループ作成<br>
+</a></div>
+<div class=toctitle><a href=#basic-copy>コピー＆ペースト<br>
+</a></div>
+<div class=toctitle><a href=#basic-slide>スライド<br>
+</a></div>
+<div class=toctitle><a href=#basic-nodenames>ノード名称<br>
+</a></div>
+<div class=toctitle><a href=#basic-contextmenu>コンテキストメニュー表示<br>
+</a></div>
+<div class=toctitle><a href=#basic-item-extedit>外部エディタによるアイテム編集<br>
+</a></div>
+
+      <!--
+        <div class=toctitle><a href=tec_macro_j.html#calling-macro>マクロの呼出し<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#normal-macro-args>ノーマルマクロと引数<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#split-args>行変換時の引数分解<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#where-define>マクロの定義場所<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#how-to-define>マクロ定義方法<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#use-args>引数の使い方 <br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#use-args-dq>引数の使い方  ダブルクオート削除<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#line-macro>行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#line-macro-sp>特別行マクロ<br>
+        </a></div><div class=toctitle><a href=tec_macro_j.html#linenumber-arg>行番号引数<br>
+        </a></div>
+      -->
+    </div>
+  </div><!-- /sidebar -->
+
+
+  <!-- main -->
+  <div id="main">
+
+    <div class=ctslist>
+    <div class=item id=basic-new-node>
+<div class=title>新規ステート生成<br>
+</div>
+<div class=desc>１．空き空間をクリックしてブランクメニューを表示し"新規ステート作成"を選択。<br>
+２．ノードの赤丸をドラッグして矢印を引きステート同士を連結。<br>
+<img src="./../images/tec/new-state-j.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-input-code>
+<div class=title>プログラムまたはデータ入力<br>
+</div>
+<div class=desc>１．ステートをクリックしてステートメニューを表示し、"アイテム編集"を選択する。<br>
+➡アイテム編集ダイアログ表示<br>
+２．"state"をクリックして、ステート名・コメントを入力<br>
+３．"init"をクリックして、ステート開始時に実行するコードを入力<br>
+※必要に応じてアイテムを編集する。<br>
+<img src="./../images/tec/edit-a-newstate.gif" /><br>
+<br>
+※NOTE:<br>
+アイテムはテンプレートにより変換されます。<br>
+その関係を理解することが最初のステップです。<br>
+その後、テンプレートとアイテムをカスタマイズすることで効率を高めることが出来ます。<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-branch>
+<div class=title>プログラム分岐作成<br>
+</div>
+<div class=desc>１． ステート内でクリックしてステートメニューを表示<br>
+２．分岐編集を選択し、分岐編集ダイアログを表示。<br>
+３．ブランク内でクリックしてコンテキストメニューを表示させ IF を選択。<br>
+４．条件を入力。<br>
+５．ダイアログを終了。<br>
+６．分岐を次ステートに連結。<br>
+<img src="./../images/tec/edit-branch.gif" /><br>
+※ 　ソースパネルで出力を確認。<br>
+<img src="./../images/tec/branch-output.png" /><br>
+
+<br>
+<li><a class=itemlink href=tec_userguide_j.html#edit-branch-dlg>分岐編集ダイアログ</a></li>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-move-state>
+<div class=title>ステート移動<br>
+</div>
+<div class=desc>１．ステート上でマウスボタンをホールドして移動可能にします。<br>
+２．移動してボタンを離す。<br>
+<img src="./../images/tec/move-a-state.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-move-states>
+<div class=title>複数ステート移動<br>
+</div>
+<div class=desc>１．空き空間上でマウスを移動しながらボタンを押すと選択用の矩形が表示される。<br>
+２．複数ステートを選択<br>
+２．選択状態のステート上でマウスをホールドして移動可能状態にする。<br>
+３．移動してボタンをリリースする。<br>
+<img src="./../images/tec/move-states.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-grouping>
+<div class=title>グループ作成<br>
+</div>
+<div class=desc>１．空き空間上でマウスを移動しながらボタンを押すと選択用の矩形が表示される。<br>
+２．複数ステートを選択<br>
+３．選択状態のステート上でクリックして選択状態メニューを表示し"グループ作成"を選択。<br>
+➡グループ作成ダイアログ表示<br>
+４．グループ名・コメントを入力<br>
+<img src="./../images/tec/grouping-j.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-copy>
+<div class=title>コピー＆ペースト<br>
+</div>
+<div class=desc>１．選択状態メニューよりコピーを選択<br>
+２．ブランクメニューからペーストを選択<br>
+<img src="./../images/tec/copy_and_paste.gif" /><br>
+※ 他のStateGoにもペースト可能<br>
+<img src="./../images/tec/copy_and_paste2.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-slide>
+<div class=title>スライド<br>
+</div>
+<div class=desc>①　空き空間でマウスボタンをホールドするとΘが表示される。<br>
+②　マウスを移動するとイメージがスライドする。<br>
+③　マウスボタンをリリースすると停止する。<br>
+<img src="./../images/tec/slide.gif" /><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-nodenames>
+<div class=title>ノード名称<br>
+</div>
+<div class=desc><img src="./../images/tec/state-edit-panel-state.png" /><br>
+①　ステート<br>
+②　グループ外ステート<br>
+　表示対象のグループに属していないステート<br>
+　流入元および流出先ステートを示す<br>
+③　グループ<br>
+　複数のステートをまとめたもの<br>
+　クリックしてグループメニューを出し"グループ内へ入る"を選択して入る<br>
+④　組込用(Embed)ノード<br>
+　入力プログラムをテンプレート変換せずにママ挿入する。<br>
+⑤　コメント(Comment)ノード<br>
+　コメント用ノード<br>
+<br>
+<br>
+　<br>
+<br>
+<br>
+　<br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-contextmenu>
+<div class=title>コンテキストメニュー表示<br>
+</div>
+<div class=desc>クリックする場所により表示するメニューが異なる。<br>
+<div class=smallpart><br>
+<h3>ステート内でクリック➡ステートメニュー表示</h3>
+<img src="./../images/tec/state-menu-j.gif" /><br>
+<li><a href=tec_userguide_j.html#context-state-menu>ステートメニュー</a></li><br>
+</div><br>
+<div class=smallpart><br>
+<h3>空き空間内でクリック➡ブランクメニュー表示</h3>
+<img src="./../images/tec/blank-menu-j.gif" /><br>
+<li><a href=tec_userguide_j.html#context-blank-menu>ブランクメニュー</a></li><br>
+</div><br>
+<div class=smallpart><br>
+<h3>グループ内でクリック➡グループメニュー表示</h3>
+<img src="./../images/tec/group-menu-j.gif" /><br>
+<li><a href=tec_userguide_j.html#context-group-menu>グループメニュー</a></li><br>
+</div><br>
+<div class=smallpart><br>
+<h3>複数ノード選択時にステート内でクリック➡複数選択メニュー表示</h3>
+<img src="./../images/tec/multiselect-menu-j.gif" /><br>
+<li><a href=tec_userguide_j.html#context-multi-select-menu>複数選択メニュー</a></li><br>
+</div><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+<div class=item id=basic-item-extedit>
+<div class=title>外部エディタによるアイテム編集<br>
+</div>
+<div class=desc>(ベータ４より)<br>
+外部エディタにてアイテムのテキスト編集を行う。<br>
+<a href="./../images/tec/item-ext-editor-j.gif"><img src="./../images/tec/item-ext-editor-j.gif" /></a><br>
+
+</div> <!-- desc --></div> <!-- class=item -->
+
+    </div><!-- /ctslist -->
+
+  </div><!-- /main -->
+
+</div><!-- /container -->
+</section><!-- /contents -->
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+
+<style>
+h1 {
+border-bottom: solid 3px black;
+}
+
+.item {
+width: 90%;
+margin: 1em;
+position: relative;
+line-height: 1.4;
+padding:0.25em 1em;
+display: inline-block;
+top:0;
+}
+.item:before,h1:after{ 
+  position: absolute;
+  top: 0;
+  content:'';
+width: 8px;
+height: 100%;
+display: inline-block;
+}
+.item:before{
+border-left: solid 1px black;
+border-top: solid 1px black;
+border-bottom: solid 1px black;
+  left: 0;
+}
+
+
+.title {
+color: black;
+padding: 0.5em 0;
+border-top: solid 3px black;
+border-bottom: solid 3px black;
+}
+
+.desc {
+padding: 1em;
+line-height: 200%
+}
+
+.j_or_e {
+    right: 20px;
+    text-align: right;
+}
+.lang_a {
+    padding: 5px;
+    font-style: italic;
+}
+
+.outline {
+    padding: 15px;
+}
+
+.outlinetitle {
+    font-size: 30px;
+    font-style: italic;
+}
+.outlineitem {
+    font-size: 20px;
+}
+
+
+.tocitem {
+    padding: 8px;
+}
+.toc {
+    border-bottom: solid 3px black;
+}
+.toctitle {
+    padding: 8px;
+}
+.toclist {
+    padding: 8px; 
+}
+pre {
+    background-color: antiquewhite;
+
+}    
+</style>
+
+
+</head>
+<body>
+
+<div class=j_or_e>
+<a class=lang_a href=./tec_toc_main_j.html>Japanese</a>
+<a class=lang_a href=./tec_toc_main_e.html>English</a>
+</div>
+
+
+<div class=toc><b class=tocitem><a href=tec_toc_main_e.html>MAIN</a></b><b class=tocitem><a href=tec_toc_functemplate_e.html>Function template</a></b><b class=tocitem><a href=tec_toc_itemname_e.html>ITEM NAME</a></b><b class=tocitem>MACRO</b><b class=tocitem><a href=tec_toc_output_e.html>OUTPUT</a></b><b class=tocitem><a href=tec_toc_state_e.html>STATE</a></b><b class=tocitem><a href=tec_toc_setting_e.html>SETTING</a></b><b class=tocitem><a href=tec_toc_knownissue_e.html>KNOWN ISSUES</a></b><b class=tocitem><a href=tec_toc_tips_e.html>TIPS</a></b></div><div class=outline><div class=outlinetitle>MACRO</div><div class=outlineitem>Macro definition<br>
+<br>
+· Convert tool-specific description to language-specific description<br>
+· Convert data items to user-specified description<br>
+· Conversion by item, row, and state<br>
+<br>
+Especially the conversion on a line basis is very useful.<br>
+<br>
+Definition is possible within the file to be generated, so it can be used easily.<br>
+<br>
+In addition, it can be set also in the macro category of Settinig.ini, user macro file.<br>
+</div></div><div class=toclist><div class=toctitle><a href=tec_cts_macro_e.html#calling-macro>calling macro<br>
+</a></div><div class=toctitle><a href=tec_cts_macro_e.html#normal-macro-args>normal macro and argument<br>
+</a></div><div class=toctitle><a href=tec_cts_macro_e.html#split-args>split string to arguments for line macro<br>
+</a></div><div class=toctitle><a href=tec_cts_macro_e.html#where-define>where to define macro<br>
+</a></div><div class=toctitle><a href=tec_cts_macro_e.html#how-to-define>how to define macro<br>
+</a></div><div class=toctitle><a href=tec_cts_macro_e.html#use-args>how to use arguments<br>
+</a></div><div class=toctitle><a href=tec_cts_macro_e.html#use-args-dq>how to use arguments (delete double-quotes)<br>
+</a></div><div class=toctitle><a href=tec_cts_macro_e.html#line-macro>line macro<br>
+</a></div><div class=toctitle><a href=tec_cts_macro_e.html#line-macro-sp>special line macro<br>
+</a></div><div class=toctitle><a href=tec_cts_macro_e.html#linenumber-arg>line number argument<br>
+</a></div></div></body>
+</html>
