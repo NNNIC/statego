@@ -1,0 +1,1244 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=GControl.xlsx
+guid=2754170c-e3f7-482b-a031-ef7a3cd8cedd
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n018,n004,n005,n019,,n006,,n007,n008,n009,n00a,,n00b,n00c,,n00d,n00e,,n00f,n010,n01a,n01b,n01c,n01d,n01e,,n011,n012,n013,n014,n01f,,n015,n016,n017,
+stateid_list=,,,,s0001,s0002,s0012,s0013,s0014,s0015,s0017,s0018,s0016,s0019,s001a,s001b,s001d,s001e,s001f,s0022,s0021,s0023,s001c,s0025,s0024,s0027,s0026,s0029,s0028
+max_name_id=31
+max_state_id=41
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=embed
+n007=vars
+n008=init
+n009=init-cmt
+n00a=init-ref
+n00b=update
+n00c=update-cmt
+n00d=wait
+n00e=wait-cmt
+n00f=post_wait
+n010=post_wait-cmt
+n011=branch
+n012=branch-cmt
+n013=brcond
+n014=nowait
+n015=!dir
+n016=!pos
+n017=!uuid
+n018=state-typ
+n019=basestate
+n01a=return
+n01b=loop
+n01c=loop_init
+n01d=loop_cond
+n01e=loop_next
+n01f=gosubstate
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0012=S_instances
+s0013=C_0003
+s0014=S_view
+s0015=S_mouse
+s0016=E_V_MAKEGAMEBOARD
+s0017=E_V_PRINTX
+s0018=E_V_PRINTY
+s0019=E_MAKEKEY
+s001a=E_V_CLEAR
+s001b=E_U_REP
+s001c=E_U_RAND
+s001d=S_gameboard
+s001e=S_numpick
+s001f=E_LOG
+s0021=S_picknum_and_obj
+s0022=S_target_mode
+s0023=E_V_GETOBJ
+s0024=S_DIRNUM
+s0025=S_Q_VALS
+s0026=S_SCORE
+s0027=E_VPRINTD
+s0028=S_BUTTON
+s0029=E_U_RAND1
+
+
+[s0001]
+n002=S_START
+n018=start
+n005=S_instances
+n016=46,135
+n017=100001
+
+[s0002]
+n002=S_END
+n018=end
+n016=1487,283
+n017=100002
+
+[s0012]
+n002=S_instances
+n003=@@@
+mcon = MainControl
+bcon = BoardControl
+pcon = PlayControl
+@@@
+
+n005=S_view
+n008=@@@
+this.mcon = null;
+this.bcon = null;
+this.pcon = null;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=139,133
+n017=100018
+
+[s0013]
+n002=C_0003
+n003=値宣言用
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=54,45
+n017=100019
+
+[s0014]
+n002=S_view
+n003=@@@
+xmax : view x最大値
+ymax : view y最大値
+D[]  : viewデータ
+@@@
+
+n005=S_mouse
+n008=@@@
+this.xmax = 0;
+this.ymax = 0;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=331,135
+n017=100020
+
+[s0015]
+n002=S_mouse
+n003=@@@
+mouseX/mouseY
+mouseClick:回数
+mouseOnOff: on=1
+vx,vy,vxy: View位置
+gb_x,gb_y: 盤上位置
+curtxt:カーソル文字
+@@@
+
+n005=S_gameboard
+n008=@@@
+this.mouseX=-1;
+this.mouseY=-1;
+this.mouseClick=-1;
+this.mouseOnOff=-1;
+this.vxy = [];
+this.vx = -1;
+this.vy = -1;
+this.gb_x=-1;
+this.gb_y=-1;
+this.curtxt=null;
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=529,132
+n017=100021
+
+[s0016]
+n001=(bitmap)
+n002=E_V_MAKEGAMEBOARD
+n003=仮想のゲームボード作成
+n006=@@@
+$statemachine$.prototype.vmakegameboard = function(width,height) {
+    this.gb_xmax = width;
+    this.gb_ymax= height;
+    this.gb_cx  = (width - 1) / 2;
+    this.gb_cy  = (height- 1) / 2;
+
+    var gb=[];
+    for(var x = 0; x < width; x++) for(var y = 0; y < height; y++) {
+        var key = this.makekey(x,y);
+        gb[key] = " ";
+    }
+    return gb;
+};
+
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=69,695
+n017=100024
+
+[s0017]
+n002=E_V_PRINTX
+n003=@@@
+仮想ボードPRINTX
+void vprint(x,y,s)
+@@@
+
+n006=@@@
+$statemachine$.prototype.vprintx = function(x,y,s) {
+    var len = s.length;
+    for(var n = 0; n < len; n++) {
+        var key = this.makekey(x + n,y);
+        G.GB[key] = s.charAt(n);
+    }
+};
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=241,697
+n017=100022
+
+[s0018]
+n002=E_V_PRINTY
+n003=@@@
+仮想ボードPRINTY
+void vprinty(x,y,s)
+@@@
+
+n006=@@@
+$statemachine$.prototype.vprinty = function(x,y,s) {
+    var len = s.length;
+    for(var n = 0; n < len; n++) {
+        var key = this.makekey(x,y + n);
+        G.GB[key] = s.charAt(n);
+    }
+};
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=425,698
+n017=100023
+
+[s0019]
+n001=(bitmap)
+n002=E_MAKEKEY
+n003=int this.makekey(row,col)
+n006=@@@
+$statemachine$.prototype.makekey = function(x,y) {
+    return y * 100 + x;
+};
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=69,598
+n017=100025
+
+[s001a]
+n001=(bitmap)
+n002=E_V_CLEAR
+n003=@@@
+仮想ボードクリア
+void vcrear()
+@@@
+
+n006=@@@
+$statemachine$.prototype.vclear=function() {
+     var s = G.urep(" ", G.gb_xmax);
+     for(var y = 0; y < G.gb_ymax; y++) {
+         G.vprintx(0,y,s);
+     }
+};
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=743,699
+n017=100026
+
+[s001b]
+n002=E_U_REP
+n003=@@@
+文字列繰り返し
+string urep(s,num);
+@@@
+
+n006=@@@
+$statemachine$.prototype.urep=function(c,num) {
+    var s = "";
+    for(var n = 0; n<num;n++) {
+        s += c;
+    }
+    return s;
+};
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=435,853
+n017=100028
+
+[s001c]
+n002=E_U_RAND
+n003=@@@
+ランダム
+int urand(最大値)
+@@@
+
+n006=@@@
+$statemachine$.prototype.urand=function(n) {
+   var v1 = (n+1) * Math.random();
+   var v2 = Math.floor(v1);
+   return v2;
+}
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=77,848
+n017=100027
+
+[s001d]
+n001=(bitmap)
+n002=S_gameboard
+n003=@@@
+gb_xmax:ゲーム盤X最大
+gb_ymax:ゲーム盤Y最大
+gb_lx  :ロケーションx
+gb_ly  :            y
+GB[]   :ゲーム盤データ
+gb_cx  :ゲーム盤中央X
+gb_cy  :ゲーム盤中央Y
+@@@
+
+n005=S_numpick
+n008=@@@
+this.gb_xmax = -1;
+this.gb_ymax = -1;
+this.gb_lx   = -1;
+this.gb_ly   = -1;
+this.GB      = null;
+this.gb_cx   = -1;
+this.gb_cy   = -1;
+
+
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=731,118
+n017=100029
+
+[s001e]
+n001=(bitmap)
+n002=S_numpick
+n003=@@@
+番号ピック用の場所
+np_x 左端 view
+np_y 高さ view
+@@@
+
+n005=S_picknum_and_obj
+n008=@@@
+this.np_x=-1;
+this.np_y=-1;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=950,136
+n017=100030
+
+[s001f]
+n001=(bitmap)
+n002=E_LOG
+n003=@@@
+void log(s);
+void lognl(s);
+@@@
+
+n006=@@@
+GControl.prototype.log = function(s) {
+    logobj.innerHTML += s;
+};
+GControl.prototype.lognl = function(s) {
+    logobj.innerHTML += s + "\n";
+};
+
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=74,507
+n017=100031
+
+[s0021]
+n002=S_picknum_and_obj
+n003=@@@
+picknum : 選択番号
+pickobj : そのOBJ
+@@@
+
+n005=S_target_mode
+n008=@@@
+this.picknum = -1;
+this.pickobj = null;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=124,324
+n017=100033
+
+[s0022]
+n002=S_target_mode
+n003=@@@
+置く位置とobj
+※GB上
+targetx/targety
+targetobj
+targetnum
+delmode:1,2,4,8
+deldir :u,r,b,l
+@@@
+
+n005=S_DIRNUM
+n008=@@@
+this.tagetx=-1;
+this.targety=-1;
+this.targetobj=null;
+this.targetnum=-1;
+this.delmode=null;
+this.deldir=null;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=339,331
+n017=100034
+
+[s0023]
+n002=E_V_GETOBJ
+n003=@@@
+仮想ボード上のViewOBJを得る
+Eelement vgetobj(x,y);
+
+@@@
+
+n006=@@@
+$statemachine$.prototype.vgetobj=function(x,y) {
+    var vx = G.gb_lx + x;
+    var vy = G.gb_ly + y;
+    return G.D[G.makekey(vx,vy)];
+};
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=904,701
+n017=100035
+
+[s0024]
+n002=S_DIRNUM
+n003=@@@
+方向数字（複数）
+dirnums
+@@@
+
+n005=S_Q_VALS
+n008=this.dirnums=[];
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=533,331
+n017=100036
+
+[s0025]
+n002=S_Q_VALS
+n003=@@@
+問題の結果
+qlevel
+qnumber
+qname
+qlimit
+qexp-説明
+qtip-ヒント
+qresult : playing|ok|ng|cancel
+qlist=[]問題
+@@@
+
+n005=S_SCORE
+n008=@@@
+this.qlevel  = 0;
+this.qnumber = 0;
+this.qname = "";
+this.qlimit=0;
+this.qexp="";
+this.qtip="";
+this.qresult=null;
+this.qlist=[];
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=740,330
+n017=100037
+
+[s0026]
+n002=S_SCORE
+n003=@@@
+step:手
+life:命
+
+@@@
+
+n005=S_BUTTON
+n008=@@@
+this.step = 0;
+this.life = 10;
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=936,331
+n017=100038
+
+[s0027]
+n002=E_VPRINTD
+n003=@@@
+void vprintd(x,y,dir,s);
+指定方向に表示
+dir = u,r,d,l ur,dr,dl,ur
+@@@
+
+n006=@@@
+$statemachine$.prototype.vprintd = function(x,y,dir,s) {
+    var dx = 0;
+    var dy = 0;
+    if      (dir == "u" ){        dy=-1; }
+    else if (dir == "ur"){ dx= 1; dy=-1; }
+    else if (dir == "r" ){ dx= 1;        }
+    else if (dir == "dr"){ dx= 1; dy= 1; }
+    else if (dir == "d" ){        dy= 1; }
+    else if (dir == "dl"){ dx=-1; dy= 1; }
+    else if (dir == "l" ){ dx=-1;        }
+    else if (dir == "ul"){ dx=-1; dy=-1; }
+
+    var len = s.length;
+    for(var n = 0; n < len; n++) {
+        var a = s.charAt(n);
+        var key =G.makekey(x + dx * n,y + dy * n);
+        if (G.GB[key] != null) {
+            G.GB[key] = a;
+        }
+    }
+};
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=584,698
+n017=100039
+
+[s0028]
+n002=S_BUTTON
+n003=@@@
+button : ボタン名
+butevt : 発生イベント名
+butx,buty:位置
+@@@
+
+n005=S_END
+n008=@@@
+this.button = null;
+this.butx   = 16;
+this.buty   = 11;
+this.butevt = null;
+
+@@@
+
+n015=@@@
+/
+(100,100)
+
+@@@
+
+n016=1148,331
+n017=100040
+
+[s0029]
+n002=E_U_RAND1
+n003=@@@
+ランダム
+int[] urand(最大値,個数)
+※指定最大値内から、重複のない数値を個数分取得
+@@@
+
+n006=@@@
+$statemachine$.prototype.urandk=function(n,k) {
+    var l = [];
+    for(var loop = 0; loop<=1E+5;loop++) {
+        if (loop == 1E+5) {
+            alert("urand loop exceeded!");
+            return null;
+        }
+        var r = this.urand(n);
+        if (!l.includes(r)) {
+            l.push(r);
+            if (l.length >= k) {
+                return l;
+            }
+        }
+    } 
+    return null;    
+}
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=255,846
+n017=100041
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/02/04 20:25:36
+; * pssgEditor version : 0.63.14249.1b109eb403177ee768a683796c40373701f66fbe
+psggfile=@@@
+GControl.psgg
+@@@
+xlsfile=@@@
+GControl.xlsx
+@@@
+guid=@@@
+2754170c-e3f7-482b-a031-ef7a3cd8cedd
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=0
+force_display_outpin=0
+last_action=@@@
+varied,Edited a state.
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"This is the root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":46,"y":135}},{"Key":"S_END","Value":{"x":1487,"y":283}},{"Key":"C_0003","Value":{"x":54,"y":45}},{"Key":"S_mouse","Value":{"x":529,"y":132}},{"Key":"S_instances","Value":{"x":139,"y":133}},{"Key":"E_V_PRINTX","Value":{"x":241,"y":697}},{"Key":"E_V_PRINTY","Value":{"x":425,"y":698}},{"Key":"E_V_MAKEGAMEBOARD","Value":{"x":69,"y":695}},{"Key":"E_MAKEKEY","Value":{"x":69,"y":598}},{"Key":"E_V_CLEAR","Value":{"x":743,"y":699}},{"Key":"E_U_RAND","Value":{"x":77,"y":848}},{"Key":"E_U_REP","Value":{"x":435,"y":853}},{"Key":"S_view","Value":{"x":331,"y":135}},{"Key":"S_gameboard","Value":{"x":731,"y":118}},{"Key":"S_numpick","Value":{"x":950,"y":136}},{"Key":"E_LOG","Value":{"x":74,"y":507}},{"Key":"S_picknum_and_obj","Value":{"x":124,"y":324}},{"Key":"E_V_GETOBJ","Value":{"x":904,"y":701}},{"Key":"S_target_mode","Value":{"x":339,"y":331}},{"Key":"S_DIRNUM","Value":{"x":533,"y":331}},{"Key":"S_Q_VALS","Value":{"x":740,"y":330}},{"Key":"S_SCORE","Value":{"x":936,"y":331}},{"Key":"E_VPRINTD","Value":{"x":584,"y":698}},{"Key":"S_BUTTON","Value":{"x":1148,"y":331}},{"Key":"E_U_RAND1","Value":{"x":255,"y":846}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor=@@@
+"%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\Code.exe" -g %1:%2
+@@@
+source_editor_vs2015_support=0
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=0
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=30
+content_max_height=500
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"embed","Value":{"height":797,"width":760}},{"Key":"init","Value":{"height":537,"width":760}},{"Key":"state-cmt","Value":{"height":551,"width":786}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+GControl.prototype.[[state]] = function(first) {
+    this.goto(this.[[nextstate]]);
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^end$/
+GControl.prototype.[[state]] = function(first) {
+};
+eof>>>
+
+<<<?state-typ/^gosub$/
+GControl.prototype.[[state]] = function(first) {
+    this.gosubstate(this.[[gosubstate]],this.[[nextstate]]);
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^substart$/
+GControl.prototype.[[state]] = function(first) {
+    this.goto(this.[[nextstate]]);
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^subreturn$/
+GControl.prototype.[[state]] = function(first) {
+    this.returnstate();
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^loop$/
+GControl.prototype.[[state]] = function(first) {
+    [[loop_init]]
+    this.goto(this.[[state]]_LoopCheckAndGosub____);
+    this.setnowait();
+};
+GControl.prototype.[[state]]_LoopCheckAndGosub____ = function(first) {
+    if ([[loop_cond]]) this.gosubstate(this.[[gosubstate]],this.[[state]]_LoopNext____);
+    else               this.goto(this.[[nextstate]]);
+    this.setnowait();
+};
+GControl.prototype.[[state]]_LoopNext____ = function(first) {
+    [[loop_next]]
+    this.goto(this.[[state]]_LoopCheckAndGosub____);
+    this.setnowait();
+};
+eof>>>
+
+GControl.prototype.[[state]] = function(first) {
+
+    [[vars]]
+
+    <<<?init
+    if (first)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) { return; }
+    >>>
+
+    [[post_wait]]
+
+    [[branch]]
+
+    <<<?nextstate
+    if (!this.hasnext()) {
+        this.goto(this.[[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    if (this.hasnext()) {
+        this.setnowait();
+    }
+    >>>
+};
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=GControl.psgg
+xls=GControl.xlsx
+sub_src=
+gen_src=GControl.js
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit2\javascript\helpweb.html
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+lang=javascript
+framework=html5
+
+statemachine=GControl
+
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\tentackt\public\js
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\tentackt\public\js
+@@@
+
+genrdir=.
+incrdir=.
+
+code_output_start=[STATEGO OUTPUT START]
+code_output_end=[STATEGO OUTPUT END]
+
+; This section has macro defines for converting.
+
+; commentline format  {%0} will be replaced to a comment.
+[macro]
+
+commentline=// {%0}
+
+@branch=@@@
+<<<?"{%0}"/^brifc{0,1}$/
+if ([[brcond:{%N}]]) { this.goto( this.{%1} ); }
+>>>
+<<<?"{%0}"/^brelseifc{0,1}$/
+else if ([[brcond:{%N}]]) { this.goto( this.{%1} ); }
+>>>
+<<<?"{%0}"/^brelse$/
+else { this.goto( this.{%1} ); }
+>>>
+<<<?"{%0}"/^br_/
+this.{%0}( this.{%1} );
+>>>
+@@@
+
+
+[jpn]
+
+title=Javascript スタートキット 2019/11/12
+
+detail=@@@
+※サンプルプロジェクトを次のＵＲＬより入手可能。
+https://github.com/NNNIC/psgg-javascript-sample
+
+Javascript用のステートマシンを作成します。
+
+# 以下のファイルを作成します。
+
+      GControl.pssg     --- StateGoデータファイル
+      GControl.js       --- 変換ソースコードを挿入。
+
+@@@
+
+
+[en]
+
+title=Javascript STARTER KIT 2019/11/12
+
+detail=@@@
+* You may get the sample project from the below url.
+https://github.com/NNNIC/psgg-javascript-sample
+
+# Files
+
+      GControl.pssg  --- StateGo Data File
+      GControl.js    -- The editor will convert from data file into this file.
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[gosubstate]
+
+en=Specify a state of starting subroutine.
+jpn=サブルーチンの開始ステートを指定
+[return]
+
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+jpn=サブルーチン処理を終了するときに指定する。"return"等を記述。
+[loop_next]
+
+en=loop  iterator advence.
+jpn=ループのイテレーターを更新
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[vars]
+
+en=Specify variable definitions.
+jpn=変数宣言を指定する。
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[embed]
+
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[loop_init]
+
+en=loop initialization
+jpn=ループ用初期化
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[loop_cond]
+
+en=loop condition
+jpn=ループ条件
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+wait-cmt=
+embed=
+gosubstate=
+loop_cond=
+branch=
+!dir=
+return=
+post_wait-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+loop_init=
+thumbnail=
+update-cmt=
+post_wait=
+state-cmt=
+state-typ=
+!pos=
+!uuid=
+nextstate=
+state=
+S_=
+brcond=
+update=
+init-cmt=
+basestate=
+loop_next=
+vars=
+loop=
+C_=
+E_=
+init-ref=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+state-typ=read_only,exclusion,(S0)
+gosubstate=read_only,exclusion,(S0)
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,(S0)
+basestate=read_only,exclusion,(S0)
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+thumbnail=read_only,share,S.+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

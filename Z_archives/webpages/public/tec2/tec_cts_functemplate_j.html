@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+
+<style>
+h1 {
+border-bottom: solid 3px black;
+}
+
+.item {
+width: 90%;
+margin: 1em;
+position: relative;
+line-height: 1.4;
+padding:0.25em 1em;
+display: inline-block;
+top:0;
+}
+.item:before,h1:after{ 
+  position: absolute;
+  top: 0;
+  content:'';
+width: 8px;
+height: 100%;
+display: inline-block;
+}
+.item:before{
+border-left: solid 1px black;
+border-top: solid 1px black;
+border-bottom: solid 1px black;
+  left: 0;
+}
+
+
+.title {
+color: black;
+padding: 0.5em 0;
+border-top: solid 3px black;
+border-bottom: solid 3px black;
+}
+
+.desc {
+padding: 1em;
+line-height: 200%
+}
+
+.j_or_e {
+    right: 20px;
+    text-align: right;
+}
+.lang_a {
+    padding: 5px;
+    font-style: italic;
+}
+
+.outline {
+    padding: 15px;
+}
+
+.outlinetitle {
+    font-size: 30px;
+    font-style: italic;
+}
+.outlineitem {
+    font-size: 20px;
+}
+
+
+.tocitem {
+    padding: 8px;
+}
+.toc {
+    border-bottom: solid 3px black;
+}
+.toctitle {
+    padding: 8px;
+}
+.toclist {
+    padding: 8px; 
+}
+pre {
+    background-color: antiquewhite;
+
+}    
+</style>
+
+
+</head>
+<body>
+
+<div class=j_or_e>
+<a class=lang_a href=./tec_toc_main_j.html>Japanese</a>
+<a class=lang_a href=./tec_toc_main_e.html>English</a>
+</div>
+
+
+<div class=toc><b class=tocitem><a href=tec_toc_main_j.html>メイン</a></b><b class=tocitem><a href=tec_toc_functemplate_j.html>関数テンプレート</a></b><b class=tocitem><a href=tec_toc_itemname_j.html>項目名</a></b><b class=tocitem><a href=tec_toc_macro_j.html>マクロ</a></b><b class=tocitem><a href=tec_toc_output_j.html>アウトプット</a></b><b class=tocitem><a href=tec_toc_state_j.html>ステート</a></b><b class=tocitem><a href=tec_toc_setting_j.html>SETTING</a></b><b class=tocitem><a href=tec_toc_knownissue_j.html>既知の問題</a></b><b class=tocitem><a href=tec_toc_tips_j.html>便利な使い方</a></b></div><div class=outline><div class=outlinetitle>関数テンプレート</div><div class=outlineitem>ステートコンバートのテンプレートにて使用する定義<br>
+</div></div><div class=ctslist><div class=item id=item-insert><div class=title>[[項目名]]<br>
+</div><div class=desc>データテーブルの項目名の値を挿入<br>
+</div></div><div class=item id=item-insert-macro><div class=title>[[項目名->@マクロ名]]<br>
+</div><div class=desc>項目値を行単位で値を引数としてマクロを実行する。<br>
+</div></div><div class=item id=item-linenum><div class=title>[[項目名:行番号]]<br>
+</div><div class=desc>項目値の指定行を挿入する。<br>
+</div></div><div class=item id=stete-item><div class=title>[[::ステート:項目名]]<br>
+</div><div class=desc>指定ステートの項目値を挿入する。マクロおよび行番号指定可能。<br>
+<br>
+</div></div><div class=item id=extract-if-exist><div class=title>&lt;&lt;&lt;?item-name<br>
+コード部<br>
+>>><br>
+</div><div class=desc>項目名の値が存在する場合、コード部が有効化される。<br>
+</div></div><div class=item id=extract-if-regex><div class=title>&lt;&lt;&lt;?item-name/正規表現/<br>
+コード部<br>
+>>><br>
+</div><div class=desc>項目名の値を正規表現でフィルターし、値が存在すればコード部を有効化する。<br>
+</div></div><div class=item id=extract-if-arg-regex><div class=title>&lt;&lt;&lt;?"{%n}"/正規表現/<br>
+コード部<br>
+>>><br>
+</div><div class=desc>引数nの値を正規表現でフィルターし、値が存在すればコード部を有効化する。<br>
+</div></div><div class=item id=end-of-function><div class=title>&lt;&lt;&lt;?xxxx<br>
+code-part<br>
+eof>>><br>
+</div><div class=desc>"eof>>>"で、変換を停止する。<br>
+</div></div><div class=item id=extract-if-equal-string><div class=title>&lt;&lt;&lt;?...=="文字列"<br>
+コード部<br>
+>>><br>
+</div><div class=desc>"&lt;&lt;&lt;?..."の値を評価後、stringと等しい場合にコード部を有効化。<br>
+</div></div></div></body>
+</html>

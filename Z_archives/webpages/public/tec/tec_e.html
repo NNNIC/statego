@@ -1,0 +1,663 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>syn-g-gen</title>
+
+
+<style>
+h1 {
+border-bottom: solid 3px black;
+}
+
+.item {
+width: 90%;
+margin: 1em;
+position: relative;
+line-height: 1.4;
+padding:0.25em 1em;
+display: inline-block;
+top:0;
+}
+.item:before,h1:after{ 
+  position: absolute;
+  top: 0;
+  content:'';
+width: 8px;
+height: 100%;
+display: inline-block;
+}
+.item:before{
+border-left: solid 1px black;
+border-top: solid 1px black;
+border-bottom: solid 1px black;
+  left: 0;
+}
+
+
+.title {
+color: black;
+padding: 0.5em 0;
+border-top: solid 3px black;
+border-bottom: solid 3px black;
+}
+
+.desc {
+padding: 1em;
+line-height: 200%
+}
+
+.j_or_e {
+    right: 20px;
+    text-align: right;
+}
+.lang_a {
+    padding: 5px;
+    font-style: italic;
+}
+</style>
+
+
+</head>
+<body>
+
+<div class=j_or_e>
+<a class=lang_a href=./tec_j.html>Japanese</a>
+<a class=lang_a href=./tec_e.html>English</a>
+</div>
+
+
+
+
+<h1 id=main>MAIN</h1>
+<div class=item id=main__what-is-syn-g-gen>
+<div class=title>What is SYN-G-GEN
+</div>
+<div class=desc>This is a visual programming tool for many kind of programming languages. You can create a state-chart and write program simultaneously.
+</div>
+
+</div><div class=item id=main__simple-instraction-in-chart>
+<div class=title>Simple Instraction in chart
+</div>
+<div class=desc>1. Create a state : Click on a space area (not on a state), then you will see a menu and select &quot;New&quot;.<br>
+2. Move a state: Click and hold a mouse button on a state then move it.<br>
+3. Input program: Click on a state then select &quot;Full edit&quot;, then you will see data table and input program.<br>
+4. Check program: Select a state then you will see  converted source code in the left panel.<br>
+5. Connect states: Drag a red point on a state then drop it on a green point on a state.<br>
+6. Create branches: Select branch on state menu.<br>
+7. Convert : Push the convert button on the bottom left of window.
+</div>
+
+</div><div class=item id=main__template>
+<div class=title>Template
+</div>
+<div class=desc>A text for converting from data-table to source code.<br>
+There are two templates; source-template and function-template.<br>
+Note that source template is used in pre release version only.
+</div>
+<div class=itemlincdiv><a class=itemlink href=#main__template-func>Function Template</a><br>
+<a class=itemlink href=#functemplate>Function template</a><br>
+</div>
+
+</div><div class=item id=main__template-func>
+<div class=title>Function Template
+</div>
+<div class=desc></div>
+<div class=itemlincdiv><a class=itemlink href=#main__template>Template</a><br>
+<a class=itemlink href=#functemplate>Function template</a><br>
+</div>
+
+</div><div class=item id=main__state>
+<div class=title>State
+</div>
+<div class=desc>An element of state machine.
+</div>
+<div class=itemlincdiv><a class=itemlink href=#state>STATE</a><br>
+</div>
+
+</div><div class=item id=main__macro>
+<div class=title>Macro
+</div>
+<div class=desc>Text conversion.
+</div>
+<div class=itemlincdiv><a class=itemlink href=#macro>MACRO</a><br>
+</div>
+
+</div><div class=item id=main__itemname>
+<div class=title>Item name
+</div>
+<div class=desc>Elements of the data table in the state.
+</div>
+<div class=itemlincdiv><a class=itemlink href=#itemname>ITEM NAME</a><br>
+</div>
+
+</div><div class=item id=main__output>
+<div class=title>Output
+</div>
+<div class=desc>Output specification.
+</div>
+<div class=itemlincdiv><a class=itemlink href=#output>OUTPUT</a><br>
+</div>
+
+</div><div class=item id=main__setting>
+<div class=title>Setting
+</div>
+<div class=desc>setting specification
+</div>
+<div class=itemlincdiv><a class=itemlink href=#setting>SETTING</a><br>
+</div>
+
+</div><div class=item id=main__tips>
+<div class=title>Tips
+</div>
+<div class=desc>Tips.
+</div>
+<div class=itemlincdiv><a class=itemlink href=#tips>TIPS</a><br>
+</div>
+
+</div>
+<h1 id=functemplate>Function template</h1>
+<div class=item id=functemplate__item-insert>
+<div class=title>[[itemname]]
+</div>
+<div class=desc>Insert the value of the item name in the data table.
+</div>
+
+</div><div class=item id=functemplate__item-insert-macro>
+<div class=title>[[itemname-&gt;@macroname]]
+</div>
+<div class=desc>Execute a macro using arguments of each line of the item&#39;s value.
+</div>
+
+</div><div class=item id=functemplate__item-linenum>
+<div class=title>[[itemname:line-number]]
+</div>
+<div class=desc>Insert the line number value of the item&#39;s value.
+</div>
+
+</div><div class=item id=functemplate__stete-item>
+<div class=title>[[::state:itemname]]
+</div>
+<div class=desc>Insert the item value of the specified state. It allows you to use macro and line number attribute. 
+</div>
+
+</div><div class=item id=functemplate__extract-if-exist>
+<div class=title>&lt;&lt;&lt;?item-name<br>
+code part<br>
+&gt;&gt;&gt;
+</div>
+<div class=desc>If the value of the item name exists, the code part is validated.
+</div>
+
+</div><div class=item id=functemplate__extract-if-regex>
+<div class=title>&lt;&lt;&lt;?item-name/regular-expression/<br>
+code part<br>
+&gt;&gt;&gt;
+</div>
+<div class=desc>Filter the value of item name with regular expression, and validate code part if the value exists.
+</div>
+
+</div><div class=item id=functemplate__extract-if-arg-regex>
+<div class=title>&lt;&lt;&lt;?&quot;{%n}&quot;/regular-expression/<br>
+code part<br>
+&gt;&gt;&gt;
+</div>
+<div class=desc>Filter the value of the argument &#39;n&#39; with a regular expression, and validate the code part if the value exists.
+</div>
+
+</div><div class=item id=functemplate__end-of-function>
+<div class=title>&lt;&lt;&lt;?xxxx<br>
+code-part<br>
+eof&gt;&gt;&gt;
+</div>
+<div class=desc>&quot;eof&gt;&gt;&gt;&quot; will terminate converting.
+</div>
+
+</div>
+<h1 id=itemname>ITEM NAME</h1>
+<div class=item id=itemname__thumbnail>
+<div class=title>thumbnail
+</div>
+<div class=desc>For thumbnail.<br>
+Insert 100x100 bitmap.<br>
+Reserved name.
+</div>
+
+</div><div class=item id=itemname__state>
+<div class=title>state
+</div>
+<div class=desc>State name.<br>
+It starts with An alphabet and underber.<br>
+Reserved name.
+</div>
+<div class=itemlincdiv><a class=itemlink href=#state__s_state>S_XXXX</a><br>
+<a class=itemlink href=#state__e_embed>E_XXXX</a><br>
+<a class=itemlink href=#state__c_comment>C_XXXX</a><br>
+</div>
+
+</div><div class=item id=itemname__nextstate>
+<div class=title>nextstate
+</div>
+<div class=desc>Next execution state.<br>
+Reserved name.
+</div>
+
+</div><div class=item id=itemname__branch>
+<div class=title>branch
+</div>
+<div class=desc>For branch api.<br>
+Reserved name.
+</div>
+
+</div><div class=item id=itemname__brcond>
+<div class=title>brcond
+</div>
+<div class=desc></div>
+
+</div><div class=item id=itemname__itemname-cmt>
+<div class=title>(itemname)-cmt
+</div>
+<div class=desc>Itemname + &quot;-cmt&quot;<br>
+the comment of the item.<br>
+&quot;-cmt&quot; is reserved name.
+</div>
+
+</div><div class=item id=itemname__itemname-ref>
+<div class=title>(itemname)-ref
+</div>
+<div class=desc>itemname + &quot;-ref&quot;.<br>
+It&#39;s for reference information.<br>
+Specify the reference URL or connection state machine name (XXXX.psgg).<br>
+&quot;-ref&quot; is a reserved name.
+</div>
+
+</div><div class=item id=itemname__itemname-regulation>
+<div class=title>item name regulation
+</div>
+<div class=desc>An item name consists of alphabets, numbers, and underscores.<br>
+Reserved name can not be used.
+</div>
+
+</div><div class=item id=itemname__system-item>
+<div class=title>!itemname
+</div>
+<div class=desc>A character string beginning with &quot;!&quot;<br>
+System uses.
+</div>
+
+</div>
+<h1 id=macro>MACRO</h1>
+<div class=item id=macro__split-args>
+<div class=title>split string to arguments
+</div>
+<div class=desc>Comma Separated Data: Arguments 0, 1,.<br>
+Example) tokyo, osaka, yokohama &gt;&gt; Argument 0 = &quot;tokyo&quot; Argument 1 = &quot;osaka&quot; Argument 2 = &quot;yokohama&quot;<br>
+Function: function name is assumed as argument 0 then the arguments of the function are argument 1, argument 2 &#183; &#183; &#183;.<br>
+Example) hoge (tokyo, osaka)  &gt;&gt;  Argument 0 = &quot;hoge&quot; Argument 1 = &quot;tokyo&quot; Argument 2 = &quot;yokohama&quot;
+</div>
+
+</div><div class=item id=macro__where-define>
+<div class=title>where to define macro
+</div>
+<div class=desc>There are two places to define the macro<br>
+[macro] category in setting.ine and user macro file.
+</div>
+
+</div><div class=item id=macro__how-to-define>
+<div class=title>how to define macro
+</div>
+<div class=desc>Macro name = converted value<br>
+Or<br>
+Macro name = @@@<br>
+Conversion value<br>
+@@@
+</div>
+
+</div><div class=item id=macro__use-args>
+<div class=title>how to use arguments
+</div>
+<div class=desc>{%Number}<br>
+ie）<br>
+#Macro<br>
+hoge=I will go to {%0} and {%1}.<br>
+#Call<br>
+$hoge:tokyo,osaka$<br>
+#Convert<br>
+I will go to tokyo and osaka.
+</div>
+
+</div><div class=item id=macro__use-args-dq>
+<div class=title>how to use arguments (delete double-quotes)
+</div>
+<div class=desc>{%~Number}<br>
+Delete head and tail double-quotes  of the argument string.<br>
+ie）<br>
+#Macro<br>
+hoge=I will go to {%~0}.<br>
+#Call<br>
+$hoge:&quot;tokyo and osaka&quot;$<br>
+#Convert<br>
+I will go to tokyo and osaka.
+</div>
+
+</div><div class=item id=macro__line-macro>
+<div class=title>line macro
+</div>
+<div class=desc>@Macro-name<br>
+Corresponding macro for each row of item value<br>
+<br>
+Example)<br>
+<br>
+#macro<br>
+@set = @@@<br>
+SetPosition({% 0}, {% 1});<br>
+@@@<br>
+<br>
+#template<br>
+[[points -&gt; @set]]<br>
+<br>
+Value of #points<br>
+100, 50<br>
+100, 150<br>
+100, 200<br>
+<br>
+#conversion<br>
+SetPosition(100, 50);<br>
+SetPosition(100, 150);<br>
+SetPosition(100, 200);
+</div>
+
+</div><div class=item id=macro__line-macro-sp>
+<div class=title>special line macro
+</div>
+<div class=desc>If there is the same line macro as the item name, it is automatically assigned.<br>
+<br>
+Example)<br>
+<br>
+#macro<br>
+@ points = @ @ @<br>
+SetPosition ({% 0}, {% 1});<br>
+@@@<br>
+<br>
+#template<br>
+[[points]]<br>
+<br>
+Value of #points<br>
+100, 50<br>
+100, 150<br>
+100, 200<br>
+<br>
+#conversion<br>
+SetPosition (100, 50);<br>
+SetPosition (100, 150);<br>
+SetPosition (100, 200);
+</div>
+
+</div><div class=item id=macro__linenumber-arg>
+<div class=title>line number argument
+</div>
+<div class=desc>{% N}<br>
+At line macro, it indicates the line number.<br>
+Radix is 0.
+</div>
+
+</div>
+<h1 id=output>OUTPUT</h1>
+<div class=item id=output__setting-output>
+<div class=title>Setting output
+</div>
+<div class=desc>Output the conversion result in betwenn the output start and end marks in the source file.<br>
+ie)<br>
+// [SYN-G-GEN OUTPUT START] indent(4)  $/./$<br>
+    OUTPUT HERE !!<br>
+// [SYN-G-GEN OUTPUT END]
+</div>
+
+</div><div class=item id=output__start-mark>
+<div class=title>Output start mark
+</div>
+<div class=desc>The output start mark is set at code_output_start of setting.ini.<br>
+After the start mark, set numbers of indent and conversion command.<br>
+Format: START-MARK indent (number)  $conversion command$<br>
+Example)<br>
+[SYN-G-GEN OUTPUT START] indent(4) $/^S_/$<br>
+Indent 4 characters. Convert states starting with S_.
+</div>
+
+</div><div class=item id=output__conv-cmd>
+<div class=title>Converison command
+</div>
+<div class=desc>$/Regular expression/$<br>
+After filtering each state with regular expression, convert states to program.<br>
+$/Regular expression/-&gt;#macro$<br>
+After filtering each state with regular expression, convert states to program using #macro.<br>
+※ The order of conversion is alphabetical order.
+</div>
+
+</div><div class=item id=output__end-mark>
+<div class=title>Output end mark
+</div>
+<div class=desc>The output end mark is set at code_output_end of setting.ini.<br>
+End of output.
+</div>
+
+</div><div class=item id=output__enum-sample>
+<div class=title>Sample: Create enum of state names
+</div>
+<div class=desc></div>
+
+</div>
+<h1 id=state>STATE</h1>
+<div class=item id=state__s_state>
+<div class=title>S_XXXX
+</div>
+<div class=desc>state name.
+</div>
+
+</div><div class=item id=state__e_embed>
+<div class=title>E_XXXX
+</div>
+<div class=desc>Emebeded state name.
+</div>
+
+</div><div class=item id=state__c_comment>
+<div class=title>C_XXXX
+</div>
+<div class=desc>Comment state name
+</div>
+
+</div>
+<h1 id=setting>SETTING</h1>
+<div class=item id=setting__c-setting>
+<div class=title>[setting]
+</div>
+<div class=desc>Setting category.<br>
+For starter kit.
+</div>
+
+</div><div class=item id=setting__psgg>
+<div class=title>psgg
+</div>
+<div class=desc>Specify a startup shortcut file (*. Psgg)
+</div>
+
+</div><div class=item id=setting__xls>
+<div class=title>xls
+</div>
+<div class=desc>Specify an Excel worksheet for storing data.
+</div>
+
+</div><div class=item id=setting__sub_src>
+<div class=title>sub_src
+</div>
+<div class=desc>Specify the user implementation file.<br>
+It is specified when the implementation file is different.<br>
+Note that this is used in pre release verion.
+</div>
+
+</div><div class=item id=setting__gen_src>
+<div class=title>gen_src
+</div>
+<div class=desc>Specify the file to insert the output.
+</div>
+
+</div><div class=item id=setting__manager_src>
+<div class=title>manager_src
+</div>
+<div class=desc>Specify the manager file.
+</div>
+
+</div><div class=item id=setting__manager_dir>
+<div class=title>manager_dir
+</div>
+<div class=desc>Specify the management file folder.<br>
+Specify a relative path from the source folder.
+</div>
+
+</div><div class=item id=setting__template_src>
+<div class=title>template_src
+</div>
+<div class=desc>Specify the source template.<br>
+It is used in the pre release version.
+</div>
+
+</div><div class=item id=setting__template_func>
+<div class=title>template_func
+</div>
+<div class=desc>Specify a function template file.
+</div>
+
+</div><div class=item id=setting__help>
+<div class=title>help
+</div>
+<div class=desc>Specify help file.
+</div>
+
+</div><div class=item id=setting__helpweb>
+<div class=title>helpweb
+</div>
+<div class=desc>Specify a html file for help to use in the help panel.
+</div>
+
+</div><div class=item id=setting__src_enc>
+<div class=title>src_enc
+</div>
+<div class=desc>Specify encoding of output source file.<br>
+The default is utf-8.
+</div>
+
+</div><div class=item id=setting__c-setupinfo>
+<div class=title>[setupinfo]
+</div>
+<div class=desc>Setup information category
+</div>
+
+</div><div class=item id=setting__lang>
+<div class=title>lang
+</div>
+<div class=desc>Specify a programming language.
+</div>
+
+</div><div class=item id=setting__framework>
+<div class=title>framework
+</div>
+<div class=desc>Specify a framework name.
+</div>
+
+</div><div class=item id=setting__prefix>
+<div class=title>prefix
+</div>
+<div class=desc>Specify a prefix.<br>
+This is used for the pre-release version.
+</div>
+
+</div><div class=item id=setting__xlsdir>
+<div class=title>xlsdir
+</div>
+<div class=desc>Document storage folder at the state-machine creation.<br>
+This value is not referred to within the tool.
+</div>
+
+</div><div class=item id=setting__gendir>
+<div class=title>gendir
+</div>
+<div class=desc>Output source file storage folder at the a state machine creation.<br>
+This value is not referred to within the tool.
+</div>
+
+</div><div class=item id=setting__genrdir>
+<div class=title>genrdir
+</div>
+<div class=desc>Output folder relative path: relative path from the document storage folder
+</div>
+
+</div><div class=item id=setting__incrdir>
+<div class=title>incrdir
+</div>
+<div class=desc>Include for macro files Relative path: Relative path from document folder path
+</div>
+
+</div><div class=item id=setting__code_output_start>
+<div class=title>code_output_start
+</div>
+<div class=desc>Specify the output start mark.
+</div>
+
+</div><div class=item id=setting__code_output_end>
+<div class=title>code_output_end
+</div>
+<div class=desc>Specify the output end mark.
+</div>
+
+</div><div class=item id=setting__c-macro>
+<div class=title>[macro]
+</div>
+<div class=desc>Macro category
+</div>
+
+</div><div class=item id=setting__c-jpn>
+<div class=title>[jpn]
+</div>
+<div class=desc>Japanese  explanation of the specified programming language setup.
+</div>
+
+</div><div class=item id=setting__c-en>
+<div class=title>[en]
+</div>
+<div class=desc>English explanation of the specified programming language setup.
+</div>
+
+</div>
+<h1 id=knownissue>KNOWN ISSUES</h1>
+
+<h1 id=tips>TIPS</h1>
+<div class=item id=tips__link_to_antoher_sm>
+<div class=title>Link to another state-machine
+</div>
+<div class=desc>You can specify another state machine shortcut (psgg file) for the data table &quot;state-ref&quot;.<br>
+The state menu shows the link. When clicked it opens the specified state machine.<br>
+Specify a psgg file without path.<br>
+Note: If there are multiple state machines of the same name, it will not work properly.
+</div>
+
+</div><div class=item id=tips__new_state_name>
+<div class=title>Create new state
+</div>
+<div class=desc>A new state name is created using the last selected state name.<br>
+Therefore, when you want to create a state name of a series, it is convenient to create a new state once the original state is selected.<br>
+Explanation:<br>
+When the tool creates new state&#39;s name, the tool uses the latest selected state&#39;s name. If the selected state&#39;s name has numbers of its end, the tool increments the numbers. If the state&#39;s name does not have numbers of its end, the tool adds a number &#39;1&#39;. If the same name state exist, the tool increments the number.
+</div>
+
+</div></body>
+</html>

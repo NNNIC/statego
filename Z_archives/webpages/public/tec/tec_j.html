@@ -1,0 +1,682 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>syn-g-gen</title>
+
+
+<style>
+h1 {
+border-bottom: solid 3px black;
+}
+
+.item {
+width: 90%;
+margin: 1em;
+position: relative;
+line-height: 1.4;
+padding:0.25em 1em;
+display: inline-block;
+top:0;
+}
+.item:before,h1:after{ 
+  position: absolute;
+  top: 0;
+  content:'';
+width: 8px;
+height: 100%;
+display: inline-block;
+}
+.item:before{
+border-left: solid 1px black;
+border-top: solid 1px black;
+border-bottom: solid 1px black;
+  left: 0;
+}
+
+
+.title {
+color: black;
+padding: 0.5em 0;
+border-top: solid 3px black;
+border-bottom: solid 3px black;
+}
+
+.desc {
+padding: 1em;
+line-height: 200%
+}
+
+.j_or_e {
+    right: 20px;
+    text-align: right;
+}
+.lang_a {
+    padding: 5px;
+    font-style: italic;
+}
+</style>
+
+
+</head>
+<body>
+
+<div class=j_or_e>
+<a class=lang_a href=./tec_j.html>Japanese</a>
+<a class=lang_a href=./tec_e.html>English</a>
+</div>
+
+
+
+
+<h1 id=main>メイン</h1>
+<div class=item id=main__what-is-syn-g-gen>
+<div class=title>SYN-G-GENとは何？
+</div>
+<div class=desc>ステートマシン図を作成しながら同時にプログラムを作成する、あらゆるプログラム言語に対応のビジュアルプログラミングツール。<br>
+あえて簡単にいえば、全プログラム言語対応のフローチャート作成&amp;プログラミングツール。
+</div>
+
+</div><div class=item id=main__simple-instraction-in-chart>
+<div class=title>チャート内での簡単な使い方
+</div>
+<div class=desc>1. チャート表の空き空間でクリックしメニューを出してステートを作成。<br>
+2. ステートをクリックで選択し、押したままで移動。<br>
+3. ステートメニューのFull Editを選択しデータテーブルを編集。<br>
+4. 入力後、再びステートを選択し、左のパネルに変換されたプログラムを確認。<br>
+5. 赤ポチをドラッグし矢印を結合。<br>
+6. ステートのメニューでbranchを選択し、分岐を指定。<br>
+7. 左下の 保存変換ボタンでソースに変換。
+</div>
+
+</div><div class=item id=main__template>
+<div class=title>テンプレート
+</div>
+<div class=desc>データテーブルからソースコードの変換に使用するテキスト。<br>
+関数テンプレートとソーステンプレートがある。<br>
+但し、ソーステンプレートはプリリース版のみ。
+</div>
+<div class=itemlincdiv><a class=itemlink href=#main__template-func>関数テンプレート</a><br>
+<a class=itemlink href=#functemplate>関数テンプレート</a><br>
+</div>
+
+</div><div class=item id=main__template-func>
+<div class=title>関数テンプレート
+</div>
+<div class=desc>ステートを関数に変換するテンプレート。
+</div>
+<div class=itemlincdiv><a class=itemlink href=#main__template>テンプレート</a><br>
+<a class=itemlink href=#functemplate>関数テンプレート</a><br>
+</div>
+
+</div><div class=item id=main__state>
+<div class=title>ステート
+</div>
+<div class=desc>ステートマシンを構成する要素。
+</div>
+<div class=itemlincdiv><a class=itemlink href=#state>ステート</a><br>
+</div>
+
+</div><div class=item id=main__macro>
+<div class=title>マクロ
+</div>
+<div class=desc>テキスト変換。
+</div>
+<div class=itemlincdiv><a class=itemlink href=#macro>マクロ</a><br>
+</div>
+
+</div><div class=item id=main__itemname>
+<div class=title>項目名
+</div>
+<div class=desc>ステート内のデータテーブルの要素
+</div>
+<div class=itemlincdiv><a class=itemlink href=#itemname>項目名</a><br>
+</div>
+
+</div><div class=item id=main__output>
+<div class=title>アウトプット
+</div>
+<div class=desc>出力設定
+</div>
+<div class=itemlincdiv><a class=itemlink href=#output>アウトプット</a><br>
+</div>
+
+</div><div class=item id=main__setting>
+<div class=title>Setting
+</div>
+<div class=desc>setting 情報
+</div>
+<div class=itemlincdiv><a class=itemlink href=#setting>SETTING</a><br>
+</div>
+
+</div><div class=item id=main__tips>
+<div class=title>Tips
+</div>
+<div class=desc>便利な使い方
+</div>
+<div class=itemlincdiv><a class=itemlink href=#tips>便利な使い方</a><br>
+</div>
+
+</div>
+<h1 id=functemplate>関数テンプレート</h1>
+<div class=item id=functemplate__item-insert>
+<div class=title>[[項目名]]
+</div>
+<div class=desc>データテーブルの項目名の値を挿入
+</div>
+
+</div><div class=item id=functemplate__item-insert-macro>
+<div class=title>[[項目名-&gt;@マクロ名]]
+</div>
+<div class=desc>項目値を行単位で値を引数としてマクロを実行する。
+</div>
+
+</div><div class=item id=functemplate__item-linenum>
+<div class=title>[[項目名:行番号]]
+</div>
+<div class=desc>項目値の指定行を挿入する。
+</div>
+
+</div><div class=item id=functemplate__stete-item>
+<div class=title>[[::ステート:項目名]]
+</div>
+<div class=desc>指定ステートの項目値を挿入する。マクロおよび行番号指定可能。
+</div>
+
+</div><div class=item id=functemplate__extract-if-exist>
+<div class=title>&lt;&lt;&lt;?item-name<br>
+コード部<br>
+&gt;&gt;&gt;
+</div>
+<div class=desc>項目名の値が存在する場合、コード部が有効化される。
+</div>
+
+</div><div class=item id=functemplate__extract-if-regex>
+<div class=title>&lt;&lt;&lt;?item-name/正規表現/<br>
+コード部<br>
+&gt;&gt;&gt;
+</div>
+<div class=desc>項目名の値を正規表現でフィルターし、値が存在すればコード部を有効化する。
+</div>
+
+</div><div class=item id=functemplate__extract-if-arg-regex>
+<div class=title>&lt;&lt;&lt;?&quot;{%n}&quot;/正規表現/<br>
+コード部<br>
+&gt;&gt;&gt;
+</div>
+<div class=desc>引数nの値を正規表現でフィルターし、値が存在すればコード部を有効化する。
+</div>
+
+</div><div class=item id=functemplate__end-of-function>
+<div class=title>&lt;&lt;&lt;?xxxx<br>
+code-part<br>
+eof&gt;&gt;&gt;
+</div>
+<div class=desc>&quot;eof&gt;&gt;&gt;&quot;で、変換を停止する。
+</div>
+
+</div>
+<h1 id=itemname>項目名</h1>
+<div class=item id=itemname__thumbnail>
+<div class=title>thumbnail
+</div>
+<div class=desc>サムネル用<br>
+100x100のイメージを挿入<br>
+予約語
+</div>
+
+</div><div class=item id=itemname__state>
+<div class=title>state
+</div>
+<div class=desc>ステート名<br>
+アルファベット１文字＋アンダーバーで始まる。<br>
+予約語
+</div>
+<div class=itemlincdiv><a class=itemlink href=#state__s_state>S_XXXX</a><br>
+<a class=itemlink href=#state__e_embed>E_XXXX</a><br>
+<a class=itemlink href=#state__c_comment>C_XXXX</a><br>
+</div>
+
+</div><div class=item id=itemname__nextstate>
+<div class=title>nextstate
+</div>
+<div class=desc>次実行ステート名<br>
+予約語
+</div>
+
+</div><div class=item id=itemname__branch>
+<div class=title>branch
+</div>
+<div class=desc>分岐命令用<br>
+予約語
+</div>
+
+</div><div class=item id=itemname__brcond>
+<div class=title>brcond
+</div>
+<div class=desc>分岐命令条件用<br>
+予約語
+</div>
+
+</div><div class=item id=itemname__itemname-cmt>
+<div class=title>(項目名)-cmt
+</div>
+<div class=desc>アイテム名 + &quot;-cmt&quot;でコメント項目<br>
+-cmtは予約語
+</div>
+
+</div><div class=item id=itemname__itemname-ref>
+<div class=title>(項目名)-ref
+</div>
+<div class=desc>アイテム名 + &quot;-ref&quot;でリンク項目。<br>
+リファレンスのURLや接続ステートマシン名 (XXXX.psgg)を指定する。<br>
+&quot;-ref&quot;は予約語
+</div>
+
+</div><div class=item id=itemname__itemname-regulation>
+<div class=title>項目名の制限
+</div>
+<div class=desc>項目名は、アルファベット・数字・アンダーバーで構成されます。<br>
+予約語は使用できません。
+</div>
+
+</div><div class=item id=itemname__system-item>
+<div class=title>!項目
+</div>
+<div class=desc>!で始まる文字列<br>
+システムで使用。
+</div>
+
+</div>
+<h1 id=macro>マクロ</h1>
+<div class=item id=macro__split-args>
+<div class=title>文字列の引数分解
+</div>
+<div class=desc>カンマ区切りデータ：左から引数０、１、・・・となる。<br>
+例） tokyo,osaka,yokohama      引数０=&quot;tokyo&quot; 引数１＝&quot;osaka&quot; 引数２=&quot;yokohama&quot;<br>
+関数：関数名を引数０として、関数の引数を引数１、引数２・・・となる。<br>
+例）hoge(tokyo,osaka)              引数０＝&quot;hoge&quot; 引数１＝&quot;tokyo&quot; 引数２=&quot;yokohama&quot;
+</div>
+
+</div><div class=item id=macro__where-define>
+<div class=title>マクロの定義場所
+</div>
+<div class=desc>マクロの定義場所は２ヵ所<br>
+setting.ini内の[macro]カテゴリとユーザマクロファイル。
+</div>
+
+</div><div class=item id=macro__how-to-define>
+<div class=title>マクロ定義方法
+</div>
+<div class=desc>マクロ名=変換値<br>
+または<br>
+マクロ名=@@@<br>
+変換値<br>
+@@@
+</div>
+
+</div><div class=item id=macro__use-args>
+<div class=title>引数の使い方 
+</div>
+<div class=desc>{%数字}<br>
+例）<br>
+#マクロ<br>
+hoge=I will go to {%1} and {%2}.<br>
+#呼出し<br>
+$macro:hoge(tokyo,osaka)$<br>
+#変換<br>
+I will go to tokyo and osaka.
+</div>
+
+</div><div class=item id=macro__use-args-dq>
+<div class=title>引数の使い方  ダブルクオート削除
+</div>
+<div class=desc>{%~数字}<br>
+文字列前後のダブルクオーテーションを削除<br>
+例）<br>
+#マクロ<br>
+hoge=I will go to {%~0}.<br>
+#呼出し<br>
+$hoge:&quot;tokyo and osaka&quot;$<br>
+#変換<br>
+I will go to tokyo and osaka.
+</div>
+
+</div><div class=item id=macro__line-macro>
+<div class=title>行マクロ
+</div>
+<div class=desc>@マクロ名<br>
+項目値の行ごとに対応するマクロ<br>
+<br>
+例)<br>
+<br>
+#マクロ<br>
+@set=@@@<br>
+SetPosition({%0},{%1});<br>
+@@@<br>
+<br>
+#テンプレート<br>
+[[points-&gt;@set]]<br>
+<br>
+#pointsの値<br>
+100,50<br>
+100,150<br>
+100,200<br>
+<br>
+#変換<br>
+SetPosition(100,50);<br>
+SetPosition(100,150);<br>
+SetPosition(100,200);
+</div>
+
+</div><div class=item id=macro__line-macro-sp>
+<div class=title>特別行マクロ
+</div>
+<div class=desc>項目名と同じ行マクロがある場合、自動であてがわれる。<br>
+<br>
+例)<br>
+<br>
+#マクロ<br>
+@points=@@@<br>
+SetPosition({%0},{%1});<br>
+@@@<br>
+<br>
+#テンプレート<br>
+[[points]]<br>
+<br>
+#pointsの値<br>
+100,50<br>
+100,150<br>
+100,200<br>
+<br>
+#変換<br>
+SetPosition(100,50);<br>
+SetPosition(100,150);<br>
+SetPosition(100,200);
+</div>
+
+</div><div class=item id=macro__linenumber-arg>
+<div class=title>行番号引数
+</div>
+<div class=desc>{%N}<br>
+行マクロ時に、その行数を示す。<br>
+基数は０。
+</div>
+
+</div>
+<h1 id=output>アウトプット</h1>
+<div class=item id=output__setting-output>
+<div class=title>アウトプット設定
+</div>
+<div class=desc>ソース中に設定した出力マーク内に変換結果を出力。<br>
+例)<br>
+// [SYN-G-GEN OUTPUT START] indent(4)  $/./$<br>
+    ここにアウトプットされる<br>
+// [SYN-G-GEN OUTPUT END]
+</div>
+
+</div><div class=item id=output__start-mark>
+<div class=title>アウトプット開始マーク
+</div>
+<div class=desc>setting.iniのcode_output_startにて設定。<br>
+開始マークの直後にインデント数と変換情報を設定する。<br>
+フォーマット: 開始マーク indent(数字) $変換命令$<br>
+例）<br>
+[SYN-G-GEN OUTPUT START] indent(4) $/^S_/$<br>
+インデント４文字、S_で始まるステートを変換
+</div>
+
+</div><div class=item id=output__conv-cmd>
+<div class=title>変換命令
+</div>
+<div class=desc>$/正規表現/$<br>
+一致するステートに対して変換を行う。<br>
+$/正規表現/-&gt;#macro$<br>
+一致するステートに対してマクロを実行する。<br>
+※変換する順番は、アルファベットオーダー。
+</div>
+
+</div><div class=item id=output__end-mark>
+<div class=title>アウトプット終了マーク
+</div>
+<div class=desc>setting.iniのcode_output_endにて設定。<br>
+出力の終了。
+</div>
+
+</div><div class=item id=output__enum-sample>
+<div class=title>サンプル:ステート名のenum作成
+</div>
+<div class=desc>■マクロ<br>
+#enum=[state],<br>
+■ソース<br>
+public enum STATE {<br>
+    //[SYN-G-GEN OUTPUT START] indent(4)  $/^S_/-&gt;#enum$<br>
+    //[SYN-G-GEN OUTPUT END]<br>
+}<br>
+■変換<br>
+public enum STATE {<br>
+    //[SYN-G-GEN OUTPUT START] indent(4)  $/^S_/-&gt;#enum$<br>
+    S_0001,<br>
+    S_0002,<br>
+        :<br>
+    //[SYN-G-GEN OUTPUT END]<br>
+}
+</div>
+
+</div>
+<h1 id=state>ステート</h1>
+<div class=item id=state__s_state>
+<div class=title>S_XXXX
+</div>
+<div class=desc>ステート名。
+</div>
+
+</div><div class=item id=state__e_embed>
+<div class=title>E_XXXX
+</div>
+<div class=desc>埋め込み用ステート名。
+</div>
+
+</div><div class=item id=state__c_comment>
+<div class=title>C_XXXX
+</div>
+<div class=desc>コメント用ステート名
+</div>
+
+</div>
+<h1 id=setting>SETTING</h1>
+<div class=item id=setting__c-setting>
+<div class=title>[setting]
+</div>
+<div class=desc>設定カテゴリ<br>
+スターターキット用
+</div>
+
+</div><div class=item id=setting__psgg>
+<div class=title>psgg
+</div>
+<div class=desc>起動用ショートカットファイル(*.psgg)の指定
+</div>
+
+</div><div class=item id=setting__xls>
+<div class=title>xls
+</div>
+<div class=desc>データ格納用Excelワークシートの指定
+</div>
+
+</div><div class=item id=setting__sub_src>
+<div class=title>sub_src
+</div>
+<div class=desc>ユーザ実装ファイルを指定。<br>
+実装ファイルが異なる場合に指定する。<br>
+※ プレリリースで使用
+</div>
+
+</div><div class=item id=setting__gen_src>
+<div class=title>gen_src
+</div>
+<div class=desc>アウトプットを挿入するファイルを指定。
+</div>
+
+</div><div class=item id=setting__manager_src>
+<div class=title>manager_src
+</div>
+<div class=desc>管理ファイルの指定
+</div>
+
+</div><div class=item id=setting__manager_dir>
+<div class=title>manager_dir
+</div>
+<div class=desc>管理ファイルフォルダの指定。<br>
+ソースフォルダからの相対パスを指定する。
+</div>
+
+</div><div class=item id=setting__template_src>
+<div class=title>template_src
+</div>
+<div class=desc>ソーステンプレートを指定。<br>
+プリリースで利用。
+</div>
+
+</div><div class=item id=setting__template_func>
+<div class=title>template_func
+</div>
+<div class=desc>関数テンプレートファイルを指定
+</div>
+
+</div><div class=item id=setting__help>
+<div class=title>help
+</div>
+<div class=desc>ヘルプファイルを指定。
+</div>
+
+</div><div class=item id=setting__helpweb>
+<div class=title>helpweb
+</div>
+<div class=desc>ヘルプパネルで使用するヘルプ用htmlファイル指定。
+</div>
+
+</div><div class=item id=setting__src_enc>
+<div class=title>src_enc
+</div>
+<div class=desc>出力ソースファイルのエンコード指定。<br>
+デフォルトは utf-8。
+</div>
+
+</div><div class=item id=setting__c-setupinfo>
+<div class=title>[setupinfo]
+</div>
+<div class=desc>セットアップカテゴリ
+</div>
+
+</div><div class=item id=setting__lang>
+<div class=title>lang
+</div>
+<div class=desc>プログラム言語指定
+</div>
+
+</div><div class=item id=setting__framework>
+<div class=title>framework
+</div>
+<div class=desc>フレームワーク指定
+</div>
+
+</div><div class=item id=setting__prefix>
+<div class=title>prefix
+</div>
+<div class=desc>プリフィックス指定。<br>
+プレリリースで使用。
+</div>
+
+</div><div class=item id=setting__xlsdir>
+<div class=title>xlsdir
+</div>
+<div class=desc>ステートマシン生成時のドキュメント格納フォルダ。<br>
+ツール内では参照されない。
+</div>
+
+</div><div class=item id=setting__gendir>
+<div class=title>gendir
+</div>
+<div class=desc>ステートマシン生成時の出力ソースファイル格納フォルダ<br>
+ツール内では参照されない。
+</div>
+
+</div><div class=item id=setting__genrdir>
+<div class=title>genrdir
+</div>
+<div class=desc>出力フォルダ相対パス：ドキュメント格納フォルダからの相対パス
+</div>
+
+</div><div class=item id=setting__incrdir>
+<div class=title>incrdir
+</div>
+<div class=desc>マクロファイル用インクルード相対パス：ドキュメントフォルダパスからの相対パス
+</div>
+
+</div><div class=item id=setting__code_output_start>
+<div class=title>code_output_start
+</div>
+<div class=desc>アウトプット挿入開始マークの指定。
+</div>
+
+</div><div class=item id=setting__code_output_end>
+<div class=title>code_output_end
+</div>
+<div class=desc>アウトプット挿入終了マークの指定
+</div>
+
+</div><div class=item id=setting__c-macro>
+<div class=title>[macro]
+</div>
+<div class=desc>マクロカテゴリ
+</div>
+
+</div><div class=item id=setting__c-jpn>
+<div class=title>[jpn]
+</div>
+<div class=desc>指定プログラム言語のセットアップ用日本語説明
+</div>
+
+</div><div class=item id=setting__c-en>
+<div class=title>[en]
+</div>
+<div class=desc>指定プログラム言語のセットアップ用英語説明
+</div>
+
+</div>
+<h1 id=knownissue>既知の問題</h1>
+
+<h1 id=tips>便利な使い方</h1>
+<div class=item id=tips__link_to_antoher_sm>
+<div class=title>別のステートマシンにリンクする
+</div>
+<div class=desc>データテーブルのstate-refに別のステートマシンのショートカット(psggファイル)を指定できる。<br>
+ステートメニューのリンクに表示され、クリックすると指定されたステートマシンが開く。<br>
+パスなしのpsggファイルを指定する。<br>
+※同名のステートマシンが複数あると正しく動作しない。
+</div>
+
+</div><div class=item id=tips__new_state_name>
+<div class=title>新規ステート名作成
+</div>
+<div class=desc>最後に選択したステート名を使って新規ステート名が作成される。<br>
+そのため、シリーズのステート名を作りたい際は一度選択後、新規ステートを作成すると便利。<br>
+解説：<br>
+新規ステート名は、参照されたステート名文末の数字を繰り上げた名前を作成する。<br>
+ステート名文末が数字でない場合は、数字１が追加される。<br>
+既に使用されている場合は、その次の数字になる。
+</div>
+
+</div></body>
+</html>

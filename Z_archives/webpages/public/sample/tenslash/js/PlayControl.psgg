@@ -1,0 +1,1798 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=PlayControl.xlsx
+guid=84d93e73-2f1b-4fad-9c89-9a1281a756d5
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n018,n004,n005,n019,,n006,,n021,n022,n020,n023,n007,n008,n009,n00a,,n00b,n00c,,n00d,n00e,,n00f,n010,n01a,n01b,n01c,n01d,n01e,,n011,n012,n013,n014,n01f,,n015,n016,n017,,,,
+stateid_list=,,,,s0001,s0002,s0014,s0015,s0016,s0017,s0018,s0019,s001a,s001b,s001c,s001d,s001e,s001f,s0020,s0021,s0022,s0023,s0012,s0025,s0024,s0027,s0026,s0028,s002a,s0029,s002b,s002c,s002d,s002e,,,s0030,,,,,,,,,,,,,,,,s002f
+max_name_id=35
+max_state_id=48
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=embed
+n007=vars
+n008=init
+n009=init-cmt
+n00a=init-ref
+n00b=update
+n00c=update-cmt
+n00d=wait
+n00e=wait-cmt
+n00f=post_wait
+n010=post_wait-cmt
+n011=branch
+n012=branch-cmt
+n013=brcond
+n014=nowait
+n015=!dir
+n016=!pos
+n017=!uuid
+n018=state-typ
+n019=basestate
+n01a=return
+n01b=loop
+n01c=loop_init
+n01d=loop_cond
+n01e=loop_next
+n01f=gosubstate
+n020=mode
+n021=dx
+n022=dy
+n023=dir
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0012=S_CHECK_PICK
+s0014=S_DROP_PICK
+s0015=S_CHECK_ONEWAY_UP
+s0016=S_CHECK_ONEWAY_RIGHT
+s0017=S_CHECK_ONEWAY_RIGHT1
+s0018=S_CHECK_ONEWAY_RIGHT2
+s0019=S_DELETE_A_LINE
+s001a=S_LOOSE
+s001b=E_DELSHIFT
+s001c=S_ONE_TICK
+s001d=E_CHECKCLEAR
+s001e=S_CHECK_RESULT
+s001f=S_0001
+s0020=S_TWOWAY_V
+s0021=S_TWOWAY_H
+s0022=S_DEL_TWO_LINES
+s0023=E_GETVAL
+s0024=S_FOURWAY_CROSS
+s0025=S_DEL_4LINES
+s0026=S_EIGHTWAY
+s0027=S_DEL_8LINES
+s0028=S_COUNT_STEP
+s0029=S_CHECK_ONEWAY_UPRIGHT
+s002a=S_CHECK_ONEWAY_DOWNRIGHT
+s002b=S_CHECK_ONEWAY_DOWNLEFT
+s002c=S_CHECK_ONEWAY_UPLEFT
+s002d=S_TWOWAY_DR
+s002e=C_FOURWAY1
+s002f=S_TWOWAY_UR
+s0030=S_FOURWAY_DCROSS
+
+
+[s0001]
+n002=S_START
+n018=start
+n005=S_0001
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=30,57
+n017=100001
+
+[s0002]
+n002=S_END
+n018=end
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=2172,1326
+n017=100002
+
+[s0012]
+n002=S_CHECK_PICK
+n003=ピック部の確認
+n005=S_DROP_PICK
+n008=@@@
+G.pickobj=null;
+G.qexp="ボード下の数字を選択";
+G.curtxt=null;
+@@@
+
+n00b=@@@
+var find = -1;
+if ((G.vy == G.np_y) && (G.vx >= G.np_x && G.vx <= G.np_x + 9)){
+    find = G.vx - G.np_x;
+    //G.lognl("find="+find);
+}
+@@@
+
+n00d=!(find != -1 && G.mouseOnOff == 1)
+n00f=@@@
+G.log("kettei = " + find);
+G.picknum = find;
+G.pickobj = G.D[G.makekey(G.vx,G.vy)];
+@@@
+
+n014=nowait
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=128,300
+n017=100003
+
+[s0014]
+n002=S_DROP_PICK
+n003=ピックしたものをDROP
+n005=S_COUNT_STEP
+n008=@@@
+G.targetx   = -1;
+G.targety   = -1;
+G.targetobj = null;
+G.qexp="ボード上に配置";
+G.curtxt    = ""+G.picknum;
+@@@
+
+n00b=@@@
+if (G.gb_x>=0 && G.gb_y>=0 && G.mouseOnOff==1) {
+    var key = G.makekey(G.gb_x, G.gb_y);
+    var s = G.GB[key];
+    if (s == " "||s==""||s==null)
+    {
+        G.targetx = G.gb_x;
+        G.targety = G.gb_y;
+        G.targetobj = G.vgetobj(G.gb_x, G.gb_y);
+　　    G.targetnum = G.picknum;
+        G.GB[key] = "" + G.picknum;
+        G.picknum = -1;
+        G.pickobj = null;
+        G.lognl("!!");
+    }
+}
+@@@
+
+n00d=G.targetobj==null
+n00f=G.curtxt=null;
+n014=nowait
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=329,300
+n017=100004
+
+[s0015]
+n002=S_CHECK_ONEWAY_UP
+n003=一方向の上確認
+n005=
+n021=0
+n022=(-1)
+n020=1
+n023=u
+n008=@@@
+G.delmode = 0;
+G.deldir  = null;
+G.dirnums = [];
+@@@
+
+n00b=@@@
+var b = false;
+var key = G.makekey(G.targetx + [[dx]] , G.targety + [[dy]] );
+var val = G.GB[key];
+if (val == null || val == "" || val == " ") {
+    b = false;
+}
+else {
+    var num = Number(val);
+    b = (num + G.targetnum == 10);
+    if (b) {
+        G.delmode = [[mode]];
+        G.deldir = "[[dir]]";
+        G.dirnums = [ num ];
+    }
+}
+@@@
+
+n011=@@@
+brifc(S_DELETE_A_LINE);
+brelse(S_CHECK_ONEWAY_UPRIGHT);
+@@@
+
+n012=@@@
+当たり
+?
+@@@
+
+n013=@@@
+b
+?
+@@@
+
+n014=nowait
+n015=@@@
+/ONWWAY/
+(167,776)
+一方向
+@@@
+
+n016=86,195
+n017=100005
+
+[s0016]
+n002=S_CHECK_ONEWAY_RIGHT
+n003=一方向の右確認
+n005=
+n019=S_CHECK_ONEWAY_UP
+n021=1
+n022=0
+n020=1
+n023=r
+n011=@@@
+brifc(S_DELETE_A_LINE);
+brelse(S_CHECK_ONEWAY_DOWNRIGHT);
+@@@
+
+n015=@@@
+/ONWWAY/
+(167,776)
+一方向
+@@@
+
+n016=90,883
+n017=100006
+
+[s0017]
+n002=S_CHECK_ONEWAY_RIGHT1
+n003=一方向の下確認
+n005=
+n019=S_CHECK_ONEWAY_UP
+n021=0
+n022=1
+n020=1
+n023=d
+n011=@@@
+brifc(S_DELETE_A_LINE);
+brelse(S_CHECK_ONEWAY_DOWNLEFT);
+@@@
+
+n015=@@@
+/ONWWAY/
+(167,776)
+一方向
+@@@
+
+n016=103,1440
+n017=100007
+
+[s0018]
+n002=S_CHECK_ONEWAY_RIGHT2
+n003=一方向の左確認
+n019=S_CHECK_ONEWAY_UP
+n021=(-1)
+n022=0
+n020=1
+n023=l
+n011=@@@
+brifc(S_DELETE_A_LINE);
+brelse(S_CHECK_ONEWAY_UPLEFT);
+@@@
+
+n015=@@@
+/ONWWAY/
+(167,776)
+一方向
+@@@
+
+n016=112,1989
+n017=100008
+
+[s0019]
+n001=(bitmap)
+n002=S_DELETE_A_LINE
+n003=ライン削除
+n005=S_CHECK_RESULT
+n008=@@@
+G.lognl("当たり！");
+this.wt=Date.now();
+@@@
+
+n00b=@@@
+var num = G.dirnums[0];
+var b = false;
+var waittime = 50; //msec
+if (this.wt > Date.now())
+{
+    b = true;
+}
+else if (G.deldir == "u") {
+    b = this.delshift(G.targetx    , G.targety - 1, ""+num, "u");
+    this.wt = Date.now() + waittime;
+}
+else if (G.deldir == "ur") {
+    b = this.delshift(G.targetx + 1, G.targety - 1, ""+num, "ur");
+    this.wt = Date.now() + waittime;
+}
+else if (G.deldir == "r") {
+    b = this.delshift(G.targetx + 1, G.targety    , ""+num, "r");
+    this.wt = Date.now() + waittime;
+}
+else if (G.deldir == "dr") {
+    b = this.delshift(G.targetx + 1, G.targety + 1, ""+num, "dr");
+    this.wt = Date.now() + waittime;
+}
+else if (G.deldir == "d") {
+    b = this.delshift(G.targetx    , G.targety + 1, ""+num, "d");
+    this.wt = Date.now() + waittime;
+}
+else if (G.deldir == "dl") {
+    b = this.delshift(G.targetx - 1, G.targety + 1, ""+num, "dl");
+    this.wt = Date.now() + waittime;
+}
+else if (G.deldir == "l") {
+    b = this.delshift(G.targetx - 1, G.targety    , ""+num, "l");
+    this.wt = Date.now() + waittime;
+}
+else if (G.deldir == "ul") {
+    b = this.delshift(G.targetx - 1, G.targety - 1, ""+num, "ul");
+    this.wt = Date.now() + waittime;
+}
+
+@@@
+
+n00d=b == true
+n00f=@@@
+G.GB[G.makekey(G.targetx,G.targety)]=" ";
+G.targetobj=null;
+@@@
+
+n015=@@@
+/ONWWAY/
+(167,776)
+一方向
+@@@
+
+n016=1208,989
+n017=100009
+
+[s001a]
+n001=(bitmap)
+n002=S_LOOSE
+n003=
+n005=S_CHECK_PICK
+n008=G.lognl("外れ");
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1991,2808
+n017=100010
+
+[s001b]
+n002=E_DELSHIFT
+n003=@@@
+上方向にチェックとシフト１回
+bool delshift(tx.ty.s,dir)'
+tx,ty:ターゲット位置
+s:指定文字
+dir:方向 urd
+戻り値: true成功 l
+
+@@@
+
+n006=@@@
+PlayControl.prototype.delshift = function(tx,ty,s,dir) {
+    var dx = 0;
+    var dy = 0;
+    if (dir == "u")       { dy = -1;}
+    else if (dir == "r")  { dx =  1;}
+    else if (dir == "d")  { dy =  1;}
+    else if (dir == "l")  { dx = -1;}
+    else if (dir == "ur") { dy = -1; dx = 1;}
+    else if (dir == "dr") { dy =  1; dx = 1;}
+    else if (dir == "ul") { dy = -1; dx = -1;}
+    else if (dir == "dl") { dy =  1; dx = -1;}
+
+    var key = G.makekey(tx,ty);
+    if (G.GB[key] != s) { return false; }
+    //以降はシフト
+    for(var n = 0; n <= 100; n++)
+    {
+        var key_src = G.makekey(tx + dx * (n + 1), ty + dy * (n + 1));
+        var key_dst = G.makekey(tx + dx * n      , ty + dy * n);
+        var val_src = G.GB[key_src];
+        var val_dst = G.GB[key_dst];
+        if (val_dst == undefined || val_dst == null　|| val_dst == "" || val_dst == " ") {
+            return false;
+        }
+        if (val_src == undefined || val_src == null || val_src == "" || val_src == " ") {
+            G.GB[key_dst] = " ";
+            return true; //ここまで
+        }
+        G.GB[key_dst] = val_src;
+    }
+    return true;
+};
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=936,242
+n017=100011
+
+[s001c]
+n002=S_ONE_TICK
+n005=S_CHECK_ONEWAY_UP
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=741,310
+n017=100012
+
+[s001d]
+n002=E_CHECKCLEAR
+n003=@@@
+GB上全部クリア？
+bool checkclear();
+@@@
+
+n006=@@@
+$statemachine$.prototype.checkclear = function() {
+    for(var x = 0; x < G.gb_xmax; x++) for(var y = 0; y < G.gb_ymax; y++) {
+        var v = G.GB[G.makekey(x,y)];
+        if (v == " " || v == "" || v == null || v == undefined)
+        {
+            //ok
+        }
+        else {
+            return false;
+        }
+    }
+    return true;
+};
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1103,243
+n017=100013
+
+[s001e]
+n002=S_CHECK_RESULT
+n003=結果確認
+n008=@@@
+var b = this.checkclear();
+if (b) {
+    G.qresult = "ok";
+}
+@@@
+
+n011=@@@
+brifc(S_END);
+brelse(S_CHECK_PICK);
+@@@
+
+n012=@@@
+OK
+?
+@@@
+
+n013=@@@
+G.qresult=="ok"
+?
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1746,1208
+n017=100014
+
+[s001f]
+n002=S_0001
+n005=S_CHECK_PICK
+n008=G.qresult="playing";
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=143,58
+n017=100015
+
+[s0020]
+n002=S_TWOWAY_V
+n003=０時とその逆２ヵ所
+n021=0
+n022=-1
+n020=2
+n023=v
+n008=@@@
+G.delmode = 0;
+G.deldir  = null;
+G.dirnums = [];
+@@@
+
+n00b=@@@
+var b = false;
+var key1 = G.makekey(G.targetx + ([[dx]]), G.targety + ([[dy]]) );
+var val1 = G.GB[key1];
+var key2 = G.makekey(G.targetx - ([[dx]]), G.targety - ([[dy]]) );
+var val2 = G.GB[key2];
+if (
+    val1 == null || val2 == null
+                 ||
+    val1 == " "  || val2 == " "
+                 ||
+    val1 == ""   || val2 == ""
+) {
+    b = false;
+}
+else {
+   var num1 = Number(val1);
+   var num2 = Number(val2);
+   b = (num1 + num2 + G.targetnum == 10);
+   if (b) {
+       G.delmode =[[mode]];
+       G.deldir = "[[dir]]";
+       G.dirnums = [ num1, num2 ];
+   }
+}
+@@@
+
+n011=@@@
+brifc(S_DEL_TWO_LINES);
+brelse(S_TWOWAY_UR);
+@@@
+
+n012=@@@
+当たり
+?
+@@@
+
+n013=@@@
+b
+?
+@@@
+
+n015=@@@
+/TWOWAYS/
+(340,867)
+２方向
+@@@
+
+n016=375,153
+n017=100016
+
+[s0021]
+n002=S_TWOWAY_H
+n003=3時とその逆２ヵ所
+n019=S_TWOWAY_V
+n021=1
+n022=0
+n020=2
+n023=h
+n011=@@@
+brifc(S_DEL_TWO_LINES);
+brelse(S_TWOWAY_DR);
+@@@
+
+n015=@@@
+/TWOWAYS/
+(340,867)
+２方向
+@@@
+
+n016=375,752
+n017=100017
+
+[s0022]
+n002=S_DEL_TWO_LINES
+n003=２行削除
+n005=S_CHECK_RESULT
+n008=@@@
+G.lognl("2mode当たり");
+this.wt=Date.now();
+@@@
+
+n00b=@@@
+var num1 = G.dirnums[0];
+var num2 = G.dirnums[1];
+var b = false;
+var waittime = 50; //msec
+if (this.wt > Date.now()) {
+    b = true;
+}
+else if (G.deldir == "v") {
+   var val1 = this.getval(G.targetx, G.targety,"u");
+   var val2 = this.getval(G.targetx, G.targety,"d");
+   if (val1==num1 && val2==num2) {
+       var b1 = this.delshift(G.targetx, G.targety -1, ""+num1,"u");
+       var b2 = this.delshift(G.targetx, G.targety +1, ""+num2,"d");
+       b = b1 && b2;
+       this.wt = Date.now() + waittime;
+   }
+   else {
+       b = false;
+   }
+}
+else if (G.deldir == "ur") {
+   var val1 = this.getval(G.targetx, G.targety,"ur");
+   var val2 = this.getval(G.targetx, G.targety,"dl");
+   if (val1==num1 && val2==num2) {
+       var b1 = this.delshift(G.targetx +1, G.targety -1, ""+num1,"ur");
+       var b2 = this.delshift(G.targetx -1, G.targety +1, ""+num2,"dl");
+       b = b1 && b2;
+       this.wt = Date.now() + waittime;
+   }
+   else {
+       b = false;
+   }
+}
+else if (G.deldir == "h") {
+   var val1 = this.getval(G.targetx, G.targety,"r");
+   var val2 = this.getval(G.targetx, G.targety,"l");
+   if (val1==num1 && val2==num2) {
+       var b1 = this.delshift(G.targetx + 1, G.targety , ""+num1,"r");
+       var b2 = this.delshift(G.targetx - 1, G.targety , ""+num2,"l");
+       b = b1 && b2;
+       this.wt = Date.now() + waittime;
+   }
+   else {
+       b = false;
+   }
+}
+else if (G.deldir == "dr") {
+   var val1 = this.getval(G.targetx, G.targety,"dr");
+   var val2 = this.getval(G.targetx, G.targety,"ul");
+   if (val1==num1 && val2==num2) {
+       var b1 = this.delshift(G.targetx +1, G.targety +1, ""+num1,"dr");
+       var b2 = this.delshift(G.targetx -1, G.targety -1, ""+num2,"ul");
+       b = b1 && b2;
+       this.wt = Date.now() + waittime;
+   }
+   else {
+       b = false;
+   }
+}
+
+@@@
+
+n00d=b==true
+n00f=@@@
+G.GB[G.makekey(G.targetx,G.targety)] = " ";
+G.targetobj = null;
+@@@
+
+n015=@@@
+/TWOWAYS/
+(340,867)
+２方向
+@@@
+
+n016=1320,1360
+n017=100018
+
+[s0023]
+n002=E_GETVAL
+n003=string getval(x,y,d);
+n006=@@@
+$statemachine$.prototype.getval = function(x,y,d) {
+    var dx = 0;
+    var dy = 0;
+    if      (d=="u") dy = -1;
+    else if (d=="r") dx =  1;
+    else if (d=="d") dy =  1;
+    else if (d=="l") dx = -1;
+    else if (d=="ur") { dx = 1; dy = -1; }
+    else if (d=="dr") { dx = 1; dy =  1; }
+    else if (d=="dl") { dx =-1; dy =  1; }
+    else if (d=="ul") { dx =-1; dy = -1; }
+
+
+    var key = G.makekey(x+dx,y+dy);
+    var val = G.GB[key];
+    return val;
+};
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1286,242
+n017=100019
+
+[s0024]
+n002=S_FOURWAY_CROSS
+n021=0
+n022=1
+n020=4
+n023=+
+n008=@@@
+G.delmode = 0;
+G.deldir  = null;
+G.dirnums = [];
+@@@
+
+n00b=@@@
+var b = false;
+var val1 = this.getval(G.targetx,G.targety,"u");
+var val2 = this.getval(G.targetx,G.targety,"r");
+var val3 = this.getval(G.targetx,G.targety,"d");
+var val4 = this.getval(G.targetx,G.targety,"l");
+
+if (
+    val1 == null || val2 == null || val3 == null || val4 == null
+                 ||
+    val1 == " "  || val2 == " "  || val3 == " "  || val4 == " "
+                 ||
+    val1 == ""   || val2 == ""   || val3 == ""   || val4 == ""
+) {
+    b = false;
+}
+else {
+   var num1 = Number(val1);
+   var num2 = Number(val2);
+   var num3 = Number(val3);
+   var num4 = Number(val4);
+   b = (num1 + num2 + num3 + num4 + G.targetnum == 10);
+   if (b) {
+       G.delmode =[[mode]];
+       G.deldir = "[[dir]]";
+       G.dirnums = [ num1, num2, num3, num4 ];
+   }
+}
+@@@
+
+n011=@@@
+brifc(S_DEL_4LINES);
+brelse(S_FOURWAY_DCROSS);
+@@@
+
+n012=@@@
+当たり
+?
+@@@
+
+n013=@@@
+b
+?
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=178,1315
+n017=100020
+
+[s0025]
+n002=S_DEL_4LINES
+n003=４行削除
+n005=S_CHECK_RESULT
+n008=@@@
+G.lognl("4mode当たり");
+this.wt=Date.now();
+@@@
+
+n00b=@@@
+var num1 = G.dirnums[0];
+var num2 = G.dirnums[1];
+var num3 = G.dirnums[2];
+var num4 = G.dirnums[3];
+var b = false;
+var waittime = 50; //msec
+if (this.wt > Date.now()) {
+    b = true;
+}
+else if (G.deldir=="+") {
+    var val1 = this.getval(G.targetx, G.targety, "u");
+    var val2 = this.getval(G.targetx, G.targety, "r");
+    var val3 = this.getval(G.targetx, G.targety, "d");
+    var val4 = this.getval(G.targetx, G.targety, "l");
+    if ( val1==num1 && val2==num2 && val3==num3 && val4==num4) {
+        var b1 = this.delshift(G.targetx    ,G.targety - 1, ""+num1, "u");
+        var b2 = this.delshift(G.targetx + 1,G.targety    , ""+num2, "r");
+        var b3 = this.delshift(G.targetx    ,G.targety + 1, ""+num3, "d");
+        var b4 = this.delshift(G.targetx - 1,G.targety    , ""+num4, "l");
+        var b = b1 && b2 && b3 && b4;
+        this.wt = Date.now() + waittime;
+    }
+}
+else if (G.deldir=="x") {
+    var val1 = this.getval(G.targetx, G.targety, "ur");
+    var val2 = this.getval(G.targetx, G.targety, "dr");
+    var val3 = this.getval(G.targetx, G.targety, "dl");
+    var val4 = this.getval(G.targetx, G.targety, "ul");
+    if ( val1==num1 && val2==num2 && val3==num3 && val4==num4) {
+        var b1 = this.delshift(G.targetx + 1,G.targety - 1, ""+num1, "ur");
+        var b2 = this.delshift(G.targetx + 1,G.targety + 1, ""+num2, "dr");
+        var b3 = this.delshift(G.targetx - 1,G.targety + 1, ""+num3, "dl");
+        var b4 = this.delshift(G.targetx - 1,G.targety - 1, ""+num4, "ul");
+        var b = b1 && b2 && b3 && b4;
+        this.wt = Date.now() + waittime;
+    }
+}
+@@@
+
+n00d=b == true
+n00f=@@@
+G.GB[G.makekey(G.targetx,G.targety)] = " ";
+G.targetobj = null;
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1330,1661
+n017=100021
+
+[s0026]
+n002=S_EIGHTWAY
+n021=1
+n022=1
+n020=8
+n023=*
+n008=@@@
+G.delmode = 0;
+G.deldir  = null;
+G.dirnums = [];
+@@@
+
+n00b=@@@
+var b = false;
+var val1 = this.getval(G.targetx,G.targety,"u");
+var val2 = this.getval(G.targetx,G.targety,"r");
+var val3 = this.getval(G.targetx,G.targety,"d");
+var val4 = this.getval(G.targetx,G.targety,"l");
+var val5 = this.getval(G.targetx,G.targety,"ur");
+var val6 = this.getval(G.targetx,G.targety,"dr");
+var val7 = this.getval(G.targetx,G.targety,"dl");
+var val8 = this.getval(G.targetx,G.targety,"ul");
+
+if (
+    val1 == null || val2 == null || val3 == null || val4 == null || val5 == null || val6 == null || val7 == null || val8 == null
+                 ||
+    val1 == " "  || val2 == " "  || val3 == " "  || val4 == " "  || val5 == " "  || val6 == " "  || val7 == " "  || val8 == " "
+                 ||
+    val1 == ""   || val2 == ""   || val3 == ""   || val4 == ""   || val5 == ""   || val6 == ""   || val7 == ""   || val8 == ""
+) {
+    b = false;
+}
+else {
+   var num1 = Number(val1);
+   var num2 = Number(val2);
+   var num3 = Number(val3);
+   var num4 = Number(val4);
+   var num5 = Number(val5);
+   var num6 = Number(val6);
+   var num7 = Number(val7);
+   var num8 = Number(val8);
+
+   b = (num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + G.targetnum == 10);
+   if (b) {
+       G.delmode =[[mode]];
+       G.deldir = "[[dir]]";
+       G.dirnums = [ num1, num2, num3, num4, num5, num6, num7, num8 ];
+   }
+}
+@@@
+
+n011=@@@
+brifc(S_DEL_8LINES);
+brelse(S_LOOSE);
+@@@
+
+n012=@@@
+当たり
+?
+@@@
+
+n013=@@@
+b
+?
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=148,2074
+n017=100022
+
+[s0027]
+n002=S_DEL_8LINES
+n003=8行削除
+n005=S_CHECK_RESULT
+n008=@@@
+G.lognl("8mode当たり");
+this.wt=Date.now();
+@@@
+
+n00b=@@@
+var num1 = G.dirnums[0];
+var num2 = G.dirnums[1];
+var num3 = G.dirnums[2];
+var num4 = G.dirnums[3];
+var num5 = G.dirnums[4];
+var num6 = G.dirnums[5];
+var num7 = G.dirnums[6];
+var num8 = G.dirnums[7];
+var b = false;
+var waittime = 50; //msec
+if (this.wt > Date.now()) {
+    b = true;
+}
+else {
+    var val1 = this.getval(G.targetx, G.targety, "u");
+    var val2 = this.getval(G.targetx, G.targety, "r");
+    var val3 = this.getval(G.targetx, G.targety, "d");
+    var val4 = this.getval(G.targetx, G.targety, "l");
+    var val5 = this.getval(G.targetx, G.targety, "ur");
+    var val6 = this.getval(G.targetx, G.targety, "dr");
+    var val7 = this.getval(G.targetx, G.targety, "dl");
+    var val8 = this.getval(G.targetx, G.targety, "ul");
+    if ( val1==num1 && val2==num2 && val3==num3 && val4==num4 && val5==num5 && val6==num6 && val7==num7 && val8==num8) {
+        var b1 = this.delshift(G.targetx    ,G.targety - 1, ""+num1, "u");
+        var b2 = this.delshift(G.targetx + 1,G.targety    , ""+num2, "r");
+        var b3 = this.delshift(G.targetx    ,G.targety + 1, ""+num3, "d");
+        var b4 = this.delshift(G.targetx - 1,G.targety    , ""+num4, "l");
+
+        var b5 = this.delshift(G.targetx + 1,G.targety - 1, ""+num5, "ur");
+        var b6 = this.delshift(G.targetx + 1,G.targety + 1, ""+num6, "dr");
+        var b7 = this.delshift(G.targetx - 1,G.targety + 1, ""+num7, "dl");
+        var b8 = this.delshift(G.targetx - 1,G.targety - 1, ""+num8, "ul");
+        var b = b1 && b2 && b3 && b4 && b5 && b6 && b7 && b8;
+        this.wt = Date.now() + waittime;
+    }
+    else {
+        b = false;
+    }
+}
+@@@
+
+n00d=b == true
+n00f=@@@
+G.GB[G.makekey(G.targetx,G.targety)] = " ";
+G.targetobj = null;
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1318,2242
+n017=100023
+
+[s0028]
+n002=S_COUNT_STEP
+n005=S_ONE_TICK
+n008=@@@
+G.step++;
+if (G.step > G.qlimit){
+    G.life--;
+}
+@@@
+
+n014=nowait
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=527,308
+n017=100024
+
+[s0029]
+n002=S_CHECK_ONEWAY_UPRIGHT
+n003=一方向の上右確認
+n019=S_CHECK_ONEWAY_UP
+n021=1
+n022=(-1)
+n020=1
+n023=ur
+n011=@@@
+brifc(S_DELETE_A_LINE);
+brelse(S_CHECK_ONEWAY_RIGHT);
+@@@
+
+n015=@@@
+/ONWWAY/
+(167,776)
+一方向
+@@@
+
+n016=89,618
+n017=100025
+
+[s002a]
+n002=S_CHECK_ONEWAY_DOWNRIGHT
+n003=一方向の下右確認
+n019=S_CHECK_ONEWAY_UP
+n021=1
+n022=1
+n020=1
+n023=dr
+n011=@@@
+brifc(S_DELETE_A_LINE);
+brelse(S_CHECK_ONEWAY_RIGHT1);
+@@@
+
+n015=@@@
+/ONWWAY/
+(167,776)
+一方向
+@@@
+
+n016=92,1167
+n017=100026
+
+[s002b]
+n002=S_CHECK_ONEWAY_DOWNLEFT
+n003=一方向の下左確認
+n019=S_CHECK_ONEWAY_UP
+n021=(-1)
+n022=1
+n020=1
+n023=dl
+n011=@@@
+brifc(S_DELETE_A_LINE);
+brelse(S_CHECK_ONEWAY_RIGHT2);
+@@@
+
+n015=@@@
+/ONWWAY/
+(167,776)
+一方向
+@@@
+
+n016=106,1690
+n017=100027
+
+[s002c]
+n002=S_CHECK_ONEWAY_UPLEFT
+n003=一方向の上左確認
+n019=S_CHECK_ONEWAY_UP
+n021=(-1)
+n022=(-1)
+n020=1
+n023=ul
+n011=@@@
+brifc(S_DELETE_A_LINE);
+brelse(S_TWOWAY_V);
+@@@
+
+n015=@@@
+/ONWWAY/
+(167,776)
+一方向
+@@@
+
+n016=97,2284
+n017=100028
+
+[s002d]
+n002=S_TWOWAY_DR
+n003=4.5時とその逆２ヵ所
+n019=S_TWOWAY_V
+n021=1
+n022=1
+n020=2
+n023=dr
+n011=@@@
+brifc(S_DEL_TWO_LINES);
+brelse(S_FOURWAY_CROSS);
+@@@
+
+n015=@@@
+/TWOWAYS/
+(340,867)
+２方向
+@@@
+
+n016=380,953
+n017=100030
+
+[s002e]
+n002=C_FOURWAY1
+n003=@@@
+時計回りで考える
+0分(h)->7分半(ur)->15分(r)->22分半(dr)->30分(v)
+
+@@@
+
+n015=@@@
+/TWOWAYS/
+(340,867)
+２方向
+@@@
+
+n016=599,90
+n017=100031
+
+[s002f]
+n002=S_TWOWAY_UR
+n003=1.5時方向とその逆２ヵ所
+n019=S_TWOWAY_V
+n021=1
+n022=-1
+n020=2
+n023=ur
+n011=@@@
+brifc(S_DEL_TWO_LINES);
+brelse(S_TWOWAY_H);
+@@@
+
+n015=@@@
+/TWOWAYS/
+(340,867)
+２方向
+@@@
+
+n016=381,526
+n017=100029
+
+[s0030]
+n002=S_FOURWAY_DCROSS
+n021=0
+n022=1
+n020=4
+n023=x
+n008=@@@
+G.delmode = 0;
+G.deldir  = null;
+G.dirnums = [];
+@@@
+
+n00b=@@@
+var b = false;
+var val1 = this.getval(G.targetx,G.targety,"ur");
+var val2 = this.getval(G.targetx,G.targety,"dr");
+var val3 = this.getval(G.targetx,G.targety,"dl");
+var val4 = this.getval(G.targetx,G.targety,"ul");
+
+if (
+    val1 == null || val2 == null || val3 == null || val4 == null
+                 ||
+    val1 == " "  || val2 == " "  || val3 == " "  || val4 == " "
+                 ||
+    val1 == ""   || val2 == ""   || val3 == ""   || val4 == ""
+) {
+    b = false;
+}
+else {
+   var num1 = Number(val1);
+   var num2 = Number(val2);
+   var num3 = Number(val3);
+   var num4 = Number(val4);
+   b = (num1 + num2 + num3 + num4 + G.targetnum == 10);
+   if (b) {
+       G.delmode =[[mode]];
+       G.deldir = "[[dir]]";
+       G.dirnums = [ num1, num2, num3, num4 ];
+   }
+}
+@@@
+
+n011=@@@
+brifc(S_DEL_4LINES);
+brelse(S_EIGHTWAY);
+@@@
+
+n012=@@@
+当たり
+?
+@@@
+
+n013=@@@
+b
+?
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=442,1300
+n017=100034
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/02/02 12:34:23
+; * pssgEditor version : 0.63.14249.1b109eb403177ee768a683796c40373701f66fbe
+psggfile=@@@
+PlayControl.psgg
+@@@
+xlsfile=@@@
+PlayControl.xlsx
+@@@
+guid=@@@
+84d93e73-2f1b-4fad-9c89-9a1281a756d5
+@@@
+bitmap_width=5000
+bitmap_height=3000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+varied,Edited a state.
+@@@
+target_pathdir=@@@
+/TWOWAYS/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"This is the root"},{"Key":"\/TWOWAYS\/","Value":null}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}},{"Key":"\/ONWWAY\/","Value":{"x":167,"y":776}},{"Key":"\/TWOWAYS\/","Value":{"x":340,"y":867}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":30,"y":57}},{"Key":"S_END","Value":{"x":2172,"y":1326}},{"Key":"S_CHECK_PICK","Value":{"x":128,"y":300}},{"Key":"S_DROP_PICK","Value":{"x":329,"y":300}},{"Key":"S_CHECK_ONEWAY_UP","Value":{"x":55,"y":700}},{"Key":"S_CHECK_ONEWAY_RIGHT","Value":{"x":447,"y":698}},{"Key":"S_CHECK_ONEWAY_RIGHT1","Value":{"x":842,"y":693}},{"Key":"S_CHECK_ONEWAY_RIGHT2","Value":{"x":1270,"y":699}},{"Key":"S_DELETE_A_LINE","Value":{"x":1322,"y":1023}},{"Key":"S_LOOSE","Value":{"x":1991,"y":2808}},{"Key":"E_DELSHIFT","Value":{"x":936,"y":242}},{"Key":"S_ONE_TICK","Value":{"x":741,"y":310}},{"Key":"E_CHECKCLEAR","Value":{"x":1103,"y":243}},{"Key":"S_CHECK_RESULT","Value":{"x":1746,"y":1208}},{"Key":"S_0001","Value":{"x":143,"y":58}},{"Key":"S_TWOWAY_V","Value":{"x":78,"y":1093}},{"Key":"S_TWOWAY_H","Value":{"x":343,"y":1081}},{"Key":"S_DEL_TWO_LINES","Value":{"x":1320,"y":1360}},{"Key":"E_GETVAL","Value":{"x":1286,"y":242}},{"Key":"S_FOURWAY","Value":{"x":178.000015,"y":1315.44446}},{"Key":"S_DEL_4LINES","Value":{"x":1330,"y":1661}},{"Key":"S_EIGHTWAY","Value":{"x":148,"y":2074}},{"Key":"S_DEL_8LINES","Value":{"x":1318,"y":2242}},{"Key":"S_COUNT_STEP","Value":{"x":527,"y":308}},{"Key":"S_CHECK_ONEWAY_RIGHT3","Value":{"x":287.3158,"y":684.3684}},{"Key":"S_CHECK_ONEWAY_UPRIGHT","Value":{"x":240,"y":703}},{"Key":"S_CHECK_ONEWAY_UPRIGHT1","Value":{"x":656,"y":686}},{"Key":"S_CHECK_ONEWAY_DOWNRIGHT","Value":{"x":649,"y":690}},{"Key":"S_CHECK_ONEWAY_DOWNRIGHT1","Value":{"x":1048.63159,"y":697.684265}},{"Key":"S_CHECK_ONEWAY_DOWNLEFT","Value":{"x":1049,"y":698}},{"Key":"S_CHECK_ONEWAY_DOWNLEFT1","Value":{"x":1486,"y":704}},{"Key":"S_CHECK_ONEWAY_UPLEFT","Value":{"x":1486,"y":704}},{"Key":"____altnative_state____ONWWAY","Value":{"x":167,"y":776}},{"Key":"____altnative_state____TWOWAYS","Value":{"x":340,"y":867}},{"Key":"S_FOURWAY_CROSS","Value":{"x":178,"y":1315}},{"Key":"S_FOURWAY_CROSS1","Value":{"x":441.888916,"y":1300.11108}},{"Key":"S_FOURWAY_DCROSS","Value":{"x":442,"y":1300}}]},{"Key":"\/ONWWAY\/","Value":[{"Key":"S_CHECK_ONEWAY_UP","Value":{"x":86,"y":195}},{"Key":"S_CHECK_ONEWAY_RIGHT","Value":{"x":90,"y":883}},{"Key":"S_CHECK_ONEWAY_RIGHT1","Value":{"x":103,"y":1440}},{"Key":"S_CHECK_ONEWAY_RIGHT2","Value":{"x":112,"y":1989}},{"Key":"S_DELETE_A_LINE","Value":{"x":1208,"y":989}},{"Key":"S_ONE_TICK","Value":{"x":78.66667,"y":32.3332634}},{"Key":"S_CHECK_RESULT","Value":{"x":2018.00012,"y":1573.66663}},{"Key":"S_TWOWAY_V","Value":{"x":495.237976,"y":2417.85718}},{"Key":"S_CHECK_ONEWAY_UPRIGHT","Value":{"x":89,"y":618}},{"Key":"S_CHECK_ONEWAY_DOWNRIGHT","Value":{"x":92,"y":1167}},{"Key":"S_CHECK_ONEWAY_DOWNLEFT","Value":{"x":106,"y":1690}},{"Key":"S_CHECK_ONEWAY_UPLEFT","Value":{"x":97,"y":2284}}]},{"Key":"\/TWOWAYS\/","Value":[{"Key":"S_TWOWAY_V","Value":{"x":375,"y":153}},{"Key":"S_TWOWAY_H","Value":{"x":375,"y":752}},{"Key":"S_DEL_TWO_LINES","Value":{"x":1320,"y":1360}},{"Key":"S_FOURWAY","Value":{"x":678.1111,"y":1337.66675}},{"Key":"S_CHECK_ONEWAY_UPLEFT","Value":{"x":112.3333,"y":87.66667}},{"Key":"S_CHECK_RESULT","Value":{"x":1630.83325,"y":1469.16675}},{"Key":"S_TWOWAY_V1","Value":{"x":377.5,"y":450.833374}},{"Key":"S_TWOWAY_H1","Value":{"x":378,"y":925}},{"Key":"S_TWOWAY_DL","Value":{"x":381,"y":526}},{"Key":"S_TWOWAY_UL","Value":{"x":379.818176,"y":953.1818}},{"Key":"C_FOURWAY1","Value":{"x":599,"y":90}},{"Key":"S_TWOWAY_UR","Value":{"x":381,"y":526}},{"Key":"S_TWOWAY_DR","Value":{"x":380,"y":953}},{"Key":"S_FOURWAY_CROSS","Value":{"x":1583.11108,"y":1240}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor=@@@
+"%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\Code.exe" -g %1:%2
+@@@
+source_editor_vs2015_support=0
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=1
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"nowait","Value":{"height":401,"width":330}},{"Key":"update","Value":{"height":1413,"width":1294}},{"Key":"init","Value":{"height":823,"width":760}},{"Key":"embed","Value":{"height":1237,"width":1211}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+PlayControl.prototype.[[state]] = function(first) {
+    this.goto(this.[[nextstate]]);
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^end$/
+PlayControl.prototype.[[state]] = function(first) {
+};
+eof>>>
+
+<<<?state-typ/^gosub$/
+PlayControl.prototype.[[state]] = function(first) {
+    this.gosubstate(this.[[gosubstate]],this.[[nextstate]]);
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^substart$/
+PlayControl.prototype.[[state]] = function(first) {
+    this.goto(this.[[nextstate]]);
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^subreturn$/
+PlayControl.prototype.[[state]] = function(first) {
+    this.returnstate();
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^loop$/
+PlayControl.prototype.[[state]] = function(first) {
+    [[loop_init]]
+    this.goto(this.[[state]]_LoopCheckAndGosub____);
+    this.setnowait();
+};
+PlayControl.prototype.[[state]]_LoopCheckAndGosub____ = function(first) {
+    if ([[loop_cond]]) this.gosubstate(this.[[gosubstate]],this.[[state]]_LoopNext____);
+    else               this.goto(this.[[nextstate]]);
+    this.setnowait();
+};
+PlayControl.prototype.[[state]]_LoopNext____ = function(first) {
+    [[loop_next]]
+    this.goto(this.[[state]]_LoopCheckAndGosub____);
+    this.setnowait();
+};
+eof>>>
+
+PlayControl.prototype.[[state]] = function(first) {
+
+    [[vars]]
+
+    <<<?init
+    if (first)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) { return; }
+    >>>
+
+    [[post_wait]]
+
+    [[branch]]
+
+    <<<?nextstate
+    if (!this.hasnext()) {
+        this.goto(this.[[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    if (this.hasnext()) {
+        this.setnowait();
+    }
+    >>>
+};
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=PlayControl.psgg
+xls=PlayControl.xlsx
+sub_src=
+gen_src=PlayControl.js
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit2\javascript\helpweb.html
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+lang=javascript
+framework=html5
+
+statemachine=PlayControl
+
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\tentackt\public\js
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\tentackt\public\js
+@@@
+
+genrdir=.
+incrdir=.
+
+code_output_start=[STATEGO OUTPUT START]
+code_output_end=[STATEGO OUTPUT END]
+
+; This section has macro defines for converting.
+
+; commentline format  {%0} will be replaced to a comment.
+[macro]
+
+commentline=// {%0}
+
+@branch=@@@
+<<<?"{%0}"/^brifc{0,1}$/
+if ([[brcond:{%N}]]) { this.goto( this.{%1} ); }
+>>>
+<<<?"{%0}"/^brelseifc{0,1}$/
+else if ([[brcond:{%N}]]) { this.goto( this.{%1} ); }
+>>>
+<<<?"{%0}"/^brelse$/
+else { this.goto( this.{%1} ); }
+>>>
+<<<?"{%0}"/^br_/
+this.{%0}( this.{%1} );
+>>>
+@@@
+
+
+[jpn]
+
+title=Javascript スタートキット 2019/11/12
+
+detail=@@@
+※サンプルプロジェクトを次のＵＲＬより入手可能。
+https://github.com/NNNIC/psgg-javascript-sample
+
+Javascript用のステートマシンを作成します。
+
+# 以下のファイルを作成します。
+
+      PlayControl.pssg     --- StateGoデータファイル
+      PlayControl.js       --- 変換ソースコードを挿入。
+
+@@@
+
+
+[en]
+
+title=Javascript STARTER KIT 2019/11/12
+
+detail=@@@
+* You may get the sample project from the below url.
+https://github.com/NNNIC/psgg-javascript-sample
+
+# Files
+
+      PlayControl.pssg  --- StateGo Data File
+      PlayControl.js    -- The editor will convert from data file into this file.
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[gosubstate]
+
+en=Specify a state of starting subroutine.
+jpn=サブルーチンの開始ステートを指定
+[return]
+
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+jpn=サブルーチン処理を終了するときに指定する。"return"等を記述。
+[loop_next]
+
+en=loop  iterator advence.
+jpn=ループのイテレーターを更新
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[vars]
+
+en=Specify variable definitions.
+jpn=変数宣言を指定する。
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[embed]
+
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[loop_init]
+
+en=loop initialization
+jpn=ループ用初期化
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[loop_cond]
+
+en=loop condition
+jpn=ループ条件
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+state-typ=
+mode=
+embed=
+dir=
+dx=
+loop_cond=
+branch=
+!dir=
+return=
+d=
+post_wait-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+loop_init=
+thumbnail=
+update-cmt=
+gosubstate=
+state-cmt=
+!pos=
+dy=
+!uuid=
+nextstate=
+state=
+S_=
+wait-cmt=
+update=
+init-cmt=
+basestate=
+loop_next=
+vars=
+loop=
+C_=
+brcond=
+E_=
+init-ref=
+post_wait=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,(S0)
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,(S0)
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+basestate=read_only,exclusion,(S0)
+state-typ=read_only,exclusion,(S0)
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

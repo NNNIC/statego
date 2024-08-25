@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'XXXXXXXXXXXX');
+</script>
+
+<meta charset="uft-8">
+<title>StateGo</title>
+
+
+<style>
+h1 {
+border-bottom: solid 3px black;
+}
+
+.item {
+width: 90%;
+margin: 1em;
+position: relative;
+line-height: 1.4;
+padding:0.25em 1em;
+display: inline-block;
+top:0;
+}
+.item:before,h1:after{ 
+  position: absolute;
+  top: 0;
+  content:'';
+width: 8px;
+height: 100%;
+display: inline-block;
+}
+.item:before{
+border-left: solid 1px black;
+border-top: solid 1px black;
+border-bottom: solid 1px black;
+  left: 0;
+}
+
+
+.title {
+color: black;
+padding: 0.5em 0;
+border-top: solid 3px black;
+border-bottom: solid 3px black;
+}
+
+.desc {
+padding: 1em;
+line-height: 200%
+}
+
+.j_or_e {
+    right: 20px;
+    text-align: right;
+}
+.lang_a {
+    padding: 5px;
+    font-style: italic;
+}
+
+.outline {
+    padding: 15px;
+}
+
+.outlinetitle {
+    font-size: 30px;
+    font-style: italic;
+}
+.outlineitem {
+    font-size: 20px;
+}
+
+
+.tocitem {
+    padding: 8px;
+}
+.toc {
+    border-bottom: solid 3px black;
+}
+.toctitle {
+    padding: 8px;
+}
+.toclist {
+    padding: 8px; 
+}
+pre {
+    background-color: antiquewhite;
+
+}    
+</style>
+
+
+</head>
+<body>
+
+<div class=j_or_e>
+<a class=lang_a href=./tec_toc_main_j.html>Japanese</a>
+<a class=lang_a href=./tec_toc_main_e.html>English</a>
+</div>
+
+
+<div class=toc><b class=tocitem><a href=tec_toc_main_j.html>メイン</a></b><b class=tocitem><a href=tec_toc_functemplate_j.html>関数テンプレート</a></b><b class=tocitem><a href=tec_toc_itemname_j.html>項目名</a></b><b class=tocitem><a href=tec_toc_macro_j.html>マクロ</a></b><b class=tocitem><a href=tec_toc_output_j.html>アウトプット</a></b><b class=tocitem><a href=tec_toc_state_j.html>ステート</a></b><b class=tocitem><a href=tec_toc_setting_j.html>SETTING</a></b><b class=tocitem><a href=tec_toc_knownissue_j.html>既知の問題</a></b><b class=tocitem><a href=tec_toc_tips_j.html>便利な使い方</a></b></div><div class=outline><div class=outlinetitle>マクロ</div><div class=outlineitem>マクロはデータを様々な形に変換することができる便利な機能である。<br>
+定義はSetting.iniまたは変換ソースに書き込む。<br>
+テンプレートおよびデータ項目内でマクロを使用する。<br>
+<br>
+以下は、マクロの利用パターン。<br>
+<br>
+・ツール独自の記述を言語仕様の記述に変換<br>
+・データ項目をユーザ指定の記述に変換<br>
+・項目単位、行単位およびステート単位で変換<br>
+<br>
+特に行単位の変換は大変有用である。<br>
+</div></div><div class=ctslist><div class=item id=calling-macro><div class=title>マクロの呼出し<br>
+</div><div class=desc>マクロの呼出し方は次の３つ<br>
+1. ノーマルマクロ<br>
+関数テンプレートおよび項目データ内にて利用<br>
+<pre>
+$macro:マクロ名$
+$macro:マクロ名(引数1[,引数2…])$
+</pre>
+<br>
+2. ラインマクロ<br>
+関数テンプレートおよび項目データ内にて利用<br>
+<pre>
+[[項目名->@マクロ名]]
+</pre>
+・・・項目データが一行単位でマクロ変換<br>
+・・・注）項目名と同名のマクロがある場合、暗黙的に対応する。<br>
+<br>
+3. ステートマクロ<br>
+アウトプット部で使用<br>
+<pre>
+//[PSGG OUTPUT START] indent(20) $/正規表現/->#マクロ名$
+</pre>
+・・・ステート名を正規表現でフィルター後マクロ変換<br>
+</div></div><div class=item id=normal-macro-args><div class=title>ノーマルマクロと引数<br>
+</div><div class=desc>ノーマルマクロの引数は、マクロ名を引数０とし括弧内の先頭を引数１とし後に続く。<br>
+例)<br>
+<pre>
+$hoge(a,b)$ 
+</pre>
+上記の引数は…<br>
+<pre>
+引数0 : hoge
+引数1：a
+引数2：b
+</pre>
+<br>
+</div></div><div class=item id=split-args><div class=title>行変換時の引数分解<br>
+</div><div class=desc>行マクロの引数解釈<br>
+<br>
+１．カンマ区切りデータ<br>
+左から引数０、１、・・・となる。<br>
+例）<br>
+<pre>
+ tokyo,osaka,yokohama      
+</pre>
+・・・引数０="tokyo" 引数１＝"osaka" 引数２="yokohama"<br>
+<br>
+２．関数<br>
+関数名を引数０として、関数の引数を引数１、引数２・・・となる。<br>
+例）<br>
+<pre>
+hoge(tokyo,osaka)              
+</pre>
+・・・引数０＝"hoge" 引数１＝"tokyo" 引数２="yokohama"<br>
+</div></div><div class=item id=where-define><div class=title>マクロの定義場所<br>
+</div><div class=desc>マクロの定義場所は3ヵ所<br>
+<br>
+1. setting.ini内の[macro]カテゴリ<br>
+<br>
+2. ユーザマクロファイル<br>
+<br>
+3. 生成先ファイルの マクロ定義開始マーク( :psgg-macro-start)と終了マーク(:psgg-macro-end)の間<br>
+<br>
+<pre>
+:psgg-macro-start
+マクロ定義
+:psgg-macro-end
+</pre>
+</div></div><div class=item id=how-to-define><div class=title>マクロ定義方法<br>
+</div><div class=desc><pre>
+マクロ名=変換値
+</pre>
+または<br>
+<pre>
+マクロ名=@@@
+変換値
+@@@
+</pre>
+</div></div><div class=item id=use-args><div class=title>引数の使い方 <br>
+</div><div class=desc>{%数字}<br>
+<br>
+例）<br>
+#マクロ<br>
+<pre>
+hoge=I will go to {%1} and {%2}.
+</pre>
+#呼出し<br>
+<pre>
+$macro:hoge(tokyo,osaka)$
+</pre>
+#変換<br>
+I will go to tokyo and osaka.<br>
+</div></div><div class=item id=use-args-dq><div class=title>引数の使い方  ダブルクオート削除<br>
+</div><div class=desc>{%~数字}<br>
+文字列前後のダブルクオーテーションを削除<br>
+例）<br>
+#マクロ<br>
+hoge=I will go to {%~0}.<br>
+#呼出し<br>
+$hoge:"tokyo and osaka"$<br>
+#変換<br>
+I will go to tokyo and osaka.<br>
+</div></div><div class=item id=line-macro><div class=title>行マクロ<br>
+</div><div class=desc>@マクロ名<br>
+項目値の行ごとに対応するマクロ<br>
+<br>
+例)<br>
+<br>
+#マクロ<br>
+@set=@@@<br>
+SetPosition({%0},{%1});<br>
+@@@<br>
+<br>
+#テンプレート<br>
+[[points->@set]]<br>
+<br>
+#pointsの値<br>
+100,50<br>
+100,150<br>
+100,200<br>
+<br>
+#変換<br>
+SetPosition(100,50);<br>
+SetPosition(100,150);<br>
+SetPosition(100,200);<br>
+</div></div><div class=item id=line-macro-sp><div class=title>特別行マクロ<br>
+</div><div class=desc>項目名と同じ行マクロがある場合、自動であてがわれる。<br>
+<br>
+例)<br>
+<br>
+#マクロ<br>
+@points=@@@<br>
+SetPosition({%0},{%1});<br>
+@@@<br>
+<br>
+#テンプレート<br>
+[[points]]<br>
+<br>
+#pointsの値<br>
+100,50<br>
+100,150<br>
+100,200<br>
+<br>
+#変換<br>
+SetPosition(100,50);<br>
+SetPosition(100,150);<br>
+SetPosition(100,200);<br>
+</div></div><div class=item id=linenumber-arg><div class=title>行番号引数<br>
+</div><div class=desc>{%N}<br>
+行マクロ時に、その行数を示す。<br>
+基数は０。<br>
+</div></div></div></body>
+</html>

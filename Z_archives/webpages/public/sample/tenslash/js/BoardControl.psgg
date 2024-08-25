@@ -1,0 +1,2338 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=BoardControl.xlsx
+guid=826a5093-b3a7-4293-b1b3-861efc038d18
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n018,n004,n005,n019,,n006,,n020,n021,n007,n008,n022,n009,n00a,,n00b,n00c,,n00d,n00e,,n00f,n010,n01a,n01b,n01c,n01d,n01e,,n011,n012,n013,n014,n01f,,n015,n016,n017,,,
+stateid_list=,,,,s0001,s0002,s0013,s0014,s0022,s0016,s0017,s0018,s0023,s001a,s0024,s003f,s001d,s001e,s001f,s0020,s0021,s0026,s0012,s0027,s0040,,,,s0049,s004a,s004b,s004c,s004d,s004e,s004f,s0050,s0051,s0052,s0053,s0054,s0037,s0038,s0039,s003a,s0055,s0056,s003d,s003e,s0057,s0058,s0059,s0048,s0042,s0043,s005a,s005b,s0047,s005c,s005d,s005e,s005f,s0060,s0061,s0062,s0063,s0064,s0065,s0066,s0046,s0068,s0067,s0069,s006a,s006b,s006c,s006d,s006e,s006f,s0070,s0071,s0074,s0075,s0072,s0073,s0076
+max_name_id=34
+max_state_id=118
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=embed
+n007=vars
+n008=init
+n009=init-cmt
+n00a=init-ref
+n00b=update
+n00c=update-cmt
+n00d=wait
+n00e=wait-cmt
+n00f=post_wait
+n010=post_wait-cmt
+n011=branch
+n012=branch-cmt
+n013=brcond
+n014=nowait
+n015=!dir
+n016=!pos
+n017=!uuid
+n018=state-typ
+n019=basestate
+n01a=return
+n01b=loop
+n01c=loop_init
+n01d=loop_cond
+n01e=loop_next
+n01f=gosubstate
+n020=d
+n021=d2
+n022=init2
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0012=S_INIT
+s0013=S_NEWSTATE
+s0014=C_V_PRINTX
+s0016=C_V_PRINTY
+s0017=C_U_RAND
+s0018=S_WAIT
+s001a=C_V_CLEAR
+s001d=C_U_REP
+s001e=S_WAIT3
+s001f=S_COUNTERUP
+s0020=S_CLEAR1
+s0021=S_WT
+s0022=S_GS
+s0023=S_WAIT6
+s0024=S_CLEAR2
+s0026=S_PLAY
+s0027=S_instance
+s0037=E_RND19
+s0038=E_RND09
+s0039=S_WAIT5
+s003a=S_MSG
+s003d=S_LV0
+s003e=S_CREATE_Q
+s003f=S_SBS001
+s0040=S_RET001
+s0042=S_LV1Q2
+s0043=S_LV1Q4
+s0046=S_WAIT10
+s0047=S_LOP001
+s0048=S_LV1Q3
+s0049=S_LV1Q1
+s004a=S_LV1Q5
+s004b=S_LV1Q6
+s004c=S_LV1Q7
+s004d=S_LV1Q8
+s004e=S_LV1Q9
+s004f=S_LV1Q10
+s0050=S_LV1Q11
+s0051=S_LV1Q12
+s0052=S_EXP
+s0053=S_CHECKRETRY
+s0054=S_LV0Q1
+s0055=S_LV0Q2
+s0056=S_LV1
+s0057=S_LV0Q3
+s0058=S_LV0Q4
+s0059=S_L0EXP
+s005a=S_WT1
+s005b=S_L0EXP1
+s005c=S_LV0Q5
+s005d=S_GSB001
+s005e=S_SBS002
+s005f=S_RET002
+s0060=S_GSB002
+s0061=S_RET003
+s0062=S_CREATE_Q1
+s0063=S_LOP002
+s0064=S_GS1
+s0065=S_WAIT7
+s0066=S_SBS003
+s0067=S_PLAY1
+s0068=S_WAIT11
+s0069=S_CHECKRETRY1
+s006a=S_RET004
+s006b=S_CLEAR3
+s006c=S_SBS004
+s006d=S_MSG1
+s006e=S_WAIT8
+s006f=S_GSB003
+s0070=S_WT2
+s0071=S_WT3
+s0072=S_LV0Q8
+s0073=S_LV0Q9
+s0074=S_LV0Q6
+s0075=S_LV0Q7
+s0076=E_RND10
+
+
+[s0001]
+n002=S_START
+n018=start
+n005=S_instance
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=29,32
+n017=100001
+
+[s0002]
+n002=S_END
+n018=end
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1330,1986
+n017=100002
+
+[s0012]
+n002=S_INIT
+n005=S_WAIT3
+n008=@@@
+this.mcon = null;
+this.busy = false;
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=271,217
+n017=100003
+
+[s0013]
+n002=S_NEWSTATE
+n005=S_WAIT
+n008=@@@
+G.vprintx(0,this.counter,G.urep(""+this.counter,11));
+
+@@@
+
+n014=nowait
+n015=@@@
+/MAKE_LINENMBERS/
+(464,212)
+数字列が順に表示される\n
+@@@
+
+n016=79,463
+n017=100004
+
+[s0014]
+n002=C_V_PRINTX
+n003=仮想ボードPRINTX
+n006=@@@
+$statemachine$.prototype.vprintx = function(x,y,s) {
+    G.vprintx(x,y,s);
+};
+@@@
+
+n015=@@@
+/gomi/
+(1133,15)
+
+@@@
+
+n016=375,10
+n017=100005
+
+[s0016]
+n002=C_V_PRINTY
+n003=仮想ボードPRINTY
+n006=@@@
+$statemachine$.prototype.vprinty = function(x,y,s) {
+    G.vprinty(x,y,s);
+};
+@@@
+
+n015=@@@
+/gomi/
+(1133,15)
+
+@@@
+
+n016=551,12
+n017=100007
+
+[s0017]
+n002=C_U_RAND
+n003=@@@
+ランダム
+int urand(最大値)
+@@@
+
+n006=@@@
+$statemachine$.prototype.urand=function(n) {
+   var v1 = (n+1) * Math.random();
+   var v2 = Math.floor(v1);
+   return v2;
+}
+
+@@@
+
+n015=@@@
+/gomi/
+(1133,15)
+
+@@@
+
+n016=955,17
+n017=100008
+
+[s0018]
+n002=S_WAIT
+n003=待つ
+n005=S_COUNTERUP
+n020=0.01
+n008=@@@
+this.m_[[state]] = Date.now() + [[d]] * 1000;
+@@@
+
+n00d=Date.now() < this.m_[[state]]
+n015=@@@
+/MAKE_LINENMBERS/
+(464,212)
+数字列が順に表示される\n
+@@@
+
+n016=272,455
+n017=100009
+
+[s001a]
+n002=C_V_CLEAR
+n003=仮想ボードクリア
+n006=@@@
+$statemachine$.prototype.vclear=function() {
+     var s = "          ";
+     for(var y = 0; y < G.gb_ymax; y++) {
+         G.vprintx(0,y,s);
+     }
+};
+@@@
+
+n015=@@@
+/gomi/
+(1133,15)
+
+@@@
+
+n016=765,12
+n017=100011
+
+[s001d]
+n002=C_U_REP
+n003=string urep(s,num);
+n006=@@@
+$statemachine$.prototype.urep=function(c,num) {
+    var s = "";
+    for(var n = 0; n<num;n++) {
+        s += c;
+    }
+    return s;
+};
+
+@@@
+
+n015=@@@
+/gomi/
+(1133,15)
+
+@@@
+
+n016=1133,15
+n017=100014
+
+[s001e]
+n002=S_WAIT3
+n005=S_NEWSTATE
+n008=this.counter = 0;
+n015=@@@
+/MAKE_LINENMBERS/
+(464,212)
+数字列が順に表示される\n
+@@@
+
+n016=94,293
+n017=100015
+
+[s001f]
+n002=S_COUNTERUP
+n008=@@@
+this.counter++;
+this.counter = this.counter % G.gb_ymax;
+@@@
+
+n011=@@@
+brifc(S_CLEAR1);
+brelse(S_NEWSTATE);
+@@@
+
+n012=@@@
+?
+?
+@@@
+
+n013=@@@
+this.counter == 0
+?
+@@@
+
+n014=nowait
+n015=@@@
+/MAKE_LINENMBERS/
+(464,212)
+数字列が順に表示される\n
+@@@
+
+n016=462,448
+n017=100016
+
+[s0020]
+n002=S_CLEAR1
+n005=S_WT
+n008=G.vclear();
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=678,226
+n017=100017
+
+[s0021]
+n002=S_WT
+n003=待つ
+n005=S_EXP
+n020=0.5
+n008=@@@
+this.m_[[state]] = Date.now() + [[d]] * 1000;
+@@@
+
+n00d=Date.now() < this.m_[[state]]
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=889,224
+n017=100018
+
+[s0022]
+n001=(bitmap)
+n002=S_GS
+n003=
+n005=S_WAIT6
+n008=@@@
+G.qnumber = this.index + 1;
+G.step = 0;
+G.vclear();
+G.vprintx(1,3,"LEVEL " + G.qlevel);
+G.vprintx(1,5,"Q." + G.qnumber);
+@@@
+
+n022=
+n015=@@@
+/PLAYGAMES/PLAYGAME/
+(672,2596)
+
+@@@
+
+n016=89,730
+n017=100019
+
+[s0023]
+n002=S_WAIT6
+n003=待つ
+n005=S_CLEAR2
+n020=1
+n008=@@@
+this.m_[[state]] = Date.now() + [[d]] * 1000;
+@@@
+
+n00d=Date.now() < this.m_[[state]]
+n015=@@@
+/PLAYGAMES/PLAYGAME/
+(672,2596)
+
+@@@
+
+n016=287,727
+n017=100020
+
+[s0024]
+n002=S_CLEAR2
+n005=S_CREATE_Q
+n008=G.vclear();
+n015=@@@
+/PLAYGAMES/PLAYGAME/
+(672,2596)
+
+@@@
+
+n016=487,729
+n017=100021
+
+[s0026]
+n002=S_PLAY
+n004=PlayControl.psgg
+n005=
+n008=@@@
+G.qresult=null;
+G.pcon = new PlayControl();
+G.pcon.start();
+@@@
+
+n00b=G.pcon.update();
+n00d=@@@
+(G.pcon.is_end()==false) && (G.butevt==null)
+@@@
+
+n011=@@@
+brifc(S_WAIT5);
+brelseifc(S_RET001);
+brelse(S_RET001);
+@@@
+
+n012=@@@
+?
+?
+?
+@@@
+
+n013=@@@
+G.qresult=="ok"
+G.butevt!=null
+?
+@@@
+
+n015=@@@
+/PLAYGAMES/PLAYGAME/
+(672,2596)
+
+@@@
+
+n016=897,733
+n017=100023
+
+[s0027]
+n002=S_instance
+n005=S_INIT
+n008=G.bcon = this;
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=84,214
+n017=100025
+
+[s0037]
+n002=E_RND19
+n003=@@@
+乱数1～9
+int rnd19();
+@@@
+
+n006=@@@
+$statemachine$.prototype.rnd19 = function() {
+    var n = G.urand(8);
+    return n+1;
+}
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=447,30
+n017=100051
+
+[s0038]
+n002=E_RND09
+n003=@@@
+乱数0～9
+int rnd09();
+@@@
+
+n006=@@@
+$statemachine$.prototype.rnd09 = function() {
+    var n = G.urand(9);
+    return n;
+}
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=612,31
+n017=100054
+
+[s0039]
+n002=S_WAIT5
+n003=待つ
+n005=S_MSG
+n020=0.5
+n008=@@@
+this.m_[[state]] = Date.now() + [[d]] * 1000;
+@@@
+
+n00d=Date.now() < this.m_[[state]]
+n015=@@@
+/PLAYGAMES/PLAYGAME/
+(672,2596)
+
+@@@
+
+n016=1112,737
+n017=100057
+
+[s003a]
+n002=S_MSG
+n005=S_WAIT10
+n008=G.vprintx(2,4,"CLEAR!");
+n015=@@@
+/PLAYGAMES/PLAYGAME/
+(672,2596)
+
+@@@
+
+n016=1288,744
+n017=100060
+
+[s003d]
+n002=S_LV0
+n003=
+n005=S_L0EXP
+n008=@@@
+G.qlist = [];
+G.qlevel=0;
+G.qnumber=0;
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=196,699
+n017=100069
+
+[s003e]
+n002=S_CREATE_Q
+n005=S_PLAY
+n008=@@@
+G.qtip = null;
+var f = G.qlist[this.index];
+f();
+G.button = "Reset";
+G.butx = 16;
+G.buty = 12;
+@@@
+
+n015=@@@
+/PLAYGAMES/PLAYGAME/
+(672,2596)
+
+@@@
+
+n016=682,732
+n017=100072
+
+[s003f]
+n002=S_SBS001
+n018=substart
+n005=S_GS
+n015=@@@
+/PLAYGAMES/PLAYGAME/
+(672,2596)
+
+@@@
+
+n016=177,382
+n017=100080
+
+[s0040]
+n002=S_RET001
+n018=subreturn
+n015=@@@
+/PLAYGAMES/PLAYGAME/
+(672,2596)
+
+@@@
+
+n016=1905,959
+n017=100081
+
+[s0042]
+n002=S_LV1Q2
+n005=S_LV1Q3
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 2;
+    var rows = G.urandk(10,2);
+    G.vprintx(0,rows[0],G.urep("" + _.rnd19(),10));
+    G.vprintx(0,rows[1],G.urep("" + _.rnd19(),10));
+};
+G.qlist.push(f);
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1020,1066
+n017=100085
+
+[s0043]
+n001=(bitmap)
+n002=S_LV1Q4
+n018=
+n005=S_LV1Q5
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname  = "[[state]]";
+    G.qlimit = 3;
+    G.vprinty(_.rnd09(),0,G.urep("" + _.rnd19(),9));
+    G.vprinty(_.rnd09(),0,G.urep("" + _.rnd19(),9));
+    G.vprinty(_.rnd09(),0,G.urep("" + _.rnd19(),9));
+};
+G.qlist.push(f);
+@@@
+
+n01f=
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1429,1069
+n017=100109
+
+[s0046]
+n002=S_WAIT10
+n003=待つ
+n005=S_RET001
+n020=0.5
+n008=@@@
+this.m_[[state]] = Date.now() + [[d]] * 1000;
+@@@
+
+n00d=Date.now() < this.m_[[state]]
+n015=@@@
+/PLAYGAMES/PLAYGAME/
+(672,2596)
+
+@@@
+
+n016=1485,743
+n017=100075
+
+[s0047]
+n002=S_LOP001
+n003=loop
+n018=loop
+n005=S_CHECKRETRY
+n01c=@@@
+this.index = 0;
+G.qresult="ok";
+@@@
+
+n01d=@@@
+this.index < G.qlist.length && G.qresult=="ok" && G.butevt == null
+@@@
+
+n01e=this.index++;
+n01f=S_SBS001
+n015=@@@
+/PLAYGAMES/
+(322,2412)
+
+@@@
+
+n016=449,2383
+n017=100101
+
+[s0048]
+n002=S_LV1Q3
+n005=S_LV1Q4
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname  = "[[state]]";
+    G.qlimit = 2;
+    var cols = G.urandk(10,2);
+    var l    = G.urandk(8,2);
+    G.vprinty(cols[0] ,0 ,G.urep(""+(l[0]+1),10));
+    G.vprinty(cols[1] ,1 ,G.urep(""+(l[1]+1),10));
+};
+G.qlist.push(f);
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1220,1067
+n017=100105
+
+[s0049]
+n001=(bitmap)
+n002=S_LV1Q1
+n005=S_LV1Q2
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 2;
+    var l = G.urandk(8,2);
+    G.vprintx(0,_.rnd010(),G.urep("" + (l[0]+1),4)+G.urep("" + (l[1]+1),5) );
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=827,1054
+n017=100113
+
+[s004a]
+n001=(bitmap)
+n002=S_LV1Q5
+n005=S_LV1Q6
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname  = "[[state]]";
+    G.qlimit = 2;
+    G.vprintx(0,4,"7777 22222");
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=337,1415
+n017=100117
+
+[s004b]
+n001=(bitmap)
+n002=S_LV1Q6
+n005=S_LV1Q12
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit=2;
+    G.vprinty(4,0,"7777 22222");
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=572,1401
+n017=100121
+
+[s004c]
+n001=(bitmap)
+n002=S_LV1Q7
+n005=S_LV1Q8
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit=1;
+    G.vprintx(2,3," 22");
+    G.vprintx(2,4,"2 2");
+    G.vprintx(2,5," 0 ");
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=408,1639
+n017=100125
+
+[s004d]
+n001=(bitmap)
+n002=S_LV1Q8
+n005=S_LV1Q9
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit=2;
+    G.vprintx(2,1,"   2   ");
+    G.vprintx(2,2,"   2   ");
+    G.vprintx(2,3,"222 222");
+    G.vprintx(2,4,"   2   ");
+    G.vprintx(2,5,"   2   ");
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=639,1640
+n017=100129
+
+[s004e]
+n001=(bitmap)
+n002=S_LV1Q9
+n005=S_GSB001
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    G.vprintx(0,0 ,"2    1    1");
+    G.vprintx(0,1 ," 2   1   1");
+    G.vprintx(0,2 ,"  2  1  1 ");
+    G.vprintx(0,3 ,"   1 1 1  ");
+    G.vprintx(0,4 ,"    111   ");
+    G.vprintx(0,5 ,"11111 11111");
+    G.vprintx(0,6 ,"    111   ");
+    G.vprintx(0,7 ,"   1 1 1  ");
+    G.vprintx(0,8 ,"  1  1  1 ");
+    G.vprintx(0,9 ," 1   1   1");
+    G.vprintx(0,10,"1    1    1");
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=853,1641
+n017=100133
+
+[s004f]
+n002=S_LV1Q10
+n005=S_LV1Q11
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    var l = G.urandk(8,2);
+    var l1 = l[0] + 1;
+    var l2 = l[1] + 1; 
+    G.vprintd(0,0,"dr", "" + l2 + G.urep("" + l1,9));
+    G.vprintx(9,10,""+l2);
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1125,1417
+n017=100137
+
+[s0050]
+n002=S_LV1Q11
+n005=S_LV1Q7
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    G.vprintd(1,G.gb_ymax-2,"ur",G.urep("2",9));
+    G.vprintx(3,9,"2");
+    G.vprintx(2,10,"2");
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1360,1410
+n017=100141
+
+[s0051]
+n002=S_LV1Q12
+n005=S_LV1Q10
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 2;
+    G.vprintx(0,0 ,"           ");
+    G.vprintx(0,1 ," 1   1   1");
+    G.vprintx(0,2 ,"  1  1  1 ");
+    G.vprintx(0,3 ,"   1 1 1  ");
+    G.vprintx(0,4 ,"   1112   ");
+    G.vprintx(0,5 ," 1111 1111");
+    G.vprintx(0,6 ,"    111   ");
+    G.vprintx(0,7 ,"   1 1 1  ");
+    G.vprintx(0,8 ,"  1  1  1 ");
+    G.vprintx(0,9 ," 1   1   1");
+    G.vprintx(0,10,"          ");
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=835,1393
+n017=100145
+
+[s0052]
+n002=S_EXP
+n003=説明
+n005=S_WT1
+n008=@@@
+G.vclear();
+G.vprintx(0,0,"-遊び方-");
+G.vprintx(0,2,"ボード下から数字を選び");
+G.vprintx(0,3,"ボード上に置きます。");
+G.vprintx(0,4,"隣同士との合計が１０");
+G.vprintx(0,5,"になると同方向の数字が");
+G.vprintx(0,6,"全て消えます。");
+G.vprintx(0,7,"全数字を消して下さい。");
+
+G.button = "START";
+G.butx = 6;
+G.buty = 12;
+
+G.butevt = null;
+@@@
+
+n00d=G.butevt==null
+n00f=@@@
+G.button = null;
+G.butevt = null;
+G.vclear();
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=70,404
+n017=100149
+
+[s0053]
+n002=S_CHECKRETRY
+n005=S_RET002
+n008=@@@
+G.button = null;
+G.butevt = null;
+@@@
+
+n014=nowait
+n015=@@@
+/PLAYGAMES/
+(322,2412)
+
+@@@
+
+n016=690,2381
+n017=100153
+
+[s0054]
+n002=S_LV0Q1
+n003=チュートリアル
+n005=S_LV0Q4
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    G.vprintx(5,5,"9");
+    G.qtip = "１を隣に置こう！";
+};
+G.qlist.push(f);
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=865,683
+n017=100157
+
+[s0055]
+n002=S_LV0Q2
+n003=チュートリアル
+n005=S_LV0Q3
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    G.vprintx(5,5,"4 3");
+    G.qtip = "4と3の間に3をおこう";
+};
+G.qlist.push(f);
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1273,670
+n017=100161
+
+[s0056]
+n001=(bitmap)
+n002=S_LV1
+n005=S_L0EXP1
+n008=@@@
+G.qlist = [];
+G.qlevel=1;
+G.qnumber=0;
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=149,1139
+n017=100165
+
+[s0057]
+n002=S_LV0Q3
+n003=チュートリアル
+n005=S_LV0Q5
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    G.vprintx(5,5,"22 33");
+    G.qtip = "間に5をおこう";
+};
+G.qlist.push(f);
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1475,673
+n017=100169
+
+[s0058]
+n002=S_LV0Q4
+n003=チュートリアル
+n005=S_LV0Q2
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    G.vprintx(1,5,"99999");
+    G.qtip = "１を隣に置こう！";
+};
+G.qlist.push(f);
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1080,670
+n017=100173
+
+[s0059]
+n002=S_L0EXP
+n003=レベル０説明
+n005=S_WT2
+n008=@@@
+G.vclear();
+
+G.vprintx(3,2,"レベル０");
+
+G.vprintx(2,4,"１手でクリア");
+
+G.button = "NEXT";
+G.butx = 6;
+G.buty = 12;
+
+G.butevt = null;
+@@@
+
+n00d=G.butevt==null
+n00f=@@@
+G.button = null;
+G.butevt = null;
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=417,695
+n017=100177
+
+[s005a]
+n002=S_WT1
+n005=S_LV0
+n019=S_WT
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=251,409
+n017=100181
+
+[s005b]
+n002=S_L0EXP1
+n003=レベル１説明
+n005=S_WT3
+n008=@@@
+G.vclear();
+
+G.vprintx(3,2,"レベル１");
+
+G.vprintx(2,4,"2手でクリア");
+
+G.button = "NEXT";
+G.butx = 6;
+G.buty = 12;
+
+G.butevt = null;
+@@@
+
+n00d=G.butevt==null
+n00f=@@@
+G.button = null;
+G.butevt = null;
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=373,1060
+n017=100185
+
+[s005c]
+n002=S_LV0Q5
+n003=チュートリアル
+n005=S_LV0Q6
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    G.vprintd(2,2,"dr","55 55");
+    G.qtip = "間に0をおこう";
+};
+G.qlist.push(f);
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1665,674
+n017=100189
+
+[s005d]
+n002=S_GSB001
+n018=gosub
+n005=S_EXP
+n01f=S_SBS002
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1142,1677
+n017=100193
+
+[s005e]
+n002=S_SBS002
+n018=substart
+n005=S_LOP001
+n015=@@@
+/PLAYGAMES/
+(322,2412)
+
+@@@
+
+n016=306,2406
+n017=100197
+
+[s005f]
+n002=S_RET002
+n018=subreturn
+n015=@@@
+/PLAYGAMES/
+(322,2412)
+
+@@@
+
+n016=994,2391
+n017=100201
+
+[s0060]
+n002=S_GSB002
+n018=gosub
+n005=S_GSB003
+n01f=S_SBS004
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=2773,709
+n017=100205
+
+[s0061]
+n002=S_RET003
+n018=subreturn
+n015=@@@
+/PLAYGAMES1/
+(2927,846)
+
+@@@
+
+n016=1019,292
+n017=100206
+
+[s0062]
+n002=S_CREATE_Q1
+n005=S_PLAY1
+n008=@@@
+G.qtip = null;
+var f = G.qlist[this.index];
+f();
+G.button = "Reset";
+G.butx = 16;
+G.buty = 12;
+@@@
+
+n015=@@@
+/PLAYGAMES1/PLAYGAME/
+(700,497)
+
+@@@
+
+n016=682,732
+n017=100207
+
+[s0063]
+n002=S_LOP002
+n003=loop
+n018=loop
+n005=S_CHECKRETRY1
+n01c=@@@
+this.index = 0;
+G.qresult="ok";
+@@@
+
+n01d=@@@
+this.index < G.qlist.length && G.qresult=="ok" && G.butevt == null
+@@@
+
+n01e=this.index++;
+n01f=S_SBS003
+n015=@@@
+/PLAYGAMES1/
+(2927,846)
+
+@@@
+
+n016=474,284
+n017=100208
+
+[s0064]
+n002=S_GS1
+n005=S_WAIT8
+n008=@@@
+G.qnumber = this.index + 1;
+G.step = 0;
+G.vclear();
+G.vprintx(1,3,"LEVEL " + G.qlevel);
+G.vprintx(1,5,"Q." + G.qnumber);
+@@@
+
+n015=@@@
+/PLAYGAMES1/PLAYGAME/
+(700,497)
+
+@@@
+
+n016=89,730
+n017=100209
+
+[s0065]
+n002=S_WAIT7
+n003=待つ
+n005=S_MSG1
+n020=0.5
+n008=@@@
+this.m_[[state]] = Date.now() + [[d]] * 1000;
+@@@
+
+n00d=Date.now() < this.m_[[state]]
+n015=@@@
+/PLAYGAMES1/PLAYGAME/
+(700,497)
+
+@@@
+
+n016=1112,737
+n017=100210
+
+[s0066]
+n002=S_SBS003
+n018=substart
+n005=S_GS1
+n015=@@@
+/PLAYGAMES1/PLAYGAME/
+(700,497)
+
+@@@
+
+n016=237,391
+n017=100211
+
+[s0067]
+n002=S_PLAY1
+n004=PlayControl.psgg
+n008=@@@
+G.qresult=null;
+G.pcon = new PlayControl();
+G.pcon.start();
+@@@
+
+n00b=G.pcon.update();
+n00d=@@@
+(G.pcon.is_end()==false) && (G.butevt==null)
+@@@
+
+n011=@@@
+brifc(S_WAIT7);
+brelseifc(S_RET004);
+brelse(S_RET004);
+@@@
+
+n012=@@@
+?
+?
+?
+@@@
+
+n013=@@@
+G.qresult=="ok"
+G.butevt!=null
+?
+@@@
+
+n015=@@@
+/PLAYGAMES1/PLAYGAME/
+(700,497)
+
+@@@
+
+n016=897,733
+n017=100212
+
+[s0068]
+n002=S_WAIT11
+n003=待つ
+n005=S_RET004
+n020=0.5
+n008=@@@
+this.m_[[state]] = Date.now() + [[d]] * 1000;
+@@@
+
+n00d=Date.now() < this.m_[[state]]
+n015=@@@
+/PLAYGAMES1/PLAYGAME/
+(700,497)
+
+@@@
+
+n016=1485,743
+n017=100213
+
+[s0069]
+n001=(bitmap)
+n002=S_CHECKRETRY1
+n005=S_RET003
+n008=@@@
+G.button = null;
+G.butevt = null;
+G.targetobj=null;
+@@@
+
+n014=nowait
+n015=@@@
+/PLAYGAMES1/
+(2927,846)
+
+@@@
+
+n016=715,282
+n017=100214
+
+[s006a]
+n002=S_RET004
+n018=subreturn
+n015=@@@
+/PLAYGAMES1/PLAYGAME/
+(700,497)
+
+@@@
+
+n016=1905,959
+n017=100215
+
+[s006b]
+n002=S_CLEAR3
+n005=S_CREATE_Q1
+n008=G.vclear();
+n015=@@@
+/PLAYGAMES1/PLAYGAME/
+(700,497)
+
+@@@
+
+n016=487,729
+n017=100216
+
+[s006c]
+n002=S_SBS004
+n018=substart
+n005=S_LOP002
+n015=@@@
+/PLAYGAMES1/
+(2927,846)
+
+@@@
+
+n016=334,287
+n017=100217
+
+[s006d]
+n001=(bitmap)
+n002=S_MSG1
+n005=S_WAIT11
+n008=@@@
+G.vprintx(2,4,"CLEAR!");
+G.qexp = null;
+G.qtip = null;
+@@@
+
+n015=@@@
+/PLAYGAMES1/PLAYGAME/
+(700,497)
+
+@@@
+
+n016=1288,744
+n017=100218
+
+[s006e]
+n002=S_WAIT8
+n003=待つ
+n005=S_CLEAR3
+n020=1
+n008=@@@
+this.m_[[state]] = Date.now() + [[d]] * 1000;
+@@@
+
+n00d=Date.now() < this.m_[[state]]
+n015=@@@
+/PLAYGAMES1/PLAYGAME/
+(700,497)
+
+@@@
+
+n016=287,727
+n017=100219
+
+[s006f]
+n002=S_GSB003
+n003=new state
+n011=@@@
+brifc(S_LV1);
+brelse(S_EXP);
+@@@
+
+n012=@@@
+?
+?
+@@@
+
+n013=@@@
+G.qresult=="ok"
+?
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=2909,720
+n017=100224
+
+[s0070]
+n002=S_WT2
+n005=S_LV0Q1
+n019=S_WT
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=635,695
+n017=100229
+
+[s0071]
+n002=S_WT3
+n005=S_LV1Q1
+n019=S_WT
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=597,1046
+n017=100234
+
+[s0072]
+n002=S_LV0Q8
+n003=
+n005=S_LV0Q9
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit=2;
+    G.vprintx(2,0,"   2   ");
+    G.vprintx(2,1,"   2   ");
+    G.vprintx(2,2,"   2   ");
+    G.vprintx(2,3,"222 222");
+    G.vprintx(2,4,"   2   ");
+    G.vprintx(2,5,"   2   ");
+    G.vprintx(2,6,"   2   ");
+    G.qtip = "間に2をおこう";
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=2280,667
+n017=100249
+
+[s0073]
+n002=S_LV0Q9
+n003=
+n005=S_GSB002
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    G.vprintx(0,0 ,"1    1    1");
+    G.vprintx(0,1 ," 1   1   1");
+    G.vprintx(0,2 ,"  1  1  1 ");
+    G.vprintx(0,3 ,"   1 1 1  ");
+    G.vprintx(0,4 ,"    111   ");
+    G.vprintx(0,5 ,"11111 11111");
+    G.vprintx(0,6 ,"    111   ");
+    G.vprintx(0,7 ,"   1 1 1  ");
+    G.vprintx(0,8 ,"  1  1  1 ");
+    G.vprintx(0,9 ," 1   1   1");
+    G.vprintx(0,10,"1    1    1");
+    G.qtip="中央に2をおこう";
+};
+G.qlist.push(f);
+
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=2495,624
+n017=100254
+
+[s0074]
+n002=S_LV0Q6
+n003=チュートリアル
+n005=S_LV0Q7
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    G.vprintd(2,8,"ur","444 222");
+    G.qtip = "間に4をおこう";
+};
+G.qlist.push(f);
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=1892,665
+n017=100239
+
+[s0075]
+n002=S_LV0Q7
+n003=チュートリアル
+n005=S_LV0Q8
+n008=@@@
+var _ = this;
+var f = function() {
+    G.qname = "[[state]]";
+    G.qlimit = 1;
+    G.vprintx(2,3," 2 ");
+    G.vprintx(2,4,"2 2");
+    G.vprintx(2,5," 2 ");
+    G.qtip = "間に2をおこう";
+};
+G.qlist.push(f);
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=2090,665
+n017=100244
+
+[s0076]
+n002=E_RND10
+n003=@@@
+乱数0～10
+int rnd010();
+@@@
+
+n006=@@@
+$statemachine$.prototype.rnd010 = function() {
+    var n = G.urand(10);
+    return n;
+}
+@@@
+
+n015=@@@
+/
+(100,100)
+This is the root
+@@@
+
+n016=787,30
+n017=100259
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/02/04 22:09:10
+; * pssgEditor version : 0.63.14249.1b109eb403177ee768a683796c40373701f66fbe
+psggfile=@@@
+BoardControl.psgg
+@@@
+xlsfile=@@@
+BoardControl.xlsx
+@@@
+guid=@@@
+826a5093-b3a7-4293-b1b3-861efc038d18
+@@@
+bitmap_width=5000
+bitmap_height=4000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+varied,Changed an arrow direction
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"This is the root"},{"Key":"\/MAKE_LINENMBERS\/","Value":"数字列が順に表示される\u000d\u000a"},{"Key":"\/gomi\/","Value":""},{"Key":"\/PLAYGAMES\/PLAYGAME\/","Value":""},{"Key":"\/PLAYGAMES\/","Value":""},{"Key":"\/PLAYGAMES1\/","Value":""},{"Key":"\/PLAYGAMES1\/PLAYGAME\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}},{"Key":"\/MAKE_LINENMBERS\/","Value":{"x":464,"y":212}},{"Key":"\/gomi\/","Value":{"x":1133,"y":15}},{"Key":"\/PLAYGAMES\/PLAYGAME\/","Value":{"x":672,"y":2596}},{"Key":"\/PLAYGAMES\/","Value":{"x":322,"y":2412}},{"Key":"\/PLAYGAMES1\/","Value":{"x":2927,"y":846}},{"Key":"\/PLAYGAMES1\/PLAYGAME\/","Value":{"x":700,"y":497}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":29,"y":32}},{"Key":"S_END","Value":{"x":1330,"y":1986}},{"Key":"S_INIT","Value":{"x":271,"y":217}},{"Key":"S_NEWSTATE","Value":{"x":79,"y":463}},{"Key":"S_WAIT","Value":{"x":272,"y":455}},{"Key":"S_WAIT3","Value":{"x":94,"y":293}},{"Key":"S_COUNTERUP","Value":{"x":462,"y":448}},{"Key":"S_CLEAR1","Value":{"x":678,"y":226}},{"Key":"S_WAIT6","Value":{"x":287,"y":727}},{"Key":"S_CLEAR2","Value":{"x":487,"y":729}},{"Key":"S_PLAY","Value":{"x":897,"y":733}},{"Key":"C_V_PRINTY","Value":{"x":551,"y":12}},{"Key":"C_V_PRINTX","Value":{"x":375,"y":10}},{"Key":"C_V_CLEAR","Value":{"x":765,"y":12}},{"Key":"S_instance","Value":{"x":84,"y":214}},{"Key":"C_U_RAND","Value":{"x":955,"y":17}},{"Key":"C_U_REP","Value":{"x":1133,"y":15}},{"Key":"S_GS","Value":{"x":89,"y":730}},{"Key":"E_RND19","Value":{"x":447,"y":30}},{"Key":"E_RND09","Value":{"x":612,"y":31}},{"Key":"S_WAIT5","Value":{"x":1112,"y":737}},{"Key":"S_MSG","Value":{"x":1288,"y":744}},{"Key":"S_CREATE_Q","Value":{"x":682,"y":732}},{"Key":"S_WAIT10","Value":{"x":1485,"y":743}},{"Key":"S_LV1Q1","Value":{"x":827,"y":1054}},{"Key":"S_LV1Q2","Value":{"x":1020,"y":1066}},{"Key":"S_LOP001","Value":{"x":449,"y":2383}},{"Key":"S_LV1Q3","Value":{"x":1220,"y":1067}},{"Key":"S_LV1Q4","Value":{"x":1429,"y":1069}},{"Key":"S_LV1Q5","Value":{"x":337,"y":1415}},{"Key":"S_LV1","Value":{"x":149,"y":1139}},{"Key":"S_LV1Q6","Value":{"x":572,"y":1401}},{"Key":"S_LV1Q7","Value":{"x":408,"y":1639}},{"Key":"S_LV1Q8","Value":{"x":639,"y":1640}},{"Key":"S_LV1Q9","Value":{"x":853,"y":1641}},{"Key":"S_LV1Q10","Value":{"x":1125,"y":1417}},{"Key":"S_LV1Q11","Value":{"x":1360,"y":1410}},{"Key":"S_LV1Q12","Value":{"x":835,"y":1393}},{"Key":"S_EXP","Value":{"x":70,"y":404}},{"Key":"S_CHECKRETRY","Value":{"x":689.75,"y":2381.25}},{"Key":"S_LV0Q1","Value":{"x":865,"y":683}},{"Key":"S_LV0Q2","Value":{"x":1273,"y":670}},{"Key":"S_LV0","Value":{"x":196,"y":699}},{"Key":"S_LV0Q3","Value":{"x":1475,"y":673}},{"Key":"S_LV0Q4","Value":{"x":1080,"y":670}},{"Key":"S_L0EXP","Value":{"x":417,"y":695}},{"Key":"S_WT","Value":{"x":889,"y":224}},{"Key":"S_WT1","Value":{"x":251,"y":409}},{"Key":"S_L0EXP1","Value":{"x":373,"y":1060}},{"Key":"S_LV0Q5","Value":{"x":1665,"y":674}},{"Key":"S_GSB001","Value":{"x":1142,"y":1677}},{"Key":"S_SBS002","Value":{"x":306,"y":2406}},{"Key":"S_RET002","Value":{"x":993.5,"y":2390.75}},{"Key":"S_GSB002","Value":{"x":2773,"y":709}},{"Key":"S_GSB003","Value":{"x":2909,"y":720}},{"Key":"S_WT2","Value":{"x":635,"y":695}},{"Key":"S_WT3","Value":{"x":597,"y":1046}},{"Key":"S_LV0Q6","Value":{"x":1892,"y":665}},{"Key":"S_LV0Q7","Value":{"x":2090,"y":665}},{"Key":"S_LV0Q8","Value":{"x":2280,"y":667}},{"Key":"S_LV0Q9","Value":{"x":2495,"y":624}},{"Key":"____altnative_state____MAKE_LINENMBERS","Value":{"x":464,"y":212}},{"Key":"____altnative_state____gomi","Value":{"x":1133,"y":15}},{"Key":"____altnative_state____PLAYGAMES","Value":{"x":1287,"y":1701}},{"Key":"____altnative_state____PLAYGAMES1","Value":{"x":2927,"y":846}},{"Key":"E_RND10","Value":{"x":787,"y":30}}]},{"Key":"\/MAKE_LINENMBERS\/","Value":[{"Key":"S_INIT","Value":{"x":50,"y":100}},{"Key":"S_NEWSTATE","Value":{"x":79,"y":463}},{"Key":"S_WAIT","Value":{"x":272,"y":455}},{"Key":"S_WAIT3","Value":{"x":94,"y":293}},{"Key":"S_COUNTERUP","Value":{"x":462,"y":448}},{"Key":"S_CLEAR1","Value":{"x":724,"y":448}}]},{"Key":"\/PLAYGAME\/","Value":[{"Key":"S_END","Value":{"x":1751.53845,"y":1001.53851}},{"Key":"S_GS","Value":{"x":89,"y":730}},{"Key":"S_WAIT6","Value":{"x":287,"y":727}},{"Key":"S_CLEAR2","Value":{"x":487,"y":729}},{"Key":"S_PLAY","Value":{"x":897,"y":733}},{"Key":"S_WAIT5","Value":{"x":1112,"y":737}},{"Key":"S_MSG","Value":{"x":1288,"y":744}},{"Key":"S_LV1Q1","Value":{"x":223.3846,"y":386.307678}},{"Key":"S_CREATE_Q","Value":{"x":682,"y":732}},{"Key":"S_WAIT10","Value":{"x":1485,"y":743}},{"Key":"S_SBS001","Value":{"x":177,"y":382}},{"Key":"S_RET001","Value":{"x":1905,"y":959}},{"Key":"S_LOP001","Value":{"x":420,"y":211}}]},{"Key":"\/PLAYGAMES1\/","Value":[{"Key":"S_GSB002","Value":{"x":50,"y":100}},{"Key":"S_RET003","Value":{"x":1019,"y":292}},{"Key":"S_LOP002","Value":{"x":474,"y":284}},{"Key":"S_CHECKRETRY1","Value":{"x":715,"y":282}},{"Key":"S_SBS004","Value":{"x":334,"y":287}}]},{"Key":"\/PLAYGAMES1\/PLAYGAME\/","Value":[{"Key":"S_CREATE_Q1","Value":{"x":682,"y":732}},{"Key":"S_LOP002","Value":{"x":36.17383,"y":349.3913}},{"Key":"S_GS1","Value":{"x":89,"y":730}},{"Key":"S_WAIT7","Value":{"x":1112,"y":737}},{"Key":"S_SBS003","Value":{"x":237,"y":391}},{"Key":"S_PLAY1","Value":{"x":897,"y":733}},{"Key":"S_WAIT11","Value":{"x":1485,"y":743}},{"Key":"S_RET004","Value":{"x":1905,"y":959}},{"Key":"S_CLEAR3","Value":{"x":487,"y":729}},{"Key":"S_MSG1","Value":{"x":1288,"y":744}},{"Key":"S_WAIT8","Value":{"x":287,"y":727}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor=@@@
+"%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\Code.exe" -g %1:%2
+@@@
+source_editor_vs2015_support=0
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=0
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=1
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"nowait","Value":{"height":401,"width":330}},{"Key":"init","Value":{"height":833,"width":839}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+BoardControl.prototype.[[state]] = function(first) {
+    this.goto(this.[[nextstate]]);
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^end$/
+BoardControl.prototype.[[state]] = function(first) {
+};
+eof>>>
+
+<<<?state-typ/^gosub$/
+BoardControl.prototype.[[state]] = function(first) {
+    this.gosubstate(this.[[gosubstate]],this.[[nextstate]]);
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^substart$/
+BoardControl.prototype.[[state]] = function(first) {
+    this.goto(this.[[nextstate]]);
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^subreturn$/
+BoardControl.prototype.[[state]] = function(first) {
+    this.returnstate();
+    this.setnowait();
+};
+eof>>>
+
+<<<?state-typ/^loop$/
+BoardControl.prototype.[[state]] = function(first) {
+    [[loop_init]]
+    this.goto(this.[[state]]_LoopCheckAndGosub____);
+    this.setnowait();
+};
+BoardControl.prototype.[[state]]_LoopCheckAndGosub____ = function(first) {
+    if ([[loop_cond]]) this.gosubstate(this.[[gosubstate]],this.[[state]]_LoopNext____);
+    else               this.goto(this.[[nextstate]]);
+    this.setnowait();
+};
+BoardControl.prototype.[[state]]_LoopNext____ = function(first) {
+    [[loop_next]]
+    this.goto(this.[[state]]_LoopCheckAndGosub____);
+    this.setnowait();
+};
+eof>>>
+
+BoardControl.prototype.[[state]] = function(first) {
+
+    [[vars]]
+
+    <<<?init
+    if (first)
+    {
+        [[init]]
+        [[init2]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) { return; }
+    >>>
+
+    [[post_wait]]
+
+    [[branch]]
+
+    <<<?nextstate
+    if (!this.hasnext()) {
+        this.goto(this.[[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    if (this.hasnext()) {
+        this.setnowait();
+    }
+    >>>
+};
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=BoardControl.psgg
+xls=BoardControl.xlsx
+sub_src=
+gen_src=BoardControl.js
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit2\javascript\helpweb.html
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+lang=javascript
+framework=html5
+
+statemachine=BoardControl
+
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\tentackt\public\js
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\tentackt\public\js
+@@@
+
+genrdir=.
+incrdir=.
+
+code_output_start=[STATEGO OUTPUT START]
+code_output_end=[STATEGO OUTPUT END]
+
+; This section has macro defines for converting.
+
+; commentline format  {%0} will be replaced to a comment.
+[macro]
+
+commentline=// {%0}
+
+@branch=@@@
+<<<?"{%0}"/^brifc{0,1}$/
+if ([[brcond:{%N}]]) { this.goto( this.{%1} ); }
+>>>
+<<<?"{%0}"/^brelseifc{0,1}$/
+else if ([[brcond:{%N}]]) { this.goto( this.{%1} ); }
+>>>
+<<<?"{%0}"/^brelse$/
+else { this.goto( this.{%1} ); }
+>>>
+<<<?"{%0}"/^br_/
+this.{%0}( this.{%1} );
+>>>
+@@@
+
+
+[jpn]
+
+title=Javascript スタートキット 2019/11/12
+
+detail=@@@
+※サンプルプロジェクトを次のＵＲＬより入手可能。
+https://github.com/NNNIC/psgg-javascript-sample
+
+Javascript用のステートマシンを作成します。
+
+# 以下のファイルを作成します。
+
+      BoardControl.pssg     --- StateGoデータファイル
+      BoardControl.js       --- 変換ソースコードを挿入。
+
+@@@
+
+
+[en]
+
+title=Javascript STARTER KIT 2019/11/12
+
+detail=@@@
+* You may get the sample project from the below url.
+https://github.com/NNNIC/psgg-javascript-sample
+
+# Files
+
+      BoardControl.pssg  --- StateGo Data File
+      BoardControl.js    -- The editor will convert from data file into this file.
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[gosubstate]
+
+en=Specify a state of starting subroutine.
+jpn=サブルーチンの開始ステートを指定
+[return]
+
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+jpn=サブルーチン処理を終了するときに指定する。"return"等を記述。
+[loop_next]
+
+en=loop  iterator advence.
+jpn=ループのイテレーターを更新
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[vars]
+
+en=Specify variable definitions.
+jpn=変数宣言を指定する。
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[embed]
+
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[loop_init]
+
+en=loop initialization
+jpn=ループ用初期化
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[loop_cond]
+
+en=loop condition
+jpn=ループ条件
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+state-typ=
+embed=
+init2=
+loop_cond=
+branch=
+post_wait-cmt=
+return=
+d=
+nextstate=
+nowait=@@@
+*select
+nowait
+@@@
+
+loop_init=
+thumbnail=
+update-cmt=
+gosubstate=
+state-cmt=
+!pos=
+!uuid=
+!dir=
+state=
+S_=
+wait-cmt=
+update=
+loop_next=
+init-cmt=
+basestate=
+d2=
+vars=
+loop=
+C_=
+brcond=
+E_=
+init-ref=
+post_wait=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,(S0)
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,(S0)
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+basestate=read_only,exclusion,(S0)
+state-typ=read_only,exclusion,(S0)
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+
