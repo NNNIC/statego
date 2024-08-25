@@ -1,0 +1,764 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=dispControl.xlsx
+guid=fd4570b6-c956-4392-9035-1b60681cd0aa
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n01a,n005,n006,n01b,,n008,,n01c,n01d,n01e,n007,,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,n015,n016,,n017,n018,n019,,,,
+stateid_list=,,,,,,,,,,,,,,,,,,,,,,,,,,s0015,s0016,s001e,s0018,s001a,s0019,s001b,s001c,s001d
+max_name_id=30
+max_state_id=30
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=branch
+n014=branch-cmt
+n015=brcond
+n016=nowait
+n017=!dir
+n018=!pos
+n019=!uuid
+n01a=state-typ
+n01b=gosubstate
+n01c=loop_init
+n01d=loop_cond
+n01e=loop_next
+
+
+[id_state_dic]
+s0015=S_START
+s0016=S_END
+s0018=S_READFILE
+s0019=S_READFILE1
+s001a=S_SET_FILE1
+s001b=S_READFILE3
+s001c=S_SET_FILE
+s001d=S_DRAW
+s001e=S_GET_FILE
+
+
+[s0015]
+n002=S_START
+n01a=start
+n006=S_GET_FILE
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=100,100
+n019=1
+
+[s0016]
+n002=S_END
+n01a=end
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=1171,113
+n019=2
+
+[s0018]
+n002=S_READFILE
+n006=S_READFILE1
+n00a=@@@
+$data = file_get_contents('http://localhost/mermaid/psgg2mermaid/conv.php');
+echo $data;
+@@@
+
+n017=@@@
+/
+(100,100)
+
+@@@
+
+n018=303,786
+n019=4
+
+[s0019]
+n002=S_READFILE1
+n006=S_END
+n00a=echo 'end<br>';
+n017=@@@
+/
+(100,100)
+
+@@@
+
+n018=909,579
+n019=5
+
+[s001a]
+n002=S_SET_FILE1
+n006=S_READFILE3
+n00a=@@@
+$this->file = 'https://raw.githubusercontent.com/NNNIC/psgg-ruby-sample/master/sample/TestControl.psgg';
+@@@
+
+n017=@@@
+/
+(100,100)
+
+@@@
+
+n018=91,363
+n019=6
+
+[s001b]
+n002=S_READFILE3
+n006=S_DRAW
+n00a=@@@
+$this->data = file_get_contents('http://statego.programanic.com/mermaid/psgg2mermaid/conv.php?file=' . $this->file );
+
+@@@
+
+n017=@@@
+/
+(100,100)
+
+@@@
+
+n018=288,363
+n019=7
+
+[s001c]
+n002=S_SET_FILE
+n006=S_READFILE3
+n00a=@@@
+$this->file = 'https://raw.githubusercontent.com/NNNIC/psgg-haxe-sample/master/src/TestControl.psgg';
+@@@
+
+n017=@@@
+/
+(100,100)
+
+@@@
+
+n018=79,583
+n019=8
+
+[s001d]
+n002=S_DRAW
+n006=S_END
+n00a=@@@
+$text = $this->data;
+
+$array = explode("\n", $text); // とりあえず行に分割
+//$array = array_map('trim', $array); // 各行にtrim()をかける
+$array = array_filter($array, 'strlen'); // 文字数が0の行を取り除く
+$array = array_values($array); // これはキーを連番に振りなおしてるだけ
+
+
+echo '<div class="mermaid">' . "\n";
+
+foreach($array as $i)
+{
+    echo $i . "\n";
+}
+
+echo '</div><br>';
+
+@@@
+
+n017=@@@
+/
+(100,100)
+
+@@@
+
+n018=495,363
+n019=9
+
+[s001e]
+n002=S_GET_FILE
+n00a=$this->file = $_GET['file'];
+n013=@@@
+brifc(S_SET_FILE1);
+brelse(S_READFILE3);
+@@@
+
+n014=@@@
+?
+?
+@@@
+
+n015=@@@
+empty($this->file)
+?
+@@@
+
+n017=@@@
+/
+(100,100)
+
+@@@
+
+n018=240,117
+n019=10
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/09/06 16:19:17
+; * pssgEditor version : 0.66.35071.d1b60a5f064a0e0be96499691a297807440eb1c5
+psggfile=@@@
+dispControl.psgg
+@@@
+xlsfile=@@@
+dispControl.xlsx
+@@@
+guid=@@@
+fd4570b6-c956-4392-9035-1b60681cd0aa
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+varied,Edited a state.
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"The root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":100,"y":100}},{"Key":"S_END","Value":{"x":1171,"y":113}},{"Key":"S_READFILE","Value":{"x":303,"y":786}},{"Key":"S_READFILE1","Value":{"x":909,"y":579}},{"Key":"S_READFILE3","Value":{"x":288,"y":363}},{"Key":"S_SET_FILE","Value":{"x":79,"y":583}},{"Key":"S_SET_FILE1","Value":{"x":91,"y":363}},{"Key":"S_DRAW","Value":{"x":495,"y":363}},{"Key":"S_SET_FILE2","Value":{"x":240,"y":117}},{"Key":"S_GET_FILE","Value":{"x":240,"y":117}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"init","Value":{"height":588,"width":1149}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+function [[state]]($bFirst)
+{
+    $this->GotoState('[[nextstate]]');
+    $this->NoWait();
+}
+eof>>>
+
+<<<?state-typ/^end$/
+function [[state]]($bFirst)
+{
+}
+eof>>>
+
+<<<?state-typ/^gosub$/
+function [[state]]($bFirst)
+{
+    $this->GoSubState('[[gosubstate]]','[[nextstate]]');
+    $this->NoWait();
+}
+eof>>>
+
+<<<?state-typ/^subreturn$/
+function [[state]]($bFirst)
+{
+    $this->ReturnState();
+    $this->NoWait();
+}
+eof>>>
+
+<<<?state-typ/^loop$/
+[[members]]
+function [[state]]($bFirst)
+{
+    [[loop_init]]
+    $this->GotoState('[[state]]_LoopCheckAndGosub____');
+    $this->NoWait();
+}
+function [[state]]_LoopCheckAndGosub____($bFirst)
+{
+    if ([[loop_cond]]) $this->GoSubState('[[gosubstate]]','[[state]]_LoopNext____');
+    else               $this->GotoState('[[nextstate]]');
+    $this->NoWait();
+}
+function [[state]]_LoopNext____($bFirst)
+{
+    [[loop_next]]
+    $this->GotoState('[[state]]_LoopCheckAndGosub____');
+    $this->NoWait();
+}
+eof>>>
+
+
+[[members]]
+function [[state]]($bFirst) {
+
+    [[vars]]
+
+    <<<?init
+    if ($bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    [[branch]]
+
+    <<<?nextstate
+    if ($this->HasNextState()==FALSE)
+    {
+        $this->GotoState('[[nextstate]]');
+    }
+    >>>
+
+    <<<?nowait
+    if ($this->HasNextState())
+    {
+        $this->NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=dispControl.psgg
+xls=dispControl.xlsx
+sub_src=
+gen_src=dispControl.php
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=@@@
+psgg-starter-kit\starterkit2\php\helpweb.html
+@@@
+
+
+
+kitpath=psgg-starter-kit\starterkit2\php
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 6f960da6977b5b83a9073c66b2bb55ac48f80cc6
+@@@
+
+
+
+lang=php
+framework=
+
+statemachine=dispControl
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-publish\html\m3\public\mermaid
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-publish\html\m3\public\mermaid
+@@@
+
+genrdir=.
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+
+[jpn]
+
+title=PHP スタートキット 2018/12/9a
+
+detail=@@@
+PHP 用のステートマシンを作成します。
+
+※サンプルプロジェクトを次のＵＲＬより入手可能。
+https://github.com/NNNIC/psgg-php-sample
+
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      G:\Program Files\Xampp\htdocs\php_test
+
+  以下のファイルを作成します。
+
+      dispControl.pssg   --- エディタで次のエクセルファイルを開く。
+      dispControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      G:\Program Files\Xampp\htdocs\php_test
+
+  以下のファイルが作成されます。
+
+      dispControl.php  --- Excelファイルからの変換ソースを挿入。
+
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+
+[en]
+
+title=PHP STARTER KIT 2018/12/9a
+
+detail=@@@
+This dialog will create files for a state machine.
+
+* You may get the sample project from the below url.
+https://github.com/NNNIC/psgg-php-sample
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      G:\Program Files\Xampp\htdocs\php_test
+
+  File:
+
+      dispControl.pssg  --- The editor opens the below excel file.
+      dispControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      G:\Program Files\Xampp\htdocs\php_test
+
+　File:
+      dispControl.php   -- the editor will convert from the excel file into this file.
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[basestate]
+jpn=@@@
+継承先を指定する。
+@@@
+en=@@@
+Specify the inheritance destination.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+wait-cmt=
+embed=
+gosubstate=
+loop_cond=
+branch=
+!dir=
+post_wait-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+members=
+thumbnail=
+update-cmt=
+post_wait=
+state-cmt=
+state-typ=
+!pos=
+!uuid=
+nextstate=
+state=
+S_=
+brcond=
+update=
+init-cmt=
+basestate=
+loop_next=
+vars=
+C_=
+E_=
+init-ref=
+loop_init=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+state-typ=read_only,exclusion,(S0)
+embed=read_only,exclusion,S1
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+basestate=read_only,share,S.+
+brcond=read_only,exclusion,S0
+thumbnail=read_only,share,S.+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+
