@@ -2,7 +2,7 @@
 
 # Deep wiki 
 
-https://deepwiki.com/NNNIC/statego/3-development-guide
+https://deepwiki.com/NNNIC/statego/1-overview
 
 # StateGo 
 
