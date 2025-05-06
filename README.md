@@ -1,4 +1,8 @@
-<img src=https://statego.programanic.com/img/header.jpg width=700px />
+<!-- img src=https://statego.programanic.com/img/header.jpg width=700px -->
+
+# Deep wiki 
+
+https://deepwiki.com/NNNIC/statego/3-development-guide
 
 # StateGo 
 
