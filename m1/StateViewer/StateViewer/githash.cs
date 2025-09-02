@@ -1,1 +1,1 @@
-public class githash { public readonly string hash="b6374744957205afe5ec793648f2597ffa833c76"; } 
+public class githash { public readonly string hash="82deb3dab4ae0e5f06db69a9b8b230e3399528c1"; } 
