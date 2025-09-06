@@ -1,21 +1,23 @@
 ﻿//<<<include=using.txt
 using System;
-using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using DS=stateview.DesignSpec;
+using DStateData=stateview.Draw.DrawStateData;
+using EFU=stateview._5300_EditForm.EditFormUtil;
 //using Excel = Microsoft.Office.Interop.Excel;
 //using Office = Microsoft.Office.Core;
 using G=stateview.Globals;
-using DStateData=stateview.Draw.DrawStateData;
-using EFU=stateview._5300_EditForm.EditFormUtil;
 using SS=stateview.StateStyle;
-using DS=stateview.DesignSpec;
 //>>>
 
 namespace stateview._5300_EditForm
@@ -97,16 +99,17 @@ namespace stateview._5300_EditForm
             try {
                 if (m_changebmp != null)
                 {
-                    pictureBox1.Image  = m_changebmp;
-                    pictureBox1.Width  = m_changebmp.Width;
-                    pictureBox1.Height = m_changebmp.Height;
+                    pictureBox1.Image = m_changebmp;
+                    //pictureBox1.Width = m_changebmp.Width;
+                    //pictureBox1.Height = m_changebmp.Height;
                 }
                 else
                 {
-                    pictureBox1.Image  = m_bmp;
-                    pictureBox1.Width  = m_bmp.Width;
-                    pictureBox1.Height = m_bmp.Height;
+                    pictureBox1.Image = m_bmp;
+                    //pictureBox1.Width = m_bmp.Width;
+                    //pictureBox1.Height = m_bmp.Height;
                 }
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBox1.Refresh();
                 pictureBox1.Show();
                 m_del = null;
@@ -214,6 +217,7 @@ namespace stateview._5300_EditForm
                     {
                         g.DrawImage(bmp,0,0,m_changebmp.Width,m_changebmp.Height);
                     }
+                    try { bmp.Dispose(); } catch { }
                     draw();
                 }
             }
@@ -229,6 +233,138 @@ namespace stateview._5300_EditForm
             {
                 m_del = true;
                 pictureBox1.Hide();
+            }
+        }
+
+        private void ai_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var winpython = Path.Combine( Path.GetDirectoryName(Application.ExecutablePath),"winPython");
+                var pythonexe = Path.Combine( winpython, "python", "python.exe");
+                var script = Path.Combine( winpython,"gemini_image_sys.py" );
+                var state = G.multiedit_control.m_state;
+
+                Converter.Prepare();
+                var code = Converter.GetFuncSrc(state);
+
+                var picpath = Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "StateGo");
+                if (!Directory.Exists(picpath))
+                {
+                    Directory.CreateDirectory(picpath);
+                }
+
+                //picpathの中で、 ファイル名を "{state}.png" とする。存在する場合は連番を付与する。
+                var filename = state;
+                var filepath = Path.Combine(picpath, filename + ".png");
+                if (File.Exists(filepath))
+                {
+                    var cnt = 1;
+                    while (File.Exists(filepath))
+                    {
+                        filename = $"{state}_{cnt}.png";
+                        filepath = Path.Combine(picpath, filename + ".png");
+                        cnt++;
+                    }
+                }
+
+                //var prompt = "Create an image based on the following source code, letting your imagination run wild::\n" + code;
+                var prompt = "source code:\n" + code;
+                prompt = EscapeCommandLineArgument(prompt);
+
+                var tempfile = Path.Combine(Path.GetTempPath(), "statego_aiimage.png");
+                if (File.Exists(tempfile))
+                {
+                    File.Delete(tempfile);
+                }
+
+                var start = new ProcessStartInfo();
+                start.FileName = pythonexe;
+                start.Arguments = string.Format("\"{0}\" -p {1} -o {2} ", script, prompt, tempfile);
+                start.UseShellExecute = false;
+                start.RedirectStandardOutput = true;
+                start.RedirectStandardError = true;
+                start.CreateNoWindow = true;
+
+                start.StandardOutputEncoding = System.Text.Encoding.UTF8; // ① 標準出力のエンコーディングをUTF-8に設定
+                start.StandardErrorEncoding = System.Text.Encoding.UTF8; // ② 標準エラー出力のエンコーディングをUTF-8に設定
+                start.CreateNoWindow = true;
+
+                start.EnvironmentVariables["PYTHONIOENCODING"] = "UTF-8";
+
+
+                var result = "";
+                var error = "";
+                using (var process = Process.Start(start))
+                {
+                    result = process.StandardOutput.ReadToEnd();
+                    error = process.StandardError.ReadToEnd();
+                    process.WaitForExit();
+                }
+                if (!string.IsNullOrEmpty(result)) textBox1.Text = result + "\n\n";
+                textBox1.Text += error;
+
+                if (File.Exists(tempfile))
+                {
+                    File.Copy(tempfile, filepath, true);
+                    //表示内に収める
+                    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                    var bmp = (Bitmap)Image.FromFile(filepath);
+                    if (m_changebmp != null)
+                    {
+                        m_changebmp.Dispose();
+                        m_changebmp = null;
+                    }
+                    int w, h;
+                    calc(bmp.Width, bmp.Height, out w, out h);
+                    m_changebmp = new Bitmap(w, h);
+                    using (var g = Graphics.FromImage(m_changebmp))
+                    {
+                        g.DrawImage(bmp, 0, 0, m_changebmp.Width, m_changebmp.Height);
+                    }
+                    try { bmp.Dispose(); } catch { }
+                    draw();
+                }
+                else
+                {
+                    textBox1.Text += "\n\n" + "Image file not found: " + filepath;
+                }
+            }
+            catch (SystemException ex)
+            {
+                textBox1.Text += "\n" + "Faild to create AI image. \n" + ex.Message;
+            }
+        }
+        private static string EscapeCommandLineArgument(string arg)
+        {
+            if (string.IsNullOrEmpty(arg)) return "\"\"";
+            // ダブルクォートをエスケープ
+            arg = arg.Replace("\\", "\\\\").Replace("\"", "`");
+            return $"\"{arg}\"";
+        }
+
+        private void copy_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // m_changebmp があればそれを、なければ m_bmp をコピー
+                if (m_changebmp != null)
+                {
+                    Clipboard.SetImage(m_changebmp);
+                }
+                else if (m_bmp != null)
+                {
+                    Clipboard.SetImage(m_bmp);
+                    MessageBox.Show("Copied to clipboard", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No image", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

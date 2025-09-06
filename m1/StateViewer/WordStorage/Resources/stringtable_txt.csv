@@ -553,6 +553,7 @@ efbmp_title,Edit Thumbnail,Edit Thumbnail(サムネイル編集)
 efbmp_load,LOAD,ロード
 efbmp_paste,PASTE,ペースト
 efbmp_delete,DELETE,削除
+efbmp_copy,COPY,コピー
 ,,
 cnff_title,Change Work Space,Change Work Space(作業スペース変更)
 cnff_bmsize,Work Space Size,作業スペースサイズ

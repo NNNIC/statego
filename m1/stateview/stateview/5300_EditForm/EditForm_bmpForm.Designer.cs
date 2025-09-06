@@ -36,20 +36,27 @@
             this.paste_button = new System.Windows.Forms.Button();
             this.delete_button = new System.Windows.Forms.Button();
             this.ai_button = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.copy_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Location = new System.Drawing.Point(25, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(402, 220);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // ok_button
             // 
-            this.ok_button.Location = new System.Drawing.Point(197, 13);
+            this.ok_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ok_button.Location = new System.Drawing.Point(466, 13);
             this.ok_button.Name = "ok_button";
             this.ok_button.Size = new System.Drawing.Size(75, 23);
             this.ok_button.TabIndex = 1;
@@ -59,7 +66,8 @@
             // 
             // cancel_button
             // 
-            this.cancel_button.Location = new System.Drawing.Point(197, 125);
+            this.cancel_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancel_button.Location = new System.Drawing.Point(466, 156);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 2;
@@ -69,7 +77,8 @@
             // 
             // load_button
             // 
-            this.load_button.Location = new System.Drawing.Point(197, 41);
+            this.load_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.load_button.Location = new System.Drawing.Point(466, 41);
             this.load_button.Name = "load_button";
             this.load_button.Size = new System.Drawing.Size(75, 23);
             this.load_button.TabIndex = 3;
@@ -84,7 +93,8 @@
             // 
             // paste_button
             // 
-            this.paste_button.Location = new System.Drawing.Point(197, 69);
+            this.paste_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.paste_button.Location = new System.Drawing.Point(466, 69);
             this.paste_button.Name = "paste_button";
             this.paste_button.Size = new System.Drawing.Size(75, 23);
             this.paste_button.TabIndex = 4;
@@ -95,7 +105,8 @@
             // 
             // delete_button
             // 
-            this.delete_button.Location = new System.Drawing.Point(197, 97);
+            this.delete_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.delete_button.Location = new System.Drawing.Point(466, 128);
             this.delete_button.Name = "delete_button";
             this.delete_button.Size = new System.Drawing.Size(75, 23);
             this.delete_button.TabIndex = 5;
@@ -106,18 +117,44 @@
             // 
             // ai_button
             // 
-            this.ai_button.Location = new System.Drawing.Point(197, 175);
+            this.ai_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ai_button.Location = new System.Drawing.Point(466, 254);
             this.ai_button.Name = "ai_button";
             this.ai_button.Size = new System.Drawing.Size(75, 57);
             this.ai_button.TabIndex = 6;
             this.ai_button.Text = "Image generation AI";
             this.ai_button.UseVisualStyleBackColor = true;
+            this.ai_button.Click += new System.EventHandler(this.ai_button_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(25, 254);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(402, 218);
+            this.textBox1.TabIndex = 7;
+            // 
+            // copy_button
+            // 
+            this.copy_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.copy_button.Location = new System.Drawing.Point(466, 98);
+            this.copy_button.Name = "copy_button";
+            this.copy_button.Size = new System.Drawing.Size(75, 23);
+            this.copy_button.TabIndex = 8;
+            this.copy_button.Tag = "efbmp_copy";
+            this.copy_button.Text = "COPY";
+            this.copy_button.UseVisualStyleBackColor = true;
+            this.copy_button.Click += new System.EventHandler(this.copy_button_Click);
             // 
             // EditForm_bmpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(555, 484);
+            this.Controls.Add(this.copy_button);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ai_button);
             this.Controls.Add(this.delete_button);
             this.Controls.Add(this.paste_button);
@@ -132,6 +169,7 @@
             this.Load += new System.EventHandler(this.EditForm_bmpForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -145,5 +183,7 @@
         private System.Windows.Forms.Button paste_button;
         private System.Windows.Forms.Button delete_button;
         private System.Windows.Forms.Button ai_button;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button copy_button;
     }
 }

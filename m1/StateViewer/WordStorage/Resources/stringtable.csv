@@ -93,7 +93,11 @@ mhp_ref,Reference,リファレンス
 mhp_contact,Contact,コンタクト
 mhp_hp,Homepage,ホームページ
 mhp_about,About,情報
-,,
+menu_output,Output,アウトプット
+menu_flowchart,Flow Chart,フローチャート
+menu_setdonoteditmark,Set do-not-edit mark,編集禁止マーク挿入
+menu_donoteditmark-on,ON,ON
+menu_donoteditmark-off,OFF,OFF
 ,,
 ,,
 ,,
@@ -135,7 +139,7 @@ sm_delete,Delete,削除
 sm_moveto,Change group,グループ変更
 sm_copyto,Copy to clipboard(Ctrl+C),コピー(Ctrl+C)
 sm_link,Jump to link,リンクへジャンプ
-sm_open_src,Open source(Ctrl+J),ソースへ(ctrl+J)
+sm_open_src,Open source(Ctrl+J),ソースへ(Ctrl+J)
 sm_view_exstate,View this state's group,このステートのグループへ
 sm_change,Change category,種別変更
 sm_cstate,To State,ステート
@@ -158,7 +162,7 @@ sm_fgosub,Go Sub,Go Sub
 sm_remcmt,Remove comment,コメント消去
 gf_makegroup,Make group,グループ作成
 gf_delete,Delete,削除
-gf_copyto,Copy to clipboard(Ctrl+C),コピー(ctrl+C)
+gf_copyto,Copy to clipboard(Ctrl+C),コピー(Ctrl+C)
 gf_align_h,Align horizontally,水平に揃える
 gf_align_v,Align vertically,垂直に揃える
 gf_co,Comment out,コメントアウト
@@ -207,6 +211,7 @@ iom_insert,Insert New State,新規ステート挿入
 iom_clear,Clear Outflow,流出先削除
 ,,
 wdg_alredyopend,Specified file has been opened already. This tool will be closed.,指定ファイルは既に開かれています。ツールを終了します。
+wdg_alredyopend_exit,Specified file has been opened already. This tool will be closed.,指定ファイルは既に開かれています。ツールを終了します。
 ,,
 options_wo_confirm,without confirmation,変換の前に確認しない
 options_w_confirm,with confirmation,変換の前に確認する
@@ -226,6 +231,10 @@ options_forceclose_ifviewchangeonly_yes,No confirmation if viewing group changes
 options_forceclose_ifviewchangeonly_no,Need to confirm if viewing group changes on exit.,終了時、閲覧グループの変更で確認を求める
 options_setdefault_comment_yes,Add a specific comment when creating a state. ,ステート生成時にコメントを追加する
 options_setdefault_comment_no,Do not add a comment when creating a state.,ステート生成時にコメントを追加しない
+options_jump_if_statego_exist_yes,Open existing StateGo without notice.,既存StateGoへ自動遷移する
+options_jump_if_statego_exist_no,Open existing StateGo with notice.,既存StateGoへ自動遷移しない
+options_lexical_color_on,Lexical color enabled.,字句解析による色指定有効
+options_lexical_color_off,Lexical color disabled.,字句解析による色指定無効
 ,,
 cmrb_sym,Symbol,記号
 cmrb_gothic,Gothic,ゴシック
@@ -244,6 +253,11 @@ sysm_end,T,尾
 sysm_copyfilename,Copy Filename,ファイル名コピー
 sysm_winlist,Window Select,ウインドウ選択
 sysm_setstkp,Set Starter Kit Path,スタートキットパス設定
+sysm_scramble,Scramble Text,スクランブル化
+sysm_scramble_none,None,なし
+sysm_scramble_1,Pattern 1,パターン１
+sysm_scramble_2,Pattern 2,パターン２
+sysm_scramble_3,Pattern 3,パターン３
 ,,
 ,,
 inout_ctrl_copy,*Ctrl+Click to copy its name.,※Ctrl+クリックでステート名コピー
@@ -262,6 +276,7 @@ ccf_desc,1. Manager file will not be copied.\n2. If statemachine name is used at
 cfc_filecreated,The below files will be created.,以下のファイルを生成します。
 ccf_done,Created clone files.,クローン生成が成功しました。
 ccf_errore,Cloning files exist or state machine name is not valid. The clone process was terminated.,クローンファイルが既に存在します。または、ステートマシン名が正しくありません。処理を停止しました。
+ccf_copy_above,※ COPY ABOVE,※上からコピー
 ,,
 w_nodatawasfoundsaveini,No data was found at save ini.,save iniにデータが見つかりませんでした。
 w_configsavedatacannotbreadfromtp,Config Save Data cannot be read from tempfile.,設定保存データを一時ファイルから読み取ることができません。
@@ -343,9 +358,9 @@ eftf_row,Row,行
 eftf_desc,Description,説明
 eftf_name,Name,アイテム名
 eftf_value,VALUE,値
-eftf_opt,Minimum,最小表示
-eftf_optmid,Intermediate,中間表示
-eftf_full,Overall,全体表示
+eftf_opt,Auto,自動抽出
+eftf_optmid,Related,関連含め
+eftf_full,Disp All,全部表示
 eftf_expon,Show/Hide desc,説明ON/OFF
 eftf_expoff,Show/Hide desc,説明ON/OFF
 eftf_clrcmt,Clear\nState\nComment,ステート\nコメント\n削除
@@ -355,13 +370,14 @@ edtf_comment,Comment,コメント
 edtf_help,Help,ヘルプ
 edtf_ref,Ref.,参照
 edtf_open,Open,開く
-edtf_stateexpand,expand/revert [[state]],[[state]を展開/戻す
+edtf_stateexpand,expand/revert [[state]],[[state]]を展開/戻す
+eftf_ditms,Disp Items,アイテム表示
 ,,
 eftfcpo_apply,Apply,採用
 eftfcpo_reject,Reject,拒否
 eftfcpo_convert,Revert to\n[[state]],[[state]]\nに戻す
 ,,
-ueec_desc,"You may edit the item's text using external editor. \n 1. Modify between item edit start and end mark.\n　(psgg-itemedit-start and psgg-itemedit-end)  \n2. Save.\n3. Back to this tool to proceed.\nNote: Depending on the editor, the edited part may not be displayed. In this case, please try again.",外部ソースエディタを使ってアイテムのテキストを編集します。\n１．アイテム編集用の開始マークと終了マークの間を編集します。\n　(psgg-itemedit-start と psgg-itemedit-end)\n２．セーブする。\n３．ツールに戻り進める。\n※エディタにより編集箇所が表示されない場合があります。その場合は、再度行うことで正しく表示される場合があります。
+ueec_desc,You may edit the item's text using external editor. \n 1. Modify between item edit start and end mark.\n　(psgg-itemedit-start and psgg-itemedit-end)  \n2. Save.\n3. Back to this tool to proceed.\nNote: Depending on the editor\x2c the edited part may not be displayed. In this case\x2c please try again.,外部ソースエディタを使ってアイテムのテキストを編集します。\n１．アイテム編集用の開始マークと終了マークの間を編集します。\n　(psgg-itemedit-start と psgg-itemedit-end)\n２．セーブする。\n３．ツールに戻り進める。\n※エディタにより編集箇所が表示されない場合があります。その場合は、再度行うことで正しく表示される場合があります。
 ueec_aftermodifed,【Please answer the question after you finished its modification】\nDo you pick up this modification?,【編集後に本ダイアログの次の質問に答えてください】\n変更部分を取り出しますか？
 ueec_donotdelete_begin, MODIFY BELOW  ↓↓↓↓    DO*NOT*DELETE*THIS*LINE,この下を変更してください　↓↓↓↓　　  本*行*削*除*禁*止
 ueec_donotdelete_end, MODIFY ABOVE  ↑↑↑↑　 DO*NOT*DELETE*THIS*LINE,この上を変更してください　↑↑↑↑　　  本*行*削*除*禁*止
@@ -467,6 +483,7 @@ optionform_desc,Current status  note:change to click.,現在の状況 ※クリ�
 ,,
 oec_ask,The following solution file wiil be used.  When canceling\x2c open without the solution file.,以下のソリューションファイルを使用します。よろしいでしょうか？キャンセル時はソリューションファイルを指定せずに開きます。
 oec_cfm,Confirmation,確認
+oec_ooc,Open the editor from Unity( CANCEL). Or force to open(OK)?,Unity Editorよりソースエディタを起動してください(CANCEL)。それとも、強制的に起動しますか?(OK)
 ,,
 setlf_disc,Chang and save the language name and the framework name.\nSource editor command is recorded using the language name and framework name as a key.,言語名とフレームワーク名を変更し保存します。\n\nソースエディタのコマンドは言語とフレームワーク名をキーにしてPC毎に記録されます。
 setlf_lang,Language,言語
@@ -483,6 +500,8 @@ ssed_cand,Editor candidates,エディタ候補
 ssed_input,Input,入力
 ssed_hist,History,履歴
 ssed_readonly,Saving has been canceled because StateGo Data File is readonly.,セーブ先のStateGoデータファイルがリードオンリーです。
+ssed_usebatch,Force to use batch to open editor,エディタ起動時にバッチを強制使用
+ssed_usecmn,Use this editor for all languages,全言語で同一のエディターを使用
 ,,
 anaonoff_syssm,Analytics ON/OFF,アナリティクス ON/OFF
 anaonoff_desc,For future improvements\x2c Google Analytics are used for collecting usage time using. \n\nPlease set to OFF if you do not wish.,今後の改善のため、Google Analyticsによる利用時間の収集を行っています。\n\nご希望でない方はOFFに設定してください。
@@ -534,6 +553,7 @@ efbmp_title,Edit Thumbnail,Edit Thumbnail(サムネイル編集)
 efbmp_load,LOAD,ロード
 efbmp_paste,PASTE,ペースト
 efbmp_delete,DELETE,削除
+efbmp_copy,COPY,コピー
 ,,
 cnff_title,Change Work Space,Change Work Space(作業スペース変更)
 cnff_bmsize,Work Space Size,作業スペースサイズ
@@ -616,5 +636,9 @@ cc_confirm,Confirm,確認
 cc_deleteall,All items will be deleted.,全てのアイテムを削除します。
 cc_allmove,All items will move to the trash page.,全てのアイテムをゴミ箱に移動します。
 ccwps,Preset,プリセット
+ccpresetdesc,Only the preset of the starter kit is being displayed.\nIf you want to edit it\x2c please create a CC work folder from Tools.,スタートキットのプリセットのみを表示中です。\n編集したい場合は、ツールよりCCワークフォルダを作成してください。
 ,,
 setstartkitpath,"Specify the starter kit path.\n\n""Help panel"" and ""Copy Collection"" will be affected after reboot.",スタートキットのルートパスを設定します。\n\n再起動後に、ヘルプパネルとコピーコレクションに影響します。
+,,
+output_flowchart_html_msg,Convering to a flow chart using mermaid.\n[Procedures]\n1. Specift output html file\n2. Brawse it.,mermaidを利用してフローチャートへ変換します。\n【次のステップを実行します】\n１．出力ファイル(html)を指定\n２．ブラウザで開く
+output_flowchart_html_warning,Save  or discard changed data before output the flow chart.,変更したデータを保存するか、破棄した後に実行してください。
