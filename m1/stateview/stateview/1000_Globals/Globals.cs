@@ -1094,13 +1094,14 @@ namespace stateview
         #region Embeded Browser Setting
         internal static bool   web_js_disable = false;
 
-        internal static string web_base      = "https://statego.programanic.com/";
+        internal static string web_base      = "https://nnnic.github.io/";
 
         internal static string web_info_js {
             get
             {
-                var url = string.Format("https://statego.programanic.com/add/{0}/", "r0.x"/*milestone*/);
-                return (system_lang == "jpn") ? url + "index-off-j.html" : url + "index-off-e.html";
+                //var url = string.Format("https://nnnic.github.io/add/{0}/", "r0.x"/*milestone*/);
+                //return (system_lang == "jpn") ? url + "index-off-j.html" : url + "index-off-e.html";
+                return "https://nnnic.github.io/lang-e/index.html";
             }
         }
         

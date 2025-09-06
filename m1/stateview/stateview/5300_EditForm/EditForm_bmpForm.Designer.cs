@@ -35,6 +35,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.paste_button = new System.Windows.Forms.Button();
             this.delete_button = new System.Windows.Forms.Button();
+            this.ai_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,11 +104,21 @@
             this.delete_button.UseVisualStyleBackColor = true;
             this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
             // 
+            // ai_button
+            // 
+            this.ai_button.Location = new System.Drawing.Point(197, 175);
+            this.ai_button.Name = "ai_button";
+            this.ai_button.Size = new System.Drawing.Size(75, 57);
+            this.ai_button.TabIndex = 6;
+            this.ai_button.Text = "Image generation AI";
+            this.ai_button.UseVisualStyleBackColor = true;
+            // 
             // EditForm_bmpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.ai_button);
             this.Controls.Add(this.delete_button);
             this.Controls.Add(this.paste_button);
             this.Controls.Add(this.load_button);
@@ -133,5 +144,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button paste_button;
         private System.Windows.Forms.Button delete_button;
+        private System.Windows.Forms.Button ai_button;
     }
 }

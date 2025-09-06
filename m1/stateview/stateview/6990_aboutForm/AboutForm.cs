@@ -29,7 +29,7 @@ namespace stateview._6990_aboutForm
 
         private void linkLabel1_LinkClicked(object sender,LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://statego.programanic.com");
+            System.Diagnostics.Process.Start("https://nnnic.github.io");
         }
 
         private void button1_Click(object sender,EventArgs e)
@@ -79,7 +79,7 @@ namespace stateview._6990_aboutForm
 
         private void linkLabel_privacypolicy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://statego.programanic.com/exepolicy/exepolicy.htm");
+            System.Diagnostics.Process.Start("https://nnnic.github.io/exepolicy/exepolicy.htm");
         }
 
         private void linkLabel_oss_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

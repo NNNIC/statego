@@ -85,7 +85,7 @@
             this.linkLabel1.Size = new System.Drawing.Size(170, 12);
             this.linkLabel1.TabIndex = 1;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://statego.programanic.com";
+            this.linkLabel1.Text = "https://nnnic.github.io";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label2

@@ -3464,11 +3464,11 @@ namespace stateview._5000_MainForm
         {
             if (G.system_lang=="jpn")
             {
-                ExecUtil.execute_start("https://statego.programanic.com/lang-j/index.html","");
+                ExecUtil.execute_start("https://nnnic.github.io/lang-j/index.html", "");
             }
             else
             {
-                ExecUtil.execute_start("https://statego.programanic.com/lang-e/index.html","");
+                ExecUtil.execute_start("https://nnnic.github.io/lang-e/index.html", "");
             }
         }
 

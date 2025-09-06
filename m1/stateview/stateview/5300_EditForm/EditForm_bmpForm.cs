@@ -159,6 +159,18 @@ namespace stateview._5300_EditForm
         private void load_button_Click(object sender,EventArgs e)
         {
             openFileDialog1.Filter = @"Image files|*.bmp;*.png;*.gif;*.jpg";
+
+            var picpath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            var path = Path.Combine(picpath, "StateGo");
+            if (Directory.Exists(path))
+            {
+                openFileDialog1.InitialDirectory = path;
+            }
+            else
+            {
+                openFileDialog1.InitialDirectory = picpath;
+            }
+
             if (openFileDialog1.ShowDialog()== DialogResult.OK)
             {
                 try {

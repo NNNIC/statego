@@ -9,7 +9,7 @@ public class HelpJumpUtil
 {
     public static void Jump(string filename_wo_langchar, string id_wo_sharp, bool bJorE)
     {
-        var url = "https://statego.programanic.com/tec3/" +
+        var url = "https://nnnic.github.io/tec3/" +
                   filename_wo_langchar +  ( (bJorE ? "_j.html" :"_e.html" ) ) +
                   (string.IsNullOrEmpty(id_wo_sharp) ? "" :  "#" + id_wo_sharp);
         ExecUtil.execute_start(url,"");

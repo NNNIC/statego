@@ -1766,7 +1766,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 23);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(247, 564);
+            this.webBrowser1.Size = new System.Drawing.Size(247, 568);
             this.webBrowser1.TabIndex = 5;
             this.webBrowser1.Tag = "help";
             this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
@@ -1961,7 +1961,7 @@
             this.tabPageContents.Location = new System.Drawing.Point(4, 23);
             this.tabPageContents.Name = "tabPageContents";
             this.tabPageContents.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageContents.Size = new System.Drawing.Size(253, 570);
+            this.tabPageContents.Size = new System.Drawing.Size(253, 574);
             this.tabPageContents.TabIndex = 1;
             this.tabPageContents.Tag = "tabpagecontents";
             this.tabPageContents.Text = "Contents";
@@ -2255,7 +2255,7 @@
             this.tabPageLine.Location = new System.Drawing.Point(4, 23);
             this.tabPageLine.Name = "tabPageLine";
             this.tabPageLine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLine.Size = new System.Drawing.Size(253, 570);
+            this.tabPageLine.Size = new System.Drawing.Size(253, 574);
             this.tabPageLine.TabIndex = 2;
             this.tabPageLine.Tag = "tabpagecustom";
             this.tabPageLine.Text = "Custom";
@@ -2400,7 +2400,7 @@
             this.panelTabCustom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTabCustom.Location = new System.Drawing.Point(3, 3);
             this.panelTabCustom.Name = "panelTabCustom";
-            this.panelTabCustom.Size = new System.Drawing.Size(247, 564);
+            this.panelTabCustom.Size = new System.Drawing.Size(247, 568);
             this.panelTabCustom.TabIndex = 23;
             // 
             // label16
@@ -2712,7 +2712,7 @@
             this.tabPageHelp.Location = new System.Drawing.Point(4, 23);
             this.tabPageHelp.Name = "tabPageHelp";
             this.tabPageHelp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHelp.Size = new System.Drawing.Size(253, 570);
+            this.tabPageHelp.Size = new System.Drawing.Size(253, 574);
             this.tabPageHelp.TabIndex = 3;
             this.tabPageHelp.Tag = "tabpagehelp";
             this.tabPageHelp.Text = "Help";
@@ -2750,7 +2750,7 @@
             this.tabPageFunc.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPageFunc.Location = new System.Drawing.Point(4, 23);
             this.tabPageFunc.Name = "tabPageFunc";
-            this.tabPageFunc.Size = new System.Drawing.Size(253, 570);
+            this.tabPageFunc.Size = new System.Drawing.Size(253, 574);
             this.tabPageFunc.TabIndex = 4;
             this.tabPageFunc.Tag = "tabpagesrc";
             this.tabPageFunc.Text = "Src";
@@ -2765,7 +2765,7 @@
             this.scintillaBoxTabFunc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scintillaBoxTabFunc.Location = new System.Drawing.Point(0, 0);
             this.scintillaBoxTabFunc.Name = "scintillaBoxTabFunc";
-            this.scintillaBoxTabFunc.Size = new System.Drawing.Size(253, 570);
+            this.scintillaBoxTabFunc.Size = new System.Drawing.Size(253, 574);
             this.scintillaBoxTabFunc.TabIndex = 19;
             // 
             // label_Linenum
