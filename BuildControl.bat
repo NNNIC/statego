@@ -330,7 +330,7 @@ goto :S_START
         robocopy %SRC%\Work\conv\psggConverter\psggConverterLib\bin\%CFG% %TGT% *.*
         ::_setup
         copy %SRC%\Others\archivebatch\__setup.bat %TGT%\*.*
-        goto :S_BACKTO_000
+        goto :S_0024
         goto :S_0016
     ::
     :S_0017
@@ -412,6 +412,18 @@ goto :S_START
         %DP%
         goto :S_0014
         goto :S_0023
+    ::
+    :S_0024
+    ::
+    :: COPY Winpython
+    ::
+        cd /d %~dp0
+        set SRC=%CD%
+        if "%TGT%"=="" set TGT=%SRC%\m1\StateViewer\StateViewer\bin\%CFG%
+        ::_winPython
+        robocopy %SRC%\winPython %TGT%\winPython /MIR
+        goto :S_BACKTO_000
+        goto :S_0024
     ::
     :S_BACKTO_000
     ::
