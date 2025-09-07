@@ -1,3 +1,12 @@
+# News!
+
+Adding AI Image Generation.
+
+See ..
+https://www.youtube.com/watch?v=5XBDRpZvQJI
+
+
+
 <!-- img src=https://statego.programanic.com/img/header.jpg width=700px -->
 
 # Deep wiki 
@@ -48,11 +57,4 @@ Run BuildStart.bat
 # How to use StateGo?
 
 See https://nnnic.github.io/en/entry2.html
-
-# News!
-
-Adding AI Image Generation.
-
-See ..
-https://www.youtube.com/watch?v=5XBDRpZvQJI
 
