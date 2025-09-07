@@ -49,7 +49,10 @@ Run BuildStart.bat
 
 See https://nnnic.github.io/en/entry2.html
 
-# Test Release  
+# News!
 
-Release candidate under testing.  
-https://1drv.ms/u/s!AiwhClIHaF1QjoI_d-Cz899TnGs_DQ?e=WGMqW8
+Adding AI Image Generation.
+
+See ..
+https://www.youtube.com/watch?v=5XBDRpZvQJI
+
