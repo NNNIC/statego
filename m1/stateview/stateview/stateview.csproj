@@ -286,6 +286,7 @@
     <Compile Include="5300_EditForm\EditForm_textForm_selectForm.Designer.cs">
       <DependentUpon>EditForm_textForm_selectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="5300_EditForm\Editor_bmpForm_aicontrol\Editor_bmpForm_aiControl.cs" />
     <Compile Include="5300_EditForm\etc\EditForm_nextForm3Control.cs" />
     <Compile Include="5400_help_itemsinfo\helpProgram2.cs" />
     <Compile Include="5400_help_itemsinfo\itemsInfoProgram.cs" />
@@ -853,6 +854,7 @@
     <Content Include="8000_Util\_アプリ非依存ユーティリティ.txt" />
     <Content Include="8100_Util_app\_アプリ依存ユーティリティ.txt" />
     <Content Include="icon2.ico" />
+    <None Include="5300_EditForm\Editor_bmpForm_aicontrol\Editor_bmpForm_aiControl.psgg" />
     <None Include="Resources\anchor-s.png" />
     <None Include="Resources\pos_chang.png" />
     <None Include="Resources\value_chang.png" />

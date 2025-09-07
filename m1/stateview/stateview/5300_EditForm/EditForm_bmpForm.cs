@@ -75,7 +75,7 @@ namespace stateview._5300_EditForm
             }
         }
 
-        private void calc(int w, int h, out int tw, out int th)
+        public void calc(int w, int h, out int tw, out int th)
         {
             var rs = G.thumbnail_size;
 
@@ -94,7 +94,7 @@ namespace stateview._5300_EditForm
             }
         }
 
-        private void draw()
+        public void draw()
         {
             try {
                 if (m_changebmp != null)
@@ -238,102 +238,7 @@ namespace stateview._5300_EditForm
 
         private void ai_button_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var winpython = Path.Combine( Path.GetDirectoryName(Application.ExecutablePath),"winPython");
-                var pythonexe = Path.Combine( winpython, "python", "python.exe");
-                var script = Path.Combine( winpython,"gemini_image_sys.py" );
-                var state = G.multiedit_control.m_state;
 
-                Converter.Prepare();
-                var code = Converter.GetFuncSrc(state);
-
-                var picpath = Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "StateGo");
-                if (!Directory.Exists(picpath))
-                {
-                    Directory.CreateDirectory(picpath);
-                }
-
-                //picpathの中で、 ファイル名を "{state}.png" とする。存在する場合は連番を付与する。
-                var filename = state;
-                var filepath = Path.Combine(picpath, filename + ".png");
-                if (File.Exists(filepath))
-                {
-                    var cnt = 1;
-                    while (File.Exists(filepath))
-                    {
-                        filename = $"{state}_{cnt}.png";
-                        filepath = Path.Combine(picpath, filename + ".png");
-                        cnt++;
-                    }
-                }
-
-                //var prompt = "Create an image based on the following source code, letting your imagination run wild::\n" + code;
-                var prompt = "source code:\n" + code;
-                prompt = EscapeCommandLineArgument(prompt);
-
-                var tempfile = Path.Combine(Path.GetTempPath(), "statego_aiimage.png");
-                if (File.Exists(tempfile))
-                {
-                    File.Delete(tempfile);
-                }
-
-                var start = new ProcessStartInfo();
-                start.FileName = pythonexe;
-                start.Arguments = string.Format("\"{0}\" -p {1} -o {2} ", script, prompt, tempfile);
-                start.UseShellExecute = false;
-                start.RedirectStandardOutput = true;
-                start.RedirectStandardError = true;
-                start.CreateNoWindow = true;
-
-                start.StandardOutputEncoding = System.Text.Encoding.UTF8; // ① 標準出力のエンコーディングをUTF-8に設定
-                start.StandardErrorEncoding = System.Text.Encoding.UTF8; // ② 標準エラー出力のエンコーディングをUTF-8に設定
-                start.CreateNoWindow = true;
-
-                start.EnvironmentVariables["PYTHONIOENCODING"] = "UTF-8";
-
-
-                var result = "";
-                var error = "";
-                using (var process = Process.Start(start))
-                {
-                    result = process.StandardOutput.ReadToEnd();
-                    error = process.StandardError.ReadToEnd();
-                    process.WaitForExit();
-                }
-                if (!string.IsNullOrEmpty(result)) textBox1.Text = result + "\n\n";
-                textBox1.Text += error;
-
-                if (File.Exists(tempfile))
-                {
-                    File.Copy(tempfile, filepath, true);
-                    //表示内に収める
-                    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                    var bmp = (Bitmap)Image.FromFile(filepath);
-                    if (m_changebmp != null)
-                    {
-                        m_changebmp.Dispose();
-                        m_changebmp = null;
-                    }
-                    int w, h;
-                    calc(bmp.Width, bmp.Height, out w, out h);
-                    m_changebmp = new Bitmap(w, h);
-                    using (var g = Graphics.FromImage(m_changebmp))
-                    {
-                        g.DrawImage(bmp, 0, 0, m_changebmp.Width, m_changebmp.Height);
-                    }
-                    try { bmp.Dispose(); } catch { }
-                    draw();
-                }
-                else
-                {
-                    textBox1.Text += "\n\n" + "Image file not found: " + filepath;
-                }
-            }
-            catch (SystemException ex)
-            {
-                textBox1.Text += "\n" + "Faild to create AI image. \n" + ex.Message;
-            }
         }
         private static string EscapeCommandLineArgument(string arg)
         {
@@ -367,5 +272,76 @@ namespace stateview._5300_EditForm
                 MessageBox.Show("Error\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        #region aicontrol
+        Editor_bmpForm_aiControl m_aicontrol = null;
+        private void ai2button_Click(object sender, EventArgs e)
+        {
+            m_aicontrol = new Editor_bmpForm_aiControl();
+            m_aicontrol.m_form = this;
+            m_aicontrol.Start();
+        }
+        private void ai2Button_update()
+        {
+            if (m_aicontrol != null)
+            {
+                if (!m_aicontrol.IsEnd())
+                {
+                    m_aicontrol.Update();
+                }
+                else
+                {
+                    m_aicontrol = null;
+                }
+            }
+        }
+        public void waiting_text_update()
+        {
+            if (waiting_textBox.Visible == false) return;
+
+            // waiting_textBox.BackColor を白から青へ変化させる。
+            // そして、青から白へ戻す。
+
+            var c = waiting_textBox.ForeColor;
+
+            // 白 (255,255,255) から 青 (0,0,255) へ向かって変化
+            // 青成分を増やし、赤・緑成分を減らす
+            int r = c.R;
+            int g = c.G;
+            int b = c.B;
+
+            // 青に近づける
+            if (r > 0) r = (int)(r * 0.9);
+            if (g > 0) g = (int)(g * 0.9);
+            if (b < 255) b = (int)(b + (255 - b) * 0.1);
+
+            // もし十分青くなったら、白に戻す
+            if (r < 10 && g < 10 && b > 245)
+            {
+                r = 255;
+                g = 255;
+                b = 255;
+            }
+
+            waiting_textBox.ForeColor = Color.FromArgb(r, g, b);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            waiting_text_update();
+            ai2Button_update();
+        }
+        public void enable_allbuttons(bool ena)
+        {
+            load_button.Enabled = ena;
+            paste_button.Enabled = ena;
+            delete_button.Enabled = ena;
+            ok_button.Enabled = ena;
+            cancel_button.Enabled = ena;
+            ai_button.Enabled = ena;
+            copy_button.Enabled = ena;
+        }
+        #endregion
+
     }
 }

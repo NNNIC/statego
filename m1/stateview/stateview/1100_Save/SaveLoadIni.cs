@@ -70,7 +70,7 @@ namespace stateview
             }
             catch
             {
-                G.NoticeToUser_warning(G.Localize("w_configsavedatacannotbreadfromtp")/*"Config Save Data cannot be read from tempfile."*/);
+                G.NoticeToUser_warning(G.Localize("w_configsavedatacannotbreadfromtp")/*"Config Save Data cannot be read from m_tempfile."*/);
                 return false;
             }
         }

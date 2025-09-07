@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ok_button = new System.Windows.Forms.Button();
             this.cancel_button = new System.Windows.Forms.Button();
@@ -38,6 +39,8 @@
             this.ai_button = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.copy_button = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.waiting_textBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,7 +127,7 @@
             this.ai_button.TabIndex = 6;
             this.ai_button.Text = "Image generation AI";
             this.ai_button.UseVisualStyleBackColor = true;
-            this.ai_button.Click += new System.EventHandler(this.ai_button_Click);
+            this.ai_button.Click += new System.EventHandler(this.ai2button_Click);
             // 
             // textBox1
             // 
@@ -148,11 +151,30 @@
             this.copy_button.UseVisualStyleBackColor = true;
             this.copy_button.Click += new System.EventHandler(this.copy_button_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // waiting_textBox
+            // 
+            this.waiting_textBox.BackColor = System.Drawing.Color.White;
+            this.waiting_textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.waiting_textBox.Font = new System.Drawing.Font("メイリオ", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.waiting_textBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.waiting_textBox.Location = new System.Drawing.Point(39, 89);
+            this.waiting_textBox.Name = "waiting_textBox";
+            this.waiting_textBox.Size = new System.Drawing.Size(372, 53);
+            this.waiting_textBox.TabIndex = 10;
+            this.waiting_textBox.Text = "WORKING ON IT ...";
+            this.waiting_textBox.Visible = false;
+            // 
             // EditForm_bmpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 484);
+            this.Controls.Add(this.waiting_textBox);
             this.Controls.Add(this.copy_button);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ai_button);
@@ -174,8 +196,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button ok_button;
         private System.Windows.Forms.Button cancel_button;
         private System.Windows.Forms.Button load_button;
@@ -183,7 +203,10 @@
         private System.Windows.Forms.Button paste_button;
         private System.Windows.Forms.Button delete_button;
         private System.Windows.Forms.Button ai_button;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button copy_button;
+        private System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox waiting_textBox;
     }
 }
