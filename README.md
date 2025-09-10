@@ -1,3 +1,13 @@
+# Hybrid Coding Tool: StateGo  / ハイブリッドコーディングツール StateGo
+
+## Draw the logic! Write the code! / 描くように、ロジックを! 書くように、コードを!
+
+StateGo is a revolutionary development tool that blends visual design, like a flowchart, with traditional text-based coding in the language of your choice. 
+Your design blueprint becomes the executable code, so you'll never have to worry about the frustrating gap between specifications and implementation again.
+
+StateGoは、フローチャートのような「ビジュアル設計」と、使い慣れた言語での「テキストコーディング」を組み合わせた、全く新しい開発ツールです。
+設計図がそのまま動くコードになるため、仕様書と実装のズレに悩むことはもうありません。
+
 # News!
 
 Adding AI Image Generation.
