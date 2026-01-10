@@ -24,22 +24,7 @@ jobs:
       with:
         nuget-version: '5.x'
 
-    - name: Run BuildAuto.bat
-      run: |
-        .\BuildAuto.bat
-      env:
-        # MSBuild path is set by setup-msbuild used above, but typically it adds to PATH. 
-        # BuildAuto.bat expects MSBUILD17 env var or a hardcoded path.
-        # We need to find where setup-msbuild put it, or use vswhere.
-        # However, setup-msbuild puts it in PATH.
-        # Let's use 'msbuild' command directly if the batch supported it, but it expects a full path.
-        # We can try to set MSBUILD17 to 'msbuild' hoping the shell resolves it, 
-        # but the batch logic `if not exist "%MSBUILD17%"` will fail if it's not a file path.
-        # Better approach: Use vswhere to find the path and set it.
-        # Or simpler: setup-msbuild sets VSINSTALLDIR. 
-        # Actually, let's use a powershell step to set the env var correctly before running batch.
-        MSBUILD17: "avoid-empty-check" 
-        NUGET: "nuget"
+
 
     - name: Determine MSBuild Path and Run
       shell: cmd
