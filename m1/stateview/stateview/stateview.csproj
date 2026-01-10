@@ -881,6 +881,7 @@
       <Project>{205de666-76fc-426b-992a-849bbf2b6357}</Project>
       <Name>WordStorage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\psgg-converter\psggConverter\psggConverterLib\psggConverterLib.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="1210_GroupNodeDir\Cache\" />

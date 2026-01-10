@@ -2,8 +2,8 @@
 cd /d %~dp0
 echo : Start Auto Build
 
-set MSBUILD17=C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe
-set NUGET=C:\nuget\nuget.exe
+if "%MSBUILD17%"=="" set MSBUILD17=C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe
+if "%NUGET%"=="" set NUGET=C:\nuget\nuget.exe
 set CFG=Release
 
 if not exist "%MSBUILD17%" (
@@ -70,20 +70,21 @@ popd
 echo : --------------
 echo : build conveter
 echo : --------------
-pushd Work
-    md conv 2>nul
-    if not exist conv\.git git clone https://github.com/NNNIC/psgg-converter.git conv
-    pushd conv
-        git rev-parse HEAD > ..\head.txt
-    popd
-    set hash=
-    for /f %%i in (head.txt) do if "%hash%"=="" set hash=%%i
-    md conv\psggConverter\psggConverterLib 2>nul
-    echo namespace psggConverterLib { public class githash { public const string hash="%hash%"; }} > conv\psggConverter\psggConverterLib\githash.cs
-    pushd conv\psggConverter
-        "%MSBUILD17%" psggConverter.sln /t:psggConverter:Rebuild /p:Configuration=%CFG%
-    popd
-popd
+echo : Integrated into StateViewer.sln - Skipping separate clone/build
+:: pushd Work
+::     md conv 2>nul
+::     if not exist conv\.git git clone https://github.com/NNNIC/psgg-converter.git conv
+::     pushd conv
+::         git rev-parse HEAD > ..\head.txt
+::     popd
+::     set hash=
+::     for /f %%i in (head.txt) do if "%hash%"=="" set hash=%%i
+::     md conv\psggConverter\psggConverterLib 2>nul
+::     echo namespace psggConverterLib { public class githash { public const string hash="%hash%"; }} > conv\psggConverter\psggConverterLib\githash.cs
+::     pushd conv\psggConverter
+::         "%MSBUILD17%" psggConverter.sln /t:psggConverter:Rebuild /p:Configuration=%CFG%
+::     popd
+:: popd
 
 echo : COPY
 set SRC=%CD%
@@ -95,11 +96,11 @@ robocopy %SRC%\Work\starterkit\starterkit2  %TGT%\starterkit2 /S /E
 md %TGT%\tools 2>nul
 robocopy %SRC%\Work\VisualStudioFileOpenTool  %TGT%\tools LICENSE.md
 robocopy %SRC%\Work\VisualStudioFileOpenTool\VisualStudioFileOpenTool\bin\%CFG% %TGT%\tools *.*
-robocopy %SRC%\Work\conv\psggConverter\psggConverterLib\bin\%CFG% %TGT% *.*
+:: robocopy %SRC%\Work\conv\psggConverter\psggConverterLib\bin\%CFG% %TGT% *.*
 copy %SRC%\Others\archivebatch\__setup.bat %TGT%\*.*
 
 cd /d %~dp0
 echo : COPY Winpython
-robocopy %SRC%\winPython %TGT%\winPython /MIR
+:: robocopy %SRC%\winPython %TGT%\winPython /MIR
 
 echo : BUILD FINISHED

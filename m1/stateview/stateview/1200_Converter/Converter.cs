@@ -17,8 +17,8 @@ using EFU=stateview._5300_EditForm.EditFormUtil;
 using SS=stateview.StateStyle;
 using DS=stateview.DesignSpec;
 //>>>
-using System.Reflection;
-using System.Diagnostics;
+//using System.Reflection;
+//using System.Diagnostics;
 
 /*
     dllのdebugのため、
@@ -37,30 +37,18 @@ namespace stateview
         public const bool BRKP  = false; // dllのdebugのため、Breakpoint at prepare 
 
         #region 準備
-        public static dynamic psggConverterLib { get {
-            if (!_psggConverterChecked)
+        public static psggConverterLib.Convert psggConverterLib { get {
+            if (_psggConverter == null)
             {
-                _psggConverterChecked = true;
                 try {
-                    var converter = SettingIniUtil.GetConverter();
-                    var typename1 = Path.GetFileNameWithoutExtension(converter) + ".Convert";
-                    var path = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath),converter);
-                    if (!File.Exists(path)) return null;
-                    var dll = Assembly.LoadFrom(path);
-                    _psggConverter =  Activator.CreateInstance(dll.GetType( typename1 /*"psggConverterLib.Convert"*/));
-                    if (_psggConverter == null)
-                    {
-                        _psggConverter =  Activator.CreateInstance(dll.GetType("psggConverterLib.Convert")); //ファイル名のみの変更対応
-                    }
-
+                    _psggConverter =  new psggConverterLib.Convert();
                 } catch (SystemException e){
                     G.NoticeToUser_warning("Converter Error : " + e.Message);
                 }
             }
             return _psggConverter;
         } }
-        private static bool    _psggConverterChecked = false;
-        private static dynamic _psggConverter = null;
+        private static psggConverterLib.Convert _psggConverter = null;
         #endregion
 
         #region PSGG Setup

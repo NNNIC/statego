@@ -1,0 +1,672 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=FunctionControl.xlsx
+guid=ff5553d6-7939-4df0-ad86-28655c486750
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,,n006,n007,n008,,n009,n00a,,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,n013
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c
+max_name_id=19
+max_state_id=12
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=init
+n007=init-cmt
+n008=init-ref
+n009=update
+n00a=update-cmt
+n00b=wait
+n00c=wait-cmt
+n00d=post_wait
+n00e=post_wait-cmt
+n00f=branch
+n010=nowait
+n011=!dir
+n012=!pos
+n013=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_SETBUF
+s0004=S_SPLITBUF
+s0005=S_PREPROC
+s0006=S_SETVALUE
+s0007=S_CVTMACRO
+s0008=S_POSTPROC
+s0009=S_LOOP_INIT
+s000a=S_LOOPCHECK
+s000b=S_LOOPNEXT
+s000c=S_SETMACROBUF
+
+
+[s0001]
+n002=S_START
+n00f=@@@
+br_USE_TEMPFUNC(S_SETBUF);
+br_USE_MACROBUF(S_SETMACROBUF);
+@@@
+
+n012=26,30
+n013=100001
+
+[s0002]
+n002=S_END
+n012=1313,743
+n013=100002
+
+[s0003]
+n001=(bitmap)
+n002=S_SETBUF
+n003=対象バッファに関数テンプレートを設定する
+n005=S_SPLITBUF
+n006=set_buf();
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=271,18
+n013=100003
+
+[s0004]
+n001=(bitmap)
+n002=S_SPLITBUF
+n003=バッファをラインに分割
+n006=split_buf();
+n00f=@@@
+br_OK(S_LOOP_INIT);
+br_NG(S_END);
+@@@
+
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=685,33
+n013=100004
+
+[s0005]
+n001=(bitmap)
+n002=S_PREPROC
+n003=@@@
+バッファの前処理
+<..?xxxx ...>　を処理
+@@@
+
+n006=preprocess();
+n00f=@@@
+br_NeedAgain(S_LOOPNEXT);
+br_OK(S_SETVALUE);
+br_NG(S_END);
+@@@
+
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=564,272
+n013=100005
+
+[s0006]
+n001=(bitmap)
+n002=S_SETVALUE
+n003=@@@
+値の挿入
+[[xxx]]を値に変換する
+@@@
+
+n006=set_value();
+n00f=@@@
+br_NeedAgain(S_LOOPNEXT);
+br_OK(S_CVTMACRO);
+br_NG(S_END);
+@@@
+
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=794,268
+n013=100006
+
+[s0007]
+n001=(bitmap)
+n002=S_CVTMACRO
+n003=マクロ変換
+n004=MacroControl.psgg
+n006=convert_macro();
+n00f=@@@
+br_NeedAgain(S_LOOPNEXT);
+br_OK(S_POSTPROC);
+br_NG(S_END);
+@@@
+
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=1032,331
+n013=100007
+
+[s0008]
+n001=(bitmap)
+n002=S_POSTPROC
+n003=@@@
+後処理
+空白行削除
+@@@
+
+n005=S_END
+n006=postprocess();
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=1331,393
+n013=100008
+
+[s0009]
+n001=(bitmap)
+n002=S_LOOP_INIT
+n003=ループ初期化
+n005=S_LOOPCHECK
+n006=loop_init();
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=34,361
+n013=100009
+
+[s000a]
+n001=(bitmap)
+n002=S_LOOPCHECK
+n003=ループ確認
+n006=loop_check();
+n00f=@@@
+br_OK(S_PREPROC);
+br_NG(S_END);
+@@@
+
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=245,364
+n013=100010
+
+[s000b]
+n001=(bitmap)
+n002=S_LOOPNEXT
+n003=ループNEXT処理
+n005=S_LOOPCHECK
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=1051,774
+n013=100011
+
+[s000c]
+n001=(bitmap)
+n002=S_SETMACROBUF
+n003=対象バッファにMACROバッファを設定する
+n005=S_SPLITBUF
+n006=set_macrobuf();
+n011=@@@
+/
+(100,100)
+
+@@@
+
+n012=270,118
+n013=100012
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2019/07/30 21:37:13
+; * pssgEditor version : 0.54.20053.6a88e94812a0516da7c22b4322f5052140be2464
+psggfile=@@@
+FunctionControl.psgg
+@@@
+xlsfile=@@@
+FunctionControl.xlsx
+@@@
+guid=@@@
+ff5553d6-7939-4df0-ad86-28655c486750
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+Edited a state.
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":26,"y":30}},{"Key":"S_END","Value":{"x":1313,"y":743}},{"Key":"S_SETBUF","Value":{"x":271,"y":18}},{"Key":"S_SPLITBUF","Value":{"x":685,"y":33}},{"Key":"S_SETVALUE","Value":{"x":794,"y":268}},{"Key":"S_CVTMACRO","Value":{"x":1032,"y":331}},{"Key":"S_POSTPROC","Value":{"x":1331,"y":393}},{"Key":"S_PREPROC","Value":{"x":564,"y":272}},{"Key":"S_LOOP_INIT","Value":{"x":34,"y":361}},{"Key":"S_LOOPCHECK","Value":{"x":245,"y":364}},{"Key":"S_LOOPNEXT","Value":{"x":1051,"y":774}},{"Key":"S_SETMACROBUF","Value":{"x":270,"y":118}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"S_END"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor=@@@
+"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe" /Edit %1
+@@@
+source_editor_vs2015_support=1
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=0
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+comment_block_height=45
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=FunctionControl_created.cs
+::tempfunc=template-func.txt
+:enc=utf-8
+::
+public partial class FunctionControl : StateManager {
+
+    public void Start()
+    {
+        Goto(S_START);
+    }
+
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+void [[state]](bool bFirst)
+{
+    if (bFirst)
+    {
+        [[init]]
+    }
+
+    [[update]]
+
+    <<<?wait
+    if (![[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    [[branch]]
+
+    <<<?nextstate
+    if (!HasNextState())
+    {
+        SetNextState([[nextstate]]);
+    }
+    >>>
+
+    if (HasNextState())
+    {
+        <<<?nowait
+            NoWait();
+        >>>
+
+        GoNextState();
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+
+[setting]
+
+converter=psggConverterLib.dll
+
+psgg=FunctionControl.psgg
+xls=FunctionControl.xlsx
+sub_src=FunctionControl.cs
+gen_src=FunctionControl_created.cs
+
+manager_src=StateManager.cs
+manager_dir=base
+
+template_src=template-source.txt
+template_func=template-statefunc.txt
+
+help=help.ini
+
+
+[setupinfo]
+
+lang=c#
+framework=vs2015
+
+prefix=Function
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm
+@@@
+
+genrdir=.
+
+[jpn]
+
+title=C# サンプル 1
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+# ドキュメント用フォルダ
+   ステート図ファイルとEditor起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm
+
+  以下のファイルを作成します。
+
+      FunctionControl.pssg   --- PSSG Editorで次のエクセルファイルを開く。
+      FunctionControl.xlsx   --- ステート図格納用Excelファイル。PSSG Editorが編集。
+
+# ソース用フォルダ
+　PSSG Editorが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm
+
+  以下のファイルが作成されます。
+
+      FunctionControl_created.cs  --- Excelファイルからの変換ソースコード。変換プロセスの度に上書きされる。
+                                        ※生成直後は関数なしのクラス定義のみ
+
+     FunctionControl.cs          --- ユーザ実装用　（ここにプログラムを書く！）
+                                        ※生成直後は関数なしのクラス定義のみ
+
+# 共通管理クラスファイル
+
+　以下に作成されます。
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm/base/StateManager.cs
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+記 2018.7.7
+@@@
+
+
+
+[en]
+
+title=C# Sample 1
+
+detail=@@@
+This dialog will create files for a state machine.
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm
+
+  File:
+
+      FunctionControl.pssg  --- PSSG Editor opens the below excel file.
+      FunctionControl.xlsx  --- Excel File that has a state chart. PSSG Editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by PSSG Editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm
+
+　File:
+      FunctionControl_created.cs   -- PSSG Editor will convert from the excel file to this file. This file will overwriten whenever using the converting process of PSSG Editor.
+                                        * The file has only a class define without methods immediately after this creation.
+
+      FunctionControl.cs　　　　　 -- For implementation. (You have to write program in this file!!)
+                                        * The file has only class define without methods immediately after this creation.
+
+# Common State Manager Class File
+
+  File:
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm/base/StateManager.cs
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+
+
+Wrote 2018.7.7
+@@@
+
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'yes'を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'yes' if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

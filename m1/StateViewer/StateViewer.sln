@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordStorage", "WordStorage\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateViwer_version", "StateViwer_version\StateViwer_version.csproj", "{F7D96F31-4D18-49C4-BFA4-DB24FC1072A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psggConverterLib", "..\stateview\psgg-converter\psggConverter\psggConverterLib\psggConverterLib.csproj", "{F676398C-8891-4B8B-85DD-F5D98E35FE7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,18 @@ Global
 		{F7D96F31-4D18-49C4-BFA4-DB24FC1072A0}.Release|x64.Build.0 = Release|Any CPU
 		{F7D96F31-4D18-49C4-BFA4-DB24FC1072A0}.Release|x86.ActiveCfg = Release|Any CPU
 		{F7D96F31-4D18-49C4-BFA4-DB24FC1072A0}.Release|x86.Build.0 = Release|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Debug|x64.Build.0 = Debug|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Debug|x86.Build.0 = Debug|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Release|x64.ActiveCfg = Release|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Release|x64.Build.0 = Release|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Release|x86.ActiveCfg = Release|Any CPU
+		{F676398C-8891-4B8B-85DD-F5D98E35FE7E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

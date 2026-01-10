@@ -193,39 +193,6 @@ goto :S_START
         goto :S_0023
         goto :S_0010
     ::
-    :S_0011
-    ::
-    :: Build Converter
-    ::
-        echo : --------------
-        echo : build conveter
-        echo : --------------
-        pushd Work
-            md conv 2>nul
-            git clone https://github.com/NNNIC/psgg-converter.git conv
-            pushd conv
-                git rev-parse HEAD > ..\head.txt
-            popd
-            set hash=
-            for /f %%i in (head.txt) do if "%hash%"=="" set hash=%%i
-            echo :
-            echo :  hash=%hash%
-            echo :
-            echo namespace psggConverterLib { public class githash { public const string hash="%hash%"; }} > conv\psggConverter\psggConverterLib\githash.cs
-            echo : type conv\psggConverter\psggConverterLib\githash.cs
-            echo : vvvv
-            type conv\psggConverter\psggConverterLib\githash.cs
-            echo : ^^^^^^^^
-            echo : Start build...
-            echo : .
-            pushd conv\psggConverter
-                "%MSBUILD17%" psggConverter.sln /t:psggConverter:Rebuild /p:Configuration=%CFG%
-            popd
-        popd
-        echo : done!
-        goto :S_0016
-        goto :S_0011
-    ::
     :S_0012
     ::
     :: GET MERMAIND
@@ -244,7 +211,7 @@ goto :S_START
         popd
         echo : done!
         %DP%
-        goto :S_0011
+        goto :S_0016
         goto :S_0012
     ::
     :S_0013

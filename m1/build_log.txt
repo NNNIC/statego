@@ -1,0 +1,86 @@
+Microsoft (R) Build Engine バージョン 4.8.9221.0
+[Microsoft .NET Framework、バージョン 4.0.30319.42000]
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+このソリューション内のプロジェクトを 1 度に 1 つずつビルドします。並行ビルドを有効にするには、"/m" スイッチを追加してください。
+2026/01/10 17:04:07 にビルドを開始しました。
+ノード 1 上のプロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer.sln" (Rebuild ターゲット)。
+ValidateSolutionConfiguration:
+  ソリューション構成 "Release|Any CPU" をビルドしています。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer.sln" (1) は、ノード 1 上に "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer\StateViewer.csproj.metaproj" (2) をビルドしています (Rebuild ターゲット)。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer\StateViewer.csproj.metaproj" (2) は、ノード 1 上に "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\..\stateview\stateview\stateview.csproj.metaproj" (3) をビルドしています (Rebuild ターゲット)。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\..\stateview\stateview\stateview.csproj.metaproj" (3) は、ノード 1 上に "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViwer_version\StateViwer_version.csproj" (4) をビルドしています (Rebuild ターゲット)。
+CoreClean:
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViwer_version\bin\Release\StateViwer_version.dll" を削除しています。
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViwer_version\bin\Release\StateViwer_version.pdb" を削除しています。
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViwer_version\obj\Release\StateViwer_version.dll" を削除しています。
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViwer_version\obj\Release\StateViwer_version.pdb" を削除しています。
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViwer_version\obj\Release\StateViwer_version.csprojResolveAssemblyReference.cache" を削除しています。
+PreBuildEvent:
+  C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViwer_version\createver.bat
+   ドライブ C のボリューム ラベルは Windows です
+   ボリューム シリアル番号は 679E-F470 です
+  
+   C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\tools\version-maker\bin のディレクトリ
+  
+  2026/01/10  16:35             5,120 vm.exe
+                 1 個のファイル               5,120 バイト
+                 0 個のディレクトリ  728,540,676,096 バイトの空き領域
+  VER=0.77.181024
+GenerateTargetFrameworkMonikerAttribute:
+すべての出力ファイルが入力ファイルに対して最新なので、ターゲット "GenerateTargetFrameworkMonikerAttribute" を省略します。
+CoreCompile:
+  C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /errorreport:prompt /warn:4 /define:TRACE /highentropyva+ /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Microsoft.CSharp.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Net.Http.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.Linq.dll" /debug:pdbonly /filealign:512 /optimize+ /out:obj\Release\StateViwer_version.dll /subsystemversion:6.00 /target:library /utf8output /win32icon:statego.ico Class1.cs Properties\AssemblyInfo.cs ver.cs "C:\Users\gea01\AppData\Local\Temp\.NETFramework,Version=v4.5.2.AssemblyAttributes.cs"
+CopyFilesToOutputDirectory:
+  "obj\Release\StateViwer_version.dll" から "bin\Release\StateViwer_version.dll" へファイルをコピーしています。
+  StateViwer_version -> C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViwer_version\bin\Release\StateViwer_version.dll
+  "obj\Release\StateViwer_version.pdb" から "bin\Release\StateViwer_version.pdb" へファイルをコピーしています。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViwer_version\StateViwer_version.csproj" (Rebuild ターゲット) のビルドが完了しました。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\..\stateview\stateview\stateview.csproj.metaproj" (3) は、ノード 1 上に "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj.metaproj" (5) をビルドしています (Rebuild ターゲット)。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj.metaproj" (5) は、ノード 1 上に "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj" (6) をビルドしています (Rebuild ターゲット)。
+CoreClean:
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\obj\Release\StateViewer_starter2.csprojResolveAssemblyReference.cache" を削除しています。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj" (6) は、ノード 1 上に "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\WordStorage.csproj" (7) をビルドしています (Clean ターゲット)。
+CoreClean:
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\bin\Release\PSGGEditorWordStorage.dll" を削除しています。
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\bin\Release\PSGGEditorWordStorage.pdb" を削除しています。
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\obj\Release\WordStorage.Properties.Resources.resources" を削除しています。
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\obj\Release\WordStorage.csproj.GenerateResource.cache" を削除しています。
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\obj\Release\PSGGEditorWordStorage.dll" を削除しています。
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\obj\Release\PSGGEditorWordStorage.pdb" を削除しています。
+  ファイル "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\obj\Release\WordStorage.csprojResolveAssemblyReference.cache" を削除しています。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\WordStorage.csproj" (Clean ターゲット) のビルドが完了しました。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj" (6) は、ノード 1 上に "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\WordStorage.csproj" (7:2) をビルドしています (既定のターゲット)。
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\resgen.exe" /useSourcePath /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Microsoft.CSharp.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\mscorlib.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.DataSetExtensions.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Net.Http.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Windows.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Windows.Forms.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.Linq.dll" /compile Properties\Resources.resx,obj\Release\WordStorage.Properties.Resources.resources
+  リソース ファイル "Properties\Resources.resx" を "obj\Release\WordStorage.Properties.Resources.resources" に処理しています。
+GenerateTargetFrameworkMonikerAttribute:
+すべての出力ファイルが入力ファイルに対して最新なので、ターゲット "GenerateTargetFrameworkMonikerAttribute" を省略します。
+CoreCompile:
+  C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /errorreport:prompt /warn:4 /define:TRACE /highentropyva+ /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Microsoft.CSharp.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Net.Http.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Windows.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Windows.Forms.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.Linq.dll" /debug:pdbonly /filealign:512 /optimize+ /out:obj\Release\PSGGEditorWordStorage.dll /subsystemversion:6.00 /resource:obj\Release\WordStorage.Properties.Resources.resources /target:library /utf8output /win32icon:statego.ico Properties\Resources.Designer.cs Store.cs Properties\AssemblyInfo.cs util\CsvUtil.cs util\RegexUtil.cs "C:\Users\gea01\AppData\Local\Temp\.NETFramework,Version=v4.5.2.AssemblyAttributes.cs"
+CopyFilesToOutputDirectory:
+  "obj\Release\PSGGEditorWordStorage.dll" から "bin\Release\PSGGEditorWordStorage.dll" へファイルをコピーしています。
+  WordStorage -> C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\bin\Release\PSGGEditorWordStorage.dll
+  "obj\Release\PSGGEditorWordStorage.pdb" から "bin\Release\PSGGEditorWordStorage.pdb" へファイルをコピーしています。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\WordStorage\WordStorage.csproj" (既定のターゲット) のビルドが完了しました。
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Microsoft.Common.targets(2015,5): error MSB3091: "AxImp.exe" が見つからなかったため、または正しい Microsoft Windows SDK がインストールされていないため、タスクが失敗しました。タスクは、レジストリ キー HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.0A\WinSDK-NetFx40Tools-x86 の値 InstallationFolder で指定された場所の下にある "bin" サブディレクトリで "AxImp.exe" を探しています。次のいずれかを行うことによって問題を解決できる可能性があります。  1) Microsoft Windows SDK をインストールする。  2) Visual Studio 2010 をインストールする。  3) 上記のレジストリ キーを正しい場所に手動で設定する。  4) 正しい場所をタスクの "ToolPath" パラメーターに渡す。 [C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj]
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj" (Rebuild ターゲット) のビルドが終了しました -- 失敗。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj.metaproj" (Rebuild ターゲット) のビルドが終了しました -- 失敗。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\..\stateview\stateview\stateview.csproj.metaproj" (Rebuild ターゲット) のビルドが終了しました -- 失敗。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer\StateViewer.csproj.metaproj" (Rebuild ターゲット) のビルドが終了しました -- 失敗。
+プロジェクト "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer.sln" (Rebuild ターゲット) のビルドが終了しました -- 失敗。
+
+ビルドに失敗しました。
+
+"C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer.sln" (Rebuild ターゲット) (1) ->
+"C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer\StateViewer.csproj.metaproj" (Rebuild ターゲット) (2) ->
+"C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\..\stateview\stateview\stateview.csproj.metaproj" (Rebuild ターゲット) (3) ->
+"C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj.metaproj" (Rebuild ターゲット) (5) ->
+"C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj" (Rebuild ターゲット) (6) ->
+(ResolveComReferences ターゲット) -> 
+  C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Microsoft.Common.targets(2015,5): error MSB3091: "AxImp.exe" が見つからなかったため、または正しい Microsoft Windows SDK がインストールされていないため、タスクが失敗しました。タスクは、レジストリ キー HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.0A\WinSDK-NetFx40Tools-x86 の値 InstallationFolder で指定された場所の下にある "bin" サブディレクトリで "AxImp.exe" を探しています。次のいずれかを行うことによって問題を解決できる可能性があります。  1) Microsoft Windows SDK をインストールする。  2) Visual Studio 2010 をインストールする。  3) 上記のレジストリ キーを正しい場所に手動で設定する。  4) 正しい場所をタスクの "ToolPath" パラメーターに渡す。 [C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer_starter2\StateViewer_starter2.csproj]
+
+    0 個の警告
+    1 エラー
+
+経過時間 00:00:01.27

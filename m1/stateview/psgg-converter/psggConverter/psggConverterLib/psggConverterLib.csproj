@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F676398C-8891-4B8B-85DD-F5D98E35FE7E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>psggConverterLib</RootNamespace>
+    <AssemblyName>psggConverterLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="cf_prepare\CfPrepareControl.cs" />
+    <Compile Include="CommentLine.cs" />
+    <Compile Include="Convert.cs" />
+    <Compile Include="githash.cs" />
+    <Compile Include="LineMacro\LineMacro.cs" />
+    <Compile Include="MacroWork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingIniWork.cs" />
+    <Compile Include="sm2\InsertCodeControl.cs" />
+    <Compile Include="sm2\InsertCodeControl_created.cs" />
+    <Compile Include="sm\base\StateManager.cs" />
+    <Compile Include="sm\FunctionControl.cs" />
+    <Compile Include="sm\FunctionControl_created.cs" />
+    <Compile Include="sm\IncludeFile.cs" />
+    <Compile Include="sm\MacroControl.cs" />
+    <Compile Include="sm\MacroControl_created.cs" />
+    <Compile Include="sm\SourceControl.cs" />
+    <Compile Include="sm\SourceControl_created.cs" />
+    <Compile Include="Convert_DoNotEditUtil.cs" />
+    <Compile Include="Util\IniUtil.cs" />
+    <Compile Include="Util\RegexUtil.cs" />
+    <Compile Include="Util\StringUtil.cs" />
+    <Compile Include="ver.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <PropertyGroup>
+    <PreBuildEvent>$(ProjectDir)createver.bat</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

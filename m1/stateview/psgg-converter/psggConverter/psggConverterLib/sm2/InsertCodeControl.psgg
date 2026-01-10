@@ -1,0 +1,916 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=InsertCodeControl.xlsx
+guid=3cdbf216-0b1c-41be-b7c2-b027ae58b835
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n005,,n006,,n007,,,n008,n009,n00a,,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,n013,,n014,n015,n016
+stateid_list=,,,,s0001,s0002,s0003,s0004,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,s000f,s0010,,s0011,s0012,,,s0013,s0014
+max_name_id=22
+max_state_id=20
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=embed
+n007=members
+n008=init
+n009=init-cmt
+n00a=init-ref
+n00b=update
+n00c=update-cmt
+n00d=wait
+n00e=wait-cmt
+n00f=post_wait
+n010=post_wait-cmt
+n011=branch
+n012=brcond
+n013=nowait
+n014=!dir
+n015=!pos
+n016=!uuid
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_READSRC
+s0004=S_FIND_STARTMARK
+s0005=S_CHECK_EXIST_NEXTLINE
+s0006=I_LINES
+s0007=I_BREAKLINE
+s0008=I_CURLINENUM
+s0009=S_FIND_ENDMARK
+s000a=S_SAVE
+s000b=I_BOM
+s000c=S_GET_PARAM
+s000d=S_CONVERT
+s000e=I_NULLCHECK
+s000f=S_ERORR
+s0010=S_INSERT
+s0011=I_ERROR
+s0012=S_NEXT
+s0013=I_FILEPATH
+s0014=I_MARKS
+
+
+[s0001]
+n002=S_START
+n005=S_READSRC
+n015=44,24
+n016=100001
+
+[s0002]
+n002=S_END
+n015=1756,678
+n016=100002
+
+[s0003]
+n001=(bitmap)
+n002=S_READSRC
+n003=@@@
+対象ソース読み込み
+改行コード保持
+@@@
+
+n007=string m_src;
+n008=@@@
+m_error = null;
+m_cur = 0;
+read_file();
+@@@
+
+n011=@@@
+brif(S_CHECK_EXIST_NEXTLINE);
+brelse(S_ERORR);
+@@@
+
+n012=@@@
+is_null(m_error)
+?
+@@@
+
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=54,257
+n016=100003
+
+[s0004]
+n001=(bitmap)
+n002=S_FIND_STARTMARK
+n003=開始マークを探す
+n007=@@@
+int m_mark_start;
+int m_mark_end;
+@@@
+
+n008=m_mark_start = find_start_mark();
+n011=@@@
+brif(S_FIND_ENDMARK);
+brelse(S_SAVE);
+@@@
+
+n012=@@@
+m_mark_start>=0
+?
+@@@
+
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=472,266
+n016=100004
+
+[s0005]
+n001=(bitmap)
+n002=S_CHECK_EXIST_NEXTLINE
+n003=次の行があるか？
+n011=@@@
+brif(S_FIND_STARTMARK);
+brelse(S_SAVE);
+@@@
+
+n012=@@@
+m_cur<m_lines.Count
+?
+@@@
+
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=265,264
+n016=100005
+
+[s0006]
+n001=(bitmap)
+n002=I_LINES
+n003=読み込みソース
+n006=List<string> m_lines;
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=304,37
+n016=100006
+
+[s0007]
+n001=(bitmap)
+n002=I_BREAKLINE
+n003=改行コード
+n006=string m_bl;
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=480,38
+n016=100007
+
+[s0008]
+n001=(bitmap)
+n002=I_CURLINENUM
+n003=現在の読み込み行
+n006=int m_cur;
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=653,37
+n016=100008
+
+[s0009]
+n001=(bitmap)
+n002=S_FIND_ENDMARK
+n003=終了マークを探す
+n008=@@@
+m_cur = m_mark_start + 1;
+m_mark_end = find_end_mark();
+if (m_mark_end < 0) {
+    m_error = "No end mark";
+}
+@@@
+
+n011=@@@
+brif(S_GET_PARAM);
+brelse(S_ERORR);
+@@@
+
+n012=@@@
+is_null(m_error)
+?
+@@@
+
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=709,263
+n016=100009
+
+[s000a]
+n001=(bitmap)
+n002=S_SAVE
+n003=ファイルセーブ
+n005=S_END
+n008=save();
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=796,782
+n016=100010
+
+[s000b]
+n001=(bitmap)
+n002=I_BOM
+n003=BOMの有無
+n006=@@@
+System.Text.Encoding m_enc = System.Text.Encoding.UTF8;
+@@@
+
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=481,127
+n016=100025
+
+[s000c]
+n001=(bitmap)
+n002=S_GET_PARAM
+n003=開始マークの行からパラメータを収集する
+n007=@@@
+int m_indent=4;
+string m_command;
+@@@
+
+n008=@@@
+var l = m_lines[m_mark_start];
+get_param(l);
+@@@
+
+n011=@@@
+brif(S_CONVERT);
+brelse(S_ERORR);
+@@@
+
+n012=@@@
+is_null(m_error)
+?
+@@@
+
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=986,266
+n016=100012
+
+[s000d]
+n001=(bitmap)
+n002=S_CONVERT
+n003=コンバートする
+n007=string m_output;
+n008=m_output = convert(m_indent, m_command);
+n011=@@@
+brif(S_INSERT);
+brelse(S_ERORR);
+@@@
+
+n012=@@@
+is_null(m_error)
+?
+@@@
+
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=1218,202
+n016=100013
+
+[s000e]
+n001=(bitmap)
+n002=I_NULLCHECK
+n003=文字列NULLチェック
+n006=@@@
+bool is_null(string s)
+{
+    return string.IsNullOrEmpty(s);
+}
+@@@
+
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=835,41
+n016=100014
+
+[s000f]
+n001=(bitmap)
+n002=S_ERORR
+n003=エラー
+n005=S_END
+n008=throw new SystemException(m_error);
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=1448,561
+n016=100015
+
+[s0010]
+n001=(bitmap)
+n002=S_INSERT
+n003=開始マークと終了マークの間に結果を挿入する。
+n005=S_NEXT
+n008=insert_output();
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=1482,217
+n016=100016
+
+[s0011]
+n001=(bitmap)
+n002=I_ERROR
+n003=エラー用ストリング
+n006=string m_error;
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=1022,42
+n016=100023
+
+[s0012]
+n001=(bitmap)
+n002=S_NEXT
+n003=次へ
+n005=S_CHECK_EXIST_NEXTLINE
+n008=m_cur = m_mark_end + 1;
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=1725,278
+n016=100019
+
+[s0013]
+n001=(bitmap)
+n002=I_FILEPATH
+n003=ファイルパス
+n006=public string m_filepath;
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=1357,46
+n016=100022
+
+[s0014]
+n001=(bitmap)
+n002=I_MARKS
+n003=マーク文字列
+n006=@@@
+public string MARK_START;
+public string MARK_END;
+@@@
+
+n014=@@@
+/
+(100,100)
+
+@@@
+
+n015=1583,45
+n016=100024
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/11/08 11:05:38
+; * pssgEditor version : 0.67.610.5e9bd00bd140bff251fa382ae64c923e1b3b4250
+psggfile=@@@
+InsertCodeControl.psgg
+@@@
+xlsfile=@@@
+InsertCodeControl.xlsx
+@@@
+guid=@@@
+3cdbf216-0b1c-41be-b7c2-b027ae58b835
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+init,Initilized
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":""}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":44,"y":24}},{"Key":"S_END","Value":{"x":1756,"y":678}},{"Key":"S_READSRC","Value":{"x":54,"y":257}},{"Key":"S_FIND_STARTMARK","Value":{"x":472,"y":266}},{"Key":"S_CHECK_EXIST_NEXTLINE","Value":{"x":265,"y":264}},{"Key":"I_LINES","Value":{"x":304,"y":37}},{"Key":"I_BREAKLINE","Value":{"x":480,"y":38}},{"Key":"I_CURLINENUM","Value":{"x":653,"y":37}},{"Key":"S_FIND_ENDMARK","Value":{"x":709,"y":263}},{"Key":"S_SAVE","Value":{"x":796,"y":782}},{"Key":"S_GET_PARAM","Value":{"x":986,"y":266}},{"Key":"S_CONVERT","Value":{"x":1218,"y":202}},{"Key":"S_INSERT","Value":{"x":1482,"y":217}},{"Key":"S_NEXT","Value":{"x":1725,"y":278}},{"Key":"I_NULLCHECK","Value":{"x":835,"y":41}},{"Key":"I_FILEPATH","Value":{"x":1357,"y":46}},{"Key":"I_ERROR","Value":{"x":1022,"y":42}},{"Key":"I_MARKS","Value":{"x":1583,"y":45}},{"Key":"S_ERORR","Value":{"x":1448,"y":561}},{"Key":"I_BOM","Value":{"x":481,"y":127}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BTN_BY.\\("}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=0
+option_use_custom_prefix=1
+option_omit_basestate_string=0
+option_hide_basestate_contents=0
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=30
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+:output=InsertCodeControl_created.cs
+::tempfunc=template-func.txt
+:enc=utf-8
+::
+using System;
+using System.Collections.Generic;
+using System.IO;
+public partial class InsertCodeControl : StateManager {
+
+    public void Start()
+    {
+        Goto(S_START);
+    }
+    public bool IsEnd()
+    {
+        return CheckState(S_END);
+    }
+
+
+    $contents2$
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+<<<?state/^[^S]_/
+
+[[embed]]
+
+eof>>>
+[[members]]
+void [[state]](bool bFirst)
+{
+    <<<?init
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if (![[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        SetNextState([[nextstate]]);
+    }
+    >>>
+
+    //
+    if (HasNextState())
+    {
+        <<<?nowait
+        NoWait();
+        >>>
+
+        GoNextState();
+    }
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+
+[setting]
+
+psgg=InsertCodeControl.psgg
+xls=InsertCodeControl.xlsx
+sub_src=InsertCodeControl.cs
+gen_src=InsertCodeControl_created.cs
+
+manager_src=StateManager.cs
+manager_dir=base
+
+template_src=template-source.txt
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=helpweb.html
+
+
+; converter=user.dll
+
+[setupinfo]
+
+lang=c#
+framework=vs2015
+
+prefix=InsertCode
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm2
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm2
+@@@
+
+genrdir=.
+incrdir=.
+
+ref_ancestor_dir=
+
+; This section has macro defines for converting.
+
+; commentline format  {%0} will be replaced to a comment.
+[macro]
+
+commentline=// {%0}
+
+@branch=@@@
+<<<?"{%0}"/^brif$/
+if ([[brcond:{%N}]]) { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^brelseif$/
+else if ([[brcond:{%N}]]) { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^brelse$/
+else { SetNextState( {%1} ); }
+>>>
+<<<?"{%0}"/^br_/
+{%0}({%1});
+>>>
+@@@
+
+
+[jpn]
+
+title=C# スタートキット 2018/8/11
+
+detail=@@@
+C# 用のステートマシンを作成します。
+
+※サンプルプロジェクトを次のＵＲＬより入手可能。
+https://github.com/NNNIC/psgg-unity-tutorial
+
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm2
+
+  以下のファイルを作成します。
+
+      InsertCodeControl.pssg   --- エディタで次のエクセルファイルを開く。
+      InsertCodeControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm2
+
+  以下のファイルが作成されます。
+
+      InsertCodeControl_created.cs  --- Excelファイルからの変換ソースコード。変換プロセスの度に上書きされる。
+                                        ※生成直後は関数なしのクラス定義のみ
+
+     InsertCodeControl.cs          --- ユーザ実装用　（ここにプログラムを書く！）
+                                        ※生成直後は関数なしのクラス定義のみ
+
+# 共通管理クラスファイル
+
+　以下に作成されます。
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm2/base/StateManager.cs
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+
+[en]
+
+title=C# STARTER KIT 2018/8/11
+
+detail=@@@
+This dialog will create files for a state machine.
+
+* You may get the sample project from the below url.
+https://github.com/NNNIC/psgg-unity-tutorial
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm2
+
+  File:
+
+      InsertCodeControl.pssg  --- The editor opens the below excel file.
+      InsertCodeControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm2
+
+　File:
+      InsertCodeControl_created.cs   -- the editor will convert from the excel file to this file. This file will overwriten whenever using the converting process of the editor.
+                                        * The file has only a class define without methods immediately after this creation.
+
+      InsertCodeControl.cs　　　　　 -- For implementation. (You have to write program in this file!!)
+                                        * The file has only class define without methods immediately after this creation.
+
+# Common State Manager Class File
+
+  File:
+
+      C:\Users\gea01\Documents\psgg\psgg-converter\psggConverter\psggConverterLib\sm2/base/StateManager.cs
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+
+
+@@@
+
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[state]
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[thumbnail]
+jpn=@@@
+説明用のイメージを指定する。
+@@@
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[init]
+jpn=@@@
+初期化用処理を指定する。
+@@@
+en=@@@
+Specify a initial process.
+@@@
+
+[update]
+jpn=@@@
+更新処理を指定する。
+@@@
+en=@@@
+Specify a update process.
+@@@
+
+[wait]
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[post_wait]
+jpn=@@@
+'wait'後の処理を指定する。
+@@@
+en=@@@
+Specify the post process after 'wait'.
+@@@
+
+[branch]
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[nextstate]
+jpn=@@@
+次に実行するステートを指定する。
+@@@
+en=@@@
+Specify the next state to be executed.
+@@@
+
+[nowait]
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'yes'を指定する。
+同期待ち時には何も指定しない。
+@@@
+en=@@@
+Specify 'yes' if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[!dir]
+jpn=@@@
+システムがステートのディレクトリ指定に使用。
+@@@
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[!uuid]
+jpn=@@@
+システムがステートのuuid指定に使用。
+@@@
+en=@@@
+System uses this for the uuid of the state.
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+
