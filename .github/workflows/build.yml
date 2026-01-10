@@ -3,7 +3,7 @@ name: Build StateGo
 on:
   workflow_dispatch:
   push:
-    branches: [ "master", "main" ]
+    branches: [ "master", "main", "tougou_conv" ]
   pull_request:
     branches: [ "master", "main" ]
 
