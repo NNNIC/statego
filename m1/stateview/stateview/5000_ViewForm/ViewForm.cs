@@ -273,7 +273,7 @@ namespace stateview._5000_MainForm
             SysLangWork.ChangeSysLang();
 
             //webBrowserHelp_setup();
-            webBrowserInfo_setup();
+            //webBrowserInfo_setup();
 
             //font_setup();
 
@@ -1402,46 +1402,7 @@ namespace stateview._5000_MainForm
                 }
             }
        }
-        public void webBrowserInfo_setup()
-        {
-            // for update browser version, see WBEmulator class
 
-            webBrowserAdd.ScriptErrorsSuppressed = true;
-            webBrowserAdd.ObjectForScripting = new WebBrowserFunc();
-
-            webBrowserAdd.Parent = this;
-            webBrowserAdd.Location = PointUtil.Add_X(webBrowserAdd.Location, panel1.Location.X);
-            webBrowserAdd.BringToFront();
-
-
-            pictureBoxClose.Parent = this;
-            pictureBoxClose.Location = PointUtil.Add_X(pictureBoxClose.Location, panel1.Location.X);
-            pictureBoxClose.BringToFront();
-
-            pictureBoxReload.Parent = this;
-            pictureBoxReload.Location =  PointUtil.Add_X(pictureBoxReload.Location, panel1.Location.X);
-            pictureBoxReload.BringToFront();
-            
-
-            //1. serial があるか?
-            if (!string.IsNullOrEmpty(RegistryWork.Get_serial()))
-            {
-                //最後のrunningの日付と今の日付を比較する。
-                var saveday = RegistryWork.Get_running_timestamp().Day;
-                var nowday = DateTime.Now.Day;
-                if (saveday==nowday) //同じ場合は、消す
-                {
-                    pictureBoxCloseSub();
-                }
-            }
-
-            //if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-            if (!IsInternetAvailable())
-            {
-                pictureBoxCloseSub();
-            }
-
-        }
         [System.Runtime.InteropServices.DllImport("wininet.dll")]
         extern static bool InternetGetConnectedState(out int lpdwFlags, int dwReserved);
 
@@ -1455,19 +1416,7 @@ namespace stateview._5000_MainForm
         }
 
 
-        public void webBrowserInfo_setup2()
-        {
-            var url = G.web_info;
 
-            if (!string.IsNullOrEmpty(url))
-            {
-                try {
-                    webBrowserAdd.Url = new Uri(url);
-                } catch { }
-            }
-
-            WebAdCheckControl.m_req = true;
-        }
         private void button1_Click(object sender,EventArgs e)
         {
             //string js = "alert('Click!')";
@@ -2209,46 +2158,7 @@ namespace stateview._5000_MainForm
         }
         #endregion
 
-        private void pictureBoxClose_DoubleClick(object sender,EventArgs e)
-        {
-            pictureBoxCloseSub();
-        }
-        private void pictureBoxClose_Click(object sender, EventArgs e)
-        {
-            pictureBoxCloseSub();
-        }
 
-        private void pictureBoxCloseSub()
-        {
-            WebAdCheckControl.m_done = true;
-
-            pictureBoxClose.Hide();
-            pictureBoxReload.Hide();
-            webBrowserAdd.Hide();
-            webBrowserAdd.Visible = false;
-            webBrowserAdd.Stop();
-            webBrowserAdd.Dispose(); //完全に削除 ※Stopをしても動いていたから。
-            webBrowserAdd = null;
-        }
-
-        private void pictureBoxReload_Click(object sender,EventArgs e)
-        {
-            var url = G.web_info;
-
-            if (!string.IsNullOrEmpty(url))
-            {
-                try {
-                    webBrowserAdd.Url = new Uri(url);
-                } catch { }
-            }
-
-            webBrowserAdd.Refresh();
-        }
-
-        private void webBrowserAdd_DocumentCompleted(object sender,WebBrowserDocumentCompletedEventArgs e)
-        {
-            this.panel1.Focus();
-        }
 
         private void checkBoxDeleteThis_CheckedChanged(object sender,EventArgs e)
         {
@@ -3478,12 +3388,7 @@ namespace stateview._5000_MainForm
             dlg.ShowDialog();
         }
 
-        private void webBrowserAdd_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            //G.NoticeToUser("webBrowserAdd_PreviewKeyDown = " + e.KeyCode.ToString());
-            //G.Key = e.KeyCode;
-            KeyProc.m_keycode_from_viewform = e.KeyCode;
-        }
+
 
         private void update_label_scale_indicator()
         {

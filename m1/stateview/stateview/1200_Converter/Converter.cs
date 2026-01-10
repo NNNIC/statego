@@ -18,6 +18,7 @@ using SS=stateview.StateStyle;
 using DS=stateview.DesignSpec;
 //>>>
 using System.Reflection;
+using System.Diagnostics;
 
 /*
     dllのdebugのため、
@@ -65,6 +66,8 @@ namespace stateview
         #region PSGG Setup
         private static void _psggConverter_setup(bool for_hpp_file=false)
         {
+
+
             psggConverterLib.template_src = G.excel_convertsettings.m_template_src;
             psggConverterLib.template_func = G.excel_convertsettings.m_template_func;
             Func<int,int,string> getChartFunc = (r,c)=> {

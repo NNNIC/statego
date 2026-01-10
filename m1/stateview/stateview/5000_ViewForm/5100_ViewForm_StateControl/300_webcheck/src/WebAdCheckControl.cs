@@ -38,19 +38,19 @@ public partial class WebAdCheckControl  {
     {
         if (timer > DateTime.Now) return;
 
-        if (G.view_form.webBrowserAdd!=null && G.view_form.webBrowserAdd.Url!=null)
-        {
-            var url = G.view_form.webBrowserAdd.Url.AbsoluteUri;
-            if (  url.IndexOf("about") < 0 && url.IndexOf(G.web_base)!=0 )
-            {
-                //G.NoticeToUser(G.view_form.webBrowserAdd.Url.AbsoluteUri);
-                //ExecUtil.execute_start(G.view_form.webBrowserAdd.Url.AbsoluteUri,"");
-                ExecUtil.execute_start(G.web_info_js, "");
-                G.view_form.webBrowserAdd.Url = new Uri(G.web_info);
+        //if (G.view_form.webBrowserAdd!=null && G.view_form.webBrowserAdd.Url!=null)
+        //{
+        //    var url = G.view_form.webBrowserAdd.Url.AbsoluteUri;
+        //    if (  url.IndexOf("about") < 0 && url.IndexOf(G.web_base)!=0 )
+        //    {
+        //        //G.NoticeToUser(G.view_form.webBrowserAdd.Url.AbsoluteUri);
+        //        //ExecUtil.execute_start(G.view_form.webBrowserAdd.Url.AbsoluteUri,"");
+        //        ExecUtil.execute_start(G.web_info_js, "");
+        //        G.view_form.webBrowserAdd.Url = new Uri(G.web_info);
 
-                timer = DateTime.Now.AddSeconds(1f); 
-            }
-        }
+        //        timer = DateTime.Now.AddSeconds(1f); 
+        //    }
+        //}
 
     }
 

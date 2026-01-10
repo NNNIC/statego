@@ -333,9 +333,7 @@
             this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label_focustrackpanel_close = new System.Windows.Forms.Label();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.pictureBoxReload = new System.Windows.Forms.PictureBox();
-            this.webBrowserAdd = new System.Windows.Forms.WebBrowser();
+
             this.textBoxLabel = new System.Windows.Forms.TextBox();
             this.pictureBoxHoldMark = new System.Windows.Forms.PictureBox();
             this.GFOvlyPictureBox = new System.Windows.Forms.PictureBox();
@@ -371,8 +369,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_historyrecord)).BeginInit();
             this.groupBox_focustrackpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFocusTrack)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReload)).BeginInit();
+
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHoldMark)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GFOvlyPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GroupFocusPictureBox)).BeginInit();
@@ -3312,9 +3309,7 @@
             this.panel1.Controls.Add(this.vScrollBar1);
             this.panel1.Controls.Add(this.groupBox_historyrecord);
             this.panel1.Controls.Add(this.groupBox_focustrackpanel);
-            this.panel1.Controls.Add(this.pictureBoxClose);
-            this.panel1.Controls.Add(this.pictureBoxReload);
-            this.panel1.Controls.Add(this.webBrowserAdd);
+
             this.panel1.Controls.Add(this.textBoxLabel);
             this.panel1.Controls.Add(this.pictureBoxHoldMark);
             this.panel1.Controls.Add(this.GFOvlyPictureBox);
@@ -3645,42 +3640,9 @@
             this.label_focustrackpanel_close.TabIndex = 5;
             this.label_focustrackpanel_close.Text = "x";
             this.label_focustrackpanel_close.Click += new System.EventHandler(this.label_focustrackpanel_close_Click);
-            // 
-            // pictureBoxClose
-            // 
-            this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxClose.Image = global::stateview.Properties.Resources.close_s;
-            this.pictureBoxClose.Location = new System.Drawing.Point(877, 577);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxClose.TabIndex = 9;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
-            this.pictureBoxClose.DoubleClick += new System.EventHandler(this.pictureBoxClose_DoubleClick);
-            // 
-            // pictureBoxReload
-            // 
-            this.pictureBoxReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxReload.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxReload.Image = global::stateview.Properties.Resources.reload2_s;
-            this.pictureBoxReload.Location = new System.Drawing.Point(855, 577);
-            this.pictureBoxReload.Name = "pictureBoxReload";
-            this.pictureBoxReload.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxReload.TabIndex = 10;
-            this.pictureBoxReload.TabStop = false;
-            this.pictureBoxReload.Click += new System.EventHandler(this.pictureBoxReload_Click);
-            // 
-            // webBrowserAdd
-            // 
-            this.webBrowserAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowserAdd.Location = new System.Drawing.Point(573, 594);
-            this.webBrowserAdd.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowserAdd.Name = "webBrowserAdd";
-            this.webBrowserAdd.Size = new System.Drawing.Size(320, 320);
-            this.webBrowserAdd.TabIndex = 8;
-            this.webBrowserAdd.Url = new System.Uri("", System.UriKind.Relative);
-            this.webBrowserAdd.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowserAdd_DocumentCompleted);
-            this.webBrowserAdd.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.webBrowserAdd_PreviewKeyDown);
+
+
+
             // 
             // textBoxLabel
             // 
@@ -3861,8 +3823,7 @@
             this.groupBox_focustrackpanel.ResumeLayout(false);
             this.groupBox_focustrackpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFocusTrack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReload)).EndInit();
+
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHoldMark)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GFOvlyPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GroupFocusPictureBox)).EndInit();
@@ -3981,8 +3942,8 @@
         private System.Windows.Forms.ToolStripMenuItem clipboardTStripMenuItem;
         public System.Windows.Forms.MenuStrip menuStrip1;
         public System.Windows.Forms.GroupBox groupBoxUtility;
-        private System.Windows.Forms.PictureBox pictureBoxReload;
-        public System.Windows.Forms.WebBrowser webBrowserAdd;
+
+
         private System.Windows.Forms.PictureBox pictureBox1;
         public System.Windows.Forms.CheckBox checkBoxDelBracket;
         public System.Windows.Forms.TabPage tabPageFunc;
@@ -4009,7 +3970,7 @@
         private System.Windows.Forms.ToolStripMenuItem createCloneToolStripMenuItem;
         public System.Windows.Forms.Label label_Linenum;
         public System.Windows.Forms.Label label_bmpos;
-        public System.Windows.Forms.PictureBox pictureBoxClose;
+
         private System.Windows.Forms.ToolStripMenuItem editItemsToolStripMenuItem;
         private System.Windows.Forms.Label labelZoom115;
         public System.Windows.Forms.CheckBox checkBoxDeleteBase;

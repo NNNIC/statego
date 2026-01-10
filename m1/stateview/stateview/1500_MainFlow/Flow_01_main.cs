@@ -328,7 +328,7 @@ namespace stateview
             G.view_form.radioButton_mark_show();
 
             //
-            G.view_form.webBrowserInfo_setup2();
+
 
             //最初の履歴
             History2.SaveForce_initialized("Initilized");
