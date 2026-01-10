@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "master", "main", "tougou_conv" ]
   pull_request:
-    branches: [ "master", "main" ]
+    branches: [ "master", "main", "tougou_conv" ]
 
 jobs:
   build:
