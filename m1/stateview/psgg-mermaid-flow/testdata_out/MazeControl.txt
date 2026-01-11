@@ -1,0 +1,28 @@
+﻿graph LR
+    S_START(("START")) --> S_CreateCubes
+    S_END(("END"))
+    S_CreateCubes["CreateCubes"] --> S_DEL_OUTER
+    S_DEL_OUTER["DEL_OUTER<br/>外枠を消す"] --> S_STARTPOINT
+    S_AVAILABLE_DIRECTIONS["AVAILABLE_DIRECTIONS<br/>移動可能な方向を収集する。"] ==> S_AVAILABLE_DIRECTIONS____br
+    S_AVAILABLE_DIRECTIONS____br{{"?"}} -->|"可能な方向あり"| S_DIGDIR
+    S_AVAILABLE_DIRECTIONS____br -->|"ない"| S_FIND_NEW_START
+    S_STARTPOINT["STARTPOINT"] --> S_DIGSP
+    S_DIGSP["DIGSP<br/>開始位置を掘る<br/>記録する"] --> S_AVAILABLE_DIRECTIONS
+    S_DIGDIR["DIGDIR<br/>可能な方向の一つを選び<br/>２つ掘る。<br/>記録する。"] --> S_AVAILABLE_DIRECTIONS
+    S_FIND_NEW_START["FIND_NEW_START"] ==> S_FIND_NEW_START____br
+    S_FIND_NEW_START____br{{"?"}} -->|"あり"| S_AVAILABLE_DIRECTIONS
+    S_FIND_NEW_START____br -->|"なし"| S_SET_OUTER
+    S_SET_OUTER["SET_OUTER<br/>外枠復活"] --> S_END
+    C_0000["C_0000<br/>迷路作成<br/>穴掘り法"]
+    E_0000["E_0000"]
+    E_0001["E_0001"]
+    classDef typ_START     fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef typ_END       fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef typ_SUBSTART  fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef typ_SUBRETURN fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef comment       fill:#ff9,stroke:#000,stroke-width:4px;
+    classDef embed         fill:#fff,stroke:#000,stroke-width:4px;
+    class S_START typ_START
+    class S_END typ_END
+    class C_0000 comment
+    class E_0000,E_0001 embed

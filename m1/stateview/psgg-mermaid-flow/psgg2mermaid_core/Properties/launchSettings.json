@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "psgg2mermaid": {
+      "commandName": "Project",
+      "commandLineArgs": "FizzBuzzControl.psgg a.txt -c",
+      "workingDirectory": "C:\\Users\\gea01\\Documents\\psgg\\psgg-editor\\Tools\\psgg-mermaid\\testdata"
+    }
+  }
+}

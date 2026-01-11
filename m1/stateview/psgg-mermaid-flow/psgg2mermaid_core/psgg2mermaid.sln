@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psgg2mermaid", "psgg2mermaid.csproj", "{81DB3A8C-40B8-403D-9189-EB27C6328CF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81DB3A8C-40B8-403D-9189-EB27C6328CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DB3A8C-40B8-403D-9189-EB27C6328CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DB3A8C-40B8-403D-9189-EB27C6328CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DB3A8C-40B8-403D-9189-EB27C6328CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8AC014D4-9B38-48F2-93A8-3C7ADD7DECA9}
+	EndGlobalSection
+EndGlobal

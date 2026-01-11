@@ -1,0 +1,1283 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=TestControl.xlsx
+guid=b139c51f-246a-4dc0-ab52-e9447104eee8
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n01e,n005,,n006,n007,n008,n009,,n00a,,n00b,n00c,,n00d,,n00e,n00f,,,,n010,n011,,n012,n013,,n014,n015,,n016,n017,,,n018,n019,n01a,,,n01f,n020,n021,n022,n01b,n01c,n01d,,
+stateid_list=,,,,s0001,s0002,s0004,s0003,s0005,s0006,s0007,s0008,s0009,s000a,s000b,s000c,s000d,s000e,,s0024,s0011,s0025,,,s0015,s0016,s0017,s0018,s0019,s001a,s001b,s001c,s001d,s001e,s001f,s0014,s0021,s0020,s0022,s0023
+max_name_id=34
+max_state_id=37
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=nextstate
+n006=init
+n007=init-cmt
+n008=init_iscript
+n009=init_iscript-cmt
+n00a=chara_face
+n00b=bg
+n00c=bgx
+n00d=bg_after
+n00e=button
+n00f=button-cmt
+n010=glink
+n011=glink-cmt
+n012=link
+n013=link-cmt
+n014=clickable
+n015=clickable-cmt
+n016=prewait
+n017=wait
+n018=branch
+n019=branch-cmt
+n01a=brcond
+n01b=!dir
+n01c=!pos
+n01d=!uuid
+n01e=state-typ
+n01f=gosubstate
+n020=loop_init
+n021=loop_cond
+n022=loop_next
+
+
+[id_state_dic]
+s0001=S_START
+s0002=S_END
+s0003=S_TITLE
+s0004=S_FIRSTSTEP
+s0005=S_SCENE_1
+s0006=S_SHOW_MSGWINDOW
+s0007=S_SETUP_YAMATO
+s0008=S_SETUP_MESSAGEWINDOW
+s0009=S_DISP_MENU
+s000a=S_SET_CHARNAMEAREA
+s000b=S_AKANE_EMOTION
+s000c=S_SETUP_AKANE
+s000d=S_ADJUST_CHARAREGION
+s000e=S_SERIF01
+s0011=S_SERIF02
+s0014=S_GOSUB1
+s0015=S_SUBSTART1
+s0016=S_SHOW_AKANE1
+s0017=S_OK_GOSUB
+s0018=S_RETURN1
+s0019=S_SHOW_AKANE2
+s001a=S_LOOP1
+s001b=S_ABOUT_LOOP
+s001c=S_SUBSTART2
+s001d=S_SHOW_AKANE3
+s001e=S_SHOW_AKANE4
+s001f=S_RETURN2
+s0020=S_CHECK_COUNT
+s0021=S_SHOW_AKANE5
+s0022=S_SHOW_AKANE6
+s0023=S_SHOW_AKANE7
+s0024=S_OWARI
+s0025=S_SHOW_AKANE8
+
+
+[s0001]
+n001=(bitmap)
+n002=S_START
+n01e=start
+n005=S_FIRSTSTEP
+n006=START[r]
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=50,100
+n01d=100001
+
+[s0002]
+n001=(bitmap)
+n002=S_END
+n01e=end
+n006=END[r]
+n017=[s]
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=1835,219
+n01d=100002
+
+[s0003]
+n002=S_TITLE
+n003=タイトル表示
+n00b=title.jpg
+n00e=100,250,title/button_start.png,START
+n016=@@@
+[button x=100 y=320 graphic="title/button_load.png"  role="load" ]
+[button x=100 y=390 graphic="title/button_cg.png" storage="cg.ks" ]
+[button x=100 y=460 graphic="title/button_replay.png" storage="replay.ks" ]
+[button x=100 y=530 graphic="title/button_config.png" role="sleepgame" storage="config.ks" ]
+@@@
+
+n017=[s]
+n018=brif(S_SCENE_1);
+n01a=f.butval == 'START'
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=85,522
+n01d=100003
+
+[s0004]
+n002=S_FIRSTSTEP
+n005=S_TITLE
+n006=@@@
+[title name="ティラノスクリプト解説"]
+[stop_keyconfig]
+@call storage="tyrano.ks"
+@layopt layer="message" visible=false
+[hidemenubutton]
+@@@
+
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=81,300
+n01d=100004
+
+[s0005]
+n002=S_SCENE_1
+n005=S_DISP_MENU
+n006=@@@
+[cm  ]
+[clearfix]
+[start_keyconfig]
+@@@
+
+n00b=room.jpg
+n01b=@@@
+/PREPARE/
+(80,858)
+ゲーム準備
+@@@
+
+n01c=219,16
+n01d=100005
+
+[s0006]
+n002=S_SHOW_MSGWINDOW
+n003=メッセージウィンドウの表示
+n005=S_SET_CHARNAMEAREA
+n006=@layopt layer=message0 visible=true
+n01b=@@@
+/PREPARE/
+(80,858)
+ゲーム準備
+@@@
+
+n01c=1002,22
+n01d=100006
+
+[s0007]
+n002=S_SETUP_YAMATO
+n005=S_SERIF01
+n006=@@@
+[chara_new  name="yamato"  storage="chara/yamato/normal.png" jname="やまと" ]
+@@@
+
+n01b=@@@
+/PREPARE/
+(80,858)
+ゲーム準備
+@@@
+
+n01c=442,288
+n01d=100007
+
+[s0008]
+n002=S_SETUP_MESSAGEWINDOW
+n003=メッセージウィンドウの設定
+n005=S_ADJUST_CHARAREGION
+n006=@@@
+[position layer="message0" left=20 top=400 width=920 height=200 page=fore visible=true]
+@@@
+
+n01b=@@@
+/PREPARE/
+(80,858)
+ゲーム準備
+@@@
+
+n01c=616,13
+n01d=100008
+
+[s0009]
+n002=S_DISP_MENU
+n003=メニューボタンの表示
+n005=S_SETUP_MESSAGEWINDOW
+n006=@showmenubutton
+n01b=@@@
+/PREPARE/
+(80,858)
+ゲーム準備
+@@@
+
+n01c=417,16
+n01d=100009
+
+[s000a]
+n002=S_SET_CHARNAMEAREA
+n003=キャラクターの名前が表示される文字領域
+n005=S_SETUP_AKANE
+n006=@@@
+[ptext name="chara_name_area" layer="message0" color="white" size=24 x=50 y=410]
+
+[chara_config ptext="chara_name_area"]
+@@@
+
+n007=@@@
+;上記で定義した領域がキャラクターの名前表示であることを宣言（これがないと#の部分でエラーになります）
+@@@
+
+n01b=@@@
+/PREPARE/
+(80,858)
+ゲーム準備
+@@@
+
+n01c=1201,23
+n01d=100010
+
+[s000b]
+n002=S_AKANE_EMOTION
+n003=キャラクターの表情登録
+n005=S_SETUP_YAMATO
+n00a=@@@
+akane, angry,chara/akane/angry.png
+akane, doki,chara/akane/doki.png
+akane, happy,chara/akane/happy.png
+akane, sad  ,chara/akane/sad.png
+@@@
+
+n01b=@@@
+/PREPARE/
+(80,858)
+ゲーム準備
+@@@
+
+n01c=211,287
+n01d=100011
+
+[s000c]
+n002=S_SETUP_AKANE
+n003=このゲームで登場するキャラクターを宣言
+n005=S_AKANE_EMOTION
+n006=@@@
+[chara_new  name="akane" storage="chara/akane/normal.png" jname="あかね"  ]
+@@@
+
+n01b=@@@
+/PREPARE/
+(80,858)
+ゲーム準備
+@@@
+
+n01c=30,273
+n01d=100012
+
+[s000d]
+n002=S_ADJUST_CHARAREGION
+n003=文字が表示される領域を調整
+n005=S_SHOW_MSGWINDOW
+n006=@@@
+[position layer=message0 page=fore margint="45" marginl="50" marginr="70" marginb="60"]
+@@@
+
+n01b=@@@
+/PREPARE/
+(80,858)
+ゲーム準備
+@@@
+
+n01c=810,21
+n01d=100013
+
+[s000e]
+n002=S_SERIF01
+n005=S_GOSUB1
+n006=@@@
+#
+StateGoの新機能、サブルーチンを試してみるか。[p]
+よんでみるぞ…[p]
+呼びたいサブルーチンに接続すればいいだけだ。[p]
+@@@
+
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=221,969
+n01d=100015
+
+[s0011]
+n002=S_SERIF02
+n005=S_OWARI
+n006=@@@
+[font  size="30"   ]
+これで大成功だ！[p]
+[resetfont  ]
+@@@
+
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=1351,524
+n01d=100018
+
+[s0014]
+n002=S_GOSUB1
+n003=New Go Souroutine
+n01e=gosub
+n005=S_OK_GOSUB
+n01f=S_SUBSTART1
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=427,920
+n01d=100026
+
+[s0015]
+n002=S_SUBSTART1
+n003=A Subroutine Start
+n01e=substart
+n005=S_SHOW_AKANE1
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=572,1178
+n01d=100028
+
+[s0016]
+n002=S_SHOW_AKANE1
+n005=S_SHOW_AKANE2
+n006=@@@
+[chara_show  name="akane"  ]
+サブルーチンの中のあかねよ[p]
+直ぐに消えるわ…[p]
+@@@
+
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=776,1174
+n01d=100030
+
+[s0017]
+n002=S_OK_GOSUB
+n005=S_ABOUT_LOOP
+n006=お、成功したようだね。[p]
+n01b=@@@
+/
+(100,-1)
+ゲーム準備
+@@@
+
+n01c=659,849
+n01d=100032
+
+[s0018]
+n001=(bitmap)
+n002=S_RETURN1
+n003=A Subroutine Return
+n01e=subreturn
+n01b=@@@
+/
+(100,100)
+
+@@@
+
+n01c=1183,1177
+n01d=100034
+
+[s0019]
+n002=S_SHOW_AKANE2
+n005=S_RETURN1
+n006=[chara_hide  name="akane"  ]
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=975,1174
+n01d=100036
+
+[s001a]
+n002=S_LOOP1
+n003=あかねを１０回よぶ
+n01e=loop
+n005=S_SERIF02
+n01f=S_SUBSTART2
+n020=f.count = 0;
+n021=f.count < 10
+n022=f.count = f.count + 1;
+n01b=@@@
+/
+(100,100)
+
+@@@
+
+n01c=1105,884
+n01d=100038
+
+[s001b]
+n002=S_ABOUT_LOOP
+n005=S_LOOP1
+n006=@@@
+次は、ループを試してみよう。[p]
+ループは、[p]
+初期値・・・・・ f.count = 0 とか[p]
+条件・・・・・・・ f.count < 10 とか[p]
+再初期化・・・ f.count = f.count + 1 とか [p]
+設定するんだよ。[p]
+繰り返す内容は、サブルーチンで実装するんだよ。[p]
+@@@
+
+n01b=@@@
+/
+(100,-1)
+ゲーム準備
+@@@
+
+n01c=868,853
+n01d=100040
+
+[s001c]
+n002=S_SUBSTART2
+n003=A Subroutine Start
+n01e=substart
+n005=S_CHECK_COUNT
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=1290,965
+n01d=100042
+
+[s001d]
+n002=S_SHOW_AKANE3
+n005=S_RETURN2
+n006=[chara_hide  name="akane"  ]
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=1952,743
+n01d=100043
+
+[s001e]
+n002=S_SHOW_AKANE4
+n005=S_SHOW_AKANE3
+n006=@@@
+[chara_show  name="akane"  ]
+サブルーチンの中のあかねよ[p]
+直ぐに消えるわ…[p]
+@@@
+
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=1704,864
+n01d=100044
+
+[s001f]
+n002=S_RETURN2
+n003=A Subroutine Return
+n01e=subreturn
+n01b=@@@
+/
+(100,-1)
+
+@@@
+
+n01c=2086,997
+n01d=100045
+
+[s0020]
+n002=S_CHECK_COUNT
+n018=@@@
+brifc(S_SHOW_AKANE4);
+brelseifc(S_SHOW_AKANE5);
+brelseifc(S_SHOW_AKANE6);
+brelseifc(S_SHOW_AKANE8);
+brelse(S_SHOW_AKANE7);
+@@@
+
+n019=@@@
+?
+?
+?
+?
+?
+@@@
+
+n01a=@@@
+f.count < 2
+f.count < 4
+f.count < 8
+f.count < 9
+?
+@@@
+
+n01b=@@@
+/
+(100,100)
+
+@@@
+
+n01c=1428,1073
+n01d=100047
+
+[s0021]
+n002=S_SHOW_AKANE5
+n005=S_SHOW_AKANE3
+n006=@@@
+[chara_show  name="akane"  ]
+いい加減にしてくれない![p]
+@@@
+
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=1696,1039
+n01d=100049
+
+[s0022]
+n002=S_SHOW_AKANE6
+n005=S_SHOW_AKANE3
+n006=@@@
+[chara_show  name="akane"  ]
+またね・・・[p]
+@@@
+
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=1695,1166
+n01d=100051
+
+[s0023]
+n002=S_SHOW_AKANE7
+n005=S_SHOW_AKANE3
+n006=@@@
+[chara_show  name="akane" ]
+おしまいよ！[p]
+@@@
+
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=1697,1382
+n01d=100053
+
+[s0024]
+n001=(bitmap)
+n002=S_OWARI
+n005=S_END
+n006=サンプルの終わりだよ。[p]
+n01b=@@@
+/
+(100,-1)
+ゲーム準備
+@@@
+
+n01c=1618,516
+n01d=100055
+
+[s0025]
+n002=S_SHOW_AKANE8
+n005=S_SHOW_AKANE3
+n006=@@@
+[chara_show  name="akane"  ]
+好きよね・・・[p]
+@@@
+
+n01b=@@@
+/
+(100,-1)
+This is the root
+@@@
+
+n01c=1694,1270
+n01d=100057
+
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+
+; The setting was created automatically. 2019/11/03 21:25:35
+; * pssgEditor version : 0.61.41008.b83e59111b3a935fbe1b89e29e11088a78e1ef52
+psggfile=TestControl.psgg
+xlsfile=TestControl.xlsx
+guid=b139c51f-246a-4dc0-ab52-e9447104eee8
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=Edited a state.
+target_pathdir=/
+state_location_list=
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"This is the root"},{"Key":"\/PREPARE\/","Value":"ゲーム準備"}]
+@@@
+
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":-1}},{"Key":"\/PREPARE\/","Value":{"x":80,"y":858}}]
+@@@
+
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":1835,"y":219}},{"Key":"S_TITLE","Value":{"x":85,"y":522}},{"Key":"S_FIRSTSTEP","Value":{"x":81,"y":300}},{"Key":"S_QUESTION","Value":{"x":1061,"y":229}},{"Key":"S_QUESTION1","Value":{"x":1317,"y":216}},{"Key":"S_SERIF01","Value":{"x":221,"y":969}},{"Key":"S_SHOW_AKANE","Value":{"x":1774,"y":606}},{"Key":"S_SERIF03","Value":{"x":1561,"y":611}},{"Key":"S_SERIF02","Value":{"x":1351,"y":524}},{"Key":"S_GOSUB1","Value":{"x":427,"y":920}},{"Key":"S_SUBSTART1","Value":{"x":572,"y":1178}},{"Key":"____altnative_state____PREPARE","Value":{"x":80,"y":858}},{"Key":"S_SHOW_AKANE1","Value":{"x":776,"y":1174}},{"Key":"S_SETUP_YAMATO1","Value":{"x":659,"y":849}},{"Key":"S_RETURN1","Value":{"x":1183,"y":1177}},{"Key":"S_SHOW_AKANE2","Value":{"x":975,"y":1174}},{"Key":"S_OK_GOSUB","Value":{"x":659,"y":849}},{"Key":"S_LOOP1","Value":{"x":1105,"y":884}},{"Key":"S_OK_GOSUB1","Value":{"x":1618,"y":516}},{"Key":"S_ABOUT_LOOP","Value":{"x":868,"y":853}},{"Key":"S_SUBSTART2","Value":{"x":1290,"y":965}},{"Key":"S_SHOW_AKANE3","Value":{"x":1952,"y":743}},{"Key":"S_SHOW_AKANE4","Value":{"x":1704,"y":864}},{"Key":"S_RETURN2","Value":{"x":2086,"y":997}},{"Key":"S_SHOW_AKANE5","Value":{"x":1696,"y":1039}},{"Key":"S_CHECK_COUNT","Value":{"x":1428,"y":1073}},{"Key":"S_SHOW_AKANE6","Value":{"x":1695,"y":1166}},{"Key":"S_SHOW_AKANE7","Value":{"x":1697,"y":1382}},{"Key":"S_OWARI","Value":{"x":1618,"y":516}},{"Key":"S_SHOW_AKANE8","Value":{"x":1694,"y":1270}}]},{"Key":"\/PREPARE\/","Value":[{"Key":"S_TITLE","Value":{"x":50,"y":100}},{"Key":"S_SCENE_1","Value":{"x":219,"y":16}},{"Key":"S_SHOW_MSGWINDOW","Value":{"x":1002,"y":22}},{"Key":"S_SETUP_YAMATO","Value":{"x":442,"y":288}},{"Key":"S_SETUP_MESSAGEWINDOW","Value":{"x":616,"y":13}},{"Key":"S_DISP_MENU","Value":{"x":417,"y":16}},{"Key":"S_SET_CHARNAMEAREA","Value":{"x":1201,"y":23}},{"Key":"S_AKANE_EMOTION","Value":{"x":211,"y":287}},{"Key":"S_SETUP_AKANE","Value":{"x":30,"y":273}},{"Key":"S_ADJUST_CHARAREGION","Value":{"x":810,"y":21}},{"Key":"S_SERIF01","Value":{"x":1131,"y":406}}]},{"Key":"\/Intoroduction\/","Value":[{"Key":"S_SETUP_YAMATO","Value":{"x":50,"y":100}},{"Key":"S_SERIF01","Value":{"x":305,"y":58}},{"Key":"S_SHOW_AKANE","Value":{"x":920,"y":66}},{"Key":"S_SERIF03","Value":{"x":709,"y":71}},{"Key":"S_SERIF02","Value":{"x":514,"y":61}},{"Key":"S_QUESTION","Value":{"x":1212.15381,"y":188.6923}}]}]
+@@@
+
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+
+use_external_command=0
+external_command=
+source_editor=@@@
+"%USERPROFILE%\AppData\Local\Programs\Microsoft VS Code\Code.exe" -g "%1":%2
+@@@
+
+source_editor_vs2015_support=0
+label_show=0
+label_text=test
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=MS UI Gothic
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=
+userbutton_command=
+userbutton_callafterconvert=0
+itemeditform_size_list=
+
+
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+
+;------------------------------
+;    [[state]]
+;    [[state-cmt]]
+
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+*[[state]]
+[iscript]
+    f.curstate = '[[state]]';
+    f.nextstate ='';
+    f.yesno=0;
+[endscript]
+
+<<<?state-typ/^start$/
+;
+; typ = start
+;
+[iscript]
+    f.nextstate = '[[nextstate]]';
+[endscript]
+[jump target=&f.nextstate]
+
+eof>>>
+
+<<<?state-typ/^end$/
+;
+; typ = end
+;
+[s]
+[jump target=&f.curstate]
+eof>>>
+
+<<<?state-typ/^gosub$/
+;
+; typ = gosub
+;
+[iscript]
+    f.callstack.push('[[nextstate]]');
+    f.nextstate = '[[gosubstate]]';
+[endscript]
+[jump target=&f.nextstate]
+eof>>>
+
+<<<?state-typ/^substart$/
+;
+; typ = substart
+;
+
+[iscript]
+    f.nextstate = '[[nextstate]]';
+[endscript]
+[jump target=&f.nextstate]
+eof>>>
+
+<<<?state-typ/^subreturn$/
+;
+; typ = subreturn
+;
+[iscript]
+    f.nextstate = f.callstack.pop();
+[endscript]
+[jump target=&f.nextstate]
+eof>>>
+
+<<<?state-typ/^loop$/
+;
+; typ = loop
+;
+[iscript]
+    [[loop_init]]
+    f.nextstate = '[[state]]_LoopCheckAndGosub____';
+[endscript]
+[jump target=&f.nextstate]
+
+*[[state]]_LoopCheckAndGosub____
+[iscript]
+    f.curstate = '[[state]]_LoopCheckAndGosub____';
+    f.nextstate ='';
+    f.yesno=0;
+[endscript]
+[iscript]
+    if ([[loop_cond]]) {
+        f.callstack.push('[[state]]_LoopNext____');
+        f.nextstate = '[[gosubstate]]';
+    }
+    else {
+        f.nextstate='[[nextstate]]';
+    }
+[endscript]
+[jump target=&f.nextstate]
+
+*[[state]]_LoopNext____
+[iscript]
+    f.curstate = '[[state]]_LoopNext____';
+    f.nextstate ='';
+    f.yesno=0;
+[endscript]
+[iscript]
+    [[loop_next]]
+    f.nextstate ='[[state]]_LoopCheckAndGosub____';
+[endscript]
+[jump target=&f.nextstate]
+eof>>>
+
+[[init]]
+
+<<<?initscript
+[iscript]
+    [[initscript]]
+[endscript]
+>>>
+
+<<<?bg
+@bg storage="[[bg]]"
+>>>
+
+[[bgx]]
+
+[[chara_face]]
+
+[[bg_after]]
+
+<<<?button
+[iscript]
+    f.butval='';
+[endscript]
+[[button->@makebutton]]
+>>>
+
+<<<?glink
+[iscript]
+    f.glkval='';
+[endscript]
+[[glink->@makeglink]]
+>>>
+
+<<<?link
+[iscript]
+    f.lnkval='';
+[endscript]
+[[link->@makelink]]
+>>>
+
+<<<?clickable
+[iscript]
+    f.clkval='';
+[endscript]
+[[clickable->@makeclickable]]
+>>>
+
+[[prewait]]
+
+[[wait]]
+
+*[[state]]___branch
+;
+; BRANCH
+;
+<<<?branch
+[iscript]
+    [[branch]]
+[endscript]
+>>>
+
+<<<?nextstate
+[iscript]
+    if (f.nextstate == '') {
+        f.nextstate = '[[nextstate]]';
+    }
+[endscript]
+>>>
+
+[jump target=&f.nextstate]
+
+<<<?button
+;
+; BUTTON LABEL
+;
+[[button->@makebuttonlabel]]
+>>>
+
+<<<?glink
+;
+; GLINK LABEL
+;
+[[glink->@makeglinklabel]]
+>>>
+
+<<<?link
+;
+; LINK LABEL
+;
+[[link->@makelinklabel]]
+>>>
+
+
+<<<?clickable
+;
+; CLICK LABEL
+;
+[[clickable->@makeclickablelabel]]
+>>>
+;
+; END OF [[state]]
+;
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+
+
+[setting]
+
+psgg=TestControl.psgg
+xls=TestControl.xlsx
+sub_src=
+gen_src=TestControl.ks
+
+macro_ini=TestControlMacro.ini
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit2\tyranoscript\helpweb.html
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git cfc8f13265625552383bb1b6b930dc73d33fe5ea
+@@@
+
+
+
+lang=tyranoscript
+framework=
+
+statemachine=TestControl
+
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\samples\psgg-tyranoscript-sample\sample2\src
+@@@
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\samples\psgg-tyranoscript-sample\sample2\src
+@@@
+
+genrdir=.
+incrdir=.
+
+
+code_output_start=[SYN-G-GEN OUTPUT START]
+code_output_end=[SYN-G-GEN OUTPUT END]
+
+; This section has macro defines for converting.
+
+; commentline format  {%0} will be replaced to a comment.
+[macro]
+
+commentline=; {%0}
+
+[jpn]
+
+title=Tyranoscript スタートキット 2019/11/3
+
+detail=@@@
+Tyranoscript 用のステートマシンを作成します。
+
+サンプルは以下より入手可能です。
+https://github.com/NNNIC/psgg-tyranoscript-sample
+
+# ファイル
+
+      TestControl.pssg     --- StateGoデータファイル
+      TestControl.ks       --- 変換コードを本ファイルに埋め込む。
+      TestControlMacro.ini --- マクロファイル
+
+@@@
+
+
+
+[en]
+
+title=Tyranoscript STARTER KIT 2019/11/3
+
+detail=@@@
+This is to create a state-machine,
+
+The sample is available.
+https://github.com/NNNIC/psgg-tyranoscript-sample
+
+
+# Files
+
+      TestControl.pssg  --- StateGo data file.
+      TestControl.ks    --- The editor will insert converted source code to this file.
+      TestControlMacro.ini --- Macro file.
+
+@@@
+
+
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+; -----
+; 項目説明
+; -----
+
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+en=This item is defined by "Edit Branch"
+jpn=分岐処理は、"分岐編集"にて指定
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+en=Set waiting code
+jpn=待ち用のコード指定
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[members]
+
+jpn=メンバ変数及び関数等を指定する。
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[clickable]
+
+en=X,Y,W,H,Label
+jpn=X,Y,W,H,Label
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[vars]
+
+jpn=変数宣言を指定する。
+en=Specify variable definitions.
+[prewait]
+
+en=Specify code for before waiting.
+jpn=待機前のコードを指定
+[embed]
+
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[init_iscript]
+
+en=Specify initial code of inline script.
+jpn=初期化用のインラインコードを指定
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[link]
+
+jpn=LABEL,"TEXT",追加([r])
+en=LABEL,"TEXT",Adding([r])
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[glink]
+
+en=X,Y,W,SIZE,Label,Text
+jpn=X,Y,W,SIZE,Label,Text
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'yes'を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'yes' if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[button]
+
+jpn=X,Y,FILE,LABEL
+en=X,Y,FILE,LABEL
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+chara_face=
+bg_after=
+button=
+prewait=
+E_=
+init_iscript-cmt=
+link-cmt=
+branch=
+!dir=
+loop_cond=
+bg=
+nextstate=
+nowait=@@@
+*select
+nowait
+@@@
+
+thumbnail=
+bgx=
+clickable-cmt=
+init_iscript=
+gosubstate=
+state-cmt=
+state-typ=
+!pos=
+!uuid=
+clickable=
+state=
+S_=
+link=
+glink-cmt=
+init-cmt=
+button-cmt=
+loop_next=
+C_=
+brcond=
+wait=
+loop_init=
+glink=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,(S0)
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+basestate=read_only,share,S.+
+state-typ=read_only,exclusion,(S0)
+###VARIOUS-CONTENTS-END###
+
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

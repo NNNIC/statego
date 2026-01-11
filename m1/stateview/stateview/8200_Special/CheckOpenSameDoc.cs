@@ -86,6 +86,8 @@ namespace stateview
         }
 
         private static  void traverse_items(Action<int,MemoryMappedViewAccessor> func) {
+            if (m_newMMF == null) create_mem_ifnotexist();
+            if (m_newMMF == null) return;
             try {
                 using(var ac = m_newMMF.CreateViewAccessor(0,MAXSIZE)) {
                     for(var n = 0;n < MAXPROC;n++)

@@ -1,0 +1,3 @@
+src/start/Program.hx:9: #0. call Convert from null
+src/system/Console.hx:13: input : G:\statego\psgg-converter-to-haxe\tohaxe\testdata-tmp\php\FizzBuzzControl.psgg
+src/system/Console.hx:13: output: G:/statego/psgg-converter-to-haxe/tohaxe/testdata-tmp/php/FizzBuzzControl.php

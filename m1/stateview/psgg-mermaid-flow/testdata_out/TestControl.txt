@@ -1,0 +1,52 @@
+﻿graph LR
+    S_START(("START")) --> S_FIRSTSTEP
+    S_END(("END"))
+    S_FIRSTSTEP["FIRSTSTEP"] --> S_TITLE
+    S_TITLE["TITLE<br/>タイトル表示"] ==> S_TITLE____br
+    S_TITLE____br{{"?"}} -->|"f.butval == 'START'"| S_SCENE_1
+    S_SCENE_1["SCENE_1"] --> S_DISP_MENU
+    S_SHOW_MSGWINDOW["SHOW_MSGWINDOW<br/>メッセージウィンドウの表示"] --> S_SET_CHARNAMEAREA
+    S_SETUP_YAMATO["SETUP_YAMATO"] --> S_SERIF01
+    S_SETUP_MESSAGEWINDOW["SETUP_MESSAGEWINDOW<br/>メッセージウィンドウの設定"] --> S_ADJUST_CHARAREGION
+    S_DISP_MENU["DISP_MENU<br/>メニューボタンの表示"] --> S_SETUP_MESSAGEWINDOW
+    S_SET_CHARNAMEAREA["SET_CHARNAMEAREA<br/>キャラクターの名前が表示される文字領域"] --> S_SETUP_AKANE
+    S_AKANE_EMOTION["AKANE_EMOTION<br/>キャラクターの表情登録"] --> S_SETUP_YAMATO
+    S_SETUP_AKANE["SETUP_AKANE<br/>このゲームで登場するキャラクターを宣言"] --> S_AKANE_EMOTION
+    S_ADJUST_CHARAREGION["ADJUST_CHARAREGION<br/>文字が表示される領域を調整"] --> S_SHOW_MSGWINDOW
+    S_SERIF01["SERIF01"] --> S_GOSUB1
+    S_OWARI["OWARI"] --> S_END
+    S_SERIF02["SERIF02"] --> S_OWARI
+    S_SHOW_AKANE8["SHOW_AKANE8"] --> S_SHOW_AKANE3
+    S_SUBSTART1("SUBSTART1<br/>A Subroutine Start") --> S_SHOW_AKANE1
+    S_SHOW_AKANE1["SHOW_AKANE1"] --> S_SHOW_AKANE2
+    S_OK_GOSUB["OK_GOSUB"] --> S_ABOUT_LOOP
+    S_RETURN1("RETURN1<br/>A Subroutine Return")
+    S_SHOW_AKANE2["SHOW_AKANE2"] --> S_RETURN1
+    S_LOOP1[["LOOP1<br/>あかねを１０回よぶLOOP (<br/>f.count = 0;<br/>f.count < 10<br/>f.count = f.count + 1;<br/>)<br/>CALL S_SUBSTART2"]] --> S_SERIF02
+    S_ABOUT_LOOP["ABOUT_LOOP"] --> S_LOOP1
+    S_SUBSTART2("SUBSTART2<br/>A Subroutine Start") --> S_CHECK_COUNT
+    S_SHOW_AKANE3["SHOW_AKANE3"] --> S_RETURN2
+    S_SHOW_AKANE4["SHOW_AKANE4"] --> S_SHOW_AKANE3
+    S_RETURN2("RETURN2<br/>A Subroutine Return")
+    S_GOSUB1[["GOSUB1<br/>New Go Souroutine<br/>CALL SUBSTART1"]] --> S_OK_GOSUB
+    S_SHOW_AKANE5["SHOW_AKANE5"] --> S_SHOW_AKANE3
+    S_CHECK_COUNT["CHECK_COUNT"] ==> S_CHECK_COUNT____br
+    S_CHECK_COUNT____br{{"?"}} -->|"f.count < 2"| S_SHOW_AKANE4
+    S_CHECK_COUNT____br -->|"f.count < 4"| S_SHOW_AKANE5
+    S_CHECK_COUNT____br -->|"f.count < 8"| S_SHOW_AKANE6
+    S_CHECK_COUNT____br -->|"f.count < 9"| S_SHOW_AKANE8
+    S_CHECK_COUNT____br -->|"else"| S_SHOW_AKANE7
+    S_SHOW_AKANE6["SHOW_AKANE6"] --> S_SHOW_AKANE3
+    S_SHOW_AKANE7["SHOW_AKANE7"] --> S_SHOW_AKANE3
+    classDef typ_START     fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef typ_END       fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef typ_SUBSTART  fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef typ_SUBRETURN fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef comment       fill:#ff9,stroke:#000,stroke-width:4px;
+    classDef embed         fill:#fff,stroke:#000,stroke-width:4px;
+    class S_START typ_START
+    class S_END typ_END
+    class S_SUBSTART1,S_SUBSTART2 typ_SUBSTART
+    class S_RETURN1,S_RETURN2 typ_SUBRETURN
+    class S_LOOP1 typ_LOOP
+    class S_GOSUB1 typ_GOSUB

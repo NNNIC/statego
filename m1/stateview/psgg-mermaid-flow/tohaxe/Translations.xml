@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Translations>
+  <Method SourceObject="System.String" Match="Format" ExtensionNamespace="psgg.HxString" />
+
+  <Method SourceObject="System.IO.File" Match="ReadAllText" ExtensionNamespace="psgg.HxFile" SkipExtensionParameter="true"/>
+  <Method SourceObject="System.IO.File" Match="WriteAllText" ExtensionNamespace="psgg.HxFile" SkipExtensionParameter="true"/>
+  <Method SourceObject="System.IO.File" Match="ReadAllBytes" ExtensionNamespace="psgg.HxFile" SkipExtensionParameter="true"/>
+
+  <Method SourceObject="System.IO.Path" Match="GetFullPath" ExtensionNamespace="psgg.HxFile" SkipExtensionParameter="true"/>
+  <Method SourceObject="System.IO.Path" Match="Combine" ExtensionNamespace="psgg.HxFile" SkipExtensionParameter="true"/>
+  <Method SourceObject="System.IO.Path" Match="GetDirectoryName" ExtensionNamespace="psgg.HxFile" SkipExtensionParameter="true"/>
+
+  <Method SourceObject="System.Text.Encoding" Match="GetEncoding" ExtensionNamespace="psgg.HxEncoding" SkipExtensionParameter="true"/>
+  <Method SourceObject="System.Text" Match="UTF8Encoding" ExtensionNamespace="psgg.HxEncoding" SkipExtensionParameter="true"/>
+  <Type Match="System.Text.UTF8Encoding" SourceObject="*" ReplaceWith="psgg.HxUTF8Encoding" />
+  <Method SourceObject="lib.util.RegexUtil" Match="IsMatch"     ExtensionNamespace="psgg.HxRegexUtil" SkipExtensionParameter="true"/>
+  <Method SourceObject="lib.util.RegexUtil" Match="Get1stMatch" ExtensionNamespace="psgg.HxRegexUtil" SkipExtensionParameter="true"/>
+  <Method SourceObject="lib.util.RegexUtil" Match="GetNthMatch" ExtensionNamespace="psgg.HxRegexUtil" SkipExtensionParameter="true"/>  <Property SourceObject="lib.util.RegexUtil" Match="VARNAME_PATTERN" ExtensionNamespace="psgg.HxRegexUtil" ReplaceWith="GetVerNamePattern" SkipExtensionParameter="true" />
+
+  <Method SourceObject="lib.util.SortUtil" Match="Sort" ExtensionNamespace="psgg.HxSortUtil" SkipExtensionParameter="true"/>
+</Translations>

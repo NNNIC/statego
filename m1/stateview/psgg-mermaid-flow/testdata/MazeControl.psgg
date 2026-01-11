@@ -1,0 +1,931 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=MazeControl.xlsx
+guid=1c07cefb-c398-4497-a59d-d5515d7637af
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n01c,n005,n006,,n007,,n008,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,n01d,n01e,n01f,n020,,n015,n016,n017,n018,,n019,n01a,n01b,
+stateid_list=,,,,,,,,,,,,,,,,,s000d,s000e,s000f,s0011,s0010,s0012,s0014,s0013,s0015,s0016,s0017,s0018,s0019
+max_name_id=32
+max_state_id=25
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=gosubstate
+n014=return
+n015=branch
+n016=branch-cmt
+n017=brcond
+n018=nowait
+n019=!dir
+n01a=!pos
+n01b=!uuid
+n01c=state-typ
+n01d=loop
+n01e=loop_init
+n01f=loop_cond
+n020=loop_next
+
+
+[id_state_dic]
+s000d=S_START
+s000e=S_END
+s000f=C_0000
+s0010=E_0000
+s0011=S_CreateCubes
+s0012=S_DEL_OUTER
+s0013=S_STARTPOINT
+s0014=S_AVAILABLE_DIRECTIONS
+s0015=E_0001
+s0016=S_DIGSP
+s0017=S_DIGDIR
+s0018=S_FIND_NEW_START
+s0019=S_SET_OUTER
+
+
+[s000d]
+n002=S_START
+n01c=start
+n006=S_CreateCubes
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=57,219
+n01b=1
+
+[s000e]
+n002=S_END
+n01c=end
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1691,802
+n01b=2
+
+[s000f]
+n002=C_0000
+n003=@@@
+迷路作成
+穴掘り法
+@@@
+
+n004=@@@
+https://algoful.com/Archive/Algorithm/MazeDig
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=56,36
+n01b=3
+
+[s0010]
+n002=E_0000
+n007=@@@
+public GameObject   m_root;
+public const int m_width  = 41;
+public const int m_height = 41;
+GameObject[,] m_cubelist;
+List<int[]> m_pathlist = new List<int[]>();
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=260,31
+n01b=4
+
+[s0011]
+n002=S_CreateCubes
+n006=S_DEL_OUTER
+n00a=@@@
+m_cubelist = new GameObject[m_width, m_height];
+for(var x = 0; x < m_width; x++)
+{
+    for(var y = 0; y < m_height; y++)
+    {
+        var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.transform.parent = m_root.transform;
+        cube.transform.localPosition = new Vector3( - ((float)m_width * 0.5f )  + x,0, -((float)m_height * 0.5f) + y);
+        m_cubelist[x,y] = cube;
+    }
+}
+
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=51,425
+n01b=5
+
+[s0012]
+n002=S_DEL_OUTER
+n003=外枠を消す
+n006=S_STARTPOINT
+n00a=@@@
+var left_x  = 0;
+var right_x = m_width - 1;
+var near_y  = 0;
+var far_y   = m_height - 1;
+for(var y = 0; y < m_height; y++) {
+    m_cubelist[left_x,y].SetActive(false);
+    m_cubelist[right_x,y].SetActive(false);
+}
+for(var x = 0; x < m_width; x++)
+{
+    m_cubelist[x, near_y].SetActive(false);
+    m_cubelist[x, far_y].SetActive(false);
+}
+
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=259,425
+n01b=6
+
+[s0013]
+n002=S_STARTPOINT
+n006=S_DIGSP
+n008=@@@
+public int m_cur_x;
+public int m_cur_y;
+@@@
+
+n00a=@@@
+m_cur_x = rand_odd(1,m_width-1);
+m_cur_y = rand_odd(1,m_height-1);
+
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=446,425
+n01b=7
+
+[s0014]
+n002=S_AVAILABLE_DIRECTIONS
+n003=移動可能な方向を収集する。
+n00a=@@@
+m_availableDirs = collect_available_dirs(m_cur_x,m_cur_y);
+@@@
+
+n015=@@@
+brifc(S_DIGDIR);
+brelse(S_FIND_NEW_START);
+@@@
+
+n016=@@@
+可能な方向あり
+ない
+@@@
+
+n017=@@@
+m_availableDirs.Count > 0
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=932,425
+n01b=8
+
+[s0015]
+n002=E_0001
+n007=@@@
+public enum DIR
+{
+    none,
+    UP,
+    RIGHT,
+    DOWN,
+    LEFT
+}
+List<DIR> m_availableDirs = new List<DIR>();
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=430,34
+n01b=9
+
+[s0016]
+n002=S_DIGSP
+n003=@@@
+開始位置を掘る
+記録する
+@@@
+
+n006=S_AVAILABLE_DIRECTIONS
+n00a=dig(0,0, true);
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=627,425
+n01b=10
+
+[s0017]
+n002=S_DIGDIR
+n003=@@@
+可能な方向の一つを選び
+２つ掘る。
+記録する。
+@@@
+
+n006=S_AVAILABLE_DIRECTIONS
+n00a=@@@
+var d = RandomUtil.Get(m_availableDirs);
+if (d == DIR.UP)    { dig( 0, 1); dig( 0, 2,true); }  
+if (d == DIR.RIGHT) { dig( 1, 0); dig( 2, 0,true); }  
+if (d == DIR.DOWN)  { dig( 0,-1); dig( 0,-2,true); }  
+if (d == DIR.LEFT)  { dig(-1, 0); dig(-2, 0,true); }  
+
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1120,425
+n01b=11
+
+[s0018]
+n001=(bitmap)
+n002=S_FIND_NEW_START
+n009=var b = find_new_start();
+n015=@@@
+brifc(S_AVAILABLE_DIRECTIONS);
+brelse(S_SET_OUTER);
+@@@
+
+n016=@@@
+あり
+なし
+@@@
+
+n017=@@@
+b
+?
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1126,802
+n01b=12
+
+[s0019]
+n002=S_SET_OUTER
+n003=外枠復活
+n006=S_END
+n00a=@@@
+var left_x  = 0;
+var right_x = m_width - 1;
+var near_y  = 0;
+var far_y   = m_height - 1;
+for(var y = 0; y < m_height; y++) {
+    m_cubelist[left_x,y].SetActive(true);
+    m_cubelist[right_x,y].SetActive(true);
+}
+for(var x = 0; x < m_width; x++)
+{
+    m_cubelist[x, near_y].SetActive(true);
+    m_cubelist[x, far_y].SetActive(true);
+}
+
+@@@
+
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1416,802
+n01b=13
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/06/16 10:18:59
+; * pssgEditor version : 0.64.84945.fd0f469c305e75e3664469f7420c60802a30ea2f
+psggfile=@@@
+MazeControl.psgg
+@@@
+xlsfile=@@@
+MazeControl.xlsx
+@@@
+guid=@@@
+1c07cefb-c398-4497-a59d-d5515d7637af
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+varied,Edited a state.
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"The root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":57,"y":219}},{"Key":"S_END","Value":{"x":1691,"y":802}},{"Key":"C_0000","Value":{"x":56,"y":36}},{"Key":"E_0000","Value":{"x":260,"y":31}},{"Key":"S_CreateCubes","Value":{"x":51,"y":425}},{"Key":"S_DEL_OUTER","Value":{"x":259,"y":425}},{"Key":"S_DEL_OUTER1","Value":{"x":1416,"y":802}},{"Key":"S_FIND_POINT","Value":{"x":525,"y":424}},{"Key":"S_STARTPOINT","Value":{"x":446,"y":425}},{"Key":"S_0000","Value":{"x":718,"y":483}},{"Key":"S_AVAILABLE_DIRECTIONS","Value":{"x":932,"y":425}},{"Key":"E_AVAILABLE_DIRECTIONS","Value":{"x":494.599976,"y":33.6000023}},{"Key":"E_0001","Value":{"x":430,"y":34}},{"Key":"S_AVAILABLE_DIRECTIONS1","Value":{"x":976,"y":423}},{"Key":"S_DIGSP","Value":{"x":627,"y":425}},{"Key":"S_DIGDIR","Value":{"x":1120,"y":425}},{"Key":"S_DIGSP1","Value":{"x":982,"y":800}},{"Key":"S_FIND_NEW_START","Value":{"x":1126,"y":802}},{"Key":"S_SET_OUTER","Value":{"x":1416,"y":802}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_set_default_comment=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"state-typ","Value":{"height":398,"width":330}},{"Key":"init","Value":{"height":438,"width":880}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+void [[state]](bool bFirst)
+{
+    Goto([[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^end$/
+void [[state]](bool bFirst)
+{
+}
+eof>>>
+
+<<<?state-typ/^gosub$/
+void [[state]](bool bFirst)
+{
+    GoSubState([[gosubstate]],[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^substart$/
+void [[state]](bool bFirst)
+{
+    Goto([[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^subreturn$/
+void [[state]](bool bFirst)
+{
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^loop$/
+[[members]]
+void [[state]](bool bFirst)
+{
+    [[loop_init]]
+    Goto([[state]]_LoopCheckAndGosub____);
+    NoWait();
+}
+void [[state]]_LoopCheckAndGosub____(bool bFirst)
+{
+    if ([[loop_cond]]) GoSubState([[gosubstate]],[[state]]_LoopNext____);
+    else               Goto([[nextstate]]);
+    NoWait();
+}
+void [[state]]_LoopNext____(bool bFirst)
+{
+    [[loop_next]]
+    Goto([[state]]_LoopCheckAndGosub____);
+    NoWait();
+}
+eof>>>
+[[members]]
+void [[state]](bool bFirst)
+{
+
+    [[vars]]
+
+    <<<?init
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto([[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=MazeControl.psgg
+xls=MazeControl.xlsx
+sub_src=
+gen_src=MazeControl.cs
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit2\c-sharp-unity\helpweb.html
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 4e7a0b4fd4b406ad9f101af389d2b6738552b1e9
+@@@
+
+
+
+lang=c#
+framework=unity
+
+statemachine=MazeControl
+prefix=__PREFIX__
+xlsdir=@@@
+G:\statego\samples\unity-maze-sample\m1\unityProject\Assets
+@@@
+
+gendir=@@@
+G:\statego\samples\unity-maze-sample\m1\unityProject\Assets
+@@@
+
+genrdir=.
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+[jpn]
+
+title=C# Unity スタートキット  2019/11/9
+
+detail=@@@
+Unity C# 用のステートマシンを作成します。
+
+
+# 生成ファイル
+
+      MazeControl.pssg --- StateGo データファイル
+      MazeControl.cs   --- 変換ソースコードを埋め込む。
+
+注意 : 既に同名のファイルがある場合、上書きされます。
+
+@@@
+
+
+
+[en]
+
+title=C# Unity STARTER KIT  2019/11/9
+
+detail=@@@
+C# State-machine for Unity platform will be created.
+
+# File:
+
+      MazeControl.pssg  --- StateGo Data File.
+      MazeControl.cs    --- the editor will convert from the psgg file into this file.
+
+
+NOTE : If the same name files exists, the file will not be overwritten.
+
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[gosubstate]
+
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+
+jpn=サブルーチン処理を終了するときに指定する。"return"等を記述。
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[loop_next]
+
+en=loop  iterator advence.
+jpn=ループのイテレーターを更新
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[members]
+
+jpn=メンバ変数及び関数等を指定する。
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[vars]
+
+jpn=変数宣言を指定する。
+en=Specify variable definitions.
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[embed]
+
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[basestate]
+
+jpn=継承元を指定する。
+en=Specify inheritance source.
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[loop_init]
+
+en=loop initialization
+jpn=ループ用初期化
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[loop_cond]
+
+en=loop condition
+jpn=ループ条件
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+update=
+wait-cmt=
+embed=
+loop_cond=
+branch=
+!dir=
+return=
+post_wait-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+members=
+thumbnail=
+update-cmt=
+gosubstate=
+state-cmt=
+state-typ=@@@
+*select
+start
+end
+gosub
+substart
+subreturn
+loop
+@@@
+
+!pos=
+!uuid=
+nextstate=
+state=
+S_=
+brcond=
+loop=
+init-cmt=
+basestate=
+loop_next=
+vars=
+C_=
+E_=
+init-ref=
+loop_init=
+post_wait=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+basestate=read_only,share,S.+
+state-typ=read_only,exclusion,(S0)
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

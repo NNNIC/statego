@@ -1,0 +1,855 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=FizzBuzzControl.xlsx
+guid=5068cdd5-d01c-41a8-b24f-d54de2f87b2e
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n003,n004,n01a,n005,n006,n01b,,n008,,n01c,n01d,n01e,n007,,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,n015,n016,,n017,n018,n019,,,,
+stateid_list=,,,,,,,,,,,,,,,,,,,,,,,,,,s0015,s0016,s0017,s0019,s0018,s001a,s001b,s001c,s001d,s001e,s0020,s001f,s0021,s0022,s0023,s0024,s0025
+max_name_id=30
+max_state_id=37
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=branch
+n014=branch-cmt
+n015=brcond
+n016=nowait
+n017=!dir
+n018=!pos
+n019=!uuid
+n01a=state-typ
+n01b=gosubstate
+n01c=loop_init
+n01d=loop_cond
+n01e=loop_next
+
+
+[id_state_dic]
+s0015=S_START
+s0016=S_END
+s0017=S_LOP000
+s0018=S_CHECK
+s0019=S_SBS000
+s001a=S_FizzBuzz
+s001b=S_Fizz
+s001c=S_Buzz
+s001d=S_NUM
+s001e=S_RET000
+s001f=S_SBS001
+s0020=S_RET001
+s0021=S_RET002
+s0022=S_SHOW_START
+s0023=S_GSB000
+s0024=S_LOP001
+s0025=S_GSB001
+
+
+[s0015]
+n002=S_START
+n01a=start
+n006=S_SHOW_START
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=61,53
+n019=1
+
+[s0016]
+n002=S_END
+n01a=end
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=1481,483
+n019=2
+
+[s0017]
+n002=S_LOP000
+n01a=loop
+n006=S_LOP001
+n01b=S_SBS000
+n008=private $m_num = 0;
+n01c=$this->m_num = 1;
+n01d=$this->m_num <= 100
+n01e=$this->m_num ++;
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=62,674
+n019=3
+
+[s0018]
+n002=S_CHECK
+n013=@@@
+brifc(S_FizzBuzz);
+brelseifc(S_Fizz);
+brelseifc(S_Buzz);
+brelse(S_NUM);
+@@@
+
+n014=@@@
+?
+?
+?
+?
+@@@
+
+n015=@@@
+$this->m_num % 15 == 0
+$this->m_num % 3 == 0
+$this->m_num % 5 == 0
+?
+@@@
+
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=302,760
+n019=4
+
+[s0019]
+n002=S_SBS000
+n01a=substart
+n006=S_CHECK
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=179,757
+n019=5
+
+[s001a]
+n002=S_FizzBuzz
+n006=S_RET000
+n00a=echo 'FizzBuzz<br>';
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=550,679
+n019=6
+
+[s001b]
+n002=S_Fizz
+n006=S_RET000
+n00a=echo 'Fizz<br>';
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=550,759
+n019=7
+
+[s001c]
+n002=S_Buzz
+n006=S_RET000
+n00a=echo 'Buzz<br>';
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=550,836
+n019=8
+
+[s001d]
+n002=S_NUM
+n006=S_RET000
+n00a=echo $this->m_num . '<br>';
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=550,939
+n019=9
+
+[s001e]
+n002=S_RET000
+n01a=subreturn
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=844,760
+n019=10
+
+[s001f]
+n002=S_SBS001
+n01a=substart
+n006=S_RET002
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=798,215
+n019=11
+
+[s0020]
+n002=S_RET001
+n01a=subreturn
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=1138,215
+n019=12
+
+[s0021]
+n002=S_RET002
+n006=S_RET001
+n008=private $m_s = '';
+n00a=@@@
+echo '<table border=4><th>' . $this->m_s . '</th></table>';
+@@@
+
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=927,215
+n019=13
+
+[s0022]
+n002=S_SHOW_START
+n006=S_GSB000
+n00a=$this->m_s = 'START OF FIZZ BUZZ';
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=233,53
+n019=14
+
+[s0023]
+n002=S_GSB000
+n01a=gosub
+n006=S_LOP000
+n01b=S_SBS001
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=433,53
+n019=15
+
+[s0024]
+n002=S_LOP001
+n006=S_GSB001
+n00a=$this->m_s = 'END OF FIZZ BUZZ';
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=236,483
+n019=16
+
+[s0025]
+n002=S_GSB001
+n01a=gosub
+n006=S_END
+n01b=S_SBS001
+n017=@@@
+/
+(100,100)
+The root
+@@@
+
+n018=426,483
+n019=17
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/07/04 10:00:40
+; * pssgEditor version : 0.65.5617.0737256ae72d56e87335f7bfb8f8728597b6ec64
+psggfile=@@@
+FizzBuzzControl.psgg
+@@@
+xlsfile=@@@
+FizzBuzzControl.xlsx
+@@@
+guid=@@@
+5068cdd5-d01c-41a8-b24f-d54de2f87b2e
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+mov,S_SBS001,S_RET001,S_RET002
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"The root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":61,"y":53}},{"Key":"S_END","Value":{"x":1481,"y":483}},{"Key":"S_LOP000","Value":{"x":62,"y":674}},{"Key":"S_SBS000","Value":{"x":179,"y":757}},{"Key":"S_CHECK","Value":{"x":302,"y":759.8572}},{"Key":"S_FizzBuzz","Value":{"x":550,"y":679}},{"Key":"S_Fizz","Value":{"x":550,"y":759}},{"Key":"S_Buzz","Value":{"x":550,"y":836}},{"Key":"S_NUM","Value":{"x":550,"y":939}},{"Key":"S_RET000","Value":{"x":843.5714,"y":759.8572}},{"Key":"S_SBS001","Value":{"x":798,"y":215}},{"Key":"S_RET001","Value":{"x":1138,"y":215}},{"Key":"S_RET002","Value":{"x":927,"y":215}},{"Key":"S_SHOW_START","Value":{"x":233,"y":53}},{"Key":"S_GSB000","Value":{"x":433,"y":53}},{"Key":"S_LOP001","Value":{"x":236,"y":483}},{"Key":"S_GSB001","Value":{"x":426,"y":483}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=0
+contents_font_size=0
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"nowait","Value":{"height":401,"width":330}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+function [[state]]($bFirst)
+{
+    $this->GotoState('[[nextstate]]');
+    $this->NoWait();
+}
+eof>>>
+
+<<<?state-typ/^end$/
+function [[state]]($bFirst)
+{
+}
+eof>>>
+
+<<<?state-typ/^gosub$/
+function [[state]]($bFirst)
+{
+    $this->GoSubState('[[gosubstate]]','[[nextstate]]');
+    $this->NoWait();
+}
+eof>>>
+
+<<<?state-typ/^subreturn$/
+function [[state]]($bFirst)
+{
+    $this->ReturnState();
+    $this->NoWait();
+}
+eof>>>
+
+<<<?state-typ/^loop$/
+[[members]]
+function [[state]]($bFirst)
+{
+    [[loop_init]]
+    $this->GotoState('[[state]]_LoopCheckAndGosub____');
+    $this->NoWait();
+}
+function [[state]]_LoopCheckAndGosub____($bFirst)
+{
+    if ([[loop_cond]]) $this->GoSubState('[[gosubstate]]','[[state]]_LoopNext____');
+    else               $this->GotoState('[[nextstate]]');
+    $this->NoWait();
+}
+function [[state]]_LoopNext____($bFirst)
+{
+    [[loop_next]]
+    $this->GotoState('[[state]]_LoopCheckAndGosub____');
+    $this->NoWait();
+}
+eof>>>
+
+
+[[members]]
+function [[state]]($bFirst) {
+
+    [[vars]]
+
+    <<<?init
+    if ($bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    [[branch]]
+
+    <<<?nextstate
+    if ($this->HasNextState()==FALSE)
+    {
+        $this->GotoState('[[nextstate]]');
+    }
+    >>>
+
+    <<<?nowait
+    if ($this->HasNextState())
+    {
+        $this->NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+psgg=FizzBuzzControl.psgg
+xls=FizzBuzzControl.xlsx
+sub_src=
+gen_src=FizzBuzzControl.php
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=starterkit\php\helpweb.html
+
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git 6f960da6977b5b83a9073c66b2bb55ac48f80cc6
+@@@
+
+
+
+lang=php
+framework=
+
+statemachine=FizzBuzzControl
+prefix=__PREFIX__
+xlsdir=G:\Program Files\Xampp\htdocs\php_test
+gendir=G:\Program Files\Xampp\htdocs\php_test
+genrdir=.
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+
+[jpn]
+
+title=PHP スタートキット 2018/12/9a
+
+detail=@@@
+PHP 用のステートマシンを作成します。
+
+※サンプルプロジェクトを次のＵＲＬより入手可能。
+https://github.com/NNNIC/psgg-php-sample
+
+
+# ドキュメント用フォルダ
+   ステート図ファイルとエディタ起動用ショートカットを格納
+
+      G:\Program Files\Xampp\htdocs\php_test
+
+  以下のファイルを作成します。
+
+      FizzBuzzControl.pssg   --- エディタで次のエクセルファイルを開く。
+      FizzBuzzControl.xlsx   --- ステート図格納用Excelファイル。エディタが編集。
+
+# ソース用フォルダ
+　エディタが生成ソースファイル、ユーザ実装ソースファイル、及び管理クラスファイルを格納
+
+      G:\Program Files\Xampp\htdocs\php_test
+
+  以下のファイルが作成されます。
+
+      FizzBuzzControl.php  --- Excelファイルからの変換ソースを挿入。
+
+
+注意 : 既に同名のファイルがある場合は生成されません。
+　　　 削除してから生成してください。
+
+@@@
+
+
+
+[en]
+
+title=PHP STARTER KIT 2018/12/9a
+
+detail=@@@
+This dialog will create files for a state machine.
+
+* You may get the sample project from the below url.
+https://github.com/NNNIC/psgg-php-sample
+
+# Document Folder
+　This folder will contain a state chart file and the shortcut of the editor.
+
+      G:\Program Files\Xampp\htdocs\php_test
+
+  File:
+
+      FizzBuzzControl.pssg  --- The editor opens the below excel file.
+      FizzBuzzControl.xlsx  --- Excel File that has a state chart. The editor edits this file.
+
+# Source Folder
+   This folder will contain a source file generated by the editor, a user implemetation source file, and a manager source file.
+
+      G:\Program Files\Xampp\htdocs\php_test
+
+　File:
+      FizzBuzzControl.php   -- the editor will convert from the excel file into this file.
+
+NOTE : If the same name files exists, the file will not be created.
+       Please delete the same name files ahead of the creation.
+
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[loop_next]
+
+en=@@@
+Specify a re-initialization process of the loop.
+@@@
+
+jpn=ループの再初期化処理を指定する。
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[embed]
+
+en=Specify the embedding code.
+jpn=埋込コードを指定する。
+[basestate]
+
+jpn=継承先を指定する。
+en=Specify the inheritance destination.
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[members]
+
+en=@@@
+Specify variable or function as membe of the class.
+@@@
+
+jpn=クラスのメンバーとして変数や関数を指定します。
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[loop_init]
+
+en=Specify a loop initialization process..
+jpn=ループの初期化処理を指定する。
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[loop_cond]
+
+en=Specifies a condition of the loop.
+jpn=ループの条件を指定する。
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+wait-cmt=
+embed=
+gosubstate=
+loop_cond=
+branch=
+!dir=
+post_wait-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+members=
+thumbnail=
+update-cmt=
+post_wait=
+state-cmt=
+state-typ=
+!pos=
+!uuid=
+nextstate=
+state=
+S_=
+brcond=
+update=
+init-cmt=
+basestate=
+loop_next=
+vars=
+C_=
+E_=
+init-ref=
+loop_init=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+state-typ=read_only,exclusion,(S0)
+embed=read_only,exclusion,S1
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+basestate=read_only,share,S.+
+brcond=read_only,exclusion,S0
+thumbnail=read_only,share,S.+
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

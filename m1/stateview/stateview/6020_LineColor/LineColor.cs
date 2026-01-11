@@ -82,9 +82,12 @@ namespace stateview
             for(var r=0;r<dg.Rows.Count;r++)
             {
                 try {
+                    if (dg.Rows[r].IsNewRow) continue; // Skip new row placeholder
                     var cell = dg[1,r];
+                    if (cell.Value == null) continue;
                     var col = ColorUtil.FromRRGGBB(cell.Value.ToString());
                     var cell2 = dg[2,r];
+                    if (cell2 == null) continue;
                     cell2.Style.BackColor = col;
                     cell2.Style.ForeColor = col;
                     cell2.Style.SelectionBackColor = col;

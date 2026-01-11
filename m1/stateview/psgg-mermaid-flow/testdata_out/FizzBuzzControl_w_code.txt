@@ -1,0 +1,34 @@
+﻿graph LR
+    S_START(("START")) --> S_SHOW_START
+    S_END(("END"))
+    S_LOP000[["LOP000<br/>LOOP (<br/>$this->m_num = 1;<br/>$this->m_num <= 100<br/>$this->m_num ++;<br/>)<br/>CALL S_SBS000<br/>private $m_num = 0;"]] --> S_LOP001
+    S_SBS000("SBS000") --> S_CHECK
+    S_CHECK["CHECK"] ==> S_CHECK____br
+    S_CHECK____br{{"?"}} -->|"$this->m_num % 15 == 0"| S_FizzBuzz
+    S_CHECK____br -->|"$this->m_num % 3 == 0"| S_Fizz
+    S_CHECK____br -->|"$this->m_num % 5 == 0"| S_Buzz
+    S_CHECK____br -->|"else"| S_NUM
+    S_FizzBuzz["FizzBuzz<br/>echo 'FizzBuzz<br>';"] --> S_RET000
+    S_Fizz["Fizz<br/>echo 'Fizz<br>';"] --> S_RET000
+    S_Buzz["Buzz<br/>echo 'Buzz<br>';"] --> S_RET000
+    S_NUM["NUM<br/>echo $this->m_num . '<br>';"] --> S_RET000
+    S_RET000("RET000")
+    S_RET001("RET001")
+    S_SBS001("SBS001") --> S_RET002
+    S_RET002["RET002<br/>private $m_s = '';<br/>echo '<table border=4><th>' . $this->m_s . '</th></table>';"] --> S_RET001
+    S_SHOW_START["SHOW_START<br/>$this->m_s = 'START OF FIZZ BUZZ';"] --> S_GSB000
+    S_GSB000[["GSB000<br/>CALL SBS001"]] --> S_LOP000
+    S_LOP001["LOP001<br/>$this->m_s = 'END OF FIZZ BUZZ';"] --> S_GSB001
+    S_GSB001[["GSB001<br/>CALL SBS001"]] --> S_END
+    classDef typ_START     fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef typ_END       fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef typ_SUBSTART  fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef typ_SUBRETURN fill:#9cf,stroke:#000,stroke-width:1px;
+    classDef comment       fill:#ff9,stroke:#000,stroke-width:4px;
+    classDef embed         fill:#fff,stroke:#000,stroke-width:4px;
+    class S_START typ_START
+    class S_END typ_END
+    class S_LOP000 typ_LOOP
+    class S_SBS000,S_SBS001 typ_SUBSTART
+    class S_RET000,S_RET001 typ_SUBRETURN
+    class S_GSB000,S_GSB001 typ_GOSUB

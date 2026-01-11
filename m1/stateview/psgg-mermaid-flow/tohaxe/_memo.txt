@@ -1,0 +1,33 @@
+＃ToHｘでのメモ
+1. ref List<string> がおそらくNG
+　 ref intの 単体テストではOKだが、
+　 ref List<string>で不明のエラーが出て、refを修正したら通った。
+2. forループでcontinueが使えない場合があった。エラーコードで通知
+    Consider changing to a while loop instead. [2027..4272) Method: CreateHashtable, Type: IniUtil
+3. new xxx(){x=x}がサポートされていない。エラーコードで通知
+　　Object initialization syntax is not supported.
+4. typeofが使えない
+   typeof is not supported unless part of Enum.Parse or Enum.GetValues
+
+＃ HxToXXでのメモ
+1.予約語 macroでコンパイルできない
+2.Haxeのバージョンが古いため
+  /system/text/StringBuilder.hx:20: characters 20-30 : Length: Custom property accessor is no longer supported, please use `get`
+3. string.Formatが CS2HX.Formatとなる。 Translations.xml機能を使って正しく system.CS2HX.Fromatとする。
+4. 正規表現関連の一部APIが未実装。手動で再実装せよ。
+  RegexUtil.hxを代替 (削除して、代替を参照させる)
+
+
+#ビルド
+
+1. ToHx.bat        Convert to HX
+2. V_hxToCS.bat    Convert to CS from HX
+3. V_Test_CS.bat   Test
+
+-- Cの場合
+
+1. ToHx.bat        Convert to HX
+2. V_hxToC.bat   　Convert to C from HX
+3. V_Test_C.bat    Test HX
+
+

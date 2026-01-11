@@ -1,0 +1,796 @@
+﻿;PSGG Editor Backup File
+version=1.1
+file=ConvControl.xlsx
+guid=31cfa6fb-3da6-4be7-b133-102ab2b3d993
+;set read_from  excel or psgg
+read_from=psgg
+;set savemode with_excel or psgg_only
+save_mode=psgg_only
+;set check_excel_writable yes or no
+check_excel_writable=no
+
+------#======*<Guid(D13821FE-FA27-4B04-834C-CEC1E5670F48)>*======#------
+
+sheet=state-chart
+nameid_list=,n001,n002,n01c,n003,n004,n005,n006,,n007,,n008,,n009,n00a,n00b,n00c,,n00d,n00e,,n00f,n010,,n011,n012,,n013,n014,,,n022,n01e,n01f,n020,,n015,n016,n017,n018,,n019,n01a,n01b,,,,,,
+stateid_list=,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,s0022,s0023,s0024,s0025,s0027,s0026,s0029,s0028
+max_name_id=34
+max_state_id=41
+[id_name_dic]
+n001=thumbnail
+n002=state
+n003=state-cmt
+n004=state-ref
+n005=basestate
+n006=nextstate
+n007=embed
+n008=members
+n009=vars
+n00a=init
+n00b=init-cmt
+n00c=init-ref
+n00d=update
+n00e=update-cmt
+n00f=wait
+n010=wait-cmt
+n011=post_wait
+n012=post_wait-cmt
+n013=gosubstate
+n014=return
+n015=branch
+n016=branch-cmt
+n017=brcond
+n018=nowait
+n019=!dir
+n01a=!pos
+n01b=!uuid
+n01c=state-typ
+n01e=loop_init
+n01f=loop_cond
+n020=loop_next
+n022=loop
+
+
+[id_state_dic]
+s0022=S_START
+s0023=S_END
+s0024=S_INIT
+s0025=E_0001
+s0026=E_0002
+s0027=E_0003
+s0028=E_0004
+s0029=S_EXTRUCT
+
+
+[s0022]
+n002=S_START
+n01c=start
+n006=S_INIT
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=38,325
+n01b=1
+
+[s0023]
+n002=S_END
+n01c=end
+n019=@@@
+/
+(100,100)
+The root
+@@@
+
+n01a=1059,323
+n01b=2
+
+[s0024]
+n002=S_INIT
+n006=S_EXTRUCT
+n00a=load();
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=140,324
+n01b=3
+
+[s0025]
+n002=E_0001
+n007=public var m_psgg_file : String;
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=151,30
+n01b=4
+
+[s0026]
+n002=E_0002
+n003=バッファ
+n007=@@@
+var m_buf_header   : String;
+var m_buf_chart    : String;
+var m_buf_config   : String;
+var m_buf_tmpsrc   : String;
+var m_buf_tmpfunc  : String;
+var m_buf_setting  : String;
+var m_buf_help     : String;
+var m_buf_iteminfo : String;
+var m_buf_bitmap   : String;
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=334,27
+n01b=5
+
+[s0027]
+n002=E_0003
+n003=マップ
+n007=@@@
+var m_map_header  : Map<String,Dynamic>;
+var m_map_chart   : Map<String,Dynamic>;
+var m_map_config  : Map<String,Dynamic>;
+var m_map_setting : Map<String,Dynamic>;
+var m_map_help    : Map<String,Dynamic>;
+var m_map_iteminfo: Map<String,Dynamic>;
+
+
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=505,30
+n01b=6
+
+[s0028]
+n002=E_0004
+n003=テンプレート
+n007=@@@
+var m_tmpsrc : Array<String>;
+var m_tmpfunc: Array<String>;
+@@@
+
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=670,35
+n01b=7
+
+[s0029]
+n002=S_EXTRUCT
+n003=抽出
+n006=S_END
+n00a=extract();
+n019=@@@
+/
+(100,100)
+
+@@@
+
+n01a=347,324
+n01b=8
+
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=config
+
+###VARIOUS-CONTENTS-BEGIN###
+; The setting was created automatically. 2020/08/25 21:53:58
+; * pssgEditor version : 0.66.5030.be6b2a7a2f9e64d0160759469b371cf04a1c84a1
+psggfile=@@@
+ConvControl.psgg
+@@@
+xlsfile=@@@
+ConvControl.xlsx
+@@@
+guid=@@@
+31cfa6fb-3da6-4be7-b133-102ab2b3d993
+@@@
+bitmap_width=5000
+bitmap_height=2000
+c_statec_cmt=1
+c_thumbnail=1
+c_contents=1
+force_display_outpin=0
+last_action=@@@
+varied,Edited a state.
+@@@
+target_pathdir=@@@
+/
+@@@
+state_location_list=@@@
+
+@@@
+nodegroup_comment_list=@@@
+[{"Key":"\/","Value":"The root"}]
+@@@
+nodegroup_pos_list=@@@
+[{"Key":"\/","Value":{"x":100,"y":100}}]
+@@@
+fillter_state_location_list=@@@
+[{"Key":"\/","Value":[{"Key":"S_START","Value":{"x":38,"y":325}},{"Key":"S_END","Value":{"x":1059,"y":323}},{"Key":"E_0001","Value":{"x":151,"y":30}},{"Key":"S_INIT","Value":{"x":140,"y":324}},{"Key":"E_0002","Value":{"x":334,"y":27}},{"Key":"E_0003","Value":{"x":505,"y":30}},{"Key":"E_0004","Value":{"x":670,"y":35}},{"Key":"S_EXTRUCT","Value":{"x":347,"y":324}}]},{"Key":"\/hoge2\/","Value":[{"Key":"S_START","Value":{"x":50,"y":100}},{"Key":"S_END","Value":{"x":926,"y":87}}]}]
+@@@
+linecolor_data=@@@
+[{"color":{"knownColor":0,"name":null,"state":2,"value":4285493103},"pattern":"BACKTO_"}]
+@@@
+use_external_command=0
+external_command=@@@
+
+@@@
+source_editor_set=@@@
+
+@@@
+label_show=0
+label_text=@@@
+test
+@@@
+option_delete_thisstring=1
+option_delete_br_string=1
+option_delete_bracket_string=1
+option_delete_s_state_string=1
+option_copy_output_to_clipboard=0
+option_convert_with_confirm=0
+option_ignore_case_of_state=0
+option_editbranch_automode=1
+option_use_custom_prefix=0
+option_omit_basestate_string=0
+option_hide_basestate_contents=1
+option_hide_branchcmt_onbranchbox=0
+font_name=@@@
+MS UI Gothic
+@@@
+font_size=11
+comment_font_size=13
+contents_font_size=10
+state_width=140
+state_height=20
+state_short_width=50
+state_short_height=20
+comment_block_height=20
+content_max_height=200
+comment_block_fixed=0
+line_space=-1
+userbutton_title=@@@
+
+@@@
+userbutton_command=@@@
+
+@@@
+userbutton_callafterconvert=0
+itemeditform_size_list=@@@
+[{"Key":"state-typ","Value":{"height":398,"width":330}},{"Key":"embed","Value":{"height":587,"width":760}}]
+@@@
+decoimage_typ_name=@@@
+sym
+@@@
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-source
+
+###VARIOUS-CONTENTS-BEGIN###
+
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=template-statefunc
+
+###VARIOUS-CONTENTS-BEGIN###
+<<<?state/^C_/
+eof>>>
+
+/*
+    [[state]]
+    [[state-cmt]]
+*/
+
+<<<?state/^E_/
+[[embed]]
+eof>>>
+
+<<<?state-typ/^start$/
+function [[state]](bFirst : Bool)
+{
+    Goto($statemachine$_STATE.[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^end$/
+function [[state]](bFirst : Bool)
+{
+}
+eof>>>
+
+<<<?state-typ/^gosub$/
+function [[state]](bFirst : Bool)
+{
+    GoSubState($statemachine$_STATE.[[gosubstate]],$statemachine$_STATE.[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^substart$/
+function [[state]](bFirst : Bool)
+{
+    Goto($statemachine$_STATE.[[nextstate]]);
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^subreturn$/
+function [[state]](bFirst : Bool)
+{
+    ReturnState();
+    NoWait();
+}
+eof>>>
+
+<<<?state-typ/^loop$/
+[[members]]
+function [[state]](bFirst : Bool)
+{
+    [[loop_init]]
+    Goto($statemachine$_STATE.[[state]]_Check____);
+    NoWait();
+}
+function [[state]]_Check____(bFirst : Bool)
+{
+    if ([[loop_cond]]) GoSubState($statemachine$_STATE.[[gosubstate]],$statemachine$_STATE.[[state]]_Next____);
+    else               Goto($statemachine$_STATE.[[nextstate]]);
+    NoWait();
+}
+function [[state]]_Next____(bFirst : Bool)
+{
+    [[loop_next]]
+    Goto($statemachine$_STATE.[[state]]_Check____);
+    NoWait();
+}
+eof>>>
+
+[[members]]
+function [[state]](bFirst : Bool)
+{
+    [[vars]]
+
+    <<<?init
+    //
+    if (bFirst)
+    {
+        [[init]]
+    }
+    >>>
+
+    [[update]]
+
+    <<<?wait
+    if ([[wait]]) return;
+    >>>
+
+    [[post_wait]]
+
+    <<<?branch
+    // branch
+    [[branch]]
+    >>>
+
+    <<<?nextstate
+    //
+    if (!HasNextState())
+    {
+        Goto($statemachine$_STATE.[[nextstate]]);
+    }
+    >>>
+
+    <<<?nowait
+    //
+    if (HasNextState())
+    {
+        NoWait();
+    }
+    >>>
+}
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=setting.ini
+
+###VARIOUS-CONTENTS-BEGIN###
+[setting]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+
+
+
+
+
+psgg=ConvControl.psgg
+xls=ConvControl.xlsx
+sub_src=
+gen_src=ConvControl.hx
+
+manager_src=
+manager_dir=
+
+template_src=
+template_func=template-statefunc.txt
+
+help=help.ini
+helpweb=@@@
+psgg-starter-kit\starterkit2\haxe\helpweb.html
+@@@
+
+
+src_enc=utf-8
+
+
+
+
+
+
+kitpath=psgg-starter-kit\starterkit2\haxe
+
+[setupinfo]
+
+starterkit=@@@
+https://github.com/NNNIC/psgg-starter-kit.git GIT-COMMIT-HASH
+@@@
+
+
+
+
+
+
+
+
+lang=haxe
+framework=
+
+statemachine=ConvControl
+prefix=__PREFIX__
+xlsdir=@@@
+C:\Users\gea01\Documents\psgg\psgg-converter\tohaxe\src\main
+@@@
+
+
+
+
+gendir=@@@
+C:\Users\gea01\Documents\psgg\psgg-converter\tohaxe\src\main
+@@@
+
+
+
+
+genrdir=.
+incrdir=.
+
+code_output_start=[PSGG OUTPUT START]
+code_output_end=[PSGG OUTPUT END]
+
+
+
+
+
+
+[jpn]
+
+title=Haxe スタートキット  2019/10/31
+
+detail=@@@
+Haxe 用のステートマシンを作成します。
+
+# ファイル
+
+      ConvControl.pssg --- StateGoデータファイル。
+      ConvControl.hx   --- 変換コードを本ファイルに埋め込む。
+
+@@@
+
+
+
+
+
+[en]
+
+title=HAXE STARTER KIT 2019/10/31
+
+detail=@@@
+To create HAXE Stata machine.
+
+# File:
+
+      ConvControl.pssg  --- StateGo Data File.
+      ConvControl.hx   -- The editor will insert converted source code to this file.
+
+@@@
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=help
+
+###VARIOUS-CONTENTS-BEGIN###
+[nextstate]
+
+jpn=次に実行するステートを指定する。
+en=Specify the next state to be executed.
+[branch]
+
+jpn=@@@
+分岐処理を指定する。
+１行に一つの分岐命令を書く。
+GUIにより上書きされるため引数は適当に指定する。
+例）
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+en=@@@
+Specify branch functions.
+Each line has a branch function.
+Specify a tentavie parameter for each branch function because GUI overwrites the parameter.
+i.e)
+br_YES(?);
+br_NO(?);
+br_UNKNOWN(?);
+@@@
+
+[update]
+
+jpn=更新処理を指定する。
+en=Specify a update process.
+[wait]
+
+jpn=@@@
+待ち条件を指定する。
+true時にループを解除する。
+@@@
+
+en=@@@
+Specify a waiting condition.
+Release the loop if the condition is true.
+@@@
+
+[gosubstate]
+
+jpn=@@@
+サブルーチンを呼び出す。
+サブルーチンの開始ステート名を指定する。
+@@@
+
+en=@@@
+Call a subroutine.
+Specify the starting state name of the subroutine.
+@@@
+
+[return]
+
+jpn=サブルーチン処理を終了するときに指定する。"return"等を記述。
+en=@@@
+Use for returning from the subroutine. Write "return" etc.
+@@@
+
+[loop_next]
+
+en=loop  iterator advence.
+jpn=ループのイテレーターを更新
+[loop_cond]
+
+en=loop condition
+jpn=ループ条件
+[state]
+
+jpn=@@@
+ステート名を指定する。
+英文字、数字、アンダーバーで構成される。
+先頭は英文字およびアンダーバー。
+@@@
+
+en=@@@
+Specify a state name.
+The state name consits of alphabet, number and underbar except that the head characther should be alphabet or a underbar.
+@@@
+
+[members]
+
+jpn=メンバ変数及び関数等を指定する。
+en=@@@
+Specify members, variables, classes,  etc.
+@@@
+
+[post_wait]
+
+jpn='wait'後の処理を指定する。
+en=Specify the post process after 'wait'.
+[vars]
+
+jpn=変数宣言を指定する。
+en=Specify variable definitions.
+[nowait]
+
+jpn=@@@
+次のステートへ同期待ちをせず実行する時に 'nowait'等を指定する。
+同期待ち時には何も指定しない。
+@@@
+
+en=@@@
+Specify 'nowait' and so on if the next state will be execute without a sync wait.
+Do not specify any word wheh the next state will be execute with a sync wait.
+@@@
+
+[embed]
+
+jpn=@@@
+コード埋め込み用。
+ステート名がE_時に利用可能。
+ステート機能は利用できない。
+@@@
+
+en=@@@
+For embedding code.
+Enable this section if state name starts with "E_".
+Disabled state features.
+@@@
+
+[basestate]
+
+jpn=継承元を指定する。
+en=Specify inheritance source.
+[!uuid]
+
+jpn=システムがステートのuuid指定に使用。
+en=@@@
+System uses this for the uuid of the state.
+@@@
+
+[init]
+
+jpn=初期化用処理を指定する。
+en=Specify a initial process.
+[!dir]
+
+jpn=システムがステートのディレクトリ指定に使用。
+en=@@@
+System uses this for the directory path of the state.
+@@@
+
+[loop_init]
+
+en=loop initialization
+jpn=ループ用初期化
+[thumbnail]
+
+jpn=説明用のイメージを指定する。
+en=@@@
+Specify a image for explanation of this state.
+@@@
+
+[loop_break]
+
+en=Condition if break
+###VARIOUS-CONTENTS-END###
+
+
+------#======*<Guid(70C5A739-223A-457D-8AEE-1A0E2050D5AE)>*======#------
+
+sheet=itemsinfo
+
+###VARIOUS-CONTENTS-BEGIN###
+[inpmethod]
+
+init=
+branch-cmt=
+state-ref=
+wait=
+loop-next=
+loop-cond=
+embed=
+loop_cond=
+branch=
+!dir=
+basestate=
+return=
+post_wait-cmt=
+state-cmt=
+nowait=@@@
+*select
+nowait
+@@@
+
+members=
+thumbnail=
+update-cmt=
+gosubstate=
+loop_break=
+loop_ver=
+state-typ=@@@
+*select
+start
+end
+gosub
+substart
+subreturn
+loop
+@@@
+
+!pos=
+!uuid=
+S_=
+nextstate=
+state=
+loop_var=
+wait-cmt=
+loop-init=
+update=
+init-cmt=
+loop-ver=
+loop_next=
+vars=
+loop=
+C_=
+brcond=
+E_=
+init-ref=
+loop_init=
+post_wait=
+[stateloc]
+
+E_=S1
+S_=S0
+C_=S2
+[itemcond]
+
+thumbnail=read_only,share,S.+
+gosubstate=read_only,exclusion,S0
+branch=read_only,exclusion,S0
+state=read_only,share,S.+
+nextstate=read_only,exclusion,S0
+return=read_only,exclusion,S0
+brcond=read_only,exclusion,S0
+embed=read_only,exclusion,S1
+basestate=read_only,share,S.+
+state-typ=read_only,exclusion,(S0)
+###VARIOUS-CONTENTS-END###
+
+
+
+------#======*<Guid(4DC98CBA-6257-4E26-A454-A53F85BC234C)>*======#------
+
+

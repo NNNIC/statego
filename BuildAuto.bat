@@ -38,7 +38,7 @@ echo : build editor
 echo : ------------
 pushd m1\StateViewer
     "%NUGET%" restore StateViewer.sln
-    "%MSBUILD17%" StateViewer.sln /t:StateViewer:Rebuild /p:Configuration=%CFG%
+    "%MSBUILD17%" StateViewer.sln /t:Rebuild /p:Configuration=%CFG%
 popd
 
 echo : ---------------
@@ -57,15 +57,16 @@ popd
 echo : -----------
 echo : get mermaid
 echo : -----------
-pushd Work
-    md mermaid 2>nul
-    pushd mermaid
-        if not exist psgg-mermaid-flow.zip (
-             curl -L -O https://github.com/NNNIC/psgg-mermaid-flow/releases/download/1.2/psgg-mermaid-flow.zip
-             powershell expand-archive psgg-mermaid-flow.zip ./ -Force
-        )
-    popd
-popd
+:: Integrated into solution locally
+:: pushd Work
+::     md mermaid 2>nul
+::     pushd mermaid
+::         if not exist psgg-mermaid-flow.zip (
+::              curl -L -O https://github.com/NNNIC/psgg-mermaid-flow/releases/download/1.2/psgg-mermaid-flow.zip
+::              powershell expand-archive psgg-mermaid-flow.zip ./ -Force
+::         )
+::     popd
+:: popd
 
 echo : --------------
 echo : build conveter
@@ -91,7 +92,15 @@ set SRC=%CD%
 set TGT=%SRC%\m1\StateViewer\StateViewer\bin\%CFG%
 robocopy %SRC%\m1\StateViewer\ini %TGT%\ini /MIR
 robocopy %SRC%\Others\state-images %TGT%\state-images /MIR
-robocopy %SRC%\Work\mermaid\psgg-mermaid-flow\psgg2mermaid\bin\%CFG% %TGT%
+:: robocopy %SRC%\Work\mermaid\psgg-mermaid-flow\psgg2mermaid\bin\%CFG% %TGT%
+:: New location in m1\stateview\psgg-mermaid-flow. Using core project due to integration.
+:: CAUTION: Output path might vary for .NET Core (bin\Release\netcoreapp3.1)
+:: Let's assume standard for now or wildcard copy if possible, but robocopy needs valid src.
+:: Since we are building solution, check specific output.
+:: For now, attempting to copy from expected bin root or netcoreapp subdir.
+:: A safer bet is to rely on the build outputting to a known location or just copy *.* from bin\Release\netcoreapp3.1 if it exists.
+:: Let's try matching the exact structure.
+robocopy %SRC%\m1\stateview\psgg-mermaid-flow\psgg2mermaid_core\bin\%CFG%\netcoreapp3.1 %TGT% psgg2mermaid.exe psgg2mermaid.dll psgg2mermaid.runtimeconfig.json
 robocopy %SRC%\Work\starterkit\starterkit2  %TGT%\starterkit2 /S /E
 md %TGT%\tools 2>nul
 robocopy %SRC%\Work\VisualStudioFileOpenTool  %TGT%\tools LICENSE.md
