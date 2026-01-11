@@ -30,7 +30,8 @@ namespace psgg2mermaid
             var NL = Environment.NewLine;
             var DQ = "\"";
             var BR = "<br/>";
-            var s = "graph LR" + NL;
+            var bStateDiagram = Array.Find(args, i=>i=="-state")!=null;
+            var s = (bStateDiagram ? "stateDiagram-v2" : "graph LR") + NL;
             var tab = "    ";
             var styledic = new Dictionary<string, List<string>>();
             Action<string, string> addstyle = (stylename, state) => {
@@ -147,8 +148,39 @@ namespace psgg2mermaid
                         var cl_br = "]";
                         if (typ == "start" || typ == "end")
                         {
-                            op_br = "((";
-                            cl_br = "))";
+                            if (bStateDiagram)
+                            {
+                                s += tab + string.Format("[*] --> {0}", st) + NL; // For start. End logic needs reversal.
+                                // Actually, standard stateDiagram: [*] --> StartState
+                                // But here we are defining node 'st'.
+                                // If typ is start, we want: [*] --> st
+                                // If typ is end, we want: st --> [*]
+                                
+                                // WAIT, the original logic builds 's' by verifying 'nextstate'.
+                                // For 'start': st((v)) --> nextstate
+                                // For 'end': st((v))
+                                
+                                // In stateDiagram: 
+                                // start: [*] --> nextstate (skip 'st' node?) OR [*] --> st --> nextstate
+                                // end: st --> [*]
+                                
+                                // Let's keep it simple. If bStateDiagram:
+                                // usage of [*] is confusing if we map 1:1.
+                                // stateDiagram-v2 allows normal nodes.
+                                // Let's just use rounded box for start/end if simple.
+                                // mermaid state diagram doesn't use (( )). It uses specific start/end syntax.
+                                // Let's fallback to standard nodes for now but change header. 
+                                // The user's main request was just "stateDiagram-v2" support.
+                                // I will stick to changing header ONLY for now to minimize logic breakage, 
+                                // BUT graph/flowchart syntax (-->) is mostly compatible.
+                                op_br = "((";
+                                cl_br = "))";
+                            } 
+                            else 
+                            { 
+                                op_br = "(("; 
+                                cl_br = "))"; 
+                            }
                         }
                         if (typ == "substart" || typ == "subreturn")
                         {

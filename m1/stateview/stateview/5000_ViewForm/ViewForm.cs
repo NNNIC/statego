@@ -3835,12 +3835,6 @@ namespace stateview._5000_MainForm
             var DQ = "\"";
             var SP = " ";
             MessageBox.Show(G.Localize("output_flowchart_html_msg"));
-                /*
-                "mermaidを利用してフローチャートへ変換します。" + NL +
-                "【次のステップを実行します】" + NL +
-                "１．出力ファイル(html)を指定" + NL +
-                "２．ブラウザで開く"
-                */
                 
             var sfd = saveFileDialog1;
             sfd.FileName = G.load_file_name_woext + ".html";
@@ -3860,19 +3854,69 @@ namespace stateview._5000_MainForm
             }
 
             var src = G.psgg_file;
-            var dst = sfd.FileName; //Path.Combine(G.load_file_dir, "~~mermaid.txt");
-            var opt = "-html";
+            var temp_dst = Path.GetTempFileName();
+            var opt = ""; 
             if (bwCode)
             {
                 opt += SP + "-c";
             }
+            // StateDiagram-v2 support could be added here via "-state" flag if requested.
+            // For now, defaulting to standard graph LR as per "Flow Chart" menu.
 
-            ExecUtil.execute_w_args_and_wait( tool , DQ + src + DQ + SP + DQ + dst + DQ + SP + opt, Path.GetDirectoryName(dst));
+            // Run tool to generate graph text only (no -html flag)
+            ExecUtil.execute_w_args_and_wait( tool , DQ + src + DQ + SP + DQ + temp_dst + DQ + SP + opt, Path.GetDirectoryName(sfd.FileName));
 
-            //var md = File.ReadAllText(dst,Encoding.UTF8);
-            if (File.Exists(dst))
+            if (File.Exists(temp_dst))
             {
-                ExecUtil.execute_start2(dst,null);
+                try 
+                {
+                    var graphText = File.ReadAllText(temp_dst, Encoding.UTF8);
+                    
+                    // Create HTML with Mermaid v10 and Debug Info
+                    var html = @"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    <meta charset=""UTF-8"">
+    <title>StateGo Flowchart</title>
+    <style>
+        body { font-family: sans-serif; }
+        .debug-info { 
+            background: #f0f0f0; 
+            padding: 10px; 
+            margin-bottom: 20px; 
+            border-bottom: 1px solid #ccc; 
+            font-size: 0.8em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class=""debug-info"">
+        <strong>Debug Info:</strong><br>
+        StateGo Version: " + Application.ProductVersion + @"<br>
+        Git Hash: (Not available in ViewForm)<br>
+        Mermaid Version: v10.9.1 (via CDN)
+    </div>
+    <pre class=""mermaid"">
+" + graphText + @"
+    </pre>
+    <script type=""module"">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>";
+                    File.WriteAllText(sfd.FileName, html, Encoding.UTF8);
+                    ExecUtil.execute_start2(sfd.FileName, null);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error generating HTML: " + ex.Message);
+                }
+                finally
+                {
+                    File.Delete(temp_dst);
+                }
             }
             else
             {
