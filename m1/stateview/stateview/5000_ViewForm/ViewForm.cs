@@ -3836,14 +3836,18 @@ namespace stateview._5000_MainForm
             var SP = " ";
             MessageBox.Show(G.Localize("output_flowchart_html_msg"));
                 
-            var sfd = saveFileDialog1;
-            sfd.FileName = G.load_file_name_woext + ".html";
-            sfd.InitialDirectory = G.load_file_dir;
-            var ret = sfd.ShowDialog(this);
-            if (ret != DialogResult.OK)
+            var outputDir = Path.Combine(Path.GetTempPath(), "psgg-mermaid");
+            if (!Directory.Exists(outputDir))
             {
-                return;
+                Directory.CreateDirectory(outputDir);
             }
+            var dst = Path.Combine(outputDir, G.load_file_name_woext + ".html");
+            var sfd = new SaveFileDialog(); // Dummy for compilation if needed, or better just use 'dst' variable directly.
+            // sfd was used later? No, I used sfd.FileName. I will replace sfd usages.
+            
+            // var sfd = saveFileDialog1; 
+            // sfd.FileName = G.load_file_name_woext + ".html";
+            // ... (Removed dialog logic) ...
             var tool = @"G:\statego\tools\psgg-mermaid-flow\psgg2mermaid\bin\Debug\psgg2mermaid.exe";
             {
                 var cand = Path.Combine( Path.GetDirectoryName( PathUtil.GetThisAppPath()) , "psgg2mermaid.exe");
@@ -3864,7 +3868,7 @@ namespace stateview._5000_MainForm
             // For now, defaulting to standard graph LR as per "Flow Chart" menu.
 
             // Run tool to generate graph text only (no -html flag)
-            ExecUtil.execute_w_args_and_wait( tool , DQ + src + DQ + SP + DQ + temp_dst + DQ + SP + opt, Path.GetDirectoryName(sfd.FileName));
+            ExecUtil.execute_w_args_and_wait( tool , DQ + src + DQ + SP + DQ + temp_dst + DQ + SP + opt, Path.GetDirectoryName(dst));
 
             if (File.Exists(temp_dst))
             {
@@ -3906,8 +3910,8 @@ namespace stateview._5000_MainForm
     </script>
 </body>
 </html>";
-                    File.WriteAllText(sfd.FileName, html, Encoding.UTF8);
-                    ExecUtil.execute_start2(sfd.FileName, null);
+                    File.WriteAllText(dst, html, Encoding.UTF8);
+                    ExecUtil.execute_start2(dst, null);
                 }
                 catch (Exception ex)
                 {
