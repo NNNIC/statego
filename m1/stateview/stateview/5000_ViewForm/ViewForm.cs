@@ -3883,30 +3883,70 @@ namespace stateview._5000_MainForm
     <meta charset=""UTF-8"">
     <title>StateGo Flowchart</title>
     <style>
-        body { font-family: sans-serif; }
+        body { 
+            font-family: sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden; /* Prevent body scroll, let svg-pan-zoom handle it */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
         .debug-info { 
             background: #f0f0f0; 
             padding: 10px; 
-            margin-bottom: 20px; 
             border-bottom: 1px solid #ccc; 
             font-size: 0.8em;
             color: #555;
+            flex-shrink: 0;
+            z-index: 1000; /* Ensure on top */
+        }
+        .mermaid {
+            flex-grow: 1;
+            overflow: hidden;
+            display: flex;       /* Center the SVG potentially */
+            justify-content: center;
+            align-items: center;
+            background: white;
         }
     </style>
 </head>
 <body>
     <div class=""debug-info"">
         <strong>Debug Info:</strong><br>
-        StateGo Version: " + Application.ProductVersion + @"<br>
-        Git Hash: (Not available in ViewForm)<br>
+        StateGo Version: " + m_version + @"<br>
         Mermaid Version: v10.9.1 (via CDN)
     </div>
     <pre class=""mermaid"">
 " + graphText + @"
     </pre>
+    <script src=""https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js""></script>
     <script type=""module"">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ startOnLoad: true });
+        
+        mermaid.initialize({ startOnLoad: false });
+        
+        await mermaid.run({
+            querySelector: '.mermaid'
+        });
+
+        // Initialize pan-zoom after rendering
+        const svgs = document.querySelectorAll('.mermaid svg');
+        svgs.forEach(svg => {
+            // Ensure SVG has proper styling for pan-zoom
+            svg.style.width = '100%';
+            svg.style.height = '100vh'; // Full height
+            svg.style.overflow = 'visible';
+            
+            svgPanZoom(svg, {
+                zoomEnabled: true,
+                controlIconsEnabled: true,
+                fit: true,
+                center: true,
+                minZoom: 0.1,
+                maxZoom: 10
+            });
+        });
     </script>
 </body>
 </html>";

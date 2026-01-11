@@ -1,1 +1,1 @@
-namespace PSGGEditor { public class ver { public static readonly string version="0.78.2044";    public static readonly string datetime="2026/01/11-10:04:11.29"; public static readonly string milestone="r0.78"; public static readonly string milestonetxt="r0.78"; } } 
+namespace PSGGEditor { public class ver { public static readonly string version="0.78.2063";    public static readonly string datetime="2026/01/11-10:23:31.82"; public static readonly string milestone="r0.78"; public static readonly string milestonetxt="r0.78"; } } 
