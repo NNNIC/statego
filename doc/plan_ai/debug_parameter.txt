@@ -1,0 +1,4 @@
+Debug Command Parameters   VS2022“à‚Åİ’è‚µ‚Ä
+
+/new /src "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\m1\StateViewer\StateViewer\bin\Release\starterkit2\unity\c-sharp-unity\UnityCSharpControl.psgg" /dir "C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\HeadlessDebugOutput" /name HogeControl
+

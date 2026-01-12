@@ -111,8 +111,9 @@ namespace PSGGEditor
             {
                 bool bHeadless = false;
                 
-                // Logging for debugging - REMOVED
-                // var debugLog = Path.Combine(Environment.CurrentDirectory, "headless_debug_startup.txt");
+                // Logging for debugging
+                var debugLog = Path.Combine(Environment.CurrentDirectory, "headless_debug_startup.txt");
+                StringBuilder logContent = new StringBuilder();
 
                 var isNew = args.Any(a => a.Equals("/new", StringComparison.OrdinalIgnoreCase) || a.Equals("--new", StringComparison.OrdinalIgnoreCase));
 
@@ -145,7 +146,7 @@ namespace PSGGEditor
                          File.AppendAllText(debugLog, logContent.ToString());
                     }
 
-                } catch {}
+
 
                 if (!bHeadless)
                 {
