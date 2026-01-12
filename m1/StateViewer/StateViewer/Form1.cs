@@ -11,6 +11,7 @@ using stateview;
 using StateViewer_starter2;
 using System.IO;
 using G=stateview.Globals;
+using System.Diagnostics;
 
 namespace PSGGEditor
 {
@@ -43,6 +44,7 @@ namespace PSGGEditor
         public Form1()
         {
             InitializeComponent();
+            //Debugger.Launch();
         }
 
         StateView m_mc;
@@ -104,24 +106,46 @@ namespace PSGGEditor
             }
 
 
+
             if (!m_bRequestOpen)
             {
                 bool bHeadless = false;
-                // Check for /new
+                
+                // Logging for debugging - REMOVED
+                // var debugLog = Path.Combine(Environment.CurrentDirectory, "headless_debug_startup.txt");
+
                 var isNew = args.Any(a => a.Equals("/new", StringComparison.OrdinalIgnoreCase) || a.Equals("--new", StringComparison.OrdinalIgnoreCase));
+
                 if (isNew)
                 {
                     var template = GetArg(args, "/src");
                     var id = GetArg(args, "/name");
                     var dir = GetArg(args, "/dir");
-                    if (string.IsNullOrEmpty(dir)) dir = Directory.GetCurrentDirectory();
 
                     if (!string.IsNullOrEmpty(template) && !string.IsNullOrEmpty(id))
                     {
-                        open_headless(template, id, dir);
-                        bHeadless = true;
+                        if (string.IsNullOrEmpty(dir)) dir = Directory.GetCurrentDirectory();
+
+                        try {
+                            open_headless(template, id, dir);
+                                bHeadless = true;
+                                File.AppendAllText(debugLog, "open_headless returned. bHeadless=true\n");
+                            } catch (Exception ex) {
+                                File.AppendAllText(debugLog, $"open_headless EXCEPTION: {ex}\n");
+                            }
+                        }
+                        else
+                        {
+                            logContent.AppendLine("Missing template or id. Headless aborted.");
+                            File.AppendAllText(debugLog, logContent.ToString());
+                        }
                     }
-                }
+                    else 
+                    {
+                         File.AppendAllText(debugLog, logContent.ToString());
+                    }
+
+                } catch {}
 
                 if (!bHeadless)
                 {
@@ -180,6 +204,10 @@ namespace PSGGEditor
                 }
                 else if (m_bNew2019Files)
                 {
+                    if (string.IsNullOrEmpty(m_new_target_xlsx) && !string.IsNullOrEmpty(m_new_target_psgg))
+                    { 
+                        m_new_target_xlsx = Path.ChangeExtension(m_new_target_psgg, ".xlsx");
+                    }
                     m_mc.Init(m_new_target_xlsx,m_new_target_psgg);
                 }
                 else

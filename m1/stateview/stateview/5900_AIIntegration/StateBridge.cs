@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.Serialization;
 using G=stateview.Globals;
+using WordStorage;
 
 namespace stateview._5900_AIIntegration
 {
@@ -51,6 +52,8 @@ namespace stateview._5900_AIIntegration
                         return CreateGroup(data);
                     case "system/save_and_convert":
                         return SaveAndConvert();
+                    case "system/reset":
+                        return Reset();
                     case "state/edit":
                         return EditState(data);
                     default:
@@ -321,6 +324,36 @@ namespace stateview._5900_AIIntegration
             G.req_redraw_force();
 
             return JsonUtil.Serialize(new SuccessResponse { success = (isNew ? "created and " : "") + "updated " + p.name + " (" + updateCount + " params)" });
+        }
+
+        private static string Reset()
+        {
+            var list = new List<string>(G.excel_program.GetStateList());
+            foreach (var s in list)
+            {
+                G.excel_program.Delete(s);
+            }
+
+            // Local helper to match logic in ViewForm.create_new_state
+            Action<string, string, int, int, string, string> create_state = (name, type, x, y, comment, next) => {
+                var newstate = G.excel_program.NewState(name, "/");
+                G.excel_program.SetString(newstate, G.STATENAME_statetyp, type);
+                G.excel_program.SetString(newstate, G.STATENAMESYS_pos, string.Format("{0},{1}", x, y));
+                if (!string.IsNullOrEmpty(next))
+                {
+                    G.excel_program.SetString(newstate, G.STATENAME_nextstate, next);
+                }
+                G.excel_program.SetString(newstate, G.STATENAME_statecmt, comment);
+            };
+
+            create_state("S_START", WordStorage.Store.state_typ_start, 100, 100, "", "S_END");
+            create_state("S_END", WordStorage.Store.state_typ_end, 500, 100, "", null);
+
+            History2.SaveForce_modify_value("Delete All");
+            G.node_enter_group("/");
+            G.req_redraw_force();
+
+            return JsonUtil.Serialize(new SuccessResponse { success = "reset completed" });
         }
         #endregion
     }

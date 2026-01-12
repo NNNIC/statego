@@ -5,7 +5,11 @@ taskkill /F /IM StateGo.exe 2>nul
 
 if "%MSBUILD17%"=="" set MSBUILD17=C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe
 if "%NUGET%"=="" set NUGET=C:\nuget\nuget.exe
-set CFG=Release
+if "%1"=="Debug" (
+    set CFG=Debug
+) else (
+    set CFG=Release
+)
 
 if not exist "%MSBUILD17%" (
     echo MSBuild not found at %MSBUILD17%
@@ -108,6 +112,8 @@ robocopy %SRC%\Work\VisualStudioFileOpenTool  %TGT%\tools LICENSE.md
 robocopy %SRC%\Work\VisualStudioFileOpenTool\VisualStudioFileOpenTool\bin\%CFG% %TGT%\tools *.*
 :: robocopy %SRC%\Work\conv\psggConverter\psggConverterLib\bin\%CFG% %TGT% *.*
 copy %SRC%\Others\archivebatch\__setup.bat %TGT%\*.*
+
+
 
 cd /d %~dp0
 echo : COPY Winpython

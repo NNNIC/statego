@@ -361,12 +361,9 @@ public partial class PathUtil
     */
     public static string GetThisAppPath()
     {
-        var args = System.Environment.GetCommandLineArgs();
-        if (args.Length>0)
-        {
-            return Path.GetFullPath(Path.GetDirectoryName(args[0]));
-        }
-        return null;
+        // Use BaseDirectory which is reliable and safe
+        // Remove trailing backslash to match GetDirectoryName behavior
+        return AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
     }
 
     public static bool CheckValid(string path)
