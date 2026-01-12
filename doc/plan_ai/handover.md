@@ -1,0 +1,60 @@
+# StateGo AI Integration - 引継書 (Handover Document)
+
+## プロジェクト概要
+StateGoに外部ツール（AIエージェント等）からの制御を可能にするための「ヘッドレスモード」と「ローカルAPIサーバー」を実装しました。
+現在、`plan_ai` ブランチにて実装・検証が完了しています。
+
+## 実装機能一覧
+
+### 1. ヘッドレス起動モード
+UIを表示せずにプロジェクトを作成・操作するモードです。
+- **コマンド**: `StateGo.exe /new /src "..." /name "..." /dir "..."`
+- **修正点**: 起動ダイアログのスキップ、設定保存(`RegistryWork`)の修正、`PathUtil`のクラッシュ修正。
+
+### 2. ローカルAPIサーバー
+StateGo起動時に `http://localhost:5000` (ポート競合時はインクリメント) でサーバーが立ち上がります。
+- **主要エンドポイント**:
+  - `GET /api/system/noop`: 生存確認
+  - `POST /api/state/create`: ステート作成
+  - `POST /api/state/edit`: ステートの作成・更新 (Upsert)
+  - `POST /api/system/reset`: 全ステート削除・初期化 (S_START, S_ENDのみ)
+  - `POST /api/system/save_and_convert`: 保存とコード生成
+
+### 3. デバッグ環境
+- `BuildAuto.bat Debug` でDebugビルド環境を一括構築可能にしました。
+- 検証用スクリプト `run_verification.ps1` を整備しました。
+
+## 開発・検証環境の注意点
+
+> [!WARNING]
+> **Debugビルドのクリーンアップについて**
+> `bin\Debug` フォルダに古いビルド生成物が残っていると、最新のコード修正が反映されない（先祖返り現象）が発生することがあります。
+> 挙動がおかしい場合は、必ず `BuildAuto.bat Debug` を実行する前に `bin\Debug` を**手動で削除**するか、スクリプト内で削除を行ってください。
+
+## 検証手順
+
+リポジトリルート (`playground/infrared-einstein`) にて以下のPowerShellスクリプトを実行することで、全機能の回帰テストが可能です。
+
+```powershell
+.\run_verification.ps1
+```
+
+このスクリプトは以下の処理を行います：
+1. `BuildAuto.bat Debug` でプロジェクトをビルド（事前に実行推奨）。
+2. `HeadlessDebugOutput` フォルダをクリーンアップ。
+3. StateGoをヘッドレスモードで起動。
+4. `test_reset_api.ps1` を呼び出し、API経由でのリセット、ステート確認、保存動作を検証。
+
+## ファイル構成
+- `m1/StateViewer/StateViewer/Form1.cs`: 起動引数解析、サーバー起動トリガー。
+- `m1/stateview/stateview/5900_AIIntegration/LocalServer.cs`: HTTPサーバー実装。
+- `m1/stateview/stateview/5900_AIIntegration/StateBridge.cs`: APIロジックとStateGo内部機能のブリッジ。
+- `doc/plan_ai/walkthrough.md`: 詳細な機能説明とログ。
+
+## 残課題・今後の展望
+- 現状、APIはローカル実行のみを想定しています。認証機能はありません。
+- エラーハンドリングの強化（不正なJSON入力時の詳細なレスポンス等）。
+
+---
+作成日: 2026-01-12
+作成者: Antigravity AI Agent
