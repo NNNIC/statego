@@ -1,6 +1,7 @@
 @echo off
 cd /d %~dp0
 echo : Start Auto Build
+taskkill /F /IM StateGo.exe 2>nul
 
 if "%MSBUILD17%"=="" set MSBUILD17=C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe
 if "%NUGET%"=="" set NUGET=C:\nuget\nuget.exe

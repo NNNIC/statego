@@ -259,15 +259,19 @@ namespace StateViewer_starter2.NEW2019 {
             }
             File.WriteAllText(m_new_psgg, s, Encoding.UTF8);
         }
+        public bool Headless = false;
         bool show_confirm_dlg(string msg)
         {
+            if (Headless) return true;
             var result = MessageBox.Show(msg, "CONFIRM", MessageBoxButtons.OKCancel );
             return result == DialogResult.OK;
         }
         void show_err_dlg() {
+            if (Headless) return;
             MessageBox.Show(m_err);
         }
         void show_done_dlg() {
+            if (Headless) return;
             MessageBox.Show(Localize("ccf_done"));
         }
 

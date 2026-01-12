@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Serialization;
 using G=stateview.Globals;
 
 namespace stateview._5900_AIIntegration
@@ -12,41 +14,270 @@ namespace stateview._5900_AIIntegration
     {
         public static string ProcessCommand(string command, string data)
         {
-            // Thread safety check - ensure this runs on UI thread if needed
-            // For now, simple echo or basic command handling
-            
+            // Thread safety: Execute on UI thread if needed
+             if (G.view_form != null && G.view_form.InvokeRequired)
+            {
+                string result = "";
+                G.view_form.Invoke(new MethodInvoker(() => {
+                    result = _ProcessCommand(command, data);
+                }));
+                return result;
+            }
+            else
+            {
+                return _ProcessCommand(command, data);
+            }
+        }
+
+        private static string _ProcessCommand(string command, string data)
+        {
             try 
             {
                 switch(command.ToLower())
                 {
-                    case "state/add":
-                         return AddState(data);
                     case "state/list":
-                         return GetStateList();
+                        return GetStateList();
+                    case "system/info":
+                        return GetSystemInfo();
+                    case "system/noop":
+                        return JsonUtil.Serialize(new SuccessResponse { success = "ok" });
+                    case "state/create":
+                        return CreateState(data);
+                    case "state/delete":
+                        return DeleteState(data);
+                    case "state/move":
+                        return MoveState(data);
+                    case "group/create":
+                        return CreateGroup(data);
+                    case "system/save_and_convert":
+                        return SaveAndConvert();
                     default:
-                        return "{ \"error\": \"unknown command: " + command + "\" }";
+                        return JsonUtil.Serialize(new ErrorResponse { error = "unknown command: " + command });
                 }
             }
             catch (Exception ex)
             {
-                return "{ \"error\": \"" + ex.Message + "\" }";
+                return JsonUtil.Serialize(new ErrorResponse { error = ex.Message });
             }
         }
 
-        private static string AddState(string data)
+        private static string SaveAndConvert()
         {
-            // Placeholder for state addition logic
-            // Need to parse JSON data and call internal methods
-            return "{ \"status\": \"added\", \"data\": " + data + " }";
+            if (G.view_form == null) throw new InvalidOperationException("ViewForm is not active");
+            
+            // Bypass confirmation dialogs
+            bool backup_confirm = G.option_convert_with_confirm;
+            G.option_convert_with_confirm = false;
+            try
+            {
+                G.view_form.SaveAndRun(false);
+            }
+            finally
+            {
+                G.option_convert_with_confirm = backup_confirm;
+            }
+
+            return JsonUtil.Serialize(new SuccessResponse { success = "save and convert started" });
         }
 
+        #region Data Contracts
+        [DataContract]
+        class ErrorResponse { [DataMember] public string error; }
+        
+        [DataContract]
+        class SuccessResponse { [DataMember] public string success; }
+
+        [DataContract]
+        class StateListResponse { [DataMember] public List<StateData> states; }
+
+        [DataContract]
+        class StateData { 
+            [DataMember] public string name; 
+            [DataMember] public string type; 
+            [DataMember] public string comment;
+            [DataMember] public float x;
+            [DataMember] public float y;
+            [DataMember] public string next;
+            [DataMember] public string gosub;
+            [DataMember] public string branch;
+        }
+
+        [DataContract]
+        class SystemInfoResponse { 
+            [DataMember] public int canvas_width;
+            [DataMember] public int canvas_height;
+            [DataMember] public string current_dir;
+        }
+
+        [DataContract]
+        class CreateStateParams {
+            [DataMember] public string name;
+            [DataMember] public string type; // start, end, loop, gosub, etc. default: state
+            [DataMember] public float x;
+            [DataMember] public float y;
+            [DataMember] public string comment;
+        }
+
+        [DataContract]
+        class DeleteStateParams {
+            [DataMember] public string name;
+        }
+
+        [DataContract]
+        class MoveStateParams {
+            [DataMember] public string name;
+            [DataMember] public float x;
+            [DataMember] public float y;
+        }
+
+        [DataContract]
+        class CreateGroupParams {
+            [DataMember] public string group_name;
+            [DataMember] public List<string> states;
+            [DataMember] public string comment;
+        }
+        #endregion
+
+        #region Implementation
         private static string GetStateList()
         {
-            // Placeholder for getting state list
-             if (G.view_form == null) return "{ \"error\": \"view_form is null\" }";
-             
-             // Just return a dummy list for now to verify connectivity
-             return "{ \"states\": [\"S_START\", \"S_END\"] }";
+            var list = new List<StateData>();
+            var all_states = G.excel_program.GetStateList();
+            
+            foreach(var s in all_states)
+            {
+                var sd = new StateData();
+                sd.name = s;
+                sd.type = G.excel_program.GetString(s, G.STATENAME_statetyp);
+                sd.comment = G.excel_program.GetString(s, G.STATENAME_statecmt);
+                sd.next = G.excel_program.GetString(s, G.STATENAME_nextstate);
+                sd.gosub = G.excel_program.GetString(s, G.STATENAME_gosubstate);
+                sd.branch = G.excel_program.GetString(s, G.STATENAME_branch); // Raw branch string
+                
+                if (G.state_location_list != null && G.state_location_list.ContainsKey(s))
+                {
+                    var p = G.state_location_list[s];
+                    sd.x = p.X;
+                    sd.y = p.Y;
+                }
+                else
+                {
+                    var p = G.get_excel_position(s);
+                    if (p != null)
+                    {
+                        sd.x = p.Value.X;
+                        sd.y = p.Value.Y;
+                    }
+                }
+
+                list.Add(sd);
+            }
+
+            return JsonUtil.Serialize(new StateListResponse { states = list });
         }
+
+        private static string GetSystemInfo()
+        {
+            return JsonUtil.Serialize(new SystemInfoResponse {
+                canvas_width = G.bitmap_width,
+                canvas_height = G.bitmap_height,
+                current_dir = G.node_get_cur_dirpath()
+            });
+        }
+
+        private static string CreateState(string data)
+        {
+            var p = (CreateStateParams)JsonUtil.Deserialize(data, typeof(CreateStateParams));
+            if (string.IsNullOrEmpty(p.name)) throw new ArgumentException("name required");
+
+            // Validate name (simple check)
+            if (!stateview.StateUtil.IsValidStateName(p.name)) throw new ArgumentException("invalid state name");
+            if (G.excel_program.CheckExists(p.name)) throw new ArgumentException("state already exists");
+
+            string typ = p.type; 
+            if (string.IsNullOrEmpty(typ)) typ = "state"; // default
+            
+            // Map common types to internal values if needed
+            // But usually raw string is fine or specific mapping. 
+            // In ViewFormStateControl_3200_blank.cs: "state-typ" values are in WordStorage.Store.state_typ_*
+            // e.g. "loop" -> WordStorage.Store.state_typ_loop (value="loop" usually?)
+            // We'll trust user input for now or standard names.
+
+            var newstate = G.excel_program.NewState(p.name, G.node_get_cur_dirpath());
+            
+            if (!string.IsNullOrEmpty(typ))
+            {
+                // We might need to handle specific types like 'start', 'end' to set them correctly if valid
+                G.excel_program.SetString(newstate, G.STATENAME_statetyp, typ);
+            }
+            
+            if (!string.IsNullOrEmpty(p.comment))
+            {
+                G.excel_program.SetString(newstate, G.STATENAME_statecmt, p.comment);
+            }
+
+            var pt = new PointF(p.x, p.y);
+            G.UpdateExcelPos(newstate, pt, true);
+            History2.SaveForce_new(newstate);
+
+            return JsonUtil.Serialize(new SuccessResponse { success = "created " + newstate });
+        }
+
+        private static string DeleteState(string data)
+        {
+            var p = (DeleteStateParams)JsonUtil.Deserialize(data, typeof(DeleteStateParams));
+             if (string.IsNullOrEmpty(p.name)) throw new ArgumentException("name required");
+            
+            if (!G.excel_program.CheckExists(p.name)) throw new ArgumentException("state not found");
+
+            G.excel_program.Delete(p.name);
+            History2.SaveForce_delete(p.name);
+
+             return JsonUtil.Serialize(new SuccessResponse { success = "deleted " + p.name });
+        }
+
+        private static string MoveState(string data)
+        {
+            var p = (MoveStateParams)JsonUtil.Deserialize(data, typeof(MoveStateParams));
+            if (string.IsNullOrEmpty(p.name)) throw new ArgumentException("name required");
+             if (!G.excel_program.CheckExists(p.name)) throw new ArgumentException("state not found");
+
+            var pt = new PointF(p.x, p.y);
+            G.UpdateExcelPos(p.name, pt, true);
+            
+            // Should save history? "Moved a state" - manual trigger
+            // stateview.History.ReqToSave("Moved state via API"); 
+            // Better to use SaveForce or similar if strictly needed, or just let Dirty flag handle it?
+            // History2 usually works with explicit calls. 
+            // Let's assume UpdateExcelPos updates dirty flag, but for Undo history:
+            // Globals.bDirty_by_edited_pos_only = true;
+            // No direct History2 method for just move in the list seen, but ViewFormStateControl uses History.ReqToSave
+            // We'll trust existing mechanisms or leave history for now to avoid side effects.
+            
+            return JsonUtil.Serialize(new SuccessResponse { success = "moved " + p.name });
+        }
+
+        private static string CreateGroup(string data)
+        {
+            var p = (CreateGroupParams)JsonUtil.Deserialize(data, typeof(CreateGroupParams));
+            if (string.IsNullOrEmpty(p.group_name)) throw new ArgumentException("group_name required");
+            if (p.states == null || p.states.Count == 0) throw new ArgumentException("states list required");
+
+            // Verify all states exist
+            foreach(var s in p.states) {
+                 if (!G.excel_program.CheckExists(s)) throw new ArgumentException("state not found: " + s);
+            }
+            
+            // logic from ViewFormStateControl_0650_statemenu.cs : gfstatemenu_grouping_wait
+            // G.node_grouping(group,m_group_focus_list,m_group_focus_click_state,comment);
+            
+            string clickState = p.states[0]; // arbitrary pivot
+            G.node_grouping(p.group_name, p.states, clickState, p.comment);
+            
+            History2.SaveForce_grouping("Make g:" + p.group_name);
+
+            return JsonUtil.Serialize(new SuccessResponse { success = "created group " + p.group_name });
+        }
+        #endregion
     }
 }

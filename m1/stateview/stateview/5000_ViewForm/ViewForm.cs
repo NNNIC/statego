@@ -20,12 +20,14 @@ using DS=stateview.DesignSpec;
 using System.Reflection;
 using System.Net;
 using System.Collections.Specialized;
+using stateview._5900_AIIntegration;
 
 namespace stateview._5000_MainForm
 {
     public partial class ViewForm:Form
     {
         public string m_version { get { return G.version + "." + G.githash.Substring(0,7); } }
+        private LocalServer _localServer;
 
         public ViewForm()
         {
@@ -302,6 +304,9 @@ namespace stateview._5000_MainForm
             //panel2.Location = Point.Empty;
             ////this.panel2.PreviewKeyDown += Panel1_PreviewKeyDown;
 
+            // Start Local Server
+            _localServer = new LocalServer();
+            _localServer.Start();
         }
 
         private void Panel1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -662,6 +667,11 @@ namespace stateview._5000_MainForm
                     {
                         G.mutex.ReleaseMutex();
                         G.mutex = null;
+                    }
+                    if (_localServer != null)
+                    {
+                        _localServer.Stop();
+                        _localServer = null;
                     }
 
                     Flow.Dispose();
