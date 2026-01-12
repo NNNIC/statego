@@ -1,61 +1,61 @@
-# 自動化とAPI統合のウォークスルー
+# Batch API Implementation and Verification
 
-## 概要
-このドキュメントでは、StateGoの **ヘッドレス起動モード** と **ローカルAPIサーバー** の実装について説明します。これらの機能により、外部ツール（現在のAIエージェントなど）がプログラムからプロジェクトを作成したり、ステートマシンを操作したりすることが可能になります。
+## Goal
+Optimize API performance by implementing a batch processing mechanism and reorganizing the API structure. This allows multiple commands (create, edit, delete, group) to be sent in a single request, triggering only one UI redraw and history save at the end.
 
-## 新機能
+## Key Changes
 
-### 1. ヘッドレス起動 (`/new`)
-StateGoは、起動ダイアログをスキップし、コマンドライン引数を介して直接新しいプロジェクトを作成できるようになりました。
+### 1. API Structure Refactoring
+*   **Standardized Endpoints:** `/api/{category}/{action}` (e.g., `state/create`, `system/batch`).
+*   **Unified Response:** `{"success": true, "data": ...}`.
+*   **Internal Methods:** Separated core logic from UI/History overhead in `StateBridge.cs`. Methods like `CreateState` now accept a `skipRedraw` flag.
 
-**コマンド:**
-```batch
-StateGo.exe /new /src "{テンプレートパス}" /name "{プロジェクト名}" /dir "{出力ディレクトリ}"
-```
+### 2. Batch API (`system/batch`)
+*   **Endpoint:** POST `/api/system/batch`
+*   **Payload:**
+    ```json
+    {
+      "commands": [
+        { "command": "system/reset" },
+        { "command": "state/create", "create_params": { ... } },
+        { "command": "state/edit", "edit_params": { ... } }
+      ]
+    }
+    ```
+*   **Processing:** Executes all commands internally with `skipRedraw=true`. Calls `G.req_redraw_force()` only once after all commands succeed.
 
-- **/new**: 自動作成モードをトリガーします。
-- **/src**: `.psgg` テンプレートファイルへのパス。
-- **/name**: プロジェクト名（およびメインクラス名）。
-- **/dir**: 生成先のディレクトリ。
+### 3. Scope Limitation
+*   **State Names:** Must start with `S_`.
+*   **Types:** Only generic `state` type is supported for creation via API.
 
-**修正事項:**
-- **設定保存**: ヘッドレス作成時に設定が正しく保存されるように `RegistryWork` を更新しました。
-- **xlsxパス**: `.xlsx` パスが未指定の場合の自動補完を追加しました。
-- **[New] PathUtil クラッシュ修正**: ヘッドレスモード時に `PathUtil.GetThisAppPath` がコマンドライン引数の解析エラーでクラッシュする問題を `AppDomain.CurrentDomain.BaseDirectory` を使用するように変更して修正しました。
+## Verification
 
-### 2. ローカルAPIサーバー
-StateGoの起動時に、ポート **5000～5009** の範囲で空いているポートを探し、HTTPサーバーを自動的に起動します。
+### Automated Verification Scripts
+Two PowerShell scripts were created to verify the implementation.
 
-**API エンドポイント:**
+#### 1. Batch API Test (`verify_batch_api.ps1`)
+*   **Location:** `editor/m1/stateview/verify_batch_api.ps1`
+*   **Tests:**
+    *   Creation of multiple states (`S_Batch1`, `S_Batch2`).
+    *   Grouping of states.
+    *   Deletion (Cleanup).
+*   **Result:** Verified that objects are created and deleted correctly in a single batch.
 
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| GET | `/api/system/noop` | サーバー稼働確認 (Ping)。 |
-| GET | `/api/system/info` | キャンバスサイズとカレントディレクトリを取得。 |
-| GET | `/api/state/list` | 全ステートの情報(座標、接続先含む)を取得。 |
-| POST | `/api/state/create` | ステート作成。 |
-| POST | `/api/state/delete` | ステート削除。 |
-| POST | `/api/state/move` | ステート移動。 |
-| POST | `/api/group/create` | グループ作成。 |
-| POST | `/api/state/edit` | ステートの新規作成・更新 (Upsert)。 |
-| POST | `/api/system/save_and_convert` | 保存と変換を実行 (UIレス)。 |
-| POST | `/api/system/reset` | **(New)** ステートマシンを初期化 (S_START, S_ENDのみにする)。 |
+#### 2. Hello World E2E (`verify_helloworld.ps1`)
+*   **Location:** `editor/TestBed/verify_helloworld.ps1`
+*   **Tests:**
+    *   **Headless Project Creation:** Launches `StateGo.exe` with `/new` to create `test1Control`.
+    *   **Batch Modification:**
+        1.  `system/reset`
+        2.  Create `S_SAYHELLO`
+        3.  Edit `S_SAYHELLO` to add `System.Console.WriteLine("Hello World");`
+        4.  Edit `S_START` to point to `S_SAYHELLO`
+        5.  `system/save_and_convert`
+    *   **Compilation:** Creates a runner C# file and compiles with `csc.exe`.
+    *   **Execution:** Runs the compiled executable.
+*   **Result:** Output matched "Hello World".
 
-### 3. デバッグ環境の同期
-**[New] BuildAuto.bat**: Debugビルド時にもReleaseと同様のアセット (`starterkit2`, `tools`, `ini` 等) が `bin\Debug` にコピーされるようにスクリプトを更新しました。引数で `Debug` を指定可能です。
-
-> [!IMPORTANT]
-> **クリーンビルドの必要性**: Debugビルドにおいて、過去のビルド生成物が残り、一見すると古いバージョンに先祖返りしたような挙動を示す場合があることが確認されました。
-> このような場合は、`bin\Debug` フォルダを手動で削除するか、クリーンビルドを実行することで解消します。
-
-## 検証結果
-
-### Reset API の検証
-`run_verification.ps1` を使用して、ヘッドレス起動から API によるリセット、そして保存までのフローを検証しました。
-
-1. **予備動作**: `bin\Debug` をクリアし、`BuildAuto.bat Debug` で再構築 (クリーンビルド)。
-2. **起動**: 指定されたテンプレートでヘッドレス起動 (成功 - ダイアログなし)。
-3. **リセット**: `POST /api/system/reset` を実行。ステート数が 2 (S_START, S_END) になることを確認 (成功)。
-4. **保存**: `POST /api/system/save_and_convert` を実行。**5秒間の待機**を経て、正常に保存・変換が行われることを確認 (成功)。
-
-すべてのテスト項目をパスしました。
+## Artifacts
+*   **Implementation Plan:** `implementation_plan.md`
+*   **Task List:** `task.md`
+*   **Scripts:** `editor/TestBed/verify_helloworld.ps1`, `editor/m1/stateview/verify_batch_api.ps1`

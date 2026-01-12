@@ -19,10 +19,16 @@ StateGo起動時に `http://localhost:5000` (ポート競合時はインクリ�
   - `POST /api/state/edit`: ステートの作成・更新 (Upsert)
   - `POST /api/system/reset`: 全ステート削除・初期化 (S_START, S_ENDのみ)
   - `POST /api/system/save_and_convert`: 保存とコード生成
+  - `POST /api/system/batch`: バッチ処理（複数コマンドの一括実行）
 
-### 3. デバッグ環境
+### 3. バッチ処理API (`system/batch`)
+パフォーマンス改善のため、複数の編集コマンドを1リクエストで送信し、UI再描画と履歴保存を最後に一度だけ行うAPIを実装しました。
+- **機能**: `state/create`, `state/edit`, `state/move`, `state/delete`, `group/create`, `system/reset`, `system/save_and_convert` を配列で受け取り順次実行。
+- **制約**: 新規作成ステート名は `S_` で始まる必要があります。
+
+### 4. デバッグ環境
 - `BuildAuto.bat Debug` でDebugビルド環境を一括構築可能にしました。
-- 検証用スクリプト `run_verification.ps1` を整備しました。
+- 検証用スクリプト `TestBed/verify_helloworld.ps1` を整備しました（ヘッドレス作成～バッチ編集～コンパイル実行のE2Eテスト）。
 
 ## 開発・検証環境の注意点
 
@@ -33,28 +39,29 @@ StateGo起動時に `http://localhost:5000` (ポート競合時はインクリ�
 
 ## 検証手順
 
-リポジトリルート (`playground/infrared-einstein`) にて以下のPowerShellスクリプトを実行することで、全機能の回帰テストが可能です。
+リポジトリルート (`documents/psgg-editor-public/editor`) にて以下のPowerShellスクリプトを実行することで、Hello World生成フローの検証が可能です。
 
 ```powershell
-.\run_verification.ps1
+cd TestBed
+.\verify_helloworld.ps1
 ```
 
 このスクリプトは以下の処理を行います：
-1. `BuildAuto.bat Debug` でプロジェクトをビルド（事前に実行推奨）。
-2. `HeadlessDebugOutput` フォルダをクリーンアップ。
-3. StateGoをヘッドレスモードで起動。
-4. `test_reset_api.ps1` を呼び出し、API経由でのリセット、ステート確認、保存動作を検証。
+1. `StateGo.exe` をヘッドレスモードで起動し、`test1Control` プロジェクトを作成。
+2. API経由で `system/batch` を送信し、ステートのリセット・作成・接続・保存を実行。
+3. 生成されたC#コードをコンパイルし、実行結果が "Hello World" であることを確認。
 
 ## ファイル構成
 - `m1/StateViewer/StateViewer/Form1.cs`: 起動引数解析、サーバー起動トリガー。
 - `m1/stateview/stateview/5900_AIIntegration/LocalServer.cs`: HTTPサーバー実装。
-- `m1/stateview/stateview/5900_AIIntegration/StateBridge.cs`: APIロジックとStateGo内部機能のブリッジ。
+- `m1/stateview/stateview/5900_AIIntegration/StateBridge.cs`: APIロジック、バッチ処理実装。
 - `doc/plan_ai/walkthrough.md`: 詳細な機能説明とログ。
+- `TestBed/verify_helloworld.ps1`: E2E検証スクリプト。
 
 ## 残課題・今後の展望
 - 現状、APIはローカル実行のみを想定しています。認証機能はありません。
 - エラーハンドリングの強化（不正なJSON入力時の詳細なレスポンス等）。
 
 ---
-作成日: 2026-01-12
+作成日: 2026-01-13
 作成者: Antigravity AI Agent
