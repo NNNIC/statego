@@ -1042,6 +1042,91 @@ namespace StateViewer_starter2.NEW2019
             m_form.DialogResult = DialogResult.OK;
         }
 
+
+        public bool HeadlessRun(string templatePsgg, string id, string outputDir, out string newPsggFile, out string newXlsxFile)
+        {
+            newPsggFile = null;
+            newXlsxFile = null;
+
+            var pd = new psgg_data();
+            pd.read(templatePsgg);
+
+            var sm = new NewWorkControl();
+            sm.Headless = true;
+            sm.m_pd = pd;
+            // sm.m_bUE5Actor = pd.m_special_condition_is_ue5_actor; // This is done in _create_new_files
+
+            // Determine starter kit root from templatePsgg
+            // templatePsgg is like .../starterkit2/lang/template.psgg
+            // Root should be .../starterkit2
+            var starterKitPath = Path.GetDirectoryName(Path.GetDirectoryName(templatePsgg));
+
+             // Reuse setting logic or duplicate
+            var err = __create_new_files_setting_headless(sm, pd, id, outputDir, outputDir, starterKitPath);
+            if (!string.IsNullOrEmpty(err)) {
+                Console.WriteLine("Headless Error: " + err);
+                return false;
+            }
+
+            sm.m_bUE5Actor = pd.m_special_condition_is_ue5_actor;
+            sm.Run();
+
+            if (sm.m_ok)
+            {
+                newPsggFile = sm.m_new_psgg;
+                newXlsxFile = sm.m_new_excel;
+                return true;
+            }
+            try { 
+                File.WriteAllText(@"C:\Users\gea01\.gemini\antigravity\playground\infrared-einstein\headless_error.log", "Headless Run Failed: " + sm.m_err);
+            } catch { } 
+            return false;
+        }
+
+        private string __create_new_files_setting_headless(NewWorkControl sm, psgg_data m_pd, string statemachine, string gendir, string xlsdir, string starterKitPath)
+        {
+             // E_DEC_NAME
+            sm.m_orgname = m_pd.get_statemachine_from_settingini();
+            if (string.IsNullOrEmpty(sm.m_orgname)) { return "Not defined 'statemachine' in psgg file.";            }
+
+            sm.m_newname = statemachine;
+            if (string.IsNullOrEmpty(sm.m_newname)) { return "{0012AB81-917F-4A58-8EA4-C78153563745}";              }
+
+            sm.m_newdocdir = xlsdir;
+            if (string.IsNullOrEmpty(sm.m_newdocdir)) { return "{A3A3E84D-05E9-4603-A4B4-3F845ED1E1CB}"; }
+
+            sm.m_newsrcdir = gendir;
+            if (string.IsNullOrEmpty(sm.m_newsrcdir)) { return "{D70420E6-E6B7-4085-859D-E23494FF0765}"; }
+
+            //E_DEC_ORGFILES
+            sm.m_org_excel = null; //エクセルファイルは対象外
+
+            sm.m_org_psgg  = m_pd.m_filepath;
+            if (string.IsNullOrEmpty(sm.m_org_psgg) || !File.Exists(sm.m_org_psgg)) { return "{37F7384B-23B2-45B0-BC2B-AFB9F75C741E}"; }
+
+            var helpwebpath = Path.Combine(Path.GetDirectoryName(m_pd.m_filepath), "helpweb.html");
+
+            sm.m_org_helpweb = File.Exists(helpwebpath) ? helpwebpath : null ; //ヘルプウエブは対象外
+
+            sm.m_org_genfile = m_pd.get_genfileFullpath_from_settingini();
+            if (string.IsNullOrEmpty(sm.m_org_genfile) || !File.Exists(sm.m_org_genfile)) { return "{1B4182AD-A0F0-41E6-8AF3-D79AB7DE4B7E} " + sm.m_org_genfile; }
+
+            sm.m_org_genhpp = m_pd.get_genhppfileFullpath_from_settingini() ;
+            if (string.IsNullOrEmpty(sm.m_org_genhpp) || !File.Exists(sm.m_org_genhpp)) {
+                sm.m_org_genhpp = null; 
+            }
+
+            sm.m_org_impfile = m_pd.get_impfileFullpath_from_settingini();
+            if (!string.IsNullOrEmpty(sm.m_org_impfile) && !File.Exists(sm.m_org_impfile)) { return "{1D972EF8-D40D-436E-A853-DE050382E35A} " + sm.m_org_impfile; } //オプション。null時OK
+            
+            sm.m_org_macro = m_pd.get_macrofileFullpath_from_settingini();
+            if (!string.IsNullOrEmpty(sm.m_org_macro) && !File.Exists(sm.m_org_macro)) { return "{EAF1B698-C414-491A-B1C2-E59CF8F00268} " + sm.m_org_macro; } //オプション。null時OK
+
+            sm.m_starter_kit_path = starterKitPath;
+
+            return null;
+        }
+
         private bool _create_new_files(psgg_data m_pd, string statemachine, string gendir, string xlsdir)
         {
             var sm = new NewWorkControl();

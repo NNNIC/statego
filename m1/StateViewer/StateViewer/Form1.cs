@@ -65,6 +65,7 @@ namespace PSGGEditor
             m_bRequestOpen = false;
 
             var args = Environment.GetCommandLineArgs();
+            
             var _1stArg = args.Length>1 ? args[1] : string.Empty;
             var _2ndArg = args.Length>2 ? args[2] : string.Empty;
             var _3rdArg = args.Length>3 ? args[3] : string.Empty;
@@ -105,7 +106,27 @@ namespace PSGGEditor
 
             if (!m_bRequestOpen)
             {
-                m_bRequestWizard = true;
+                bool bHeadless = false;
+                // Check for /new
+                var isNew = args.Any(a => a.Equals("/new", StringComparison.OrdinalIgnoreCase) || a.Equals("--new", StringComparison.OrdinalIgnoreCase));
+                if (isNew)
+                {
+                    var template = GetArg(args, "/src");
+                    var id = GetArg(args, "/name");
+                    var dir = GetArg(args, "/dir");
+                    if (string.IsNullOrEmpty(dir)) dir = Directory.GetCurrentDirectory();
+
+                    if (!string.IsNullOrEmpty(template) && !string.IsNullOrEmpty(id))
+                    {
+                        open_headless(template, id, dir);
+                        bHeadless = true;
+                    }
+                }
+
+                if (!bHeadless)
+                {
+                    m_bRequestWizard = true;
+                }
             }
 
             Bitmap img = Properties.Resources.statego;   //title; //Properties.Resources.fanfare2;
@@ -184,6 +205,46 @@ namespace PSGGEditor
             //    m_bRequestOpen = true;
             //}
             open_wizard();
+        }
+
+        string GetArg(string[] args, string key)
+        {
+            for(int i = 0; i < args.Length; i++)
+            {
+                if (args[i].Equals(key, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (i + 1 < args.Length)
+                    {
+                        var val = args[i + 1];
+                        if (!val.StartsWith("/") && !val.StartsWith("-"))
+                        {
+                            return val;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        void open_headless(string template, string id, string dir)
+        {
+            m_ss = new Starter2();
+            m_ss.m_version = m_version;
+            m_ss.m_githash = m_githash;
+            m_ss.m_buildtime = m_buildtime;
+
+            m_ss.InitHeadless(template, id, dir);
+
+            m_bNew2019Files = m_ss.m_bNew2019Files;
+            m_new_target_psgg = m_ss.m_new_target_psgg;
+            m_new_target_xlsx = m_ss.m_new_target_xls;
+            
+            if (m_bNew2019Files)
+            {
+                m_bRequestOpen = true; 
+                return;
+            }
+            Close();
         }
 
         void open_wizard()

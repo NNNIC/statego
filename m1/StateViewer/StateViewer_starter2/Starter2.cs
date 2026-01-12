@@ -46,6 +46,24 @@ namespace StateViewer_starter2
             m_new_target_xls = m_startform.m_new_target_xlsx;
         }
 
+
+        public void InitHeadless(string templatePsgg, string id, string outputDir)
+        {
+            m_hist = new HistoryUtil();
+            
+            var nc = new NEW2019.NewControl();
+            
+            string new_psgg, new_xlsx;
+            var res = nc.HeadlessRun(templatePsgg, id, outputDir, out new_psgg, out new_xlsx);
+
+            if (res)
+            {
+                m_bNew2019Files = true;
+                m_new_target_psgg = new_psgg;
+                m_new_target_xls = new_xlsx;
+            }
+        }
+
         public static void UpdateHistroy(string file) { m_hist.UpdateHistory(file);     }
         public static string[] GetHistory()           { return m_hist.GetHistory();     } 
     }

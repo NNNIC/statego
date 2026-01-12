@@ -126,6 +126,8 @@
     <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\300_webcheck\src\WebAdCheckControl_created.cs" />
     <Compile Include="5000_ViewForm\5100_ViewForm_StateControl\310_findform\FindFormControl.cs" />
     <Compile Include="5000_ViewForm\5110_scroll\ScrollControl.cs" />
+    <Compile Include="5900_AIIntegration\LocalServer.cs" />
+    <Compile Include="5900_AIIntegration\StateBridge.cs" />
     <Compile Include="5000_ViewForm\dialog\AltStateDistinationForm1.cs">
       <SubType>Form</SubType>
     </Compile>
