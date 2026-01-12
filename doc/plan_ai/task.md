@@ -34,5 +34,6 @@
 - [x] Impl: `POST /api/group/create` <!-- id: 24 -->
 - [x] Impl: `POST /api/system/save_and_convert` (Save & Convert) <!-- id: 27 -->
 - [x] Verification: Test all endpoints <!-- id: 25 -->
+- [x] Impl: `POST /api/state/edit` (Upsert state with items) <!-- id: 28 -->
 
 

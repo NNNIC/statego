@@ -42,6 +42,14 @@ StateGo (StateViewer) に**ローカルAPIサーバー**を実装し、外部ツ
   - **Param**: `name`, `x`, `y`
   - **Internal**: `G.UpdateExcelPos`
 
+- **`POST /api/state/edit`**
+  - **Param**: `name`, `params` (dictionary of item:value), `x` (optional), `y` (optional)
+  - **Logic**: 
+    1. If `name` not found, create new state.
+    2. Update values for keys in `params` using `G.excel_program.SetString`.
+    3. If `x, y` provided, update position.
+
+
 #### B. グループ・システム (Grouping & System)
 - [POST] `/api/group/create`
   - **Param**: `group_name`, `states` (array), `comment`

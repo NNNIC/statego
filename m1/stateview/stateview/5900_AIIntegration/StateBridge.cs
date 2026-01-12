@@ -51,6 +51,8 @@ namespace stateview._5900_AIIntegration
                         return CreateGroup(data);
                     case "system/save_and_convert":
                         return SaveAndConvert();
+                    case "state/edit":
+                        return EditState(data);
                     default:
                         return JsonUtil.Serialize(new ErrorResponse { error = "unknown command: " + command });
                 }
@@ -136,6 +138,14 @@ namespace stateview._5900_AIIntegration
             [DataMember] public List<string> states;
             [DataMember] public string comment;
         }
+
+        [DataContract]
+        class EditStateParams {
+            [DataMember] public string name;
+            [DataMember] public Dictionary<string,string> @params;
+            [DataMember] public float? x;
+            [DataMember] public float? y;
+        }
         #endregion
 
         #region Implementation
@@ -197,17 +207,10 @@ namespace stateview._5900_AIIntegration
             string typ = p.type; 
             if (string.IsNullOrEmpty(typ)) typ = "state"; // default
             
-            // Map common types to internal values if needed
-            // But usually raw string is fine or specific mapping. 
-            // In ViewFormStateControl_3200_blank.cs: "state-typ" values are in WordStorage.Store.state_typ_*
-            // e.g. "loop" -> WordStorage.Store.state_typ_loop (value="loop" usually?)
-            // We'll trust user input for now or standard names.
-
             var newstate = G.excel_program.NewState(p.name, G.node_get_cur_dirpath());
             
             if (!string.IsNullOrEmpty(typ))
             {
-                // We might need to handle specific types like 'start', 'end' to set them correctly if valid
                 G.excel_program.SetString(newstate, G.STATENAME_statetyp, typ);
             }
             
@@ -219,6 +222,8 @@ namespace stateview._5900_AIIntegration
             var pt = new PointF(p.x, p.y);
             G.UpdateExcelPos(newstate, pt, true);
             History2.SaveForce_new(newstate);
+
+            G.req_redraw_force();
 
             return JsonUtil.Serialize(new SuccessResponse { success = "created " + newstate });
         }
@@ -233,6 +238,8 @@ namespace stateview._5900_AIIntegration
             G.excel_program.Delete(p.name);
             History2.SaveForce_delete(p.name);
 
+            G.req_redraw_force();
+
              return JsonUtil.Serialize(new SuccessResponse { success = "deleted " + p.name });
         }
 
@@ -245,15 +252,8 @@ namespace stateview._5900_AIIntegration
             var pt = new PointF(p.x, p.y);
             G.UpdateExcelPos(p.name, pt, true);
             
-            // Should save history? "Moved a state" - manual trigger
-            // stateview.History.ReqToSave("Moved state via API"); 
-            // Better to use SaveForce or similar if strictly needed, or just let Dirty flag handle it?
-            // History2 usually works with explicit calls. 
-            // Let's assume UpdateExcelPos updates dirty flag, but for Undo history:
-            // Globals.bDirty_by_edited_pos_only = true;
-            // No direct History2 method for just move in the list seen, but ViewFormStateControl uses History.ReqToSave
-            // We'll trust existing mechanisms or leave history for now to avoid side effects.
-            
+            G.req_redraw_force();
+
             return JsonUtil.Serialize(new SuccessResponse { success = "moved " + p.name });
         }
 
@@ -268,15 +268,59 @@ namespace stateview._5900_AIIntegration
                  if (!G.excel_program.CheckExists(s)) throw new ArgumentException("state not found: " + s);
             }
             
-            // logic from ViewFormStateControl_0650_statemenu.cs : gfstatemenu_grouping_wait
-            // G.node_grouping(group,m_group_focus_list,m_group_focus_click_state,comment);
-            
             string clickState = p.states[0]; // arbitrary pivot
             G.node_grouping(p.group_name, p.states, clickState, p.comment);
             
             History2.SaveForce_grouping("Make g:" + p.group_name);
 
+            G.req_redraw_force();
+
             return JsonUtil.Serialize(new SuccessResponse { success = "created group " + p.group_name });
+        }
+
+        private static string EditState(string data)
+        {
+            var p = (EditStateParams)JsonUtil.Deserialize(data, typeof(EditStateParams));
+            if (string.IsNullOrEmpty(p.name)) throw new ArgumentException("name required");
+            if (!stateview.StateUtil.IsValidStateName(p.name)) throw new ArgumentException("invalid state name");
+
+            bool isNew = false;
+            if (!G.excel_program.CheckExists(p.name))
+            {
+                G.excel_program.NewState(p.name, G.node_get_cur_dirpath());
+                History2.SaveForce_new(p.name);
+                isNew = true;
+            }
+
+            int updateCount = 0;
+            if (p.@params != null)
+            {
+                foreach(var kv in p.@params)
+                {
+                    if (kv.Key.StartsWith("!"))
+                    {
+                        // Modification of system items starting with '!' is prohibited via params dictionary.
+                        // Use dedicated fields (like x, y) for system properties instead.
+                        throw new ArgumentException("Cannot modify system property via params: " + kv.Key);
+                    }
+                    G.excel_program.SetString(p.name, kv.Key, kv.Value);
+                    updateCount++;
+                }
+            }
+
+            if (p.x.HasValue && p.y.HasValue)
+            {
+                G.UpdateExcelPos(p.name, new PointF(p.x.Value, p.y.Value), true);
+            }
+            else if (isNew)
+            {
+                 // Default position for newly created states if x, y are omitted.
+                 G.UpdateExcelPos(p.name, new PointF(100, 100), true);
+            }
+            
+            G.req_redraw_force();
+
+            return JsonUtil.Serialize(new SuccessResponse { success = (isNew ? "created and " : "") + "updated " + p.name + " (" + updateCount + " params)" });
         }
         #endregion
     }

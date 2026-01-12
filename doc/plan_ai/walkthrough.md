@@ -40,6 +40,7 @@ StateGoの起動時に、ポート **5000～5009** の範囲で空いている�
 | POST | `/api/state/move` | ステート移動。JSON: `{name, x, y}` |
 | POST | `/api/group/create` | グループ作成。JSON: `{group_name, states:[], comment}` |
 | POST | `/api/system/save_and_convert` | **(New)** 保存と変換を実行。UIダイアログは抑制されます。 |
+| POST | `/api/state/edit` | **(New)** ステートの新規作成・更新。JSON: `{name, params:{}, x?, y?}`。 !で始まるアイテム名は変更禁止。 |
 
 **検証:**
 以下のコマンドで一連の動作を確認済みです。(PowerShell example)
@@ -56,17 +57,15 @@ Invoke-RestMethod -Uri "http://localhost:5000/api/state/create" -Method Post -Bo
 Invoke-RestMethod -Uri "http://localhost:5000/api/system/save_and_convert" -Method Post
 #Response: @{success=save and convert started}
 
-# 4. ステート削除
-Invoke-RestMethod -Uri "http://localhost:5000/api/state/delete" -Method Post -Body '{"name":"S_NEW"}' -ContentType "application/json"
+# 4. ステートの統合編集 (Upsert)
+$body = @{ name="S_EDIT"; params=@{ "state-typ"="loop"; "nextstate"="S_END" }; x=200; y=200 } | ConvertTo-Json
+Invoke-RestMethod -Uri "http://localhost:5000/api/state/edit" -Method Post -Body $body -ContentType "application/json"
+# 既存ステートの更新（座標のみ変更など）
+Invoke-RestMethod -Uri "http://localhost:5000/api/state/edit" -Method Post -Body '{"name":"S_EDIT","x":300}' -ContentType "application/json"
+
+# 5. ステート削除
+Invoke-RestMethod -Uri "http://localhost:5000/api/state/delete" -Method Post -Body '{"name":"S_EDIT"}' -ContentType "application/json"
 ```
-
-## 再開時の注意点
-この実装計画およびドキュメントは `doc/plan_ai` にアーカイブされています。
-次回の開発再開時には、以下の手順で状況を復元してください。
-
-1. **ドキュメントの確認**: `doc/plan_ai/task.md` で進捗を確認。
-2. **実装の確認**: `StateBridge.cs` が最新のAPI仕様 (`doc/plan_ai/walkthrough.md`) と一致しているか確認。
-3. **サーバーの起動**: `/new` オプション等でStateGoを起動し、`/api/system/noop` で稼働確認。
 
 ## 変更されたファイル
 - `StateViewer/Form1.cs`: CLI引数の解析とヘッドレス初期化呼び出しを追加。

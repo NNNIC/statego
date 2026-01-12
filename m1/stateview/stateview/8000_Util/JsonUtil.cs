@@ -5,12 +5,14 @@ using System.Runtime.Serialization.Json;
 
 public class JsonUtil
 {
+    private static DataContractJsonSerializerSettings _settings = new DataContractJsonSerializerSettings { UseSimpleDictionaryFormat = true };
+
     public static string Serialize(Object obj)
     {
         if (obj==null) return null;
 
         var type = obj.GetType();
-        var bf = new DataContractJsonSerializer(type);
+        var bf = new DataContractJsonSerializer(type, _settings);
         using(var ms = new MemoryStream())
         {
             bf.WriteObject(ms,obj);
@@ -23,7 +25,7 @@ public class JsonUtil
         if (obj==null) return null;
 
         var type = typeof(T);
-        var bf = new DataContractJsonSerializer(type);
+        var bf = new DataContractJsonSerializer(type, _settings);
         using(var ms = new MemoryStream())
         {
             bf.WriteObject(ms,obj);
@@ -32,15 +34,13 @@ public class JsonUtil
         }
     }
 
-
-
     public static Object Deserialize(string s, Type type)
     {
         if (s==null) return null;
         var bytes = Encoding.UTF8.GetBytes(s);
         using(var ms = new MemoryStream(bytes))
         {
-            var bf = new DataContractJsonSerializer(type);
+            var bf = new DataContractJsonSerializer(type, _settings);
             return bf.ReadObject(ms);
         }
     }
