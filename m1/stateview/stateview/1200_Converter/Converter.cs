@@ -139,6 +139,7 @@ namespace stateview
             {
                 convert_w_insertmode(for_hpp);
             }
+            add_legacy_data(for_hpp);
         }
 
         private static void convert_external()
@@ -279,12 +280,117 @@ namespace stateview
             }
             return Path.Combine(SettingIniUtil.GetGenDir(),file);
         }
-        /// <summary>
-        /// フィルターテンプレートを作成するためのテンプレート上書き。コンバートの前に呼び出す
-        /// </summary>
         public static void change_temp_func(string template)
         {
             psggConverterLib.template_func = template;
+        }
+
+        private static void add_legacy_data(bool for_hpp)
+        {
+            try {
+                var gendir = SettingIniUtil.GetGenDir();
+                var file = psggConverterLib.OUTPUT;
+                if (string.IsNullOrEmpty(file))
+                {
+                    file = for_hpp ? SettingIniUtil.GetGeneratedHpp() : SettingIniUtil.GetGeneratedSource();
+                }
+
+                if (string.IsNullOrEmpty(file)) return;
+
+                var path = Path.IsPathRooted(file) ? file : Path.Combine(gendir, file);
+
+                // 前期型対応: ファイルが存在せず、かつ m_template_src がある場合は _created を付加したパスも確認
+                if (!File.Exists(path) && !string.IsNullOrEmpty(G.excel_convertsettings.m_template_src))
+                {
+                    var dir = Path.GetDirectoryName(path);
+                    var name = Path.GetFileNameWithoutExtension(path);
+                    var ext = Path.GetExtension(path);
+                    var path2 = Path.Combine(dir, name + "_created" + ext);
+                    if (File.Exists(path2))
+                    {
+                        path = path2;
+                    }
+                }
+
+                if (!File.Exists(path)) return;
+
+                var enc_str = SettingIniUtil.GetSrcEnc();
+                var enc = string.IsNullOrEmpty(enc_str) ? Encoding.UTF8 : Encoding.GetEncoding(enc_str);
+                
+                var content = File.ReadAllText(path, enc);
+                
+                // Remove existing block
+                var mark = "/*" + Environment.NewLine + "[DEPRECATED][STATEGO][DO NOT EXTEND]";
+                // Fallback for different line endings
+                if (!content.Contains(mark)) {
+                    mark = "/*" + "\n" + "[DEPRECATED][STATEGO][DO NOT EXTEND]";
+                }
+                
+                int index = content.LastIndexOf(mark);
+                if (index >= 0)
+                {
+                    content = content.Substring(0, index).TrimEnd() + Environment.NewLine;
+                }
+
+                var sb = new StringBuilder();
+                sb.AppendLine();
+                sb.AppendLine("/*");
+                sb.AppendLine("[DEPRECATED][STATEGO][DO NOT EXTEND]");
+                sb.AppendLine("This data area is for legacy StateGo tool.");
+                sb.AppendLine();
+                sb.AppendLine("Format:");
+                sb.AppendLine("  <StateID>:");
+                sb.AppendLine("    position = (X, Y)");
+                sb.AppendLine("    group    = <path>");
+                sb.AppendLine("    comment  = <comment>");
+                sb.AppendLine("    next     = [<StateIDNext>]");
+                sb.AppendLine("    branch   = [<StateIDB1>:<commentB1>], [<StateIDB2>:<commentB2>], ...");
+                sb.AppendLine("Data:");
+                sb.AppendLine();
+
+                var statelist = G.excel_program.GetStateList();
+                foreach(var state in statelist)
+                {
+                    var pos = G.get_excel_position(state);
+                    var group = DirPathExcelUtil.get_dirpath(state);
+                    var comment = clean_cmt(G.excel_program.GetString(state, G.STATENAME_statecmt));
+                    var next = G.excel_program.GetStringWithBasestate(state, G.STATENAME_nextstate);
+                    var branch_list = BranchUtil.GetApiAndLabelListFromState(state);
+                    
+                    sb.AppendLine($"  {state}:");
+                    if (pos != null) {
+                        sb.AppendLine($"    position = ({pos.Value.X}, {pos.Value.Y})");
+                    } else {
+                        sb.AppendLine($"    position = (100, 100)");
+                    }
+                    sb.AppendLine($"    group    = {group}");
+                    sb.AppendLine($"    comment  = {comment}");
+                    sb.AppendLine($"    next     = [{next}]");
+                    
+                    var brs = new List<string>();
+                    if (branch_list != null) {
+                        foreach(var b in branch_list) {
+                            var bcmt = clean_cmt(b.comment);
+                            brs.Add($"[{b.label}:{bcmt}]");
+                        }
+                    }
+                    sb.AppendLine($"    branch   = {string.Join(", ", brs)}");
+                    sb.AppendLine();
+                }
+                sb.AppendLine("*/");
+
+                File.WriteAllText(path, content + sb.ToString(), enc);
+            } catch (Exception e) {
+                G.NoticeToUser_warning("Add Legacy Data Error : " + e.Message);
+            }
+        }
+        private static string clean_cmt(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return "\"\"";
+            s = s.Trim();
+            if (s == "?") return "\"\"";
+            s = s.Replace("\"", "\\\"").Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "\\n");
+            return "\"" + s + "\"";
         }
     }
 }
